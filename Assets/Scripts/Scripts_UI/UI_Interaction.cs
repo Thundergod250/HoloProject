@@ -1,53 +1,29 @@
 using UnityEngine;
-using System.Collections.Generic;
+using TMPro;
 
 public class UI_Interaction : MonoBehaviour
 {
     [SerializeField] private GameObject interactionTabPrefab;
     [SerializeField] private Transform interactionGroup;
 
-    private List<UI_Interaction_Tab> activeTabs = new List<UI_Interaction_Tab>();
+    private UI_Interaction_Tab currentTab;
 
-    public void SyncTabs(List<Interactable> interactables, int selectedIndex)
+    public void Show(string name)
     {
-        // Ensure we have the same number of tabs as interactables
-        while (activeTabs.Count < interactables.Count)
-        {
-            GameObject tabGO = Instantiate(interactionTabPrefab, interactionGroup);
-            activeTabs.Add(tabGO.GetComponent<UI_Interaction_Tab>());
-        }
+        if (currentTab != null)
+            Destroy(currentTab.gameObject);
 
-        while (activeTabs.Count > interactables.Count)
-        {
-            Destroy(activeTabs[activeTabs.Count - 1].gameObject);
-            activeTabs.RemoveAt(activeTabs.Count - 1);
-        }
-
-        // Update labels and highlight
-        for (int i = 0; i < activeTabs.Count; i++)
-        {
-            activeTabs[i].Show(interactables[i].interactName);
-            activeTabs[i].SetHighlight(i == selectedIndex);
-        }
+        GameObject tabGO = Instantiate(interactionTabPrefab, interactionGroup);
+        currentTab = tabGO.GetComponent<UI_Interaction_Tab>();
+        currentTab.Show(name);
     }
 
-    public void ReorderTabs(int selectedIndex)
+    public void Hide()
     {
-        if (activeTabs.Count == 0) return;
-
-        selectedIndex = Mathf.Clamp(selectedIndex, 0, activeTabs.Count - 1);
-
-        for (int i = 0; i < activeTabs.Count; i++)
-            activeTabs[i].SetHighlight(i == selectedIndex);
-
-        // Move selected tab to top (Vertical Layout Group handles positioning)
-        activeTabs[selectedIndex].transform.SetSiblingIndex(0);
-    }
-
-    public void ClearTabs()
-    {
-        foreach (var tab in activeTabs)
-            Destroy(tab.gameObject);
-        activeTabs.Clear();
+        if (currentTab != null)
+        {
+            Destroy(currentTab.gameObject);
+            currentTab = null;
+        }
     }
 }
