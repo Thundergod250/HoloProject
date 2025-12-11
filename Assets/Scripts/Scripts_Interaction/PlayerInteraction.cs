@@ -15,18 +15,23 @@ public class PlayerInteraction : MonoBehaviour
         if (found != null && !nearbyInteractables.Contains(found))
         {
             nearbyInteractables.Add(found);
-            UpdateUI();
+
+            selectedIndex = Mathf.Clamp(selectedIndex, 0, nearbyInteractables.Count - 1);
+            ui_interactionTab.SyncTabs(nearbyInteractables, selectedIndex);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
         var found = other.GetComponent<Interactable>();
-        if (found != null && nearbyInteractables.Contains(found))
+        if (found != null && nearbyInteractables.Remove(found))
         {
-            nearbyInteractables.Remove(found);
             selectedIndex = Mathf.Clamp(selectedIndex, 0, nearbyInteractables.Count - 1);
-            UpdateUI();
+
+            if (nearbyInteractables.Count == 0)
+                ui_interactionTab.ClearTabs();
+            else
+                ui_interactionTab.SyncTabs(nearbyInteractables, selectedIndex);
         }
     }
 
@@ -37,8 +42,16 @@ public class PlayerInteraction : MonoBehaviour
 
         nearbyInteractables[selectedIndex].Interact();
         nearbyInteractables.RemoveAt(selectedIndex);
+
+        if (nearbyInteractables.Count == 0)
+        {
+            selectedIndex = 0;
+            ui_interactionTab.ClearTabs();
+            return;
+        }
+
         selectedIndex = Mathf.Clamp(selectedIndex, 0, nearbyInteractables.Count - 1);
-        UpdateUI();
+        ui_interactionTab.SyncTabs(nearbyInteractables, selectedIndex);
     }
 
     public void OnScroll(InputAction.CallbackContext ctx)
@@ -52,13 +65,7 @@ public class PlayerInteraction : MonoBehaviour
             selectedIndex = (selectedIndex + 1) % nearbyInteractables.Count;
         else if (scrollValue < 0)
             selectedIndex = (selectedIndex - 1 + nearbyInteractables.Count) % nearbyInteractables.Count;
-        
-        selectedIndex = Mathf.Clamp(selectedIndex, 0, nearbyInteractables.Count - 1);
-        ui_interactionTab.ReorderTabs(selectedIndex);
-    }
 
-    private void UpdateUI()
-    {
-        ui_interactionTab.UpdateTabs(nearbyInteractables, selectedIndex);
+        ui_interactionTab.ReorderTabs(selectedIndex);
     }
 }

@@ -8,38 +8,46 @@ public class UI_Interaction : MonoBehaviour
 
     private List<UI_Interaction_Tab> activeTabs = new List<UI_Interaction_Tab>();
 
-    public void UpdateTabs(List<Interactable> interactables, int selectedIndex)
+    public void SyncTabs(List<Interactable> interactables, int selectedIndex)
     {
-        // Clear old tabs
-        foreach (Transform child in interactionGroup)
-            Destroy(child.gameObject);
-        activeTabs.Clear();
-
-        // Spawn new tabs
-        for (int i = 0; i < interactables.Count; i++)
+        // Ensure we have the same number of tabs as interactables
+        while (activeTabs.Count < interactables.Count)
         {
             GameObject tabGO = Instantiate(interactionTabPrefab, interactionGroup);
-            UI_Interaction_Tab tab = tabGO.GetComponent<UI_Interaction_Tab>();
-            tab.Show(interactables[i].interactName);
-            activeTabs.Add(tab);
+            activeTabs.Add(tabGO.GetComponent<UI_Interaction_Tab>());
         }
 
-        ReorderTabs(selectedIndex); // Initial reorder
+        while (activeTabs.Count > interactables.Count)
+        {
+            Destroy(activeTabs[activeTabs.Count - 1].gameObject);
+            activeTabs.RemoveAt(activeTabs.Count - 1);
+        }
+
+        // Update labels and highlight
+        for (int i = 0; i < activeTabs.Count; i++)
+        {
+            activeTabs[i].Show(interactables[i].interactName);
+            activeTabs[i].SetHighlight(i == selectedIndex);
+        }
     }
 
     public void ReorderTabs(int selectedIndex)
     {
-        if (activeTabs.Count == 0)
-            return;
+        if (activeTabs.Count == 0) return;
 
         selectedIndex = Mathf.Clamp(selectedIndex, 0, activeTabs.Count - 1);
 
         for (int i = 0; i < activeTabs.Count; i++)
-        {
             activeTabs[i].SetHighlight(i == selectedIndex);
-        }
 
-        // Move selected tab to top of hierarchy (or middle visually)
+        // Move selected tab to top (Vertical Layout Group handles positioning)
         activeTabs[selectedIndex].transform.SetSiblingIndex(0);
+    }
+
+    public void ClearTabs()
+    {
+        foreach (var tab in activeTabs)
+            Destroy(tab.gameObject);
+        activeTabs.Clear();
     }
 }
