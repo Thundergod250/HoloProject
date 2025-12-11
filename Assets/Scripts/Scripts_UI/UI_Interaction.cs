@@ -1,5 +1,4 @@
 using UnityEngine;
-using TMPro;
 
 public class UI_Interaction : MonoBehaviour
 {
@@ -11,9 +10,9 @@ public class UI_Interaction : MonoBehaviour
     public void Show(string name)
     {
         if (currentTab != null)
-            Destroy(currentTab.gameObject);
+            ObjectPooling.Instance.Return(interactionTabPrefab, currentTab.gameObject);
 
-        GameObject tabGO = Instantiate(interactionTabPrefab, interactionGroup);
+        GameObject tabGO = ObjectPooling.Instance.Get(interactionTabPrefab, interactionGroup);
         currentTab = tabGO.GetComponent<UI_Interaction_Tab>();
         currentTab.Show(name);
     }
@@ -22,7 +21,7 @@ public class UI_Interaction : MonoBehaviour
     {
         if (currentTab != null)
         {
-            Destroy(currentTab.gameObject);
+            ObjectPooling.Instance.Return(interactionTabPrefab, currentTab.gameObject);
             currentTab = null;
         }
     }
