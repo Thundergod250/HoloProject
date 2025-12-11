@@ -28,7 +28,7 @@ public class PlayerInteraction : MonoBehaviour
             {
                 if (Physics.Raycast(point.position, point.forward, out RaycastHit hit, rayLength, interactableMask))
                 {
-                    Interactable interactable = hit.collider.GetComponent<Interactable>();
+                    var interactable = hit.collider.GetComponent<Interactable>();
                     if (interactable != null)
                     {
                         float dist = Vector3.Distance(transform.position, hit.point);
@@ -43,17 +43,31 @@ public class PlayerInteraction : MonoBehaviour
 
             if (closest != currentInteractable)
             {
-                currentInteractable = closest;
-
+                // Exit old
                 if (currentInteractable != null)
-                    ui_interactionTab.Show(currentInteractable.interactName);
-                else
+                {
+                    currentInteractable.FocusExit();
                     ui_interactionTab.Hide();
+                }
+
+                // Enter new
+                currentInteractable = closest;
+                if (currentInteractable != null)
+                {
+                    currentInteractable.Focus();
+                    ui_interactionTab.Show(currentInteractable.interactName);
+                }
+            }
+            else if (currentInteractable != null)
+            {
+                // Still focused → repeatedly invoke
+                currentInteractable.Focus();
             }
 
             yield return raycastInterval;
         }
     }
+
 
     public void OnInteract(InputAction.CallbackContext ctx)
     {
