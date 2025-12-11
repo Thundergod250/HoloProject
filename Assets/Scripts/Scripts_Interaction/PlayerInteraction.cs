@@ -1,39 +1,64 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    private Interactable interactable;
+    [SerializeField] private UI_Interaction ui_interactionTab;
+
+    private List<Interactable> nearbyInteractables = new List<Interactable>();
+    private int selectedIndex = 0;
 
     private void OnTriggerEnter(Collider other)
     {
         var found = other.GetComponent<Interactable>();
-        if (found != null)
+        if (found != null && !nearbyInteractables.Contains(found))
         {
-            interactable = found;
+            nearbyInteractables.Add(found);
+            UpdateUI();
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<Interactable>() == interactable)
+        var found = other.GetComponent<Interactable>();
+        if (found != null && nearbyInteractables.Contains(found))
         {
-            interactable = null;
+            nearbyInteractables.Remove(found);
+            selectedIndex = Mathf.Clamp(selectedIndex, 0, nearbyInteractables.Count - 1);
+            UpdateUI();
         }
     }
-    
-    // This gets called by the Player Input component when the Interact action is triggered
+
     public void OnInteract(InputAction.CallbackContext ctx)
     {
-        if (!ctx.performed)
+        if (!ctx.performed || nearbyInteractables.Count == 0)
             return;
 
-        Debug.Log("F Button Pressed");
+        nearbyInteractables[selectedIndex].Interact();
+        nearbyInteractables.RemoveAt(selectedIndex);
+        selectedIndex = Mathf.Clamp(selectedIndex, 0, nearbyInteractables.Count - 1);
+        UpdateUI();
+    }
+
+    public void OnScroll(InputAction.CallbackContext ctx)
+    {
+        if (nearbyInteractables.Count <= 1)
+            return;
+
+        float scrollValue = ctx.ReadValue<float>();
+
+        if (scrollValue > 0)
+            selectedIndex = (selectedIndex + 1) % nearbyInteractables.Count;
+        else if (scrollValue < 0)
+            selectedIndex = (selectedIndex - 1 + nearbyInteractables.Count) % nearbyInteractables.Count;
         
-        if (interactable != null)
-        {
-            Debug.Log("Interacted");
-            interactable.Interact();
-        }
+        selectedIndex = Mathf.Clamp(selectedIndex, 0, nearbyInteractables.Count - 1);
+        ui_interactionTab.ReorderTabs(selectedIndex);
+    }
+
+    private void UpdateUI()
+    {
+        ui_interactionTab.UpdateTabs(nearbyInteractables, selectedIndex);
     }
 }

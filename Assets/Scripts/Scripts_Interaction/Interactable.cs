@@ -3,8 +3,8 @@ using UnityEngine.Events;
 
 public class Interactable : MonoBehaviour
 {
-    [Header("UI Label")]
-    public string interactName = "Interactable";
+    [Header("Interaction Name")]
+    public string interactName = "Interact";
 
     [Header("Interaction Event")]
     public UnityEvent onInteract;
