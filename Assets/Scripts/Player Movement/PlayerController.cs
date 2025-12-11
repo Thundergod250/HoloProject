@@ -1,72 +1,77 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
+    [Header("Movement Settings")]
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpHeight = 2f;
-    [SerializeField] private float gravity = -9.8f; // Standard Earth gravity
+    [SerializeField] private float gravity = -9.8f;
+
+    [Header("References")]
+    [SerializeField] private Transform cameraTransform; // Drag your Main Camera here
 
     private CharacterController controller;
     private Vector2 moveInput;
-    private Vector3 velocity; // Stores vertical velocity (for gravity/jumping)
+    private Vector3 velocity;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
-        // Get the CharacterController component attached to this GameObject
         controller = GetComponent<CharacterController>();
+
+        // Safety check: if no camera assigned, auto‑find the main camera
+        if (cameraTransform == null && Camera.main != null) 
+            cameraTransform = Camera.main.transform;
     }
 
-    // Called when the Move action is performed, which stores the input values
-    public void OnMove(InputAction.CallbackContext context)
-    {
-        // Read the 2D vector (X and Y axis input) from the action
-        moveInput = context.ReadValue<Vector2>();
-        Debug.Log($"Move Input: {moveInput}");
-    }
-
-    // Called when the Jump action is performed
-    public void OnJump(InputAction.CallbackContext context)
-    {
-        // Debug statement to check if the function is being called and if the character is grounded
-        Debug.Log($"Jumping - Is Grounded: {controller.isGrounded}");
-
-        // Check if the input button was just pressed AND the character is currently touching the ground
-        if (context.performed && controller.isGrounded)
-        {
-            Debug.Log("We are supposed to jump");
-            
-            // Calculate the required vertical velocity (y) for the jump height
-            // Formula: v = sqrt(h * -2 * g)
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         // === 1. Ground Check and Reset Gravity Velocity ===
-        // If the character is touching the ground and falling, reset the downward velocity
-        // (Use a small negative value to force the isGrounded check to work properly next frame)
-        if (controller.isGrounded && velocity.y < 0)
-        {
-            velocity.y = -2f; 
-        }
+        if (controller.isGrounded && velocity.y < 0) 
+            velocity.y = -2f; // small negative to keep grounded state consistent
 
-        // === 2. Horizontal Movement ===
-        // Calculate the direction vector: transform.right (local X) * moveInput.x + transform.forward (local Z) * moveInput.y
-        Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
+        // === 2. Camera‑Relative Horizontal Movement ===
+        Vector3 camForward = cameraTransform.forward;
+        Vector3 camRight = cameraTransform.right;
 
-        // Apply horizontal movement to the controller
-        // Time.deltaTime ensures frame-rate independence
+        // Flatten to horizontal plane
+        camForward.y = 0f;
+        camRight.y = 0f;
+        camForward.Normalize();
+        camRight.Normalize();
+
+        // Combine input with camera orientation
+        Vector3 move = camForward * moveInput.y + camRight * moveInput.x;
+
+        // Apply movement
         controller.Move(move * speed * Time.deltaTime);
 
         // === 3. Gravity and Vertical Movement ===
-        // Apply gravity acceleration to the vertical velocity (velocity.y)
         velocity.y += gravity * Time.deltaTime;
-
-        // Apply the vertical velocity to the controller
         controller.Move(velocity * Time.deltaTime);
+
+        // === 4. Rotate Player to Face Movement Direction ===
+        if (move != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(move);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
+        }
+    }
+
+    // Input System callbacks
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        moveInput = context.ReadValue<Vector2>();
+        // Debug.Log($"Move Input: {moveInput}");
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if (context.performed && controller.isGrounded)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            // Debug.Log("Jump triggered");
+        }
     }
 }
