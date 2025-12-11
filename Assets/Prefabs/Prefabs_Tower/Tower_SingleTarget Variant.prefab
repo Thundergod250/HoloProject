@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4234993880454634559
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7795377701471874775, guid: fd8ff4e216de0184087345061ef46d75, type: 3}
+      propertyPath: m_Name
+      value: Tower_SingleTarget Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 8574923633557309200, guid: fd8ff4e216de0184087345061ef46d75, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -16.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8574923633557309200, guid: fd8ff4e216de0184087345061ef46d75, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.0601
+      objectReference: {fileID: 0}
+    - target: {fileID: 8574923633557309200, guid: fd8ff4e216de0184087345061ef46d75, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 8574923633557309200, guid: fd8ff4e216de0184087345061ef46d75, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8574923633557309200, guid: fd8ff4e216de0184087345061ef46d75, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8574923633557309200, guid: fd8ff4e216de0184087345061ef46d75, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8574923633557309200, guid: fd8ff4e216de0184087345061ef46d75, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8574923633557309200, guid: fd8ff4e216de0184087345061ef46d75, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8574923633557309200, guid: fd8ff4e216de0184087345061ef46d75, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8574923633557309200, guid: fd8ff4e216de0184087345061ef46d75, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7795377701471874775, guid: fd8ff4e216de0184087345061ef46d75, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1502973714370619833}
+    - targetCorrespondingSourceObject: {fileID: 7795377701471874775, guid: fd8ff4e216de0184087345061ef46d75, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8689199214514848268}
+  m_SourcePrefab: {fileID: 100100000, guid: fd8ff4e216de0184087345061ef46d75, type: 3}
+--- !u!1 &6263107166279365352 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7795377701471874775, guid: fd8ff4e216de0184087345061ef46d75, type: 3}
+  m_PrefabInstance: {fileID: 4234993880454634559}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1502973714370619833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6263107166279365352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f71e863594475d745a16ceef900a72ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DetectEntity
+  detectionRadius: 12
+  scanInterval: 1
+  factionToDetect: 0
+--- !u!114 &8689199214514848268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6263107166279365352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd62ab59c32627846955d65e58f1fd89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerAttack_SingleTarget
+  attackInterval: 1
+  projectilePrefab: {fileID: 0}
+  firePoint: {fileID: 0}
+  projectileSpeed: 10
+  projectileDamage: 20
