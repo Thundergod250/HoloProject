@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8054846756740667270}
   - component: {fileID: 6747923992529754906}
   - component: {fileID: 2986449686215602853}
+  - component: {fileID: 8431248934247577699}
   - component: {fileID: 6390198802589204848}
   - component: {fileID: 8160217979248254876}
   - component: {fileID: 6486533220045553385}
@@ -72,7 +73,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5eeacd64ba97f684b89b474bfa365015, type: 2}
+  - {fileID: 2100000, guid: 609cd75e5689c634ca2b340b6a160141, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -117,6 +118,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8431248934247577699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3364266961026395771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 319ee2852ef26ad4a8a6d51aa0dc52ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerNodeManager
 --- !u!114 &6390198802589204848
 MonoBehaviour:
   m_ObjectHideFlags: 0

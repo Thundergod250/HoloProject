@@ -3,21 +3,17 @@ using System.Collections.Generic;
 
 public class UI_Manager : MonoBehaviour
 {
-    [SerializeField] private GameObject interActionGroup;
+    [SerializeField] private GameObject mainUiGroup;
     [SerializeField] private GameObject towerUpgrades;
 
-    // Future-proof: keep all groups in a list
     private List<GameObject> uiGroups;
 
     private void Awake()
     {
-        // Initialize the list with all groups
-        uiGroups = new List<GameObject> { interActionGroup, towerUpgrades };
+        // Initialize the list with the two groups
+        uiGroups = new List<GameObject> { mainUiGroup, towerUpgrades };
     }
-
-    /// <summary>
-    /// Activates only the given UI group, disables all others.
-    /// </summary>
+    
     public void FocusUI(GameObject targetGroup)
     {
         foreach (var group in uiGroups)
@@ -27,23 +23,20 @@ public class UI_Manager : MonoBehaviour
         }
     }
 
-    // Convenience wrappers for specific groups
-    public void FocusInterActionGroup()
+    // Convenience wrappers
+    public void FocusMainUIGroup()
     {
-        FocusUI(interActionGroup);
+        FocusUI(mainUiGroup);
     }
 
     public void FocusTowerUpgrades()
     {
         FocusUI(towerUpgrades);
     }
-
-    /// <summary>
-    /// Add new UI groups dynamically if needed.
-    /// </summary>
+    
     public void RegisterUIGroup(GameObject newGroup)
     {
-        if (!uiGroups.Contains(newGroup))
+        if (newGroup != null && !uiGroups.Contains(newGroup))
             uiGroups.Add(newGroup);
     }
 }

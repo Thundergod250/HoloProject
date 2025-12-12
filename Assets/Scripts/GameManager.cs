@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour
     public UI_Manager UIManager;
     public GoldManager GoldManager;
     public ObjectPooling ObjectPooling;
-    public Transform CurrentTowerSpawn; 
+    
+    [HideInInspector] public Transform CurrentTowerSpawn; 
 
     private void Awake()
     {
