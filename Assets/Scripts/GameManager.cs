@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
     public GoldManager GoldManager;
     public ObjectPooling ObjectPooling;
     
-    [HideInInspector] public Transform CurrentTowerSpawn; 
+    [HideInInspector] public Transform CurrentTowerSpawn;
+    [HideInInspector] public TowerNodeManager towerNodeManager;  
 
     private void Awake()
     {
@@ -40,8 +41,10 @@ public class GameManager : MonoBehaviour
 
         Debug.Log($"Spawned tower at {CurrentTowerSpawn.position}");
 
+        towerNodeManager.towerNodeBuilding = tower; 
         // Clear spawn reference
         CurrentTowerSpawn = null;
+        towerNodeManager = null;
     }
     
     public void DespawnTower(GameObject towerPrefab, GameObject towerInstance)

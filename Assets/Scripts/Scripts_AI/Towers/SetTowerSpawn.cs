@@ -11,4 +11,10 @@ public class SetTowerSpawn : MonoBehaviour
     {
         GameManager.Instance.SpawnTower(obj); 
     }
+    
+    public void SetTowerManager(TowerNodeManager nodeManager)
+    {
+        GameManager.Instance.towerNodeManager = nodeManager;
+        SetTowerSpawnTransform(nodeManager.spawnTransform); 
+    }
 }

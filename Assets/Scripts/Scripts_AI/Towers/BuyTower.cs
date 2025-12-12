@@ -15,7 +15,11 @@ public class BuyTower : MonoBehaviour
 
         if (GameManager.Instance.GoldManager?.SpendGold(cost) == true)
         {
-            EvtOnBuySuccessful?.Invoke(TowerCardManager.TowerPrefab); 
+            if (GameManager.Instance.towerNodeManager.towerNodeBuilding != null)
+            {
+                Destroy(GameManager.Instance.towerNodeManager.towerNodeBuilding);
+            }
+            EvtOnBuySuccessful?.Invoke(TowerCardManager.TowerPrefab);
         }
         else
         {

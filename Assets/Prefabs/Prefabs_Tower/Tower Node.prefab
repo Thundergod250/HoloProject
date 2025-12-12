@@ -130,6 +130,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 319ee2852ef26ad4a8a6d51aa0dc52ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerNodeManager
+  towerNodeBuilding: {fileID: 0}
+  spawnTransform: {fileID: 7884370516933579113}
 --- !u!114 &6390198802589204848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,11 +216,11 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 2607173195040463432}
         m_TargetAssemblyTypeName: SetTowerSpawn, Assembly-CSharp
-        m_MethodName: SetTowerSpawnTransform
+        m_MethodName: SetTowerManager
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 7884370516933579113}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_ObjectArgument: {fileID: 8431248934247577699}
+          m_ObjectArgumentAssemblyTypeName: TowerNodeManager, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
