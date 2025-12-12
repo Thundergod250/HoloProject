@@ -16,19 +16,24 @@ public class UI_TowerShop : MonoBehaviour
 
     private void SpawnCards(TowerCategoryData_SO data)
     {
+        // Return old cards to pool instead of destroying
         foreach (Transform child in cardParent)
-            Destroy(child.gameObject);
+        {
+            var pooledCard = child.gameObject;
+            ObjectPooling.Instance.Return(data.towerCardPrefab, pooledCard);
+        }
 
+        // Spawn new cards from pool
         foreach (var cardInfo in data.cards)
         {
-            GameObject cardGO = Instantiate(data.towerCardPrefab, cardParent);
+            GameObject cardGO = ObjectPooling.Instance.Get(data.towerCardPrefab, cardParent);
             TowerCardManager card = cardGO.GetComponent<TowerCardManager>();
 
             card.Title.text = cardInfo.title;
             card.Description.text = cardInfo.description;
             card.Cost.text = cardInfo.cost.ToString();
             card.Image.sprite = cardInfo.icon;
-            card.TowerPrefab = cardInfo.towerPrefab; // 👈 NEW
+            card.TowerPrefab = cardInfo.towerPrefab;
 
             BuyTower buyTower = cardGO.GetComponent<BuyTower>();
             if (buyTower != null)
