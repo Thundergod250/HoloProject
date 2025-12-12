@@ -16,4 +16,5 @@ public class TowerCardInfo
     public string description;
     public int cost;
     public Sprite icon;
+    public GameObject towerPrefab; 
 }

@@ -1,10 +1,13 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+[System.Serializable]
+public class TowerBuyEvent : UnityEvent<GameObject> { }
+
 public class BuyTower : MonoBehaviour
 {
-    public UnityEvent EvtOnBuySuccessful;
     public TowerCardManager TowerCardManager;
+    public TowerBuyEvent EvtOnBuySuccessful; 
 
     public void _BuyButtonClicked()
     {
@@ -12,7 +15,7 @@ public class BuyTower : MonoBehaviour
 
         if (GameManager.Instance.GoldManager?.SpendGold(cost) == true)
         {
-            EvtOnBuySuccessful?.Invoke();
+            EvtOnBuySuccessful?.Invoke(TowerCardManager.TowerPrefab); 
         }
         else
         {

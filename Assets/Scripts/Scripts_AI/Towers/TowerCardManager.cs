@@ -9,6 +9,7 @@ public class TowerCardManager : MonoBehaviour
     public TextMeshProUGUI Description;
     public TextMeshProUGUI Cost;
     public Button Button;
+    public GameObject TowerPrefab; 
     
     public int GetCostValue()
     {

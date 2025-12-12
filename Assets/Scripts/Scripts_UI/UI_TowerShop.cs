@@ -28,6 +28,7 @@ public class UI_TowerShop : MonoBehaviour
             card.Description.text = cardInfo.description;
             card.Cost.text = cardInfo.cost.ToString();
             card.Image.sprite = cardInfo.icon;
+            card.TowerPrefab = cardInfo.towerPrefab; // 👈 NEW
 
             BuyTower buyTower = cardGO.GetComponent<BuyTower>();
             if (buyTower != null)

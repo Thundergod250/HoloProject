@@ -707,22 +707,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 640d6d59aab82a14384329083d3f9ef6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BuyTower
+  TowerCardManager: {fileID: 4893842980949269754}
   EvtOnBuySuccessful:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7251903329884335191}
         m_TargetAssemblyTypeName: SetTowerSpawn, Assembly-CSharp
         m_MethodName: SpawnTower
-        m_Mode: 2
+        m_Mode: 0
         m_Arguments:
-          m_ObjectArgument: {fileID: 771627436864052414, guid: 046fecfdbf5c11f4ebdd279edf2f703b, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  TowerCardManager: {fileID: 4893842980949269754}
 --- !u!1 &6784182425900774204
 GameObject:
   m_ObjectHideFlags: 0
@@ -961,7 +961,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9017402507749122417}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1034,3 +1034,4 @@ MonoBehaviour:
   Description: {fileID: 8268816931820040038}
   Cost: {fileID: 7051819864952287684}
   Button: {fileID: 3070785436287328962}
+  TowerPrefab: {fileID: 0}
