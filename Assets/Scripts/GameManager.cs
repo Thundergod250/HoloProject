@@ -4,15 +4,14 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    // Global reference to the PlayerController
+    // Global references
     public PlayerController PlayerController;
     public CameraManager CameraManager;
     public UI_Manager UIManager;
     public GoldManager GoldManager;
     public ObjectPooling ObjectPooling;
-    
-    [HideInInspector] public Transform CurrentTowerSpawn;
-    [HideInInspector] public TowerNodeManager towerNodeManager;  
+
+    [HideInInspector] public TowerNodeManager CurrentTowerNode; // 👈 single source of truth
 
     private void Awake()
     {
@@ -22,9 +21,9 @@ public class GameManager : MonoBehaviour
 
     public void SpawnTower(GameObject towerPrefab)
     {
-        if (CurrentTowerSpawn == null)
+        if (CurrentTowerNode == null || CurrentTowerNode.spawnTransform == null)
         {
-            Debug.LogWarning("No spawn point assigned.");
+            Debug.LogWarning("No tower node or spawn transform assigned.");
             return;
         }
 
@@ -34,19 +33,26 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        // ✅ Use ObjectPooling instead of Instantiate
-        GameObject tower = ObjectPooling.Instance.Get(towerPrefab, CurrentTowerSpawn.parent);
-        tower.transform.position = CurrentTowerSpawn.position;
-        tower.transform.rotation = CurrentTowerSpawn.rotation;
+        // Despawn existing tower if present
+        if (CurrentTowerNode.towerNodeBuilding != null)
+        {
+            ObjectPooling.Instance.Return(CurrentTowerNode.towerNodeBuildingPrefab, CurrentTowerNode.towerNodeBuilding);
+        }
 
-        Debug.Log($"Spawned tower at {CurrentTowerSpawn.position}");
+        // Spawn new tower
+        GameObject tower = ObjectPooling.Instance.Get(towerPrefab, CurrentTowerNode.spawnTransform.parent);
+        tower.transform.position = CurrentTowerNode.spawnTransform.position;
+        tower.transform.rotation = CurrentTowerNode.spawnTransform.rotation;
 
-        towerNodeManager.towerNodeBuilding = tower; 
-        // Clear spawn reference
-        CurrentTowerSpawn = null;
-        towerNodeManager = null;
+        CurrentTowerNode.towerNodeBuilding = tower;
+        CurrentTowerNode.towerNodeBuildingPrefab = towerPrefab;
+
+        Debug.Log($"Spawned tower at {CurrentTowerNode.name}");
+
+        // Clear reference
+        CurrentTowerNode = null;
     }
-    
+
     public void DespawnTower(GameObject towerPrefab, GameObject towerInstance)
     {
         if (towerPrefab == null || towerInstance == null) return;

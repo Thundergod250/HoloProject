@@ -2,19 +2,13 @@ using UnityEngine;
 
 public class SetTowerSpawn : MonoBehaviour
 {
-    public void SetTowerSpawnTransform(Transform location)
+    public void SetTowerSpawnTransform(TowerNodeManager node)
     {
-        GameManager.Instance.CurrentTowerSpawn = location; 
+        GameManager.Instance.CurrentTowerNode = node;
     }
-    
+
     public void SpawnTower(GameObject obj)
     {
-        GameManager.Instance.SpawnTower(obj); 
-    }
-    
-    public void SetTowerManager(TowerNodeManager nodeManager)
-    {
-        GameManager.Instance.towerNodeManager = nodeManager;
-        SetTowerSpawnTransform(nodeManager.spawnTransform); 
+        GameManager.Instance.SpawnTower(obj);
     }
 }

@@ -7,7 +7,7 @@ public class TowerBuyEvent : UnityEvent<GameObject> { }
 public class BuyTower : MonoBehaviour
 {
     public TowerCardManager TowerCardManager;
-    public TowerBuyEvent EvtOnBuySuccessful; 
+    public TowerBuyEvent EvtOnBuySuccessful;
 
     public void _BuyButtonClicked()
     {
@@ -15,10 +15,13 @@ public class BuyTower : MonoBehaviour
 
         if (GameManager.Instance.GoldManager?.SpendGold(cost) == true)
         {
-            if (GameManager.Instance.towerNodeManager.towerNodeBuilding != null)
+            var node = GameManager.Instance.CurrentTowerNode;
+
+            if (node != null && node.towerNodeBuilding != null)
             {
-                Destroy(GameManager.Instance.towerNodeManager.towerNodeBuilding);
+                GameManager.Instance.DespawnTower(node.towerNodeBuildingPrefab, node.towerNodeBuilding);
             }
+
             EvtOnBuySuccessful?.Invoke(TowerCardManager.TowerPrefab);
         }
         else
