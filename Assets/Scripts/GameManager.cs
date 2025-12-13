@@ -4,7 +4,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    // Global references
     public PlayerController PlayerController;
     public CameraManager CameraManager;
     public UI_Manager UIManager;
@@ -33,16 +32,17 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        // Despawn existing tower if present
+        // Despawn existing tower
         if (CurrentTowerNode.towerNodeBuilding != null)
         {
             DespawnTower(CurrentTowerNode.towerNodeBuildingPrefab, CurrentTowerNode.towerNodeBuilding);
         }
 
-        // Spawn from pool and parent to node
+        // Get from pool and parent to node
         GameObject tower = ObjectPooling.Instance.Get(towerPrefab, CurrentTowerNode.transform);
         tower.transform.position = CurrentTowerNode.spawnTransform.position;
-        tower.transform.rotation = CurrentTowerNode.spawnTransform.rotation;
+        tower.transform.rotation = towerPrefab.transform.rotation;
+        tower.transform.localScale = towerPrefab.transform.localScale;
 
         // Track instance and prefab
         CurrentTowerNode.towerNodeBuilding = tower;
@@ -50,7 +50,6 @@ public class GameManager : MonoBehaviour
 
         Debug.Log($"Spawned tower under {CurrentTowerNode.name}");
 
-        // Clear reference
         CurrentTowerNode = null;
     }
 

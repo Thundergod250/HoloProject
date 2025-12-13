@@ -26,13 +26,11 @@ public class ObjectPooling : MonoBehaviour
         }
         else
         {
-            obj = Instantiate(prefab); 
+            obj = Instantiate(prefab);
         }
 
-        if (parent != null)
-            obj.transform.SetParent(parent, false);
-        else
-            obj.transform.SetParent(transform, false); 
+        // Parent assignment
+        obj.transform.SetParent(parent != null ? parent : transform, false);
 
         return obj;
     }
@@ -40,7 +38,7 @@ public class ObjectPooling : MonoBehaviour
     public void Return(GameObject prefab, GameObject obj)
     {
         obj.SetActive(false);
-        obj.transform.SetParent(transform, false); 
+        obj.transform.SetParent(transform, false); // 👈 back to pool manager
 
         if (!pools.ContainsKey(prefab))
             pools[prefab] = new Queue<GameObject>();
