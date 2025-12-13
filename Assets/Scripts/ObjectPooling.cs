@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class ObjectPooling : MonoBehaviour
 {
-    public static ObjectPooling Instance; // global access
+    public static ObjectPooling Instance;
 
     private Dictionary<GameObject, Queue<GameObject>> pools = new Dictionary<GameObject, Queue<GameObject>>();
 
@@ -26,11 +26,13 @@ public class ObjectPooling : MonoBehaviour
         }
         else
         {
-            obj = Instantiate(prefab, transform); // 👈 spawn under Pool Manager
+            obj = Instantiate(prefab); 
         }
 
         if (parent != null)
             obj.transform.SetParent(parent, false);
+        else
+            obj.transform.SetParent(transform, false); 
 
         return obj;
     }
@@ -38,9 +40,7 @@ public class ObjectPooling : MonoBehaviour
     public void Return(GameObject prefab, GameObject obj)
     {
         obj.SetActive(false);
-
-        // ✅ Reparent under this pool manager
-        obj.transform.SetParent(transform, false);
+        obj.transform.SetParent(transform, false); 
 
         if (!pools.ContainsKey(prefab))
             pools[prefab] = new Queue<GameObject>();

@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public GoldManager GoldManager;
     public ObjectPooling ObjectPooling;
 
-    [HideInInspector] public TowerNodeManager CurrentTowerNode; // 👈 single source of truth
+    [HideInInspector] public TowerNodeManager CurrentTowerNode;
 
     private void Awake()
     {
@@ -36,18 +36,19 @@ public class GameManager : MonoBehaviour
         // Despawn existing tower if present
         if (CurrentTowerNode.towerNodeBuilding != null)
         {
-            ObjectPooling.Instance.Return(CurrentTowerNode.towerNodeBuildingPrefab, CurrentTowerNode.towerNodeBuilding);
+            DespawnTower(CurrentTowerNode.towerNodeBuildingPrefab, CurrentTowerNode.towerNodeBuilding);
         }
 
-        // Spawn new tower
-        GameObject tower = ObjectPooling.Instance.Get(towerPrefab, CurrentTowerNode.spawnTransform.parent);
+        // Spawn from pool and parent to node
+        GameObject tower = ObjectPooling.Instance.Get(towerPrefab, CurrentTowerNode.transform);
         tower.transform.position = CurrentTowerNode.spawnTransform.position;
         tower.transform.rotation = CurrentTowerNode.spawnTransform.rotation;
 
+        // Track instance and prefab
         CurrentTowerNode.towerNodeBuilding = tower;
         CurrentTowerNode.towerNodeBuildingPrefab = towerPrefab;
 
-        Debug.Log($"Spawned tower at {CurrentTowerNode.name}");
+        Debug.Log($"Spawned tower under {CurrentTowerNode.name}");
 
         // Clear reference
         CurrentTowerNode = null;
