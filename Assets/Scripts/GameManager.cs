@@ -4,6 +4,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    // Global references
     public PlayerController PlayerController;
     public CameraManager CameraManager;
     public UI_Manager UIManager;
@@ -17,7 +18,25 @@ public class GameManager : MonoBehaviour
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
     }
+    
+    public GameObject SpawnObject(GameObject prefab, Transform parent, Vector3 position, Quaternion rotation)
+    {
+        if (prefab == null)
+        {
+            Debug.LogWarning("No prefab provided to SpawnObject.");
+            return null;
+        }
 
+        GameObject obj = ObjectPooling.Instance.Get(prefab, parent);
+
+        // Apply transform overrides AFTER parenting
+        obj.transform.position = position;
+        obj.transform.rotation = rotation;
+        obj.transform.localScale = prefab.transform.localScale;
+
+        return obj;
+    }
+    
     public void SpawnTower(GameObject towerPrefab)
     {
         if (CurrentTowerNode == null || CurrentTowerNode.spawnTransform == null)
@@ -32,17 +51,19 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        // Despawn existing tower
+        // Despawn existing tower if present
         if (CurrentTowerNode.towerNodeBuilding != null)
         {
             DespawnTower(CurrentTowerNode.towerNodeBuildingPrefab, CurrentTowerNode.towerNodeBuilding);
         }
 
-        // Get from pool and parent to node
-        GameObject tower = ObjectPooling.Instance.Get(towerPrefab, CurrentTowerNode.transform);
-        tower.transform.position = CurrentTowerNode.spawnTransform.position;
-        tower.transform.rotation = towerPrefab.transform.rotation;
-        tower.transform.localScale = towerPrefab.transform.localScale;
+        // Use generic spawn
+        GameObject tower = SpawnObject(
+            towerPrefab,
+            CurrentTowerNode.transform,
+            CurrentTowerNode.spawnTransform.position,
+            towerPrefab.transform.rotation // ✅ preserve prefab rotation
+        );
 
         // Track instance and prefab
         CurrentTowerNode.towerNodeBuilding = tower;
