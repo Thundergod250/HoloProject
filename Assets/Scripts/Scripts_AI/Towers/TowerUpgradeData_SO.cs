@@ -2,19 +2,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class CardInfo
+public class UpgradeInfo
 {
     public string title;
     public string description;
     public int cost;
     public Sprite icon;
     public GameObject towerPrefab;
+    public int TowerHealth;
+    public int CurrentDamage;
+    public int DamageIncrease;
+    public int CurrentFireRate;
+    public int FireRateIncrease;
     public GameObject towerCardPrefab;
 }
 
-[CreateAssetMenu(fileName = "TowerCategoryData", menuName = "TowerShop/Tower Category")]
-public class TowerCategoryData_SO : ScriptableObject
+public class TowerUpgradeData_SO : MonoBehaviour
 {
     public string categoryName;
-    public List<CardInfo> cards;
+    public List<UpgradeInfo> cards;
 }
