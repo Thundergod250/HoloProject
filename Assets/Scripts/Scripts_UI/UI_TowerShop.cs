@@ -30,16 +30,25 @@ public class UI_TowerShop : MonoBehaviour
         // Clear previous cards
         foreach (var card in activeCards)
         {
-            Destroy(card); // or ObjectPooling.Instance.Return() if pooling
+            TowerCardManager manager = card.GetComponent<TowerCardManager>();
+            if (manager != null && manager.GetSourcePrefab() != null)
+            {
+                ObjectPooling.Instance.Return(manager.GetSourcePrefab(), card);
+            }
+            else
+            {
+                Destroy(card); // fallback
+            }
         }
         activeCards.Clear();
 
         // Spawn new cards
         foreach (var cardInfo in data.cards)
         {
-            GameObject cardGO = Instantiate(data.towerCardPrefab, cardParent);
+            GameObject cardGO = ObjectPooling.Instance.Get(data.towerCardPrefab, cardParent);
             TowerCardManager card = cardGO.GetComponent<TowerCardManager>();
-            card.ResetCard(cardInfo); // 👈 new method
+            card.ResetCard(cardInfo);
+            card.SetSourcePrefab(data.towerCardPrefab); // 👈 track prefab for pooling
 
             BuyTower buyTower = cardGO.GetComponent<BuyTower>();
             if (buyTower != null)
