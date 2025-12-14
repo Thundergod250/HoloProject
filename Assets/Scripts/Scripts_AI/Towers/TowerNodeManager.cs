@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class TowerNodeManager : MonoBehaviour
 {
-    public GameObject towerNodeBuilding;
-    public GameObject towerNodeBuildingPrefab;
+    public TowerController towerController;   
     public Transform spawnTransform;
 }

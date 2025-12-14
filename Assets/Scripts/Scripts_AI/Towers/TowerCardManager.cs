@@ -15,4 +15,14 @@ public class TowerCardManager : MonoBehaviour
     {
         return int.TryParse(Cost.text, out int value) ? value : 0;
     }
+    
+    public void ResetCard(CardInfo info)
+    {
+        Title.text = info.title;
+        Description.text = info.description;
+        Cost.text = info.cost.ToString();
+        Image.sprite = info.icon;
+        TowerPrefab = info.towerPrefab;
+    }
+
 }

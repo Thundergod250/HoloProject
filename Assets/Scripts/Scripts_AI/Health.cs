@@ -10,17 +10,17 @@ public class Health : MonoBehaviour
     [Header("Events")]
     public UnityEvent<int> OnDamaged;   // passes remaining health
     public UnityEvent OnDeath;          // triggered when health <= 0
-
+    
     private bool isDead = false;
+
+    [SerializeField] private int startSetHealth; //[FOR TESTING] 
 
     private void Awake()
     {
         currentHealth = maxHealth;
+        currentHealth = startSetHealth;
     }
-
-    /// <summary>
-    /// Apply damage to this entity.
-    /// </summary>
+    
     public void TakeDamage(int amount)
     {
         if (isDead) return;
@@ -36,10 +36,7 @@ public class Health : MonoBehaviour
             Die();
         }
     }
-
-    /// <summary>
-    /// Kill the entity immediately.
-    /// </summary>
+    
     public void Die()
     {
         if (isDead) return;
@@ -50,10 +47,7 @@ public class Health : MonoBehaviour
         Debug.Log($"{gameObject.name} has died.");
         // Optional: Destroy(gameObject); or disable
     }
-
-    /// <summary>
-    /// Heal the entity (optional).
-    /// </summary>
+    
     public void Heal(int amount)
     {
         if (isDead) return;

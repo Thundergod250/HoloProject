@@ -2,15 +2,13 @@ using UnityEngine;
 
 public class TowerController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [HideInInspector] public GameObject towerPrefab;   // prefab used to spawn this tower
+    [HideInInspector] public GameObject towerInstance; // actual GameObject (this one)
 
-    // Update is called once per frame
-    void Update()
+    public Health TowerHealth;
+    
+    private void Awake()
     {
-        
+        towerInstance = gameObject;
     }
 }

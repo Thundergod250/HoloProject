@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
     }
-    
+
     public GameObject SpawnObject(GameObject prefab, Transform parent, Vector3 position, Quaternion rotation)
     {
         if (prefab == null)
@@ -29,14 +29,13 @@ public class GameManager : MonoBehaviour
 
         GameObject obj = ObjectPooling.Instance.Get(prefab, parent);
 
-        // Apply transform overrides AFTER parenting
         obj.transform.position = position;
         obj.transform.rotation = rotation;
         obj.transform.localScale = prefab.transform.localScale;
 
         return obj;
     }
-    
+
     public void SpawnTower(GameObject towerPrefab)
     {
         if (CurrentTowerNode == null || CurrentTowerNode.spawnTransform == null)
@@ -52,33 +51,35 @@ public class GameManager : MonoBehaviour
         }
 
         // Despawn existing tower if present
-        if (CurrentTowerNode.towerNodeBuilding != null)
+        if (CurrentTowerNode.towerController != null)
         {
-            DespawnTower(CurrentTowerNode.towerNodeBuildingPrefab, CurrentTowerNode.towerNodeBuilding);
+            DespawnTower(CurrentTowerNode.towerController);
         }
 
-        // Use generic spawn
-        GameObject tower = SpawnObject(
+        // Spawn new tower
+        GameObject towerGO = SpawnObject(
             towerPrefab,
             CurrentTowerNode.transform,
             CurrentTowerNode.spawnTransform.position,
-            towerPrefab.transform.rotation // ✅ preserve prefab rotation
+            towerPrefab.transform.rotation
         );
 
-        // Track instance and prefab
-        CurrentTowerNode.towerNodeBuilding = tower;
-        CurrentTowerNode.towerNodeBuildingPrefab = towerPrefab;
+        TowerController controller = towerGO.GetComponent<TowerController>();
+        controller.towerPrefab = towerPrefab;
+
+        // Track controller on the node
+        CurrentTowerNode.towerController = controller;
 
         Debug.Log($"Spawned tower under {CurrentTowerNode.name}");
 
         CurrentTowerNode = null;
     }
 
-    public void DespawnTower(GameObject towerPrefab, GameObject towerInstance)
+    public void DespawnTower(TowerController controller)
     {
-        if (towerPrefab == null || towerInstance == null) return;
+        if (controller == null || controller.towerPrefab == null) return;
 
-        ObjectPooling.Instance.Return(towerPrefab, towerInstance);
-        Debug.Log($"Tower {towerInstance.name} returned to pool.");
+        ObjectPooling.Instance.Return(controller.towerPrefab, controller.towerInstance);
+        Debug.Log($"Tower {controller.name} returned to pool.");
     }
 }
