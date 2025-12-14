@@ -12,6 +12,13 @@ public class TowerCardManager : MonoBehaviour, IPoolable
     public GameObject TowerPrefab;
 
     private GameObject sourcePrefab;
+    
+    [Header("Tower Stats")]
+    public int TowerHealth;
+    public int CurrentDamage;
+    public int DamageIncrease;
+    public int CurrentFireRate;
+    public int FireRateIncrease;
 
     public int GetCostValue()
     {
@@ -25,6 +32,20 @@ public class TowerCardManager : MonoBehaviour, IPoolable
         Cost.text = info.cost.ToString();
         Image.sprite = info.icon;
         TowerPrefab = info.towerPrefab;
+    }
+    
+    public void ResetUpgradeCard(UpgradeInfo info)
+    {
+        Title.text = info.title;
+        Description.text = info.description;
+        Cost.text = info.cost.ToString();
+        Image.sprite = info.icon;
+        TowerPrefab = info.towerPrefab;
+        TowerHealth = info.TowerHealth;
+        CurrentDamage = info.CurrentDamage;
+        DamageIncrease = info.DamageIncrease;
+        CurrentFireRate = info.CurrentFireRate;
+        FireRateIncrease = info.FireRateIncrease;
     }
 
     public void SetSourcePrefab(GameObject prefab) => sourcePrefab = prefab;
