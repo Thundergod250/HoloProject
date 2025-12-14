@@ -502,6 +502,7 @@ GameObject:
   - component: {fileID: 5015107909931637521}
   - component: {fileID: 5917588215142279649}
   - component: {fileID: 1076973904866172499}
+  - component: {fileID: 1557278851265907125}
   m_Layer: 5
   m_Name: BUY BUTTON
   m_TagString: Untagged
@@ -611,9 +612,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1076973904866172499}
-        m_TargetAssemblyTypeName: BuyTower, Assembly-CSharp
-        m_MethodName: _BuyButtonClicked
+      - m_Target: {fileID: 1557278851265907125}
+        m_TargetAssemblyTypeName: CurrentTowerConnector, Assembly-CSharp
+        m_MethodName: _RepairTower
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -711,10 +712,10 @@ MonoBehaviour:
   EvtOnBuySuccessful:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7251903329884335191}
-        m_TargetAssemblyTypeName: SetTowerSpawn, Assembly-CSharp
-        m_MethodName: SpawnTower
-        m_Mode: 0
+      - m_Target: {fileID: 1557278851265907125}
+        m_TargetAssemblyTypeName: CurrentTowerConnector, Assembly-CSharp
+        m_MethodName: _RepairTower
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -723,6 +724,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1557278851265907125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5806381855665684726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e27df91845ddb7b429f29519d58028d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CurrentTowerConnector
+  CurrentTowerNode: {fileID: 0}
 --- !u!1 &6784182425900774204
 GameObject:
   m_ObjectHideFlags: 0
@@ -948,7 +962,7 @@ GameObject:
   - component: {fileID: 3106966460133932371}
   - component: {fileID: 4893842980949269754}
   m_Layer: 5
-  m_Name: Tower Cards
+  m_Name: Tower Cards Buy Repair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
