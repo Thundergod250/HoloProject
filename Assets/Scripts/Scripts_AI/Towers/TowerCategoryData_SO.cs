@@ -15,6 +15,5 @@ public class CardInfo
 [CreateAssetMenu(fileName = "TowerCategoryData", menuName = "TowerShop/Tower Category")]
 public class TowerCategoryData_SO : ScriptableObject
 {
-    public string categoryName;
     public List<CardInfo> cards;
 }
