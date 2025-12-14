@@ -17,11 +17,13 @@ public class BuyTower : MonoBehaviour
         {
             var node = GameManager.Instance.CurrentTowerNode;
 
-            if (node != null && node.towerNodeBuilding != null)
+            if (node != null && node.towerController != null)
             {
-                GameManager.Instance.DespawnTower(node.towerNodeBuildingPrefab, node.towerNodeBuilding);
+                // ✅ Despawn using the controller
+                GameManager.Instance.DespawnTower(node.towerController);
             }
 
+            // ✅ Pass prefab to GameManager via event
             EvtOnBuySuccessful?.Invoke(TowerCardManager.TowerPrefab);
         }
         else
