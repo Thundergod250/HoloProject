@@ -18,13 +18,3 @@ public class TowerCategoryData_SO : ScriptableObject
     public GameObject towerCardPrefab;
     public List<CardInfo> cards;
 }
-
-[System.Serializable]
-public class TowerCardInfo
-{
-    public string title;
-    public string description;
-    public int cost;
-    public Sprite icon;
-    public GameObject towerPrefab; 
-}
