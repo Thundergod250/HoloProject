@@ -31,4 +31,19 @@ public class BuyTower : MonoBehaviour
             Debug.Log("Not enough gold to buy tower.");
         }
     }
+    
+    public void _RepairButtonClicked()
+    {
+        int cost = TowerCardManager.GetCostValue();
+
+        if (GameManager.Instance.GoldManager?.SpendGold(cost) == true)
+        {
+            // ✅ Pass prefab to GameManager via event
+            EvtOnBuySuccessful?.Invoke(TowerCardManager.TowerPrefab);
+        }
+        else
+        {
+            Debug.Log("Not enough gold to repair.");
+        }
+    }
 }
