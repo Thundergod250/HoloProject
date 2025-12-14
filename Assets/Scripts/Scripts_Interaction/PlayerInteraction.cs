@@ -1,64 +1,93 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections.Generic;
+using System.Collections;
 
 public class PlayerInteraction : MonoBehaviour
 {
+    [SerializeField] private Transform[] raycastPoints;
+    [SerializeField] private float rayLength = 5f;
+    [SerializeField] private LayerMask interactableMask;
     [SerializeField] private UI_Interaction ui_interactionTab;
 
-    private List<Interactable> nearbyInteractables = new List<Interactable>();
-    private int selectedIndex = 0;
+    private Interactable currentInteractable;
+    private WaitForSeconds raycastInterval = new WaitForSeconds(0.1f);
 
-    private void OnTriggerEnter(Collider other)
+    private void Start()
     {
-        var found = other.GetComponent<Interactable>();
-        if (found != null && !nearbyInteractables.Contains(found))
+        StartCoroutine(RaycastRoutine());
+    }
+
+    private IEnumerator RaycastRoutine()
+    {
+        while (true)
         {
-            nearbyInteractables.Add(found);
-            UpdateUI();
+            Interactable closest = null;
+            float closestDistance = Mathf.Infinity;
+
+            foreach (Transform point in raycastPoints)
+            {
+                if (Physics.Raycast(point.position, point.forward, out RaycastHit hit, rayLength, interactableMask))
+                {
+                    var interactable = hit.collider.GetComponent<Interactable>();
+                    if (interactable != null)
+                    {
+                        float dist = Vector3.Distance(transform.position, hit.point);
+                        if (dist < closestDistance)
+                        {
+                            closest = interactable;
+                            closestDistance = dist;
+                        }
+                    }
+                }
+            }
+
+            if (closest != currentInteractable)
+            {
+                // Exit old
+                if (currentInteractable != null)
+                {
+                    currentInteractable.FocusExit();
+                    ui_interactionTab.Hide();
+                }
+
+                // Enter new
+                currentInteractable = closest;
+                if (currentInteractable != null)
+                {
+                    currentInteractable.Focus();
+                    ui_interactionTab.Show(currentInteractable.interactName);
+                }
+            }
+            else if (currentInteractable != null)
+            {
+                // Still focused → repeatedly invoke
+                currentInteractable.Focus();
+            }
+
+            yield return raycastInterval;
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        var found = other.GetComponent<Interactable>();
-        if (found != null && nearbyInteractables.Contains(found))
-        {
-            nearbyInteractables.Remove(found);
-            selectedIndex = Mathf.Clamp(selectedIndex, 0, nearbyInteractables.Count - 1);
-            UpdateUI();
-        }
-    }
 
     public void OnInteract(InputAction.CallbackContext ctx)
     {
-        if (!ctx.performed || nearbyInteractables.Count == 0)
+        if (!ctx.performed || currentInteractable == null)
             return;
 
-        nearbyInteractables[selectedIndex].Interact();
-        nearbyInteractables.RemoveAt(selectedIndex);
-        selectedIndex = Mathf.Clamp(selectedIndex, 0, nearbyInteractables.Count - 1);
-        UpdateUI();
+        currentInteractable.Interact();
+        currentInteractable = null;
+        ui_interactionTab.Hide();
     }
 
-    public void OnScroll(InputAction.CallbackContext ctx)
+    private void OnDrawGizmosSelected()
     {
-        if (nearbyInteractables.Count <= 1)
-            return;
+        if (raycastPoints == null) return;
 
-        float scrollValue = ctx.ReadValue<float>();
-
-        if (scrollValue > 0)
-            selectedIndex = (selectedIndex + 1) % nearbyInteractables.Count;
-        else if (scrollValue < 0)
-            selectedIndex = (selectedIndex - 1 + nearbyInteractables.Count) % nearbyInteractables.Count;
-        
-        selectedIndex = Mathf.Clamp(selectedIndex, 0, nearbyInteractables.Count - 1);
-        ui_interactionTab.ReorderTabs(selectedIndex);
-    }
-
-    private void UpdateUI()
-    {
-        ui_interactionTab.UpdateTabs(nearbyInteractables, selectedIndex);
+        Gizmos.color = Color.cyan;
+        foreach (Transform point in raycastPoints)
+        {
+            if (point != null)
+                Gizmos.DrawRay(point.position, point.forward * rayLength);
+        }
     }
 }

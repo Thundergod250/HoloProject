@@ -10,48 +10,48 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float gravity = -9.8f;
 
     [Header("References")]
-    [SerializeField] private Transform cameraTransform; // Drag your Main Camera here
+    [SerializeField] private Transform cameraTransform;
 
     private CharacterController controller;
     private Vector2 moveInput;
     private Vector3 velocity;
 
+    private bool canMove = true; // local flag
+
     private void Start()
     {
         controller = GetComponent<CharacterController>();
 
-        // Safety check: if no camera assigned, auto‑find the main camera
-        if (cameraTransform == null && Camera.main != null) 
+        if (cameraTransform == null && Camera.main != null)
             cameraTransform = Camera.main.transform;
+
+        // Optional: auto-assign itself to GameManager.Instance
+        if (GameManager.Instance != null)
+            GameManager.Instance.PlayerController = this;
     }
+
 
     private void Update()
     {
-        // === 1. Ground Check and Reset Gravity Velocity ===
-        if (controller.isGrounded && velocity.y < 0) 
-            velocity.y = -2f; // small negative to keep grounded state consistent
+        if (!canMove) return; // 🚫 stop all movement if disabled
 
-        // === 2. Camera‑Relative Horizontal Movement ===
+        if (controller.isGrounded && velocity.y < 0)
+            velocity.y = -2f;
+
         Vector3 camForward = cameraTransform.forward;
         Vector3 camRight = cameraTransform.right;
 
-        // Flatten to horizontal plane
         camForward.y = 0f;
         camRight.y = 0f;
         camForward.Normalize();
         camRight.Normalize();
 
-        // Combine input with camera orientation
         Vector3 move = camForward * moveInput.y + camRight * moveInput.x;
-
-        // Apply movement
         controller.Move(move * speed * Time.deltaTime);
 
-        // === 3. Gravity and Vertical Movement ===
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
-        // === 4. Rotate Player to Face Movement Direction ===
         if (move != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(move);
@@ -59,19 +59,31 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Input System callbacks
     public void OnMove(InputAction.CallbackContext context)
     {
+        if (!canMove) return;
         moveInput = context.ReadValue<Vector2>();
-        // Debug.Log($"Move Input: {moveInput}");
     }
 
     public void OnJump(InputAction.CallbackContext context)
     {
+        if (!canMove) return;
         if (context.performed && controller.isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            // Debug.Log("Jump triggered");
         }
+    }
+
+    // === Movement Control Methods ===
+    public void EnableMovement()
+    {
+        canMove = true;
+    }
+
+    public void DisableMovement()
+    {
+        canMove = false;
+        moveInput = Vector2.zero; // clear input to avoid drift
+        velocity = Vector3.zero;  // reset velocity
     }
 }
