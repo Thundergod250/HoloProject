@@ -4,6 +4,9 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
+    public Transform PlayerGrabPoint;
+    public Transform IsPlayerCarryingObject;
+    
     [Header("Movement Settings")]
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpHeight = 2f;
@@ -92,7 +95,6 @@ public class PlayerController : MonoBehaviour
 
             if (animator != null)
             {
-                Debug.LogWarning("PLAYER JUMPED");
                 animator.speed = 0f;           // freeze animations
                 animator.SetTrigger("Jump");   // optional jump animation
             }
