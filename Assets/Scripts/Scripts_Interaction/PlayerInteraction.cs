@@ -24,6 +24,7 @@ public class PlayerInteraction : MonoBehaviour
             Interactable closest = null;
             float closestDistance = Mathf.Infinity;
 
+            // 🔹 First try raycasts
             foreach (Transform point in raycastPoints)
             {
                 if (Physics.Raycast(point.position, point.forward, out RaycastHit hit, rayLength, interactableMask))
@@ -41,16 +42,34 @@ public class PlayerInteraction : MonoBehaviour
                 }
             }
 
+            // 🔹 If no raycast found anything, fallback to OverlapSphere at player position
+            if (closest == null)
+            {
+                Collider[] overlaps = Physics.OverlapSphere(transform.position, 1f, interactableMask);
+                foreach (var col in overlaps)
+                {
+                    var interactable = col.GetComponent<Interactable>();
+                    if (interactable != null)
+                    {
+                        float dist = Vector3.Distance(transform.position, col.transform.position);
+                        if (dist < closestDistance)
+                        {
+                            closest = interactable;
+                            closestDistance = dist;
+                        }
+                    }
+                }
+            }
+
+            // 🔹 Handle focus enter/exit
             if (closest != currentInteractable)
             {
-                // Exit old
                 if (currentInteractable != null)
                 {
                     currentInteractable.FocusExit();
                     ui_interactionTab.Hide();
                 }
 
-                // Enter new
                 currentInteractable = closest;
                 if (currentInteractable != null)
                 {
@@ -60,14 +79,12 @@ public class PlayerInteraction : MonoBehaviour
             }
             else if (currentInteractable != null)
             {
-                // Still focused → repeatedly invoke
                 currentInteractable.Focus();
             }
 
             yield return raycastInterval;
         }
     }
-
 
     public void OnInteract(InputAction.CallbackContext ctx)
     {
@@ -89,5 +106,9 @@ public class PlayerInteraction : MonoBehaviour
             if (point != null)
                 Gizmos.DrawRay(point.position, point.forward * rayLength);
         }
+
+        // 🔹 Draw overlap sphere for debugging
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, 1f);
     }
 }
