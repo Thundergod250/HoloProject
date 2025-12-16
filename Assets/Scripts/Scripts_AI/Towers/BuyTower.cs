@@ -68,6 +68,7 @@ public class BuyTower : MonoBehaviour
         if (node != null && node.towerController != null)
         {
             GameManager.Instance.DespawnTower(node.towerController);
+            GameManager.Instance.CurrentTowerNode.towerController = null;
         }
         else
         {
