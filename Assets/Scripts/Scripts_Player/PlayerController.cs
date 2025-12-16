@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
+    public PlayerMovement PlayerMovement;
+    
     public Transform PlayerGrabPoint;
     public Transform IsPlayerCarryingObject;
     
@@ -19,8 +21,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController controller;
     private Vector2 moveInput;
     private Vector3 velocity;
-
-    private bool canMove = true;   
+    
     private bool isJumping = false; //  track jump state
 
     private void Start()
@@ -36,7 +37,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (!canMove) return;
+        if (PlayerMovement.GetCanMove()!) return;
 
         // Ground check
         if (controller.isGrounded && velocity.y < 0)
@@ -77,7 +78,7 @@ public class PlayerController : MonoBehaviour
     // === Input System Callbacks ===
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (!canMove) return;
+        if (!PlayerMovement.GetCanMove()) return;
         moveInput = context.ReadValue<Vector2>();
 
         // Only update animator speed if not frozen mid-jump
@@ -87,7 +88,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (!canMove) return;
+        if (!PlayerMovement.GetCanMove()) return;
         if (context.performed && controller.isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
@@ -104,12 +105,12 @@ public class PlayerController : MonoBehaviour
     // === Movement Control Methods ===
     public void EnableMovement()
     {
-        canMove = true;
+        PlayerMovement.SetCanMove(true);
     }
 
     public void DisableMovement()
     {
-        canMove = false;
+        PlayerMovement.SetCanMove(false); 
         moveInput = Vector2.zero;
         velocity = Vector3.zero;
 

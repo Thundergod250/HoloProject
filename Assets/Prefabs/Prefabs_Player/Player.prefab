@@ -361,6 +361,7 @@ GameObject:
   - component: {fileID: 2658805747885236236}
   - component: {fileID: 2205877847749605719}
   - component: {fileID: 1632417819172464259}
+  - component: {fileID: 1127985473742766121}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -455,6 +456,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c730f37f81d726340b9a852e8de4ee7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  PlayerMovement: {fileID: 1127985473742766121}
+  PlayerGrabPoint: {fileID: 0}
+  IsPlayerCarryingObject: {fileID: 0}
   speed: 5
   jumpHeight: 2
   gravity: -19.6
@@ -530,6 +534,18 @@ MonoBehaviour:
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1127985473742766121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367724001468933626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77966beae08fe814aba3e96399e42e58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
 --- !u!1 &3610988257724653628
 GameObject:
   m_ObjectHideFlags: 0
