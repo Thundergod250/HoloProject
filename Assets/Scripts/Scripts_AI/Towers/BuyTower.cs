@@ -8,7 +8,9 @@ public class BuyTower : MonoBehaviour
 {
     public TowerCardManager TowerCardManager;
     public TowerBuyEvent EvtOnBuySuccessful;
-
+    
+    private TowerNodeManager CurrentTowerNode;
+    
     public void _BuyButtonClicked()
     {
         int cost = TowerCardManager.GetCostValue();
@@ -35,17 +37,35 @@ public class BuyTower : MonoBehaviour
 
     public void _RepairButtonClicked()
     {
-        int cost = TowerCardManager.GetCostValue();
-
+        int cost = GetCurrentTowerHealth() - GetCurrentTowerMaxHealth(); 
         if (GameManager.Instance.GoldManager?.SpendGold(cost) == true)
         {
-            // ✅ Pass prefab to GameManager via event
-            EvtOnBuySuccessful?.Invoke(TowerCardManager.TowerPrefab);
+            CurrentTowerNode.towerController.TowerHealth.Heal(CurrentTowerNode.towerController.TowerHealth.GetMaxHealth());
         }
         else
         {
             Debug.Log("Not enough gold to repair.");
         }
+    }
+    
+    private void OnEnable()
+    {
+        CurrentTowerNode = GameManager.Instance.CurrentTowerNode;
+    }
+    
+    private int GetCurrentTowerHealth()
+    {
+        return CurrentTowerNode.towerController.TowerHealth.GetCurrentHealth();
+    }
+    
+    private int GetCurrentTowerMaxHealth()
+    {
+        return CurrentTowerNode.towerController.TowerHealth.GetMaxHealth();
+    }
+
+    public void RepairTower()
+    {
+        
     }
 
     // === Shared despawn logic ===
