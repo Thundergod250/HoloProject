@@ -100,4 +100,10 @@ public class PlayerMovement : MonoBehaviour
 
         playerAnimation?.ResetAnimations();
     }
+
+    // === New Getter ===
+    public Vector3 GetVelocity()
+    {
+        return velocity;
+    }
 }

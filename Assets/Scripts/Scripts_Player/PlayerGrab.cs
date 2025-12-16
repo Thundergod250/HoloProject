@@ -12,8 +12,13 @@ public class PlayerGrab : MonoBehaviour
     public UnityEvent<GameObject> EvtOnReleaseGrabObj;
     public UnityEvent<GameObject> EvtOnRemovedGrabbedObject;
 
+    [Header("Grab Settings")]
     [SerializeField] private float tossForce = 5f;
     [SerializeField] private float grabDelay = 2f;
+
+    [Header("Downward Ramp Settings")]
+    [SerializeField] private float downwardForceMultiplier = 0f; // starting downward force
+    [SerializeField] private float downwardRampRate = 5f;        // how fast it increases
 
     private GameObject currentGrabbedObj;
     private bool isOnCooldown = false;
@@ -36,11 +41,8 @@ public class PlayerGrab : MonoBehaviour
             rb.detectCollisions = false;
         }
 
-        Collider[] colliders = obj.GetComponents<Collider>();
-        foreach (var col in colliders)
-        {
+        foreach (var col in obj.GetComponents<Collider>())
             col.enabled = false;
-        }
 
         IsPlayerCarryingObject = true;
 
@@ -55,25 +57,28 @@ public class PlayerGrab : MonoBehaviour
     {
         if (isOnCooldown || !IsPlayerCarryingObject || currentGrabbedObj == null) return;
 
-        // Unparent immediately
-        currentGrabbedObj.transform.SetParent(null);
-
-        // Re-enable physics + colliders and toss forward
         Rigidbody rb = currentGrabbedObj.GetComponent<Rigidbody>();
         if (rb != null)
         {
+            // Re-enable physics + colliders first
             rb.isKinematic = false;
             rb.detectCollisions = true;
 
-            Vector3 releaseForce = transform.forward * tossForce;
-            rb.AddForce(releaseForce, ForceMode.Impulse);
+            foreach (var col in currentGrabbedObj.GetComponents<Collider>())
+                col.enabled = true;
+
+            // ✅ Combine player velocity with toss force
+            Vector3 playerVelocity = GameManager.Instance.PlayerController.PlayerMovement.GetVelocity();
+            Vector3 releaseForce = playerVelocity + (transform.forward * tossForce);
+
+            rb.linearVelocity = releaseForce;
+
+            // ✅ Start coroutine to apply downward ramp
+            StartCoroutine(ApplyDownwardRamp(rb));
         }
 
-        Collider[] colliders = currentGrabbedObj.GetComponents<Collider>();
-        foreach (var col in colliders)
-        {
-            col.enabled = true;
-        }
+        // Unparent immediately after applying velocity
+        currentGrabbedObj.transform.SetParent(null);
 
         IsPlayerCarryingObject = false;
 
@@ -90,10 +95,8 @@ public class PlayerGrab : MonoBehaviour
     {
         if (!IsPlayerCarryingObject || currentGrabbedObj == null) return;
 
-        // Just unparent immediately
         currentGrabbedObj.transform.SetParent(null);
 
-        // Re-enable physics + colliders but no toss
         Rigidbody rb = currentGrabbedObj.GetComponent<Rigidbody>();
         if (rb != null)
         {
@@ -101,20 +104,30 @@ public class PlayerGrab : MonoBehaviour
             rb.detectCollisions = true;
         }
 
-        Collider[] colliders = currentGrabbedObj.GetComponents<Collider>();
-        foreach (var col in colliders)
-        {
+        foreach (var col in currentGrabbedObj.GetComponents<Collider>())
             col.enabled = true;
-        }
 
         IsPlayerCarryingObject = false;
 
-        // Trigger event
         EvtOnRemovedGrabbedObject?.Invoke(currentGrabbedObj);
 
         currentGrabbedObj = null;
+    }
 
-        // ❌ No cooldown here — always available
+    private IEnumerator ApplyDownwardRamp(Rigidbody rb)
+    {
+        float currentMultiplier = downwardForceMultiplier;
+
+        // Keep applying until object lands (when Rigidbody goes to sleep or touches ground)
+        while (rb != null && !rb.IsSleeping())
+        {
+            rb.AddForce(Vector3.down * currentMultiplier, ForceMode.Acceleration);
+
+            // Increase multiplier over time
+            currentMultiplier += downwardRampRate * Time.deltaTime;
+
+            yield return null; // wait until next frame
+        }
     }
 
     private IEnumerator ActionCooldown()
