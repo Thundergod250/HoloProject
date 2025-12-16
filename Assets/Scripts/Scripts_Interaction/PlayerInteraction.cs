@@ -8,13 +8,43 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private float rayLength = 5f;
     [SerializeField] private LayerMask interactableMask;
     [SerializeField] private UI_Interaction ui_interactionTab;
+    [SerializeField] private float enableDelay = 0.1f;   // ⏱ delay before enabling
 
     private Interactable currentInteractable;
     private WaitForSeconds raycastInterval = new WaitForSeconds(0.1f);
+    private Coroutine raycastRoutine;
+    private Coroutine enableRoutine;
 
-    private void Start()
+    private void OnEnable()
     {
-        StartCoroutine(RaycastRoutine());
+        // start delayed enable routine
+        if (enableRoutine == null)
+            enableRoutine = StartCoroutine(EnableWithDelay());
+    }
+
+    private void OnDisable()
+    {
+        if (raycastRoutine != null)
+        {
+            StopCoroutine(raycastRoutine);
+            raycastRoutine = null;
+        }
+
+        if (enableRoutine != null)
+        {
+            StopCoroutine(enableRoutine);
+            enableRoutine = null;
+        }
+    }
+
+    private IEnumerator EnableWithDelay()
+    {
+        yield return new WaitForSeconds(enableDelay);
+
+        if (raycastRoutine == null)
+            raycastRoutine = StartCoroutine(RaycastRoutine());
+
+        enableRoutine = null; // clear reference
     }
 
     private IEnumerator RaycastRoutine()
@@ -24,7 +54,6 @@ public class PlayerInteraction : MonoBehaviour
             Interactable closest = null;
             float closestDistance = Mathf.Infinity;
 
-            // 🔹 First try raycasts
             foreach (Transform point in raycastPoints)
             {
                 if (Physics.Raycast(point.position, point.forward, out RaycastHit hit, rayLength, interactableMask))
@@ -42,7 +71,6 @@ public class PlayerInteraction : MonoBehaviour
                 }
             }
 
-            // 🔹 If no raycast found anything, fallback to OverlapSphere at player position
             if (closest == null)
             {
                 Collider[] overlaps = Physics.OverlapSphere(transform.position, 1f, interactableMask);
@@ -61,7 +89,6 @@ public class PlayerInteraction : MonoBehaviour
                 }
             }
 
-            // 🔹 Handle focus enter/exit
             if (closest != currentInteractable)
             {
                 if (currentInteractable != null)
@@ -88,7 +115,7 @@ public class PlayerInteraction : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext ctx)
     {
-        if (!ctx.performed || currentInteractable == null)
+        if (!enabled || !ctx.performed || currentInteractable == null)
             return;
 
         currentInteractable.Interact();
@@ -107,7 +134,6 @@ public class PlayerInteraction : MonoBehaviour
                 Gizmos.DrawRay(point.position, point.forward * rayLength);
         }
 
-        // 🔹 Draw overlap sphere for debugging
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, 1f);
     }
