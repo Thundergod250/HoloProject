@@ -38,40 +38,41 @@ public class PlayerGrab : MonoBehaviour
         EvtOnGrab?.Invoke(obj);
     }
 
-    public void ReleaseGrabbedObject(GameObject obj)
+    public void ReleaseGrabbedObject()
     {
-        if (!IsPlayerCarryingObject || obj == null) return;
+        if (!IsPlayerCarryingObject || currentGrabbedObj == null) return;
 
         // Unparent
-        obj.transform.SetParent(null);
+        currentGrabbedObj.transform.SetParent(null);
 
         // Re-enable physics and toss forward
-        Rigidbody rb = obj.GetComponent<Rigidbody>();
+        Rigidbody rb = currentGrabbedObj.GetComponent<Rigidbody>();
         if (rb != null)
         {
             rb.isKinematic = false;
             rb.detectCollisions = true;
 
-            Vector3 releaseForce = transform.forward * tossForce; // tweak force
+            Vector3 releaseForce = transform.forward * tossForce;
             rb.AddForce(releaseForce, ForceMode.Impulse);
         }
 
         IsPlayerCarryingObject = false;
-        currentGrabbedObj = null;
 
         // Trigger event
-        EvtOnReleaseGrabObj?.Invoke(obj);
+        EvtOnReleaseGrabObj?.Invoke(currentGrabbedObj);
+
+        currentGrabbedObj = null;
     }
 
-    public void RemoveGrabObject(GameObject obj)
+    public void RemoveGrabObject()
     {
-        if (!IsPlayerCarryingObject || obj == null) return;
+        if (!IsPlayerCarryingObject || currentGrabbedObj == null) return;
 
         // Just unparent, no force
-        obj.transform.SetParent(null);
+        currentGrabbedObj.transform.SetParent(null);
 
         // Re-enable physics but no toss
-        Rigidbody rb = obj.GetComponent<Rigidbody>();
+        Rigidbody rb = currentGrabbedObj.GetComponent<Rigidbody>();
         if (rb != null)
         {
             rb.isKinematic = false;
@@ -79,9 +80,10 @@ public class PlayerGrab : MonoBehaviour
         }
 
         IsPlayerCarryingObject = false;
-        currentGrabbedObj = null;
 
         // Trigger event
-        EvtOnRemovedGrabbedObject?.Invoke(obj);
+        EvtOnRemovedGrabbedObject?.Invoke(currentGrabbedObj);
+
+        currentGrabbedObj = null;
     }
 }
