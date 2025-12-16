@@ -361,6 +361,10 @@ GameObject:
   - component: {fileID: 2658805747885236236}
   - component: {fileID: 2205877847749605719}
   - component: {fileID: 1632417819172464259}
+  - component: {fileID: 1127985473742766121}
+  - component: {fileID: 3778112114396300799}
+  - component: {fileID: 8430264172108288562}
+  - component: {fileID: 4549943407503985007}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -455,10 +459,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c730f37f81d726340b9a852e8de4ee7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  speed: 5
-  jumpHeight: 2
-  gravity: -19.6
-  cameraTransform: {fileID: 3986986069622755096}
+  PlayerMovement: {fileID: 1127985473742766121}
+  PlayerAnimation: {fileID: 3778112114396300799}
+  PlayerInteraction: {fileID: 52962085420262557}
+  PlayerGrab: {fileID: 8430264172108288562}
   animator: {fileID: 6098598076430173885}
 --- !u!114 &1632417819172464259
 MonoBehaviour:
@@ -530,6 +534,109 @@ MonoBehaviour:
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1127985473742766121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367724001468933626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77966beae08fe814aba3e96399e42e58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  cameraTransform: {fileID: 3986986069622755096}
+  playerAnimation: {fileID: 3778112114396300799}
+  speed: 5
+  jumpHeight: 2
+  gravity: -19.6
+--- !u!114 &3778112114396300799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367724001468933626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13282ba931675df4ba09e84c038fb0bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimation
+  animator: {fileID: 6098598076430173885}
+--- !u!114 &8430264172108288562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367724001468933626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4d8130fcb20f6f42b042b9d98d70ed9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerGrab
+  PlayerGrabPoint: {fileID: 2506867188676803050}
+  IsPlayerCarryingObject: 0
+  EvtOnGrab:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4549943407503985007}
+        m_TargetAssemblyTypeName: InteractionManipulator, Assembly-CSharp
+        m_MethodName: _DisableInteraction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  EvtOnReleaseGrabObj:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4549943407503985007}
+        m_TargetAssemblyTypeName: InteractionManipulator, Assembly-CSharp
+        m_MethodName: _EnableInteraction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  EvtOnRemovedGrabbedObject:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4549943407503985007}
+        m_TargetAssemblyTypeName: InteractionManipulator, Assembly-CSharp
+        m_MethodName: _EnableInteraction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  tossForce: 10
+  grabDelay: 0.5
+--- !u!114 &4549943407503985007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367724001468933626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d495a244db1df1d4c97adb58d9ec30ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractionManipulator
 --- !u!1 &3610988257724653628
 GameObject:
   m_ObjectHideFlags: 0
@@ -1143,19 +1250,7 @@ MonoBehaviour:
     m_ActionId: eaf488b4-919f-42bf-9ba4-79109e8c5a4d
     m_ActionName: 'Gameplay/Interact[/Keyboard/f]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 52962085420262557}
-        m_TargetAssemblyTypeName: PlayerInteraction, Assembly-CSharp
-        m_MethodName: OnScroll
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: c5da8c94-e07f-4cd3-8b64-d060c0e8fbd2
     m_ActionName: 'Gameplay/Scroll[/Mouse/scroll/y]'
   m_NeverAutoSwitchControlSchemes: 0

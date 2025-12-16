@@ -8,13 +8,43 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private float rayLength = 5f;
     [SerializeField] private LayerMask interactableMask;
     [SerializeField] private UI_Interaction ui_interactionTab;
+    [SerializeField] private float enableDelay = 0.1f;   // ⏱ delay before enabling
 
     private Interactable currentInteractable;
     private WaitForSeconds raycastInterval = new WaitForSeconds(0.1f);
+    private Coroutine raycastRoutine;
+    private Coroutine enableRoutine;
 
-    private void Start()
+    private void OnEnable()
     {
-        StartCoroutine(RaycastRoutine());
+        // start delayed enable routine
+        if (enableRoutine == null)
+            enableRoutine = StartCoroutine(EnableWithDelay());
+    }
+
+    private void OnDisable()
+    {
+        if (raycastRoutine != null)
+        {
+            StopCoroutine(raycastRoutine);
+            raycastRoutine = null;
+        }
+
+        if (enableRoutine != null)
+        {
+            StopCoroutine(enableRoutine);
+            enableRoutine = null;
+        }
+    }
+
+    private IEnumerator EnableWithDelay()
+    {
+        yield return new WaitForSeconds(enableDelay);
+
+        if (raycastRoutine == null)
+            raycastRoutine = StartCoroutine(RaycastRoutine());
+
+        enableRoutine = null; // clear reference
     }
 
     private IEnumerator RaycastRoutine()
@@ -41,16 +71,32 @@ public class PlayerInteraction : MonoBehaviour
                 }
             }
 
+            if (closest == null)
+            {
+                Collider[] overlaps = Physics.OverlapSphere(transform.position, 1f, interactableMask);
+                foreach (var col in overlaps)
+                {
+                    var interactable = col.GetComponent<Interactable>();
+                    if (interactable != null)
+                    {
+                        float dist = Vector3.Distance(transform.position, col.transform.position);
+                        if (dist < closestDistance)
+                        {
+                            closest = interactable;
+                            closestDistance = dist;
+                        }
+                    }
+                }
+            }
+
             if (closest != currentInteractable)
             {
-                // Exit old
                 if (currentInteractable != null)
                 {
                     currentInteractable.FocusExit();
                     ui_interactionTab.Hide();
                 }
 
-                // Enter new
                 currentInteractable = closest;
                 if (currentInteractable != null)
                 {
@@ -60,7 +106,6 @@ public class PlayerInteraction : MonoBehaviour
             }
             else if (currentInteractable != null)
             {
-                // Still focused → repeatedly invoke
                 currentInteractable.Focus();
             }
 
@@ -68,10 +113,9 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-
     public void OnInteract(InputAction.CallbackContext ctx)
     {
-        if (!ctx.performed || currentInteractable == null)
+        if (!enabled || !ctx.performed || currentInteractable == null)
             return;
 
         currentInteractable.Interact();
@@ -89,5 +133,8 @@ public class PlayerInteraction : MonoBehaviour
             if (point != null)
                 Gizmos.DrawRay(point.position, point.forward * rayLength);
         }
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, 1f);
     }
 }

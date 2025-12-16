@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DisableMovement : MonoBehaviour
+public class MovementAndCameraManipulator : MonoBehaviour
 {
     // === Player Movement Control ===
     public void DisablePlayerMovement() => GameManager.Instance.PlayerController?.DisableMovement();
