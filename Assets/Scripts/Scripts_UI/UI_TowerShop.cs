@@ -46,10 +46,11 @@ public class UI_TowerShop : MonoBehaviour
         if (data == null) return;
         if (currentCategory == data) return;
 
-        currentCategory = data;
         ClearCards();
+        currentCategory = data;
         SpawnCards(data.cards);
     }
+
 
     // === Card spawning ===
     private void SpawnCards(List<CardInfo> cards)
@@ -92,6 +93,7 @@ public class UI_TowerShop : MonoBehaviour
                 Destroy(card);
         }
         activeCards.Clear();
+        currentCategory = null;
     }
 
     // === Button visibility ===
