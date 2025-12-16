@@ -8,43 +8,59 @@ public class BuyTower : MonoBehaviour
 {
     public TowerCardManager TowerCardManager;
     public TowerBuyEvent EvtOnBuySuccessful;
+    
+    private TowerNodeManager CurrentTowerNode;
+    private int cost;
+
+    private void OnEnable()
+    {
+        CurrentTowerNode = GameManager.Instance.CurrentTowerNode;
+        cost = TowerCardManager.GetCostValue();
+    }
+
+    // === Generic gold spending wrapper ===
+    private bool TrySpendGold(int amount)
+    {
+        if (GameManager.Instance.GoldManager?.SpendGold(amount) == true)
+            return true;
+
+        Debug.Log("Not enough gold.");
+        return false;
+    }
 
     public void _BuyButtonClicked()
     {
-        int cost = TowerCardManager.GetCostValue();
-
-        if (GameManager.Instance.GoldManager?.SpendGold(cost) == true)
+        if (TrySpendGold(cost))
         {
-            // ✅ Despawn existing tower before buying
             DespawnCurrentTower();
-
-            // ✅ Pass prefab to GameManager via event
             EvtOnBuySuccessful?.Invoke(TowerCardManager.TowerPrefab);
-        }
-        else
-        {
-            Debug.Log("Not enough gold to buy tower.");
         }
     }
 
     public void _DespawnButtonClicked()
     {
-        // ✅ Just despawn, no gold check
-        DespawnCurrentTower();
+        if (TrySpendGold(cost))
+        {
+            DespawnCurrentTower();
+            GameManager.Instance.GoldManager?.AddGold(cost); // refund
+        }
     }
 
     public void _RepairButtonClicked()
     {
-        int cost = TowerCardManager.GetCostValue();
-
-        if (GameManager.Instance.GoldManager?.SpendGold(cost) == true)
+        if (TrySpendGold(cost))
         {
-            // ✅ Pass prefab to GameManager via event
-            EvtOnBuySuccessful?.Invoke(TowerCardManager.TowerPrefab);
+            CurrentTowerNode?.towerController?.TowerHealth
+                ?.Heal(CurrentTowerNode.towerController.TowerHealth.GetMaxHealth());
         }
-        else
+    }
+
+    public void _IncreaseDamageButtonClicked()
+    {
+        if (TrySpendGold(cost))
         {
-            Debug.Log("Not enough gold to repair.");
+            CurrentTowerNode?.towerController?.IncreaseTowerMainDamage();
+            Debug.Log("Tower Damage Level Increased");
         }
     }
 
@@ -53,9 +69,10 @@ public class BuyTower : MonoBehaviour
     {
         var node = GameManager.Instance.CurrentTowerNode;
 
-        if (node != null && node.towerController != null)
+        if (node?.towerController != null)
         {
             GameManager.Instance.DespawnTower(node.towerController);
+            node.towerController = null;
         }
         else
         {

@@ -624,7 +624,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   tossForce: 10
-  grabDelay: 0.5
+  grabDelay: 0.2
+  downwardForceMultiplier: 1
+  downwardRampRate: 10
 --- !u!114 &4549943407503985007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1200,6 +1202,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   ui_interactionTab: {fileID: 0}
+  enableDelay: 0.1
 --- !u!114 &2962641263942207459
 MonoBehaviour:
   m_ObjectHideFlags: 0
