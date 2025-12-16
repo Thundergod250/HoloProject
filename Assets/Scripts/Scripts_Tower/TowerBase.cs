@@ -15,6 +15,7 @@ public class TowerBase : MonoBehaviour
     [SerializeField] protected float _firingSpeed = 1.0f;
     [SerializeField] protected float _delayChargeUp = 0.0f;
     [SerializeField] protected float _damageBase = 1.0f; // Kinda will just pass down to Projectile
+    [SerializeField] protected float _projectileSpeed = 1f;
 
     private bool _isFiring = false;
 
@@ -56,44 +57,46 @@ public class TowerBase : MonoBehaviour
     // async void is used for fire-and-forget methods like this
     protected virtual async void FireProjectileAsync()
     {
-        // 1. Set the flag to true (MUST be on main thread)
         _isFiring = true;
 
         // 2. --- DELAY CHARGE UP ---
         if (_delayChargeUp >= 0)
         {
-            // Calculate delay in milliseconds
             int delayMs = Mathf.RoundToInt(_delayChargeUp * 1000);
-            // Wait without blocking the main thread
             await Task.Delay(delayMs);
         }
 
         // 3. --- FIRE PROJECTILE (SHOOT) ---
-
-        // **SAFETY CHECK:** Crucial check after the delay to prevent missing
         if (_enemyTargets.Count > 0 && _enemyTargets[0] != null)
         {
-            // All code here is guaranteed to be running on the main thread 
-            // because there were no 'ConfigureAwait(false)' calls after the Task.Delay.
-
             EnemyBase target = _enemyTargets[0];
 
             // Instantiate the projectile
             GameObject projectileGO = Instantiate(_projectilePrefab, _projectileSpawnPoint.position, Quaternion.identity);
 
-            // Set projectile properties
-            // Projectile projectileScript = projectileGO.GetComponent<Projectile>();
-            //if (projectileScript != null)
-            //{
-            //    projectileScript.SetTarget(target.transform);
-            //    projectileScript.SetDamage(_damageBase);
-            //}
+            // --- CORE CHANGE: Get Rigidbody and apply force ---
+            Rigidbody rb = projectileGO.GetComponent<Rigidbody>();
+
+            if (rb != null)
+            {
+                // Calculate the direction vector from the tower to the target
+                // It's crucial to normalize the direction vector
+                Vector3 directionToTarget = (target.transform.position - _projectileSpawnPoint.position).normalized;
+
+                // Define the speed (assuming you added the _projectileSpeed field)
+                float projectileSpeed = _projectileSpeed; // Use your defined speed
+
+                rb.AddForce(directionToTarget * projectileSpeed, ForceMode.VelocityChange);
+            }
+            else
+            {
+                Debug.LogError("Projectile prefab is missing a Rigidbody component! Cannot use AddForce.");
+            }
 
             Debug.Log("Tower: " + this.name + " is Shooting");
         }
         else
         {
-            // If the target disappeared during charge-up, we exit early
             Debug.Log("Tower: " + this.name + " - Target disappeared during charge-up.");
         }
 
@@ -101,7 +104,7 @@ public class TowerBase : MonoBehaviour
         int cooldownMs = Mathf.RoundToInt(_firingSpeed * 1000);
         await Task.Delay(cooldownMs);
 
-        // 5. Reset the flag (MUST be on main thread)
+        // 5. Reset the flag
         _isFiring = false;
     }
 }
