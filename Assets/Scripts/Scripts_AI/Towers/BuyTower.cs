@@ -35,9 +35,8 @@ public class BuyTower : MonoBehaviour
         DespawnCurrentTower();
     }
 
-    public void _RepairButtonClicked()
+    public void _RepairButtonClicked(int cost)
     {
-        int cost = GetCurrentTowerHealth() - GetCurrentTowerMaxHealth(); 
         if (GameManager.Instance.GoldManager?.SpendGold(cost) == true)
         {
             CurrentTowerNode.towerController.TowerHealth.Heal(CurrentTowerNode.towerController.TowerHealth.GetMaxHealth());
