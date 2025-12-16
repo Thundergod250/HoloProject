@@ -459,10 +459,6 @@ MonoBehaviour:
   PlayerMovement: {fileID: 1127985473742766121}
   PlayerGrabPoint: {fileID: 0}
   IsPlayerCarryingObject: {fileID: 0}
-  speed: 5
-  jumpHeight: 2
-  gravity: -19.6
-  cameraTransform: {fileID: 3986986069622755096}
   animator: {fileID: 6098598076430173885}
 --- !u!114 &1632417819172464259
 MonoBehaviour:
@@ -546,6 +542,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77966beae08fe814aba3e96399e42e58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  animator: {fileID: 6098598076430173885}
+  speed: 5
+  jumpHeight: 2
+  gravity: -19.6
+  cameraTransform: {fileID: 3986986069622755096}
 --- !u!1 &3610988257724653628
 GameObject:
   m_ObjectHideFlags: 0
