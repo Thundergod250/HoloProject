@@ -10,8 +10,26 @@ public class UI_TowerShop : MonoBehaviour
     [SerializeField] private TowerCategoryData_SO defensiveTowersData;
     [SerializeField] private TowerCategoryData_SO utilityTowersData;
 
+    [Header("Shop Buttons")]
+    [SerializeField] private GameObject towerUpgradesButton;
+    [SerializeField] private GameObject offensiveButton;
+    [SerializeField] private GameObject defensiveButton;
+    [SerializeField] private GameObject utilityButton;
+
+    private Dictionary<string, GameObject> shopButtons;
     private List<GameObject> activeCards = new List<GameObject>();
     private TowerCategoryData_SO currentCategory = null;
+
+    private void Awake()
+    {
+        shopButtons = new Dictionary<string, GameObject>
+        {
+            { "Upgrades", towerUpgradesButton },
+            { "Offensive", offensiveButton },
+            { "Defensive", defensiveButton },
+            { "Utility", utilityButton }
+        };
+    }
 
     public void OpenTowerUpgrades() => TrySpawnCategory(towerUpgradesData);
     public void OpenOffensiveTowers() => TrySpawnCategory(offensiveTowersData);
@@ -20,38 +38,30 @@ public class UI_TowerShop : MonoBehaviour
 
     private void TrySpawnCategory(TowerCategoryData_SO data)
     {
-        if (currentCategory == data) return; // prevent double-spawn
+        if (currentCategory == data) return;
         currentCategory = data;
         SpawnCards(data);
     }
 
     private void SpawnCards(TowerCategoryData_SO data)
     {
-        // Clear previous cards
         foreach (var card in activeCards)
         {
             TowerCardManager manager = card.GetComponent<TowerCardManager>();
             if (manager != null && manager.GetSourcePrefab() != null)
-            {
                 ObjectPooling.Instance.Return(manager.GetSourcePrefab(), card);
-            }
             else
-            {
-                Destroy(card); // fallback
-            }
+                Destroy(card);
         }
         activeCards.Clear();
 
-        // Spawn new cards
         foreach (var cardInfo in data.cards)
         {
-            // Use the prefab stored in CardInfo now
             GameObject cardGO = ObjectPooling.Instance.Get(cardInfo.towerCardPrefab, cardParent);
+            cardGO.SetActive(true);
 
             TowerCardManager card = cardGO.GetComponent<TowerCardManager>();
             card.ResetCard(cardInfo);
-
-            // Track the prefab for pooling (per-card prefab)
             card.SetSourcePrefab(cardInfo.towerCardPrefab);
 
             BuyTower buyTower = cardGO.GetComponent<BuyTower>();
@@ -60,5 +70,13 @@ public class UI_TowerShop : MonoBehaviour
 
             activeCards.Add(cardGO);
         }
+    }
+
+    public void ShowShopButtons(bool showUpgrades)
+    {
+        shopButtons["Upgrades"].SetActive(showUpgrades);
+        shopButtons["Offensive"].SetActive(true);
+        shopButtons["Defensive"].SetActive(true);
+        shopButtons["Utility"].SetActive(true);
     }
 }

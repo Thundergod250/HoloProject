@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 6486533220045553385}
   - component: {fileID: 2607173195040463432}
   - component: {fileID: 7945611311937052698}
+  - component: {fileID: 5881300880969687044}
   m_Layer: 0
   m_Name: Tower Node
   m_TagString: Untagged
@@ -181,32 +182,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8160217979248254876}
-        m_TargetAssemblyTypeName: DisableMovement, Assembly-CSharp
-        m_MethodName: DisablePlayerMovement
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 8160217979248254876}
-        m_TargetAssemblyTypeName: DisableMovement, Assembly-CSharp
-        m_MethodName: DisableCameraMovement
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 6486533220045553385}
-        m_TargetAssemblyTypeName: FocusUI, Assembly-CSharp
-        m_MethodName: FocusTowerUpgrades
+        m_TargetAssemblyTypeName: MovementAndCameraManipulator, Assembly-CSharp
+        m_MethodName: _DisableAllMovement
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -240,6 +217,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 5881300880969687044}
+        m_TargetAssemblyTypeName: TowerNodeManagerManipulator, Assembly-CSharp
+        m_MethodName: _SendTowerController
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  EvtOnInteractWithObj:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &8160217979248254876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,6 +280,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d495a244db1df1d4c97adb58d9ec30ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractionManipulator
+--- !u!114 &5881300880969687044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3364266961026395771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b5263050520bdc41954dc20ca7ec248, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerNodeManagerManipulator
+  EvtOnInteractWithTowerController:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6486533220045553385}
+        m_TargetAssemblyTypeName: FocusUI, Assembly-CSharp
+        m_MethodName: _FocusTowerUpgradesWithCondition
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3635888915932420505
 GameObject:
   m_ObjectHideFlags: 0

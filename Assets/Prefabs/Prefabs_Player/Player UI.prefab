@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &601274333186672863
 RectTransform:
   m_ObjectHideFlags: 0
@@ -289,7 +289,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4923436925582152218
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1294,7 +1294,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 71987180649626429}
         m_TargetAssemblyTypeName: FocusUI, Assembly-CSharp
-        m_MethodName: FocusInterActionGroup
+        m_MethodName: _FocusInterActionGroup
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1305,8 +1305,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1854405085949424262}
-        m_TargetAssemblyTypeName: DisableMovement, Assembly-CSharp
-        m_MethodName: EnableAllMovement
+        m_TargetAssemblyTypeName: MovementAndCameraManipulator, Assembly-CSharp
+        m_MethodName: _EnableAllMovement
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1488,7 +1488,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7370786269234806997
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1758,7 +1758,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3802274041544932996
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2287,8 +2287,8 @@ GameObject:
   - component: {fileID: 1797977661678125420}
   - component: {fileID: 4488969527141437420}
   - component: {fileID: 6718839776133154055}
-  - component: {fileID: 8146144091608364486}
   - component: {fileID: 615888349467617691}
+  - component: {fileID: 8146144091608364486}
   - component: {fileID: 5015922429744412463}
   - component: {fileID: 4443341128362266729}
   m_Layer: 5
@@ -2382,6 +2382,23 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &615888349467617691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9192366198569973207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 513275088dd673d42a9368c07e7f42aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI_Manager
+  UI_Interaction: {fileID: 8146144091608364486}
+  UI_Gold: {fileID: 5015922429744412463}
+  UI_TowerShop: {fileID: 4443341128362266729}
+  mainUiGroup: {fileID: 5171500238537471689}
+  towerUpgrades: {fileID: 7271478307107804540}
 --- !u!114 &8146144091608364486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2396,20 +2413,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UI_Interaction
   interactionTabPrefab: {fileID: 3699236910836582060, guid: 5111b5b599ba9d34797265aea014058e, type: 3}
   interactionGroup: {fileID: 7913902849793716080}
---- !u!114 &615888349467617691
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9192366198569973207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 513275088dd673d42a9368c07e7f42aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UI_Manager
-  mainUiGroup: {fileID: 5171500238537471689}
-  towerUpgrades: {fileID: 7271478307107804540}
 --- !u!114 &5015922429744412463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2441,6 +2444,10 @@ MonoBehaviour:
   offensiveTowersData: {fileID: 11400000, guid: c2e8f1e7f4a4c66419aa5108af78b6c1, type: 2}
   defensiveTowersData: {fileID: 11400000, guid: bbbc1d323f2276241840f809542cd7db, type: 2}
   utilityTowersData: {fileID: 11400000, guid: ffd5416639a31044caf423319d359c22, type: 2}
+  towerUpgradesButton: {fileID: 566670965108034543}
+  offensiveButton: {fileID: 7080495668211479152}
+  defensiveButton: {fileID: 6363414921098040791}
+  utilityButton: {fileID: 1940322458712540468}
 --- !u!1001 &8516832546062781525
 PrefabInstance:
   m_ObjectHideFlags: 0

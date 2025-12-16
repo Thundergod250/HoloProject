@@ -3,23 +3,23 @@ using UnityEngine;
 public class MovementAndCameraManipulator : MonoBehaviour
 {
     // === Player Movement Control ===
-    public void DisablePlayerMovement() => GameManager.Instance.PlayerController?.DisableMovement();
-    public void EnablePlayerMovement()  => GameManager.Instance.PlayerController?.EnableMovement();
+    public void _DisablePlayerMovement() => GameManager.Instance.PlayerController?.DisableMovement();
+    public void _EnablePlayerMovement()  => GameManager.Instance.PlayerController?.EnableMovement();
 
     // === Camera Control ===
-    public void DisableCameraMovement() => GameManager.Instance.CameraManager?.DisableCamera();
-    public void EnableCameraMovement()  => GameManager.Instance.CameraManager?.EnableCamera();
+    public void _DisableCameraMovement() => GameManager.Instance.CameraManager?.DisableCamera();
+    public void _EnableCameraMovement()  => GameManager.Instance.CameraManager?.EnableCamera();
 
     // === Combined Control ===
-    public void DisableAllMovement()
+    public void _DisableAllMovement()
     {
-        DisablePlayerMovement();
-        DisableCameraMovement();
+        _DisablePlayerMovement();
+        _DisableCameraMovement();
     }
 
-    public void EnableAllMovement()
+    public void _EnableAllMovement()
     {
-        EnablePlayerMovement();
-        EnableCameraMovement();
+        _EnablePlayerMovement();
+        _EnableCameraMovement();
     }
 }
