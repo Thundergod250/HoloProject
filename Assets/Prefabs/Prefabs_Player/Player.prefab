@@ -363,6 +363,7 @@ GameObject:
   - component: {fileID: 1632417819172464259}
   - component: {fileID: 1127985473742766121}
   - component: {fileID: 3778112114396300799}
+  - component: {fileID: 8430264172108288562}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -459,8 +460,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   PlayerMovement: {fileID: 1127985473742766121}
   PlayerAnimation: {fileID: 3778112114396300799}
-  PlayerGrabPoint: {fileID: 0}
-  IsPlayerCarryingObject: {fileID: 0}
+  PlayerInteraction: {fileID: 52962085420262557}
+  PlayerGrab: {fileID: 8430264172108288562}
   animator: {fileID: 6098598076430173885}
 --- !u!114 &1632417819172464259
 MonoBehaviour:
@@ -562,6 +563,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimation
   animator: {fileID: 6098598076430173885}
+--- !u!114 &8430264172108288562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367724001468933626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4d8130fcb20f6f42b042b9d98d70ed9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerGrab
+  PlayerGrabPoint: {fileID: 0}
+  IsPlayerCarryingObject: {fileID: 0}
 --- !u!1 &3610988257724653628
 GameObject:
   m_ObjectHideFlags: 0
@@ -1175,19 +1190,7 @@ MonoBehaviour:
     m_ActionId: eaf488b4-919f-42bf-9ba4-79109e8c5a4d
     m_ActionName: 'Gameplay/Interact[/Keyboard/f]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 52962085420262557}
-        m_TargetAssemblyTypeName: PlayerInteraction, Assembly-CSharp
-        m_MethodName: OnScroll
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: c5da8c94-e07f-4cd3-8b64-d060c0e8fbd2
     m_ActionName: 'Gameplay/Scroll[/Mouse/scroll/y]'
   m_NeverAutoSwitchControlSchemes: 0

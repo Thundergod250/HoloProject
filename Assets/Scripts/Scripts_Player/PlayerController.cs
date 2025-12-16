@@ -6,9 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     public PlayerMovement PlayerMovement;
     public PlayerAnimation PlayerAnimation;
-    
-    public Transform PlayerGrabPoint;
-    public Transform IsPlayerCarryingObject;
+    public PlayerInteraction PlayerInteraction;
+    public PlayerGrab PlayerGrab;
     public Animator animator; 
 
     private void Start()

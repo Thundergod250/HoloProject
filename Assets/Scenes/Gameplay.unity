@@ -216,6 +216,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 73326128}
   m_CullTransparentMesh: 1
+--- !u!1 &94353247 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1367724001468933626, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+  m_PrefabInstance: {fileID: 3688964133521184811}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &123910041
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,6 +759,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RectMask2D
   m_Padding: {x: 0, y: 0, z: 0, w: 0}
   m_Softness: {x: 0, y: 0}
+--- !u!4 &457511646 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2506867188676803050, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+  m_PrefabInstance: {fileID: 3688964133521184811}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &457658993
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1289,6 +1299,7 @@ GameObject:
   - component: {fileID: 648115275}
   - component: {fileID: 648115274}
   - component: {fileID: 648115273}
+  - component: {fileID: 648115278}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -1408,6 +1419,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 648115278}
+        m_TargetAssemblyTypeName: InteractionManipulator, Assembly-CSharp
+        m_MethodName: _EnableInteraction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &648115276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1446,6 +1469,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 648115271}
   m_CullTransparentMesh: 1
+--- !u!114 &648115278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648115271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d495a244db1df1d4c97adb58d9ec30ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractionManipulator
 --- !u!1 &660262796
 GameObject:
   m_ObjectHideFlags: 0
@@ -1486,6 +1521,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   EvtOnInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  EvtOnInteractWithObj:
     m_PersistentCalls:
       m_Calls: []
 --- !u!65 &660262798
@@ -1581,17 +1619,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &665438498 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7251903329884335191, guid: dc4e15fd578b3ed41bebcc3e3efb07ef, type: 3}
-  m_PrefabInstance: {fileID: 3755223003356886779}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9abefabb17d3e0147a1078847c4d67fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SetTowerSpawn
 --- !u!1 &688974903
 GameObject:
   m_ObjectHideFlags: 0
@@ -2376,6 +2403,9 @@ MonoBehaviour:
   EvtOnInteract:
     m_PersistentCalls:
       m_Calls: []
+  EvtOnInteractWithObj:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &855784049
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2975,6 +3005,9 @@ MonoBehaviour:
   EvtOnInteract:
     m_PersistentCalls:
       m_Calls: []
+  EvtOnInteractWithObj:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &1060762001
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3108,6 +3141,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   EvtOnInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  EvtOnInteractWithObj:
     m_PersistentCalls:
       m_Calls: []
 --- !u!65 &1073511586
@@ -3445,6 +3481,7 @@ GameObject:
   - component: {fileID: 1165403774}
   - component: {fileID: 1165403768}
   - component: {fileID: 1165403773}
+  - component: {fileID: 1165403775}
   m_Layer: 0
   m_Name: Resource PlaceHolder
   m_TagString: Untagged
@@ -3505,6 +3542,21 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  EvtOnInteractWithObj:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1165403775}
+        m_TargetAssemblyTypeName: GrabManipulator, Assembly-CSharp
+        m_MethodName: _Grab
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3642,6 +3694,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1165403775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1165403767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7842c0f9522958e4183189877e6c26f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GrabManipulator
 --- !u!1 &1213180628
 GameObject:
   m_ObjectHideFlags: 0
@@ -4262,12 +4326,24 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2205877847749605719, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
   m_PrefabInstance: {fileID: 3688964133521184811}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 94353247}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c730f37f81d726340b9a852e8de4ee7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+--- !u!114 &1811346363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94353247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d495a244db1df1d4c97adb58d9ec30ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractionManipulator
 --- !u!1 &1834212482
 GameObject:
   m_ObjectHideFlags: 0
@@ -5070,10 +5146,101 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8430264172108288562, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: PlayerGrabPoint
+      value: 
+      objectReference: {fileID: 457511646}
+    - target: {fileID: 8430264172108288562, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: EvtOnGrab.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8430264172108288562, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: EvtOnGrab.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8430264172108288562, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: EvtOnReleaseGrabObj.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8430264172108288562, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: EvtOnGrab.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1811346363}
+    - target: {fileID: 8430264172108288562, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: EvtOnGrab.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8430264172108288562, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: EvtOnGrab.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: _DisableInteraction
+      objectReference: {fileID: 0}
+    - target: {fileID: 8430264172108288562, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: EvtOnRemovedGrabbedObject.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8430264172108288562, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: EvtOnReleaseGrabObj.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8430264172108288562, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: EvtOnReleaseGrabObj.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1811346363}
+    - target: {fileID: 8430264172108288562, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: EvtOnReleaseGrabObj.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8430264172108288562, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: EvtOnReleaseGrabObj.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: _EnableInteraction
+      objectReference: {fileID: 0}
+    - target: {fileID: 8430264172108288562, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: EvtOnRemovedGrabbedObject.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8430264172108288562, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: EvtOnGrab.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InteractionManipulator, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8430264172108288562, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: EvtOnRemovedGrabbedObject.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1811346363}
+    - target: {fileID: 8430264172108288562, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: EvtOnRemovedGrabbedObject.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8430264172108288562, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: EvtOnRemovedGrabbedObject.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: _EnableInteraction
+      objectReference: {fileID: 0}
+    - target: {fileID: 8430264172108288562, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: EvtOnReleaseGrabObj.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InteractionManipulator, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8430264172108288562, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: EvtOnRemovedGrabbedObject.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InteractionManipulator, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8430264172108288562, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: EvtOnGrab.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8430264172108288562, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: EvtOnReleaseGrabObj.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8430264172108288562, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: EvtOnRemovedGrabbedObject.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1367724001468933626, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1811346363}
   m_SourcePrefab: {fileID: 100100000, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
 --- !u!1001 &3755223003356886779
 PrefabInstance:
@@ -5083,30 +5250,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1447912607}
     m_Modifications:
-    - target: {fileID: 1076973904866172499, guid: dc4e15fd578b3ed41bebcc3e3efb07ef, type: 3}
-      propertyPath: EvtOnBuySuccessful.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1076973904866172499, guid: dc4e15fd578b3ed41bebcc3e3efb07ef, type: 3}
-      propertyPath: EvtOnBuySuccessful.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 665438498}
-    - target: {fileID: 1076973904866172499, guid: dc4e15fd578b3ed41bebcc3e3efb07ef, type: 3}
-      propertyPath: EvtOnBuySuccessful.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SpawnTower
-      objectReference: {fileID: 0}
-    - target: {fileID: 1076973904866172499, guid: dc4e15fd578b3ed41bebcc3e3efb07ef, type: 3}
-      propertyPath: EvtOnBuySuccessful.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SetTowerSpawn, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1076973904866172499, guid: dc4e15fd578b3ed41bebcc3e3efb07ef, type: 3}
-      propertyPath: EvtOnBuySuccessful.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1076973904866172499, guid: dc4e15fd578b3ed41bebcc3e3efb07ef, type: 3}
-      propertyPath: EvtOnBuySuccessful.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 3026949624857135280, guid: dc4e15fd578b3ed41bebcc3e3efb07ef, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -5190,10 +5333,6 @@ PrefabInstance:
     - target: {fileID: 9017402507749122417, guid: dc4e15fd578b3ed41bebcc3e3efb07ef, type: 3}
       propertyPath: m_Name
       value: 'Tower Cards [ PLACE HOLDER] '
-      objectReference: {fileID: 0}
-    - target: {fileID: 9017402507749122417, guid: dc4e15fd578b3ed41bebcc3e3efb07ef, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
