@@ -23,6 +23,7 @@ public class UI_Manager : MonoBehaviour
         {
             if (group != null)
                 group.SetActive(group == targetGroup);
+            UI_TowerShop.ClearCards();
         }
     }
 
