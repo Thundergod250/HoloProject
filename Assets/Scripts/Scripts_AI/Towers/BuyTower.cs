@@ -15,13 +15,8 @@ public class BuyTower : MonoBehaviour
 
         if (GameManager.Instance.GoldManager?.SpendGold(cost) == true)
         {
-            var node = GameManager.Instance.CurrentTowerNode;
-
-            if (node != null && node.towerController != null)
-            {
-                // ✅ Despawn using the controller
-                GameManager.Instance.DespawnTower(node.towerController);
-            }
+            // ✅ Despawn existing tower before buying
+            DespawnCurrentTower();
 
             // ✅ Pass prefab to GameManager via event
             EvtOnBuySuccessful?.Invoke(TowerCardManager.TowerPrefab);
@@ -31,7 +26,13 @@ public class BuyTower : MonoBehaviour
             Debug.Log("Not enough gold to buy tower.");
         }
     }
-    
+
+    public void _DespawnButtonClicked()
+    {
+        // ✅ Just despawn, no gold check
+        DespawnCurrentTower();
+    }
+
     public void _RepairButtonClicked()
     {
         int cost = TowerCardManager.GetCostValue();
@@ -44,6 +45,21 @@ public class BuyTower : MonoBehaviour
         else
         {
             Debug.Log("Not enough gold to repair.");
+        }
+    }
+
+    // === Shared despawn logic ===
+    public void DespawnCurrentTower()
+    {
+        var node = GameManager.Instance.CurrentTowerNode;
+
+        if (node != null && node.towerController != null)
+        {
+            GameManager.Instance.DespawnTower(node.towerController);
+        }
+        else
+        {
+            Debug.Log("No tower to despawn.");
         }
     }
 }

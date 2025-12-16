@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 8160217979248254876}
   - component: {fileID: 6486533220045553385}
   - component: {fileID: 2607173195040463432}
+  - component: {fileID: 7945611311937052698}
+  - component: {fileID: 5881300880969687044}
   m_Layer: 0
   m_Name: Tower Node
   m_TagString: Untagged
@@ -180,32 +182,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8160217979248254876}
-        m_TargetAssemblyTypeName: DisableMovement, Assembly-CSharp
-        m_MethodName: DisablePlayerMovement
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 8160217979248254876}
-        m_TargetAssemblyTypeName: DisableMovement, Assembly-CSharp
-        m_MethodName: DisableCameraMovement
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 6486533220045553385}
-        m_TargetAssemblyTypeName: FocusUI, Assembly-CSharp
-        m_MethodName: FocusTowerUpgrades
+        m_TargetAssemblyTypeName: MovementAndCameraManipulator, Assembly-CSharp
+        m_MethodName: _DisableAllMovement
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -222,6 +200,45 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 8431248934247577699}
           m_ObjectArgumentAssemblyTypeName: TowerNodeManager, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7945611311937052698}
+        m_TargetAssemblyTypeName: InteractionManipulator, Assembly-CSharp
+        m_MethodName: _DisableInteraction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5881300880969687044}
+        m_TargetAssemblyTypeName: TowerNodeManagerManipulator, Assembly-CSharp
+        m_MethodName: _SendTowerController
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  EvtOnInteractWithObj:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -263,6 +280,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9abefabb17d3e0147a1078847c4d67fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SetTowerSpawn
+--- !u!114 &7945611311937052698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3364266961026395771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d495a244db1df1d4c97adb58d9ec30ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractionManipulator
+--- !u!114 &5881300880969687044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3364266961026395771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b5263050520bdc41954dc20ca7ec248, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerNodeManagerManipulator
+  EvtOnInteractWithTowerController:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6486533220045553385}
+        m_TargetAssemblyTypeName: FocusUI, Assembly-CSharp
+        m_MethodName: _FocusTowerUpgradesWithCondition
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  EvtOnInteractWithTowerControllerPassSO:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5881300880969687044}
+        m_TargetAssemblyTypeName: TowerNodeManagerManipulator, Assembly-CSharp
+        m_MethodName: _PassTowerCategoryS0
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3635888915932420505
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,7 +345,6 @@ GameObject:
   - component: {fileID: 8127549923084407249}
   - component: {fileID: 8319188609146670160}
   - component: {fileID: 3249814223308917050}
-  - component: {fileID: 3478466694711307795}
   m_Layer: 0
   m_Name: Tower Ghost
   m_TagString: Untagged
@@ -355,29 +425,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &3478466694711307795
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3635888915932420505}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &7835772350228101453
 GameObject:
   m_ObjectHideFlags: 0
