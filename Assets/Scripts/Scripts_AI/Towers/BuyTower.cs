@@ -29,10 +29,11 @@ public class BuyTower : MonoBehaviour
         }
     }
 
-    public void _DespawnButtonClicked()
+    public void _DespawnButtonClicked(int cost)
     {
         // ✅ Just despawn, no gold check
         DespawnCurrentTower();
+        GameManager.Instance.GoldManager?.AddGold(cost);
     }
 
     public void _RepairButtonClicked(int cost)
@@ -50,21 +51,6 @@ public class BuyTower : MonoBehaviour
     private void OnEnable()
     {
         CurrentTowerNode = GameManager.Instance.CurrentTowerNode;
-    }
-    
-    private int GetCurrentTowerHealth()
-    {
-        return CurrentTowerNode.towerController.TowerHealth.GetCurrentHealth();
-    }
-    
-    private int GetCurrentTowerMaxHealth()
-    {
-        return CurrentTowerNode.towerController.TowerHealth.GetMaxHealth();
-    }
-
-    public void RepairTower()
-    {
-        
     }
 
     // === Shared despawn logic ===
