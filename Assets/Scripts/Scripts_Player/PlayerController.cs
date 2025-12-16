@@ -5,11 +5,11 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public PlayerMovement PlayerMovement;
+    public PlayerAnimation PlayerAnimation;
     
     public Transform PlayerGrabPoint;
     public Transform IsPlayerCarryingObject;
-
-    [SerializeField] private Animator animator; // Animator reference
+    public Animator animator; 
 
     private void Start()
     {

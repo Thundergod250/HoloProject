@@ -3,23 +3,22 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private bool canMove = true;
+    // === Core Components ===
     private CharacterController controller;
-    [SerializeField] private Animator animator; // Animator reference
-        private bool isJumping = false; //  track jump state
+    [SerializeField] private Transform cameraTransform;
+    [SerializeField] private PlayerAnimation playerAnimation;
 
-        private Vector2 moveInput;
+    // === Movement State ===
+    private bool canMove = true;
+    private bool isJumping = false;
+    private Vector2 moveInput;
+    private Vector3 velocity;
 
-        private Vector3 velocity;
-        
-        [Header("Movement Settings")]
-        [SerializeField] private float speed = 5f;
-        [SerializeField] private float jumpHeight = 2f;
-        [SerializeField] private float gravity = -9.8f;
-        
-        [Header("References")]
-        [SerializeField] private Transform cameraTransform;
-        
+    // === Movement Settings ===
+    [Header("Movement Settings")]
+    [SerializeField] private float speed = 5f;
+    [SerializeField] private float jumpHeight = 2f;
+    [SerializeField] private float gravity = -9.8f;
         
     private void Start()
     {
@@ -27,7 +26,6 @@ public class PlayerMovement : MonoBehaviour
         
         if (cameraTransform == null && Camera.main != null)
             cameraTransform = Camera.main.transform;
-        
     }
 
     private void Update()
@@ -42,8 +40,7 @@ public class PlayerMovement : MonoBehaviour
         if (controller.isGrounded && isJumping)
         {
             isJumping = false;
-            if (animator != null)
-                animator.speed = 1f; // resume animation playback
+            playerAnimation?.ResumeAfterJump();
         }
 
         // Camera-relative movement
@@ -70,24 +67,16 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public bool GetCanMove()
-    {
-        return canMove;
-    }
-
-    public void SetCanMove(bool value)
-    {
-        canMove = value;
-    }
+    public bool GetCanMove() => canMove;
+    public void SetCanMove(bool value) => canMove = value;
 
     public void MovementOnMove(InputAction.CallbackContext context)
     {
         if (!GetCanMove()) return;
         moveInput = context.ReadValue<Vector2>();
 
-        // Only update animator speed if not frozen mid-jump
-        if (animator != null && !isJumping)
-            animator.SetFloat("Speed", moveInput.magnitude);
+        // Delegate animation update
+        playerAnimation?.UpdateMovementAnimation(moveInput.magnitude, isJumping);
     }
     
     public void MovementOnJump(InputAction.CallbackContext context)
@@ -99,11 +88,7 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             isJumping = true;
 
-            if (animator != null)
-            {
-                animator.speed = 0f;           // freeze animations
-                animator.SetTrigger("Jump");   // optional jump animation
-            }
+            playerAnimation?.TriggerJump();
         }
     }
     
@@ -113,7 +98,6 @@ public class PlayerMovement : MonoBehaviour
         moveInput = Vector2.zero;
         velocity = Vector3.zero;
 
-        if (animator != null)
-            animator.SetFloat("Speed", 0f);
+        playerAnimation?.ResetAnimations();
     }
 }
