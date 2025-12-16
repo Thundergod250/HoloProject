@@ -616,6 +616,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TowerController
   towerPrefab: {fileID: 0}
   towerInstance: {fileID: 0}
+  EvtOnIncreaseTowerMainDamage:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 100745187681622396}
+        m_TargetAssemblyTypeName: TowerPlasticCollector, Assembly-CSharp
+        m_MethodName: _IncreaseTowerDamageLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  EvtOnIncreaseTowerAtkRate:
+    m_PersistentCalls:
+      m_Calls: []
   thisTowerUpgradeCards_SO: {fileID: 11400000, guid: 74589f206299ffc4292a926c286bf755, type: 2}
   TowerHealth: {fileID: 9209285657085303806}
 --- !u!114 &9209285657085303806
@@ -701,19 +719,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TowerPlasticCollector
   EvtOnGarbageObjectCollide:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1911738574720167987}
-        m_TargetAssemblyTypeName: MoneyManipulator, Assembly-CSharp
-        m_MethodName: _AddMoney
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 50
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   EvtPassObjectReference:
     m_PersistentCalls:
       m_Calls:
@@ -729,6 +735,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  EvtOnAddMoney:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1911738574720167987}
+        m_TargetAssemblyTypeName: MoneyManipulator, Assembly-CSharp
+        m_MethodName: _AddMoney
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  TowerDamageLevel: 1
+  StartingDamageValue: 20
+  DamageIncreasePerLevel: 10
 --- !u!114 &1911738574720167987
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -48,6 +48,13 @@ public class BuyTower : MonoBehaviour
         }
     }
     
+    public void _IncreaseDamageButtonClicked()
+    {
+        CurrentTowerNode.towerController.IncreaseTowerMainDamage();
+        Debug.Log("Tower Damage Level Increased"); 
+    }
+
+    
     private void OnEnable()
     {
         CurrentTowerNode = GameManager.Instance.CurrentTowerNode;
