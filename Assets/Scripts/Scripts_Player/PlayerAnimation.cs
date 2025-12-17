@@ -4,17 +4,23 @@ public class PlayerAnimation : MonoBehaviour
 {
     [SerializeField] private Animator animator;
 
-    [Header("Animation Clips")]
-    [SerializeField] private AnimationClip idleClip;
-    [SerializeField] private AnimationClip runClip;
-    [SerializeField] private AnimationClip jumpClip;
-
-    [Header("Animator State Names")]
+    [Header("Normal States")]
     [SerializeField] private string idleState = "Idle";
     [SerializeField] private string runState = "Walk";
     [SerializeField] private string jumpState = "Jump";
 
+    [Header("Grab States")]
+    [SerializeField] private string grabIdleState = "Basic Grab";
+    [SerializeField] private string grabWalkState = "Grab and Walk";
+    [SerializeField] private string grabJumpState = "Grab and Jump";
+
+    private PlayerGrab playerGrab;
     private string currentState;
+
+    private void Start()
+    {
+        playerGrab = GetComponent<PlayerGrab>();
+    }
 
     private void PlayState(string stateName, float crossFade = 0.15f)
     {
@@ -29,19 +35,27 @@ public class PlayerAnimation : MonoBehaviour
     {
         if (isJumping) return;
 
+        bool isCarrying = playerGrab != null && playerGrab.IsPlayerCarryingObject;
+
         if (speed > 0.1f)
-            PlayState(runState);
+        {
+            PlayState(isCarrying ? grabWalkState : runState);
+        }
         else
-            PlayState(idleState);
+        {
+            PlayState(isCarrying ? grabIdleState : idleState);
+        }
     }
 
     public void TriggerJump()
     {
-        PlayState(jumpState, 0.05f);
+        bool isCarrying = playerGrab != null && playerGrab.IsPlayerCarryingObject;
+        PlayState(isCarrying ? grabJumpState : jumpState, 0.05f);
     }
 
     public void ResetAnimations()
     {
-        PlayState(idleState, 0.1f);
+        bool isCarrying = playerGrab != null && playerGrab.IsPlayerCarryingObject;
+        PlayState(isCarrying ? grabIdleState : idleState, 0.1f);
     }
 }

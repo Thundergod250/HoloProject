@@ -2414,6 +2414,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d495a244db1df1d4c97adb58d9ec30ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractionManipulator
+--- !u!114 &1811346356 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3778112114396300799, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+  m_PrefabInstance: {fileID: 3688964133521184811}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13282ba931675df4ba09e84c038fb0bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimation
+--- !u!114 &1811346357 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1127985473742766121, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+  m_PrefabInstance: {fileID: 3688964133521184811}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77966beae08fe814aba3e96399e42e58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
 --- !u!1 &1857104951
 GameObject:
   m_ObjectHideFlags: 0
@@ -3066,6 +3088,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3778112114396300799, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: runClip
+      value: 
+      objectReference: {fileID: 2667949614841947897, guid: 76aa1ed1aab1fed469809ad2ddbd7c99, type: 3}
+    - target: {fileID: 3778112114396300799, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: idleClip
+      value: 
+      objectReference: {fileID: -5225591888644748974, guid: 76aa1ed1aab1fed469809ad2ddbd7c99, type: 3}
+    - target: {fileID: 3778112114396300799, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: jumpClip
+      value: 
+      objectReference: {fileID: 5539831331247536789, guid: 76aa1ed1aab1fed469809ad2ddbd7c99, type: 3}
+    - target: {fileID: 3778112114396300799, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
       propertyPath: runAnimation
       value: 
       objectReference: {fileID: 8349542763059015795, guid: 76aa1ed1aab1fed469809ad2ddbd7c99, type: 3}
@@ -3105,6 +3139,14 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.16389176
       objectReference: {fileID: 0}
+    - target: {fileID: 8430264172108288562, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: PlayerMovement
+      value: 
+      objectReference: {fileID: 1811346357}
+    - target: {fileID: 8430264172108288562, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: PlayerAnimation
+      value: 
+      objectReference: {fileID: 1811346356}
     - target: {fileID: 8430264172108288562, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
       propertyPath: EvtOnGrab.m_PersistentCalls.m_Calls.Array.size
       value: 2
