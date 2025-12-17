@@ -14,8 +14,10 @@ public class TowerBase : MonoBehaviour
     [Header("Parameters")]
     [SerializeField] protected float _firingSpeed = 1.0f;
     [SerializeField] protected float _delayChargeUp = 0.0f;
-    [SerializeField] protected float _damageBase = 1.0f; // Kinda will just pass down to Projectile
+    [SerializeField] protected int damageBase = 5; // Kinda will just pass down to Projectile
     [SerializeField] protected float _projectileSpeed = 1f;
+    
+    [SerializeField] protected int damageIncreasePerLevel = 5;
 
     private bool _isFiring = false;
 
@@ -106,5 +108,10 @@ public class TowerBase : MonoBehaviour
 
         // 5. Reset the flag
         _isFiring = false;
+    }
+
+    public void _IncreaseDamage()
+    {
+        damageBase += damageIncreasePerLevel;
     }
 }
