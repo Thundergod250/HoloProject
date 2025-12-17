@@ -6,6 +6,7 @@ public class UI_Manager : MonoBehaviour
     public UI_Interaction UI_Interaction;
     public UI_Gold UI_Gold;
     public UI_TowerShop UI_TowerShop;
+    public UI_Grab_Tab UI_Grab_Tab;
 
     [SerializeField] private GameObject mainUiGroup;
     [SerializeField] private GameObject towerUpgrades;
