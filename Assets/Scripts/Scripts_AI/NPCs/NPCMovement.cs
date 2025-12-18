@@ -10,6 +10,7 @@ public class NPCMovement : MonoBehaviour
     [Header("Target")]
     public GameObject TargetPoint;
 
+    [Header("TargetPoints Related")]
     public List<GameObject> TargetPoints = new List<GameObject>();
 
     public GameObject NPCBody;
@@ -26,7 +27,6 @@ public class NPCMovement : MonoBehaviour
 
     public void GoTotargetPoint()
     {
-        int targetPointcount;
         if (TargetPoints[0] == null)
             return;
 
