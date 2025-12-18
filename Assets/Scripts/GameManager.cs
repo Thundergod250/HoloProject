@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public UI_Manager UIManager;
     public GoldManager GoldManager;
     public ObjectPooling ObjectPooling;
+    public DebugCheats DebugCheats;
 
     [HideInInspector] public TowerNodeManager CurrentTowerNode;
 
