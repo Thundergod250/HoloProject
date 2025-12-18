@@ -157,7 +157,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9270d24a613394749938168840896394, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  NPCDialogueVar: {fileID: 8965046217086440252}
+  EvtOnPlayerTrigger:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8965046217086440252}
+        m_TargetAssemblyTypeName: NPCDialogue, Assembly-CSharp
+        m_MethodName: _SetDialogueText
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 'What is that Gate? '
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2346176655808354191}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4504096698540064222
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,12 +446,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8964488492870844130, guid: 50921f82d81e02a43bd665541e8503c2, type: 3}
   m_PrefabInstance: {fileID: 7353151278346164870}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2346176655808354191 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5081449191176998153, guid: 50921f82d81e02a43bd665541e8503c2, type: 3}
+  m_PrefabInstance: {fileID: 7353151278346164870}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8965046217086440252 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1900970014751443386, guid: 50921f82d81e02a43bd665541e8503c2, type: 3}
   m_PrefabInstance: {fileID: 7353151278346164870}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2346176655808354191}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df30eab9895eca848853bfc3fe771e1b, type: 3}
