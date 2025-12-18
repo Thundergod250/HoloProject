@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,6 +9,9 @@ public class NPCMovement : MonoBehaviour
 
     [Header("Target")]
     public GameObject TargetPoint;
+
+    [Header("TargetPoints Related")]
+    public List<GameObject> TargetPoints = new List<GameObject>();
 
     public GameObject NPCBody;
 
@@ -22,7 +27,7 @@ public class NPCMovement : MonoBehaviour
 
     public void GoTotargetPoint()
     {
-        if (TargetPoint == null)
+        if (TargetPoints[0] == null)
             return;
 
         agent.SetDestination(TargetPoint.transform.position);
