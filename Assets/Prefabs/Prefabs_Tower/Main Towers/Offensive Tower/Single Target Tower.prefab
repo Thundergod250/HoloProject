@@ -361,7 +361,7 @@ Transform:
   m_GameObject: {fileID: 4292232031242886968}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.684, z: 0}
+  m_LocalPosition: {x: 0, y: 6.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -700,6 +700,7 @@ GameObject:
   - component: {fileID: 3676215705264287566}
   - component: {fileID: 1911738574720167987}
   - component: {fileID: 3940700957553718467}
+  - component: {fileID: 6471933164807088856}
   m_Layer: 6
   m_Name: Single Target Tower
   m_TagString: Untagged
@@ -846,7 +847,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7795377701471874775}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c1b8ee1d6a428145a35385880216bcf, type: 3}
   m_Name: 
@@ -859,6 +860,25 @@ MonoBehaviour:
   damageBase: 5
   _projectileSpeed: 1
   damageIncreasePerLevel: 5
+--- !u!114 &6471933164807088856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7795377701471874775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 251e103df882a2c44b1e44ed5eb71036, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tower_Offensive_SingleTarget
+  projectilePrefab: {fileID: 2941184073763328342, guid: a7dd736b550ea164eabe5e90ed81d0e5, type: 3}
+  firePoint: {fileID: 1932060655702197655}
+  towerDamageLevel: 1
+  towerDamage: 10
+  towerFireRateLevel: 1
+  towerFireRate: 5
+  detectionRadius: 20
 --- !u!1 &7849389352835609314
 GameObject:
   m_ObjectHideFlags: 0
