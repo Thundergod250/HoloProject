@@ -1,7 +1,11 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MoneyManipulator : MonoBehaviour
 {
+    public UnityEvent HasEnoughMoney;
+    public UnityEvent DoesNotHaveEnoughMoney;
+
     public void _AddMoney(int amount)
     {
         if (GameManager.Instance != null && GameManager.Instance.GoldManager != null)
@@ -17,9 +21,15 @@ public class MoneyManipulator : MonoBehaviour
         {
             bool success = GameManager.Instance.GoldManager.SpendGold(amount);
             if (success)
+            {
+                InvokeHasEnoughMoney();
                 Debug.Log($"Spent {amount} gold. Current gold: {GameManager.Instance.GoldManager.PlayerGold}");
+            }
             else
+            {
+                InvokeDoesNotEnoughMoney();
                 Debug.LogWarning($"Not enough gold to spend {amount}. Current gold: {GameManager.Instance.GoldManager.PlayerGold}");
+            }
         }
     }
 
@@ -35,5 +45,15 @@ public class MoneyManipulator : MonoBehaviour
     public int _GetGold()
     {
         return GameManager.Instance.GoldManager.GetGold(); 
+    }
+
+    public void InvokeHasEnoughMoney()
+    {
+        HasEnoughMoney?.Invoke();
+    }
+
+    public void InvokeDoesNotEnoughMoney()
+    {
+        DoesNotHaveEnoughMoney?.Invoke();
     }
 }
