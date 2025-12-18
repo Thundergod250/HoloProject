@@ -31,4 +31,9 @@ public class MoneyManipulator : MonoBehaviour
             Debug.Log($"Reduced {amount} gold (forced). Current gold: {GameManager.Instance.GoldManager.PlayerGold}");
         }
     }
+
+    public int _GetGold()
+    {
+        return GameManager.Instance.GoldManager.GetGold(); 
+    }
 }

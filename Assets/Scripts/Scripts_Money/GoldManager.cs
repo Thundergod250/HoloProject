@@ -16,7 +16,12 @@ public class GoldManager : MonoBehaviour
         }
         return false;
     }
-    
+
+    public int GetGold()
+    {
+        return PlayerGold;
+    }
+
     public void ResetGold() => playerGold = 0;
     public bool HasEnoughGold(int amount) => playerGold >= amount;
     public void ReduceGold(int amount) => playerGold = Mathf.Max(0, playerGold - amount);
