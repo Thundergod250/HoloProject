@@ -9,4 +9,14 @@ public class NPCDIalogue : MonoBehaviour
     {
         NPCDialogueText.text = "Hello There";
     }
+
+    public void DialogueForApproachingDoor()
+    {
+        NPCDialogueText.text = "XYZ";
+    }
+
+    public void DialogueForWhenDoorReached()
+    {
+        NPCDialogueText.text = "123";
+    }
 }
