@@ -9,6 +9,16 @@ public class CurrentTowerConnector : MonoBehaviour
         CurrentTowerNode = GameManager.Instance.CurrentTowerNode;
     }
 
+    public void _GetCurrentTowerHealth()
+    {
+        CurrentTowerNode.towerController.TowerHealth.GetCurrentHealth();
+    }
+    
+    public void _GetCurrentTowerMaxHealth()
+    {
+        CurrentTowerNode.towerController.TowerHealth.GetMaxHealth();
+    }
+
     public void _RepairTower()
     {
         CurrentTowerNode.towerController.TowerHealth.Heal(CurrentTowerNode.towerController.TowerHealth.GetMaxHealth());

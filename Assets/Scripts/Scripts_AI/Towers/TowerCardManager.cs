@@ -34,19 +34,6 @@ public class TowerCardManager : MonoBehaviour, IPoolable
         TowerPrefab = info.towerPrefab;
     }
     
-    public void ResetUpgradeCard(UpgradeInfo info)
-    {
-        Title.text = info.title;
-        Description.text = info.description;
-        Cost.text = info.cost.ToString();
-        Image.sprite = info.icon;
-        TowerPrefab = info.towerPrefab;
-        TowerHealth = info.TowerHealth;
-        CurrentDamage = info.CurrentDamage;
-        DamageIncrease = info.DamageIncrease;
-        CurrentFireRate = info.CurrentFireRate;
-        FireRateIncrease = info.FireRateIncrease;
-    }
 
     public void SetSourcePrefab(GameObject prefab) => sourcePrefab = prefab;
     public GameObject GetSourcePrefab() => sourcePrefab;
