@@ -27,7 +27,7 @@ public class NPCMovement : MonoBehaviour
 
     public void GoTotargetPoint()
     {
-        if (TargetPoints[0] == null)
+        /*if (TargetPoints[0] == null)
             return;
 
         agent.SetDestination(TargetPoint.transform.position);
@@ -35,7 +35,7 @@ public class NPCMovement : MonoBehaviour
         //if (agent.velocity.sqrMagnitude > 0.01f)
         //{
         //    RotateTowards(agent.velocity);
-        //}
+        //}*/
     }
 
     void RotateTowards(Vector3 movement)

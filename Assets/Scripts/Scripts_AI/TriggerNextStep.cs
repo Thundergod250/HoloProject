@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class TriggerNextStep : MonoBehaviour
 {
-    public NPCDIalogue NPCDialogueVar;
+    public NPCDialogue NPCDialogueVar;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<PlayerMovement>())
-            NPCDialogueVar.DialogueForApproachingDoor();
+        /*if (other.GetComponent<PlayerMovement>())
+            NPCDialogueVar.DialogueForApproachingDoor();*/
     }
 }

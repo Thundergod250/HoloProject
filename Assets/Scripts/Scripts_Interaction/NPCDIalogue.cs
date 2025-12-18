@@ -1,22 +1,20 @@
 using TMPro;
 using UnityEngine;
 
-public class NPCDIalogue : MonoBehaviour
+public class NPCDialogue : MonoBehaviour
 {
     public TextMeshProUGUI NPCDialogueText;
-    
-    public void DialogueText()
+    public GameObject Canvas; 
+
+    public void _SetDialogueText(string text)
     {
-        NPCDialogueText.text = "Hello There";
+        Canvas.SetActive(true);
+        NPCDialogueText.text = text;
     }
 
-    public void DialogueForApproachingDoor()
+    public void _DisableDialogue()
     {
-        NPCDialogueText.text = "XYZ";
-    }
-
-    public void DialogueForWhenDoorReached()
-    {
-        NPCDialogueText.text = "123";
+        Canvas.SetActive(false);
+        NPCDialogueText.text = " ";
     }
 }
