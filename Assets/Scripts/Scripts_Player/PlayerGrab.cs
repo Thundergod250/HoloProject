@@ -6,6 +6,7 @@ public class PlayerGrab : MonoBehaviour
 {
     public Transform PlayerGrabPoint;
     public bool IsPlayerCarryingObject;
+    public PlayerAnimation PlayerAnimation;
 
     // === Events ===
     public UnityEvent<GameObject> EvtOnGrab;

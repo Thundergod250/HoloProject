@@ -26,7 +26,7 @@ public class ProjectileBase : MonoBehaviour
                 GameObject projectileGO = Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
             }
 
-            enemy.TakeDamage((int)_damage);
+            enemy.Health.TakeDamage((int)_damage);
         }
 
         else if(_isImpactDestroy)
