@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class ExplosiveBase : MonoBehaviour
@@ -13,7 +14,18 @@ public class ExplosiveBase : MonoBehaviour
         {
             enemy.Health.TakeDamage((int)_damage);
 
-            Destroy(this.gameObject);
+            Destroy(this?.gameObject);
         }
+    }
+
+    private void Start()
+    {
+        StartCoroutine(CO_SelfDestroy());
+    }
+
+    IEnumerator CO_SelfDestroy()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Destroy(this?.gameObject);
     }
 }

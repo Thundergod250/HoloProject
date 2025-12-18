@@ -104,7 +104,7 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -141,7 +141,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &2803748604978388320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileBase
   _damage: 1
   _isSelfDestroy: 1
-  _isImpactDestroy: 0
+  _isImpactDestroy: 1
   _selfDestroyDelay: 5
   _explosionPrefab: {fileID: 413730130759255710, guid: 7593b2eaff9d5044a9bc4ed863bcdb76, type: 3}
-  _isExplosive: 1
+  _isExplosive: 0

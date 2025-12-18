@@ -361,7 +361,7 @@ Transform:
   m_GameObject: {fileID: 4292232031242886968}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.684, z: 0}
+  m_LocalPosition: {x: 0, y: 6.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -700,6 +700,7 @@ GameObject:
   - component: {fileID: 3676215705264287566}
   - component: {fileID: 1911738574720167987}
   - component: {fileID: 3940700957553718467}
+  - component: {fileID: 3616663046713638300}
   m_Layer: 6
   m_Name: Single Target Tower
   m_TagString: Untagged
@@ -796,7 +797,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1.37, y: 3.42, z: 1.37}
   m_Center: {x: 0, y: 2.02, z: 0}
@@ -856,9 +857,30 @@ MonoBehaviour:
   _projectileSpawnPoint: {fileID: 1932060655702197655}
   _firingSpeed: 1
   _delayChargeUp: 0
-  damageBase: 5
-  _projectileSpeed: 1
+  damageBase: 10
+  _projectileSpeed: 20
   damageIncreasePerLevel: 5
+--- !u!135 &3616663046713638300
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7795377701471874775}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 10
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7849389352835609314
 GameObject:
   m_ObjectHideFlags: 0
