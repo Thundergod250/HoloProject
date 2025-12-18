@@ -9,7 +9,7 @@ public class UI_Interaction_Tab : MonoBehaviour
 
     public void Show(string name)
     {
-        interactionName.text = $"[F] {name}";
+        interactionName.text = $"{name}";
         interactionName.gameObject.SetActive(true);
         if (highlightFrame != null)
             highlightFrame.enabled = true;

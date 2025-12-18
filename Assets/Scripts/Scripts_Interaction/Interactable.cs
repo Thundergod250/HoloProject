@@ -7,9 +7,10 @@ public class Interactable : MonoBehaviour
     public string interactName;
 
     [Header("Interaction Events")]
-    public UnityEvent EvtOnFocus;      // repeatedly invoked while raycast hits this
-    public UnityEvent EvtOnFocusExit;  // invoked once when raycast leaves
-    public UnityEvent EvtOnInteract;   // invoked when player presses interact key
+    public UnityEvent EvtOnFocus;             // repeatedly invoked while raycast hits this
+    public UnityEvent EvtOnFocusExit;         // invoked once when raycast leaves
+    public UnityEvent EvtOnInteract;          // invoked when player presses interact key
+    public UnityEvent<GameObject> EvtOnInteractWithObj; // invoked when player presses interact key, passes this object
 
     // Called by PlayerInteraction when this is the current target
     public void Focus()
@@ -27,5 +28,6 @@ public class Interactable : MonoBehaviour
     public void Interact()
     {
         EvtOnInteract?.Invoke();
+        EvtOnInteractWithObj?.Invoke(gameObject);
     }
 }

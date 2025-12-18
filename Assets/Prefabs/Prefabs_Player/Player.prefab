@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &181524855822691460
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2506867188676803050}
+  m_Layer: 0
+  m_Name: Player Grab Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2506867188676803050
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181524855822691460}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.006, y: 0.914, z: -0.095}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2878381358046898893}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &470234963840479240
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,8 +123,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1288891533921860037}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.16040574, y: 0.5716787, z: -0.17911652, w: -0.7844558}
-  m_LocalPosition: {x: 3.852566, y: 2.0948575, z: -1.3534436}
+  m_LocalRotation: {x: -0.22913554, y: 0.5536031, z: -0.22896022, w: -0.7672013}
+  m_LocalPosition: {x: 3.7476392, y: 3.0457954, z: -1.4196827}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -171,8 +202,8 @@ MonoBehaviour:
       Radius: 4
       Height: 2.25
     Bottom:
-      Radius: 2.5
-      Height: 0.1
+      Radius: 1.15
+      Height: -0.9
     SplineCurvature: 0.5
   RecenteringTarget: 2
   HorizontalAxis:
@@ -188,7 +219,7 @@ MonoBehaviour:
   VerticalAxis:
     Value: 17.5
     Center: 17.5
-    Range: {x: -10, y: 45}
+    Range: {x: -70, y: 70}
     Wrap: 0
     Recentering:
       Enabled: 0
@@ -330,6 +361,10 @@ GameObject:
   - component: {fileID: 2658805747885236236}
   - component: {fileID: 2205877847749605719}
   - component: {fileID: 1632417819172464259}
+  - component: {fileID: 1127985473742766121}
+  - component: {fileID: 3778112114396300799}
+  - component: {fileID: 8430264172108288562}
+  - component: {fileID: 4549943407503985007}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -353,6 +388,7 @@ Transform:
   - {fileID: 7358589354269997753}
   - {fileID: 1771774407237545081}
   - {fileID: 3986986069622755096}
+  - {fileID: 2506867188676803050}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &991052777969328695
@@ -423,10 +459,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c730f37f81d726340b9a852e8de4ee7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  speed: 5
-  jumpHeight: 2
-  gravity: -19.6
-  cameraTransform: {fileID: 3986986069622755096}
+  PlayerMovement: {fileID: 1127985473742766121}
+  PlayerAnimation: {fileID: 3778112114396300799}
+  PlayerInteraction: {fileID: 52962085420262557}
+  PlayerGrab: {fileID: 8430264172108288562}
+  animator: {fileID: 6098598076430173885}
 --- !u!114 &1632417819172464259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,11 +529,121 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: c5da8c94-e07f-4cd3-8b64-d060c0e8fbd2
     m_ActionName: 'Gameplay/Scroll[/Mouse/scroll/y]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2a25a848-2d7e-41ec-b142-e0fcfbe6d5c4
+    m_ActionName: 'Gameplay/NoclipToggle[/Keyboard/ctrl,/Keyboard/leftBracket]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1127985473742766121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367724001468933626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77966beae08fe814aba3e96399e42e58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  cameraTransform: {fileID: 3986986069622755096}
+  playerAnimation: {fileID: 3778112114396300799}
+  speed: 5
+  jumpHeight: 2
+  gravity: -19.6
+  noclipSpeed: 30
+--- !u!114 &3778112114396300799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367724001468933626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13282ba931675df4ba09e84c038fb0bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimation
+  animator: {fileID: 6098598076430173885}
+--- !u!114 &8430264172108288562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367724001468933626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4d8130fcb20f6f42b042b9d98d70ed9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerGrab
+  PlayerGrabPoint: {fileID: 2506867188676803050}
+  IsPlayerCarryingObject: 0
+  EvtOnGrab:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4549943407503985007}
+        m_TargetAssemblyTypeName: InteractionManipulator, Assembly-CSharp
+        m_MethodName: _DisableInteraction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  EvtOnReleaseGrabObj:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4549943407503985007}
+        m_TargetAssemblyTypeName: InteractionManipulator, Assembly-CSharp
+        m_MethodName: _EnableInteraction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  EvtOnRemovedGrabbedObject:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4549943407503985007}
+        m_TargetAssemblyTypeName: InteractionManipulator, Assembly-CSharp
+        m_MethodName: _EnableInteraction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  tossForce: 10
+  grabDelay: 0.2
+  downwardForceMultiplier: 1
+  downwardRampRate: 10
+--- !u!114 &4549943407503985007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367724001468933626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d495a244db1df1d4c97adb58d9ec30ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractionManipulator
 --- !u!1 &3610988257724653628
 GameObject:
   m_ObjectHideFlags: 0
@@ -819,7 +966,7 @@ GameObject:
   - component: {fileID: 3966669553065073327}
   - component: {fileID: 2518211617468888266}
   m_Layer: 0
-  m_Name: Placeholder Appearance
+  m_Name: Player Appearance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -909,7 +1056,6 @@ GameObject:
   - component: {fileID: 1771774407237545081}
   - component: {fileID: 4736212706085059536}
   - component: {fileID: 8792591631496446685}
-  - component: {fileID: 4711616068680194754}
   - component: {fileID: 52962085420262557}
   - component: {fileID: 2962641263942207459}
   m_Layer: 0
@@ -1003,33 +1149,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &4711616068680194754
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9188323037590375097}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &52962085420262557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1056,10 +1175,13 @@ MonoBehaviour:
   - {fileID: 6013937590869365122}
   - {fileID: 8303304199725245385}
   rayLength: 2
+  boxSize: {x: 1.3, y: 2.5, z: 1}
+  boxOffset: {x: 0, y: -0.3, z: -0.51}
   interactableMask:
     serializedVersion: 2
     m_Bits: 4294967295
   ui_interactionTab: {fileID: 0}
+  enableDelay: 0.1
 --- !u!114 &2962641263942207459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1110,21 +1232,13 @@ MonoBehaviour:
     m_ActionId: eaf488b4-919f-42bf-9ba4-79109e8c5a4d
     m_ActionName: 'Gameplay/Interact[/Keyboard/f]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 52962085420262557}
-        m_TargetAssemblyTypeName: PlayerInteraction, Assembly-CSharp
-        m_MethodName: OnScroll
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: c5da8c94-e07f-4cd3-8b64-d060c0e8fbd2
     m_ActionName: 'Gameplay/Scroll[/Mouse/scroll/y]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2a25a848-2d7e-41ec-b142-e0fcfbe6d5c4
+    m_ActionName: 'Gameplay/NoclipToggle[/Keyboard/ctrl,/Keyboard/leftBracket]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -1210,7 +1324,7 @@ Animator:
   m_GameObject: {fileID: 9072121998675430500}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4af018477719486469b714844ec75265, type: 2}
+  m_Controller: {fileID: 9100000, guid: 24d9abe7f543aec43b1facdf0bea1ffd, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
