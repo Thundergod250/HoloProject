@@ -4,7 +4,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyMovement : MonoBehaviour
 {
-    private NavMeshAgent agent;
+     NavMeshAgent agent;
 
     [Header("Roaming Settings")]
     [SerializeField] private float roamRadius = 10f;     // how far from start they can roam
@@ -29,6 +29,16 @@ public class EnemyMovement : MonoBehaviour
             SetNewDestination();
             roamTimer = roamInterval;
         }
+    }
+
+    public void SlowDownAgent(int slowValueTarget)
+    {
+        agent.speed = agent.speed / slowValueTarget;
+    }
+
+    public void SpeedUpAgent(int speedValueTarget)
+    {
+        agent.speed = agent.speed * speedValueTarget;
     }
 
     private void SetNewDestination()
