@@ -45,6 +45,12 @@ public class ProjectileBase : MonoBehaviour
         // Move toward target
         Vector3 direction = (target.position - transform.position).normalized;
         transform.position += direction * (speed * Time.deltaTime);
+
+        // 👇 Rotate projectile to face its movement direction
+        if (direction.sqrMagnitude > 0.001f)
+        {
+            transform.rotation = Quaternion.LookRotation(direction);
+        }
     }
 
     private void ApplyDamage(EnemyBase enemy)
