@@ -17,7 +17,7 @@ public class NPCMovement : MonoBehaviour
     public float ReachDistance = 0.3f;
 
     private int currentPointIndex = 0;
-    private bool isFollowing = false;
+    public bool CanFollowPoints = false;
 
     private void Start()
     {
@@ -44,14 +44,22 @@ public class NPCMovement : MonoBehaviour
             );
         }
 
-        if (!isFollowing || CirclePoints.Count == 0)
+        if (!CanFollowPoints || CirclePoints.Count == 0)
+        {
+            Debug.LogWarning("!isFollowing");
             return;
+        }
 
         // If agent reached destination, move to next point
-        if (!agent.pathPending && agent.remainingDistance <= ReachDistance)
+        if (!agent.pathPending && agent.remainingDistance <= ReachDistance && CanFollowPoints)
         {
             GoToNextPoint();
         }
+    }
+
+    public void SetCanFollow()
+    {
+        CanFollowPoints = true;
     }
 
     void GoToNextPoint()
@@ -66,14 +74,14 @@ public class NPCMovement : MonoBehaviour
             return;
 
         currentPointIndex = 0;
-        isFollowing = true;
+        CanFollowPoints = true;
         agent.isStopped = false;
         agent.SetDestination(CirclePoints[currentPointIndex].position);
     }
 
     public void StopCircleFollow()
     {
-        isFollowing = false;
+        CanFollowPoints = false;
         agent.isStopped = true;
     }
 }
