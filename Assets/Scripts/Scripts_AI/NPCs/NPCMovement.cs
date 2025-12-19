@@ -12,6 +12,13 @@ public class NPCMovement : MonoBehaviour
     
     private NavMeshAgent agent;
 
+    [Header("================= For Chase Sequence =================")]
+    public List<Transform> CirclePoints = new List<Transform>();
+    public float ReachDistance = 0.3f;
+
+    private int currentPointIndex = 0;
+    private bool isFollowing = false;
+
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -36,5 +43,37 @@ public class NPCMovement : MonoBehaviour
                 rotationSpeed * Time.deltaTime
             );
         }
+
+        if (!isFollowing || CirclePoints.Count == 0)
+            return;
+
+        // If agent reached destination, move to next point
+        if (!agent.pathPending && agent.remainingDistance <= ReachDistance)
+        {
+            GoToNextPoint();
+        }
+    }
+
+    void GoToNextPoint()
+    {
+        currentPointIndex = (currentPointIndex + 1) % CirclePoints.Count;
+        agent.SetDestination(CirclePoints[currentPointIndex].position);
+    }
+
+    public void StartCircleFollow()
+    {
+        if (CirclePoints.Count == 0)
+            return;
+
+        currentPointIndex = 0;
+        isFollowing = true;
+        agent.isStopped = false;
+        agent.SetDestination(CirclePoints[currentPointIndex].position);
+    }
+
+    public void StopCircleFollow()
+    {
+        isFollowing = false;
+        agent.isStopped = true;
     }
 }
