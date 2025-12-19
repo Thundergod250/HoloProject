@@ -27,12 +27,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 351147714743729630}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: -0.25, y: 17.38, z: 0.25}
-  m_LocalScale: {x: 5.2467246, y: 1, z: 16.121647}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: 0.7071068, w: 0}
+  m_LocalPosition: {x: -0.24994437, y: 17.379995, z: 0.24996978}
+  m_LocalScale: {x: 5.2467256, y: 1, z: 16.121647}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5590901073566724319}
+  m_Father: {fileID: 4271150207140381471}
   m_LocalEulerAnglesHint: {x: -90, y: 180, z: 0}
 --- !u!33 &4037243266086279083
 MeshFilter:
@@ -142,9 +142,41 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 907641917173307489}
+  - {fileID: 4271150207140381471}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7598476937064729567
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4271150207140381471}
+  m_Layer: 0
+  m_Name: GateDoor Parent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4271150207140381471
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7598476937064729567}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
   - {fileID: 6966388165886359098}
   - {fileID: 1511910509038374940}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 5590901073566724319}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7617955987028901181
 GameObject:
@@ -264,11 +296,11 @@ Transform:
   m_GameObject: {fileID: 8109137141410356216}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.25, y: 17.38, z: 0.25}
+  m_LocalPosition: {x: -0.24994437, y: 17.379995, z: 0.24996978}
   m_LocalScale: {x: 5.2467246, y: 1, z: 16.121647}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5590901073566724319}
+  m_Father: {fileID: 4271150207140381471}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5499419493260374413
 MeshFilter:
