@@ -753,6 +753,11 @@ MonoBehaviour:
   TowerDamageLevel: 1
   StartingDamageValue: 20
   DamageIncreasePerLevel: 10
+  checkGroupOnly: 1
+  checkSubtypeOnly: 0
+  checkBothGroupAndSubtype: 0
+  requiredGroup: 0
+  requiredSubtype: 0
 --- !u!114 &1911738574720167987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -765,6 +770,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 940c4478967465e44a0db3fad70ad4e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoneyManipulator
+  HasEnoughMoney:
+    m_PersistentCalls:
+      m_Calls: []
+  DoesNotHaveEnoughMoney:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7829012255563829913
 GameObject:
   m_ObjectHideFlags: 0
