@@ -5,7 +5,7 @@ using UnityEngine.Events;
 [Serializable]
 public class IntEvent : UnityEvent<int> { }
 
-public class TowerPlasticCollector : TowerUtilityFunction
+public class TowerPlasticCollector : TowerUtilityBase
 {
     [Header("Events")]
     public UnityEvent EvtOnGarbageObjectCollide;

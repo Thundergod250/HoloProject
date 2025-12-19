@@ -699,7 +699,6 @@ GameObject:
   - component: {fileID: 7090967949583467492}
   - component: {fileID: 3676215705264287566}
   - component: {fileID: 1911738574720167987}
-  - component: {fileID: 3940700957553718467}
   - component: {fileID: 6471933164807088856}
   m_Layer: 6
   m_Name: Single Target Tower
@@ -742,7 +741,7 @@ MonoBehaviour:
   EvtOnIncreaseTowerMainDamage:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3940700957553718467}
+      - m_Target: {fileID: 6471933164807088856}
         m_TargetAssemblyTypeName: TowerPlasticCollector, Assembly-CSharp
         m_MethodName: 
         m_Mode: 1
@@ -840,26 +839,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 940c4478967465e44a0db3fad70ad4e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoneyManipulator
---- !u!114 &3940700957553718467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7795377701471874775}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c1b8ee1d6a428145a35385880216bcf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TowerBase
-  _enemyTargets: []
-  _projectilePrefab: {fileID: 3886554215781179537, guid: 202b2e5002b10b04c8010ec378402ff3, type: 3}
-  _projectileSpawnPoint: {fileID: 1932060655702197655}
-  _firingSpeed: 1
-  _delayChargeUp: 0
-  damageBase: 5
-  _projectileSpeed: 1
-  damageIncreasePerLevel: 5
+  HasEnoughMoney:
+    m_PersistentCalls:
+      m_Calls: []
+  DoesNotHaveEnoughMoney:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6471933164807088856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -872,12 +857,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 251e103df882a2c44b1e44ed5eb71036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tower_Offensive_SingleTarget
-  projectilePrefab: {fileID: 2941184073763328342, guid: a7dd736b550ea164eabe5e90ed81d0e5, type: 3}
+  projectilePrefab: {fileID: 3886554215781179537, guid: 202b2e5002b10b04c8010ec378402ff3, type: 3}
   firePoint: {fileID: 1932060655702197655}
+  projectileSpeed: 15
   towerDamageLevel: 1
   towerDamage: 10
   towerFireRateLevel: 1
-  towerFireRate: 5
+  towerFireRate: 3
   detectionRadius: 20
 --- !u!1 &7849389352835609314
 GameObject:
