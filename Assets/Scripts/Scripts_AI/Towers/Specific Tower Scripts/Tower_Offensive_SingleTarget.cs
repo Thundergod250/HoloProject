@@ -1,10 +1,11 @@
 using UnityEngine;
 
-public class Tower_Offensive_SingleTarget : MonoBehaviour
+public class Tower_Offensive_SingleTarget : TowerOffensiveBase
 {
     [Header("Projectile Settings")]
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private Transform firePoint;
+    [SerializeField] private float projectileSpeed = 12f; // 👈 bullet speed set here
 
     [Header("Tower Stats")]
     public int towerDamageLevel = 1;
@@ -45,11 +46,18 @@ public class Tower_Offensive_SingleTarget : MonoBehaviour
     {
         if (projectilePrefab == null || target == null) return;
 
-        GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
-        ProjectileTemp temp = proj.GetComponent<ProjectileTemp>();
+        // 👇 Spawn via ObjectPooling through GameManager
+        GameObject proj = GameManager.Instance.SpawnObject(
+            projectilePrefab,
+            null,
+            firePoint.position,
+            Quaternion.identity
+        );
+
+        ProjectileBase temp = proj.GetComponent<ProjectileBase>();
         if (temp != null)
         {
-            temp.Initialize(target, towerDamage);
+            temp.Initialize(target, towerDamage, projectileSpeed, projectilePrefab);
         }
     }
 
