@@ -67,21 +67,4 @@ public class NPCMovement : MonoBehaviour
         currentPointIndex = (currentPointIndex + 1) % CirclePoints.Count;
         agent.SetDestination(CirclePoints[currentPointIndex].position);
     }
-
-    public void StartCircleFollow()
-    {
-        if (CirclePoints.Count == 0)
-            return;
-
-        currentPointIndex = 0;
-        CanFollowPoints = true;
-        agent.isStopped = false;
-        agent.SetDestination(CirclePoints[currentPointIndex].position);
-    }
-
-    public void StopCircleFollow()
-    {
-        CanFollowPoints = false;
-        agent.isStopped = true;
-    }
 }
