@@ -17,10 +17,9 @@ public class ProjectileBase : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        EnemyBase enemy = other.GetComponent<EnemyBase>();
-
-        if (enemy)
+        if (other.GetComponent<EnemyBase>())
         {
+            EnemyBase enemy = other.GetComponent<EnemyBase>();
             if (_isExplosive) // Spawns Kaboom
             {
                 GameObject projectileGO = Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
