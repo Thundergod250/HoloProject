@@ -36,6 +36,8 @@ public class Tower_Offensive_SingleTarget : TowerOffensiveBase
             EnemyBase enemy = hit.GetComponent<EnemyBase>();
             if (enemy != null)
             {
+                Debug.Log(enemy);
+
                 FireProjectile(enemy.transform);
                 break; // Only fire at one target
             }
