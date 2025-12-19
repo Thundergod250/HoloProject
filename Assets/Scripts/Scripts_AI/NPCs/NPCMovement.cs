@@ -62,6 +62,11 @@ public class NPCMovement : MonoBehaviour
         CanFollowPoints = true;
     }
 
+    public void StopFollowing()
+    {
+        CanFollowPoints = false;
+    }
+
     void GoToNextPoint()
     {
         currentPointIndex = (currentPointIndex + 1) % CirclePoints.Count;
