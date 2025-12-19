@@ -17,6 +17,7 @@ public class NPC_ChaseSequence : MonoBehaviour
     {
         if (centerPoint == null) return;
 
+        Debug.LogWarning("I am moving in a circle");
         angle += Speed * Time.deltaTime;
 
         float x = centerPoint.position.x + Mathf.Cos(angle) * Radius;
