@@ -260,18 +260,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 6205152389917354783}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
 --- !u!1 &3265849502676010046
 GameObject:
   m_ObjectHideFlags: 0
@@ -1458,6 +1446,18 @@ MonoBehaviour:
           m_StringArgument: Payment Completed
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6212911213698098140}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Payment Completed
+          m_BoolArgument: 0
+        m_CallState: 2
   DoesNotHaveEnoughMoney:
     m_PersistentCalls:
       m_Calls:
@@ -1507,6 +1507,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6205152389917354783}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 150
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   EvtOnInteractWithObj:
     m_PersistentCalls:
       m_Calls: []
@@ -1553,9 +1565,41 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9125752214270165588}
     - target: {fileID: 2841969182621730813, guid: 50921f82d81e02a43bd665541e8503c2, type: 3}
+      propertyPath: EvtOnInteract.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2841969182621730813, guid: 50921f82d81e02a43bd665541e8503c2, type: 3}
+      propertyPath: EvtOnInteract.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2841969182621730813, guid: 50921f82d81e02a43bd665541e8503c2, type: 3}
+      propertyPath: EvtOnInteract.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 361928135582119068}
+    - target: {fileID: 2841969182621730813, guid: 50921f82d81e02a43bd665541e8503c2, type: 3}
+      propertyPath: EvtOnInteract.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2841969182621730813, guid: 50921f82d81e02a43bd665541e8503c2, type: 3}
+      propertyPath: EvtOnInteract.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 2841969182621730813, guid: 50921f82d81e02a43bd665541e8503c2, type: 3}
+      propertyPath: EvtOnInteract.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2841969182621730813, guid: 50921f82d81e02a43bd665541e8503c2, type: 3}
+      propertyPath: EvtOnInteract.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2841969182621730813, guid: 50921f82d81e02a43bd665541e8503c2, type: 3}
       propertyPath: EvtOnInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 2523188804673349952}
+    - target: {fileID: 2841969182621730813, guid: 50921f82d81e02a43bd665541e8503c2, type: 3}
+      propertyPath: EvtOnInteract.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4260623560812615544, guid: 50921f82d81e02a43bd665541e8503c2, type: 3}
       propertyPath: TargetPoint
       value: 
@@ -1580,9 +1624,17 @@ PrefabInstance:
       propertyPath: 'CirclePoints.Array.data[3]'
       value: 
       objectReference: {fileID: 2370370777225596405}
+    - target: {fileID: 4955469326769690874, guid: 50921f82d81e02a43bd665541e8503c2, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5081449191176998153, guid: 50921f82d81e02a43bd665541e8503c2, type: 3}
       propertyPath: m_Name
       value: NPC
+      objectReference: {fileID: 0}
+    - target: {fileID: 7137773961766448666, guid: 50921f82d81e02a43bd665541e8503c2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8964488492870844130, guid: 50921f82d81e02a43bd665541e8503c2, type: 3}
       propertyPath: m_LocalPosition.x
