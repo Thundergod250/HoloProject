@@ -74,7 +74,7 @@ public class TowerBase : MonoBehaviour
             EnemyBase target = _enemyTargets[0];
 
             // Instantiate the projectile
-            GameObject projectileGO = Instantiate(_projectilePrefab, _projectileSpawnPoint.position, Quaternion.identity);
+            GameObject projectileGO = Instantiate(_projectilePrefab, _projectileSpawnPoint.position, _projectileSpawnPoint.rotation);
 
             // --- CORE CHANGE: Get Rigidbody and apply force ---
             Rigidbody rb = projectileGO.GetComponent<Rigidbody>();
