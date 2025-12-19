@@ -3,15 +3,11 @@ using UnityEngine.Events;
 
 public class WorldTriggers : MonoBehaviour
 {
-    public bool DontTriggerAnymore;
     public UnityEvent EvtOnPlayerTrigger;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<PlayerMovement>() && DontTriggerAnymore)
-        {
+        if (other.GetComponent<PlayerMovement>()) 
             EvtOnPlayerTrigger?.Invoke();
-            DontTriggerAnymore = false;
-        }
     }
 }

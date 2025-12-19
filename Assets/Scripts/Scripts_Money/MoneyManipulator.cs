@@ -22,12 +22,12 @@ public class MoneyManipulator : MonoBehaviour
             bool success = GameManager.Instance.GoldManager.SpendGold(amount);
             if (success)
             {
-                InvokeHasEnoughMoney();
+                HasEnoughMoney?.Invoke();
                 Debug.Log($"Spent {amount} gold. Current gold: {GameManager.Instance.GoldManager.PlayerGold}");
             }
             else
             {
-                InvokeDoesNotEnoughMoney();
+                DoesNotHaveEnoughMoney?.Invoke();
                 Debug.LogWarning($"Not enough gold to spend {amount}. Current gold: {GameManager.Instance.GoldManager.PlayerGold}");
             }
         }
@@ -45,15 +45,5 @@ public class MoneyManipulator : MonoBehaviour
     public int _GetGold()
     {
         return GameManager.Instance.GoldManager.GetGold(); 
-    }
-
-    public void InvokeHasEnoughMoney()
-    {
-        HasEnoughMoney?.Invoke();
-    }
-
-    public void InvokeDoesNotEnoughMoney()
-    {
-        DoesNotHaveEnoughMoney?.Invoke();
     }
 }
