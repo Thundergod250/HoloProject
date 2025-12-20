@@ -39,6 +39,7 @@ public class ProjectileBase : MonoBehaviour
         if (lifeTimer <= 0f)
         {
             Explode();
+            Debug.Log("This " + gameObject.name + " exploded on Timer");
             ReturnToPool();
             return;
         }
@@ -46,6 +47,7 @@ public class ProjectileBase : MonoBehaviour
         if (target == null)
         {
             Explode();
+            Debug.Log("This " + gameObject.name + " exploded on No Target");
             ReturnToPool();
             return;
         }
@@ -75,24 +77,32 @@ public class ProjectileBase : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
+        // Ignore self collisions or unrelated colliders
+        if (other.gameObject == gameObject) return;
+
         if (ownerType == ProjectileOwnerType.Tower)
         {
-            // Tower projectiles only damage enemies
             if (other.TryGetComponent(out EnemyBase enemy))
+            {
                 ApplyDamageToEnemy(enemy);
-            Debug.Log("Damage Enemy");
-        }
-        else if (ownerType == ProjectileOwnerType.Enemy)
-        {
-            // Enemy projectiles only damage towers
-            if (other.TryGetComponent(out TowerController tower))
-                ApplyDamageToTower(tower);
-            Debug.Log("Damage Tower");
+                Debug.Log($"{gameObject.name} hit Enemy: {enemy.name}");
+                Explode();
+                ReturnToPool();
+            }
         }
 
-        Explode();
-        ReturnToPool();
+        if (ownerType == ProjectileOwnerType.Enemy)
+        {
+            if (other.TryGetComponent(out TowerController tower))
+            {
+                ApplyDamageToTower(tower);
+                Debug.Log($"{gameObject.name} hit Tower: {tower.name}");
+                Explode();
+                ReturnToPool();
+            }
+        }
     }
+
     
     private void Explode()
     {

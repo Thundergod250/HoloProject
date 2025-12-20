@@ -13,15 +13,19 @@ public class TowerController : MonoBehaviour
     [SerializeField] private Transform attackLocation; 
     public Health TowerHealth;
     
-    private TowerNodeManager towerNodeManager;
-    
     private void Awake() => towerInstance = gameObject;
 
     public void IncreaseTowerMainDamage() => EvtOnIncreaseTowerMainDamage?.Invoke();
 
-    public void SetTowerNodeManager(TowerNodeManager nodeManager) => towerNodeManager = nodeManager;
-
-    public void DespawnThisTower() => towerNodeManager.DespawnTower();
+    public void DespawnCurrentTower()
+    {
+        // Search parent for TowerNodeManager
+        TowerNodeManager nodeManager = GetComponentInParent<TowerNodeManager>();
+        if (nodeManager != null)
+            nodeManager.DespawnTower();
+        else
+            Debug.LogWarning($"{name} could not find TowerNodeManager in parent hierarchy.");
+    }
 
     public TowerCategoryData_SO GetUpgradeData() => thisTowerUpgradeCards_SO;
 
