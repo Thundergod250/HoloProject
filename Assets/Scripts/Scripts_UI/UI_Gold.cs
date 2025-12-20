@@ -9,6 +9,6 @@ public class UI_Gold : MonoBehaviour
     private void Update()
     {
         if (goldManager != null)
-            goldText.text = $"Gold: {goldManager.PlayerGold}";
+            goldText.text = goldManager.PlayerGold.ToString(); 
     }
 }

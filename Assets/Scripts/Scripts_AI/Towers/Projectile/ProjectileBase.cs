@@ -2,24 +2,32 @@ using UnityEngine;
 
 public class ProjectileBase : MonoBehaviour
 {
+    public enum ProjectileOwnerType
+    {
+        Tower,
+        Enemy
+    }
+
     private Transform target;
     private int damage;
     private float speed;
     private GameObject prefabRef; 
-    
+    private ProjectileOwnerType ownerType;
+
     [Header("Lifetime")]
     [SerializeField] private float lifetime = 5f;
     private float lifeTimer;
 
     [Header("Explosion VFX")]
     [SerializeField] private GameObject explosionVFX; // pooled explosion prefab
-
-    public void Initialize(Transform target, int damage, float speed, GameObject prefabRef)
+    
+    public void Initialize(Transform target, int damage, float speed, GameObject prefabRef, ProjectileOwnerType ownerType)
     {
         this.target = target;
         this.damage = damage;
         this.speed = speed;
         this.prefabRef = prefabRef;
+        this.ownerType = ownerType;
 
         lifeTimer = lifetime;
     }
@@ -46,28 +54,46 @@ public class ProjectileBase : MonoBehaviour
         Vector3 direction = (target.position - transform.position).normalized;
         transform.position += direction * (speed * Time.deltaTime);
 
-        // 👇 Rotate projectile to face its movement direction
+        // Rotate projectile to face its movement direction
         if (direction.sqrMagnitude > 0.001f)
         {
             transform.rotation = Quaternion.LookRotation(direction);
         }
     }
-
-    private void ApplyDamage(EnemyBase enemy)
+    
+    private void ApplyDamageToEnemy(EnemyBase enemy)
     {
         if (enemy != null) 
             enemy.Health.TakeDamage(damage);
     }
-
+    
+    private void ApplyDamageToTower(TowerController tower)
+    {
+        if (tower != null) 
+            tower.TowerHealth.TakeDamage(damage);
+    }
+    
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out EnemyBase enemy))
-            ApplyDamage(enemy);
+        if (ownerType == ProjectileOwnerType.Tower)
+        {
+            // Tower projectiles only damage enemies
+            if (other.TryGetComponent(out EnemyBase enemy))
+                ApplyDamageToEnemy(enemy);
+            Debug.Log("Damage Enemy");
+        }
+        else if (ownerType == ProjectileOwnerType.Enemy)
+        {
+            // Enemy projectiles only damage towers
+            if (other.TryGetComponent(out TowerController tower))
+                ApplyDamageToTower(tower);
+            Debug.Log("Damage Tower");
+        }
 
         Explode();
         ReturnToPool();
     }
-
+    
     private void Explode()
     {
         if (explosionVFX == null) return;
@@ -85,7 +111,7 @@ public class ProjectileBase : MonoBehaviour
         if (delay != null)
             delay.SetPrefabReference(explosionVFX);
     }
-
+    
     private void ReturnToPool()
     {
         if (prefabRef != null)

@@ -59,7 +59,7 @@ public class Tower_Offensive_SingleTarget : TowerOffensiveBase
         ProjectileBase temp = proj.GetComponent<ProjectileBase>();
         if (temp != null)
         {
-            temp.Initialize(target, towerDamage, projectileSpeed, projectilePrefab);
+            temp.Initialize(target, towerDamage, projectileSpeed, projectilePrefab, ProjectileBase.ProjectileOwnerType.Tower); 
         }
     }
 
