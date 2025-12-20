@@ -245,6 +245,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fe9342dc055b8049bd4f3d080c4b7bd, type: 3}
+--- !u!114 &104868635 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8706796672381115664, guid: fcce39b208aa7b94e8d6c5b8d065d9f3, type: 3}
+  m_PrefabInstance: {fileID: 8426780868530350106}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9904cccab47a4c4f931f3b927a97bad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactable
 --- !u!1 &123910041
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,6 +335,63 @@ RectTransform:
   m_AnchoredPosition: {x: 947.645, y: 714.59845}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &308757924
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 21617190427558261, guid: 80feb70e769165a458a178b061bffe8b, type: 3}
+      propertyPath: m_Name
+      value: Enemy_Wisp_Attacker Variant (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829331911799773530, guid: 80feb70e769165a458a178b061bffe8b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 281.88623
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829331911799773530, guid: 80feb70e769165a458a178b061bffe8b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 22.991394
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829331911799773530, guid: 80feb70e769165a458a178b061bffe8b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 88.94734
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829331911799773530, guid: 80feb70e769165a458a178b061bffe8b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829331911799773530, guid: 80feb70e769165a458a178b061bffe8b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829331911799773530, guid: 80feb70e769165a458a178b061bffe8b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829331911799773530, guid: 80feb70e769165a458a178b061bffe8b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829331911799773530, guid: 80feb70e769165a458a178b061bffe8b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829331911799773530, guid: 80feb70e769165a458a178b061bffe8b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829331911799773530, guid: 80feb70e769165a458a178b061bffe8b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 80feb70e769165a458a178b061bffe8b, type: 3}
 --- !u!1 &388444094
 GameObject:
   m_ObjectHideFlags: 0
@@ -787,6 +855,17 @@ MonoBehaviour:
       m_Calls: []
   lockModeWhenEnabled: 0
   lockModeWhenDisabled: 1
+--- !u!114 &768452403 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2370820433130923278, guid: fcce39b208aa7b94e8d6c5b8d065d9f3, type: 3}
+  m_PrefabInstance: {fileID: 8426780868530350106}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9904cccab47a4c4f931f3b927a97bad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactable
 --- !u!1001 &805838672
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -924,6 +1003,7 @@ GameObject:
   - component: {fileID: 1065750942}
   - component: {fileID: 1065750941}
   - component: {fileID: 1065750943}
+  - component: {fileID: 1065750944}
   m_Layer: 0
   m_Name: DebugCheats
   m_TagString: Untagged
@@ -1015,11 +1095,45 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 2a25a848-2d7e-41ec-b142-e0fcfbe6d5c4
     m_ActionName: 'Gameplay/NoclipToggle[/Keyboard/ctrl,/Keyboard/leftBracket]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1065750944}
+        m_TargetAssemblyTypeName: MoneyManipulator, Assembly-CSharp
+        m_MethodName: _AddMoney
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 100
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1ea9afdf-f252-4665-854c-7893b3d18a71
+    m_ActionName: 'Gameplay/GoldIncrease[/Keyboard/ctrl,/Keyboard/rightBracket]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1065750944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065750940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 940c4478967465e44a0db3fad70ad4e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MoneyManipulator
+  HasEnoughMoney:
+    m_PersistentCalls:
+      m_Calls: []
+  DoesNotHaveEnoughMoney:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1086821122
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1516,7 +1630,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2774315f6c6ca784b8ec73c39490fdb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GoldManager
-  playerGold: 100
+  playerGold: 0
 --- !u!4 &1282708374
 Transform:
   m_ObjectHideFlags: 0
@@ -1544,6 +1658,14 @@ PrefabInstance:
       propertyPath: HasEnoughMoney.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 8765189257349807378}
+    - target: {fileID: 5692659549212947648, guid: 264a6bac72194424590416b138e01108, type: 3}
+      propertyPath: HasEnoughMoney.m_PersistentCalls.m_Calls.Array.data[6].m_Target
+      value: 
+      objectReference: {fileID: 768452403}
+    - target: {fileID: 5692659549212947648, guid: 264a6bac72194424590416b138e01108, type: 3}
+      propertyPath: HasEnoughMoney.m_PersistentCalls.m_Calls.Array.data[7].m_Target
+      value: 
+      objectReference: {fileID: 104868635}
     - target: {fileID: 5890032038204478834, guid: 264a6bac72194424590416b138e01108, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1790,6 +1912,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBase
   Health: {fileID: 1856135663}
   Movement: {fileID: 1856135662}
+  EnemyAttack: {fileID: 0}
 --- !u!195 &1856135665
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2222,6 +2345,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b5d86826540dfe4fa69360c5ddd2893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraManager
+--- !u!1001 &2073080868
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 21617190427558261, guid: 80feb70e769165a458a178b061bffe8b, type: 3}
+      propertyPath: m_Name
+      value: Enemy_Wisp_Attacker Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829331911799773530, guid: 80feb70e769165a458a178b061bffe8b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 275.0977
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829331911799773530, guid: 80feb70e769165a458a178b061bffe8b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 22.991392
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829331911799773530, guid: 80feb70e769165a458a178b061bffe8b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 89.37429
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829331911799773530, guid: 80feb70e769165a458a178b061bffe8b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829331911799773530, guid: 80feb70e769165a458a178b061bffe8b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829331911799773530, guid: 80feb70e769165a458a178b061bffe8b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829331911799773530, guid: 80feb70e769165a458a178b061bffe8b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829331911799773530, guid: 80feb70e769165a458a178b061bffe8b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829331911799773530, guid: 80feb70e769165a458a178b061bffe8b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829331911799773530, guid: 80feb70e769165a458a178b061bffe8b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 80feb70e769165a458a178b061bffe8b, type: 3}
 --- !u!1001 &767146260037398750
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2989,3 +3169,5 @@ SceneRoots:
   - {fileID: 1910300182}
   - {fileID: 170022156}
   - {fileID: 767146260037398750}
+  - {fileID: 2073080868}
+  - {fileID: 308757924}
