@@ -42,6 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8964488492870844130}
   - component: {fileID: 4790152029009069969}
+  - component: {fileID: 3570138089775929514}
   - component: {fileID: 2841969182621730813}
   - component: {fileID: 1900970014751443386}
   - component: {fileID: 4260623560812615544}
@@ -91,6 +92,36 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0.73, z: 0}
+--- !u!114 &3570138089775929514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5081449191176998153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8d11fcf4d0086946b8572c16184e662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NPCManager
+  NpcDialogue: {fileID: 1900970014751443386}
+  NpcMovement: {fileID: 4260623560812615544}
+  npcEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1900970014751443386}
+        m_TargetAssemblyTypeName: NPCDialogue, Assembly-CSharp
+        m_MethodName: _SetDialogueText
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Wew. I'll stay here for now. You go find a way for us
+            to escape.
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2841969182621730813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,6 +168,42 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 7137773961766448666}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2841969182621730813}
+        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+        m_MethodName: _DisableInteraction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   EvtOnInteractWithObj:
     m_PersistentCalls:
       m_Calls: []
@@ -152,8 +219,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df30eab9895eca848853bfc3fe771e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  NPCDialogueText: {fileID: 0}
-  Canvas: {fileID: 0}
+  NPCDialogueText: {fileID: 1778512185312843986}
+  Canvas: {fileID: 7137773961766448666}
 --- !u!114 &4260623560812615544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,8 +235,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   NPCBody: {fileID: 4086961772253823152}
   rotationSpeed: 8
-  CirclePoints: []
+  CirclePoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   ReachDistance: 0.3
+  CanFollowPoints: 0
 --- !u!195 &1279934299978897133
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -280,18 +352,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6117123756819889393, guid: 59e01b903ab22014e8e072f4238310e8, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8299933060174350865, guid: 59e01b903ab22014e8e072f4238310e8, type: 3}
       propertyPath: m_Name
       value: DialogueBox UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299933060174350865, guid: 59e01b903ab22014e8e072f4238310e8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59e01b903ab22014e8e072f4238310e8, type: 3}
+--- !u!114 &1778512185312843986 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 616911603416120537, guid: 59e01b903ab22014e8e072f4238310e8, type: 3}
+  m_PrefabInstance: {fileID: 1162279162072376331}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!224 &6540819365931361412 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5396603401825681551, guid: 59e01b903ab22014e8e072f4238310e8, type: 3}
+  m_PrefabInstance: {fileID: 1162279162072376331}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7137773961766448666 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8299933060174350865, guid: 59e01b903ab22014e8e072f4238310e8, type: 3}
   m_PrefabInstance: {fileID: 1162279162072376331}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2190288306872426449

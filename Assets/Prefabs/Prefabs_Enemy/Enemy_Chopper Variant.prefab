@@ -241,14 +241,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1011556730864714485}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.31, y: 0.31, z: 0.31}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6210688418715274675}
   m_Father: {fileID: 8829331911799773530}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!95 &4342622061734143446
 Animator:
   serializedVersion: 7
@@ -896,6 +896,38 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7974068705800889386, guid: 1fe9342dc055b8049bd4f3d080c4b7bd, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7974068705800889386, guid: 1fe9342dc055b8049bd4f3d080c4b7bd, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7974068705800889386, guid: 1fe9342dc055b8049bd4f3d080c4b7bd, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2131058109958701403}
+    - target: {fileID: 7974068705800889386, guid: 1fe9342dc055b8049bd4f3d080c4b7bd, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7974068705800889386, guid: 1fe9342dc055b8049bd4f3d080c4b7bd, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: _ReturnSelf
+      objectReference: {fileID: 0}
+    - target: {fileID: 7974068705800889386, guid: 1fe9342dc055b8049bd4f3d080c4b7bd, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ObjectPoolingManipulator, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7974068705800889386, guid: 1fe9342dc055b8049bd4f3d080c4b7bd, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 21617190427558261}
+    - target: {fileID: 7974068705800889386, guid: 1fe9342dc055b8049bd4f3d080c4b7bd, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 9080066539960072116, guid: 1fe9342dc055b8049bd4f3d080c4b7bd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -942,8 +974,28 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9080066539960072116, guid: 1fe9342dc055b8049bd4f3d080c4b7bd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3548283900787040012}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 344026505566252955, guid: 1fe9342dc055b8049bd4f3d080c4b7bd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2131058109958701403}
   m_SourcePrefab: {fileID: 100100000, guid: 1fe9342dc055b8049bd4f3d080c4b7bd, type: 3}
+--- !u!1 &21617190427558261 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 344026505566252955, guid: 1fe9342dc055b8049bd4f3d080c4b7bd, type: 3}
+  m_PrefabInstance: {fileID: 327345437447188206}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2131058109958701403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21617190427558261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eb775f458eba35469c21bef7dbaf818, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectPoolingManipulator
 --- !u!4 &8829331911799773530 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9080066539960072116, guid: 1fe9342dc055b8049bd4f3d080c4b7bd, type: 3}
