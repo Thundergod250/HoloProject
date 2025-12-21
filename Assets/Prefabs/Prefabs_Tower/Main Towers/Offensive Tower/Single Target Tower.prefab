@@ -1058,8 +1058,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14859af3159dfdd448013f3c76001a3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  maxHealth: 200
-  currentHealth: 200
+  maxHealth: 100
+  currentHealth: 100
   OnDamaged:
     m_PersistentCalls:
       m_Calls: []
@@ -1068,7 +1068,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4655473061654607957}
         m_TargetAssemblyTypeName: TowerController, Assembly-CSharp
-        m_MethodName: DespawnThisTower
+        m_MethodName: DespawnCurrentTower
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1078,7 +1078,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  startSetHealth: 200
+  startSetHealth: 100
 --- !u!65 &7090967949583467492
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1098,8 +1098,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.37, y: 3.42, z: 1.37}
-  m_Center: {x: 0, y: 2.02, z: 0}
+  m_Size: {x: 1.37, y: 7.2987022, z: 2.2447708}
+  m_Center: {x: 0, y: 3.959351, z: 0.0082525015}
 --- !u!54 &3676215705264287566
 Rigidbody:
   m_ObjectHideFlags: 0
