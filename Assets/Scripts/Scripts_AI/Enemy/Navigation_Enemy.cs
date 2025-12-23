@@ -17,9 +17,15 @@ public class Navigation_Enemy : MonoBehaviour
 
     [Header("Vars")]
     [SerializeField] private float distance;
-    [SerializeField] private float nearestDistance;
+    [SerializeField] private float aggroRange;
+    [SerializeField] private int navMinDistance;
 
     public NavMeshAgent navigation;
+
+    private void Start()
+    {
+        navigation.stoppingDistance = navMinDistance;
+    }
 
     private void Update()
     {
@@ -33,9 +39,12 @@ public class Navigation_Enemy : MonoBehaviour
     #region Collisions
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Health>() != null)
+        if (other.GetComponent<TowerBaseFunction>() != null)
         {
-            targetsAcquired.Add(other.gameObject);
+            if(other.GetComponent<Health>().GetCurrentHealth() != 0)
+            {
+                targetsAcquired.Add(other.gameObject);
+            }
         }
     }
 
@@ -45,7 +54,7 @@ public class Navigation_Enemy : MonoBehaviour
 
         if (targetsAcquired.Count == 0)
         {
-            nearestDistance = 20;
+            aggroRange = 20;
         }
     }
     #endregion
@@ -53,16 +62,25 @@ public class Navigation_Enemy : MonoBehaviour
     #region Navigation&TargetingFuncs
     private void FindNearestTarget()
     {
+        float nearestDistance = currentTarget != null
+         ? Vector3.Distance(transform.position, currentTarget.transform.position)
+         : Mathf.Infinity;
+
+        GameObject nearestTarget = currentTarget;
+
         for (int i = 0; i < targetsAcquired.Count; i++)
         {
-            distance = Vector3.Distance(this.transform.position, targetsAcquired[i].transform.position);
+            float d = Vector3.Distance(transform.position, targetsAcquired[i].transform.position);
 
-            if (distance < nearestDistance)
+            if (d < nearestDistance)
             {
-                currentTarget = targetsAcquired[i];
-                nearestDistance = distance;
+                nearestDistance = d;
+                nearestTarget = targetsAcquired[i];
             }
         }
+
+        currentTarget = nearestTarget;
+        distance = nearestDistance;
 
         if (currentTarget != null)
         {
@@ -73,7 +91,11 @@ public class Navigation_Enemy : MonoBehaviour
     {
         if (currentTarget == null) return;
 
-        if (distance <= navigation.stoppingDistance)
+        if (distance <= navigation.stoppingDistance && attack_Enemy.archetype == Attack_Enemy.Targeting.Ranged)
+        {
+            OnReachedTarget();
+        }
+        else if (distance <= 4.5f && attack_Enemy.archetype == Attack_Enemy.Targeting.Melee)
         {
             OnReachedTarget();
         }
@@ -94,7 +116,7 @@ public class Navigation_Enemy : MonoBehaviour
     {
         targetsAcquired.Remove(currentTarget);
         currentTarget = null;
-        nearestDistance = 21;
+        aggroRange = 21;
         attack_Enemy.target = null;
         navigation.isStopped = false;
     }
