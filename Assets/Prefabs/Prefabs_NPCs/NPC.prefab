@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 1900970014751443386}
   - component: {fileID: 4260623560812615544}
   - component: {fileID: 1279934299978897133}
+  - component: {fileID: 4075980436340892174}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -135,6 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   interactName: Talk
+  isInteractable: 1
   EvtOnFocus:
     m_PersistentCalls:
       m_Calls: []
@@ -264,6 +266,28 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!95 &4075980436340892174
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5081449191176998153}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 24d9abe7f543aec43b1facdf0bea1ffd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1162279162072376331
 PrefabInstance:
   m_ObjectHideFlags: 0

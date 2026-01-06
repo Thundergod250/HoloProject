@@ -7,7 +7,7 @@ public class Melee_Enemy : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.TryGetComponent(out Health health) && collision.gameObject.GetComponent<TowerBaseFunction>() != null)
+        if (collision.gameObject.TryGetComponent(out Health health) && collision.gameObject.GetComponent<TowerBase>() != null)
         {
             collision.gameObject.GetComponent<Health>().TakeDamage(100);
         }
