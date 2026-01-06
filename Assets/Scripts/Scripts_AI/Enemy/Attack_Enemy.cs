@@ -2,8 +2,17 @@ using UnityEngine;
 
 public class Attack_Enemy : MonoBehaviour
 {
+    public enum Targeting
+    {
+        Ranged,
+        Melee
+    }
+
     [Header("Refs")]
     [SerializeField] private Navigation_Enemy navigation_Enemy;
+
+    [Header("Targeting Style")]
+    [SerializeField] private Targeting targeting;
 
     [Header("Weapon Stats")]
     [SerializeField] private GameObject bullet;
@@ -12,44 +21,50 @@ public class Attack_Enemy : MonoBehaviour
     [SerializeField] private float shootingSpeed;
 
     public Transform target;
+    public Targeting archetype => targeting;
 
     private float timer;
 
     void Update()
     {
-        if(target != null)
+        if(target != null) // if has target
         {
             timer += Time.deltaTime;
 
-            if (timer >= shootingInterval)
+            if (timer >= shootingInterval && targeting == Targeting.Ranged)
             {
-                ShootTarget();
+                AttackType();
                 timer = 0f;
             }
-
-            if (!target.gameObject.activeSelf)
+            else if (targeting == Targeting.Melee)
             {
+                AttackType();
+            }
+
+            if (target.GetComponent<Health>().GetCurrentHealth() == 0)
+            {
+                Debug.Log("changing target");
                 navigation_Enemy.TargetHasDied();
             }
         }
-
-        
     }
 
-    void ShootTarget()
+    void AttackType()
     {
-        transform.LookAt(target.transform);
-        Vector3 direction = (target.position - transform.position).normalized;
-        GameObject proj = Instantiate(bullet, gunBarrel.transform.position, Quaternion.identity);
-        Rigidbody rb = proj.GetComponent<Rigidbody>();
+        if(targeting == Targeting.Ranged)
+        {
+            transform.LookAt(target.transform);
+            Vector3 direction = (target.position - transform.position).normalized;
+            GameObject proj = Instantiate(bullet, gunBarrel.transform.position, Quaternion.identity);
+            Rigidbody rb = proj.GetComponent<Rigidbody>();
 
-        rb.linearVelocity = direction * 40f;
+            rb.linearVelocity = direction * 40f;
 
-        Destroy(proj, 2f);
-    }
-
-    public void DestroyTarget(GameObject enemyTarget)
-    {
-        Destroy(enemyTarget);
+            Destroy(proj, 2f);
+        }
+        else if(targeting == Targeting.Melee)
+        {
+            //transform.LookAt(target.transform);
+        }
     }
 }
