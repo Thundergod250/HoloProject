@@ -5,7 +5,8 @@ public class Attack_Enemy : MonoBehaviour
     public enum Targeting
     {
         Ranged,
-        Melee
+        Melee,
+        Neutral
     }
 
     [Header("Refs")]
@@ -40,6 +41,10 @@ public class Attack_Enemy : MonoBehaviour
             {
                 AttackType();
             }
+            else if (targeting == Targeting.Neutral)
+            {
+                AttackType();
+            }
 
             if (target.GetComponent<Health>().GetCurrentHealth() == 0)
             {
@@ -64,7 +69,11 @@ public class Attack_Enemy : MonoBehaviour
         }
         else if(targeting == Targeting.Melee)
         {
-            //transform.LookAt(target.transform);
+            //*insert attack scipt
+        }
+        else if (targeting == Targeting.Neutral)
+        {
+            //*insert attack scipt
         }
     }
 }
