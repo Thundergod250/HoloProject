@@ -102,6 +102,6 @@ public class UI_TowerShop : MonoBehaviour
         shopButtons["Upgrades"].SetActive(showUpgrades);
         shopButtons["Offensive"].SetActive(true);
         shopButtons["Defensive"].SetActive(true);
-        shopButtons["Utility"].SetActive(true);
+        //shopButtons["Utility"].SetActive(true);
     }
 }
