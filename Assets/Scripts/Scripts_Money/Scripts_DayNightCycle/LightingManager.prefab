@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6217408475008122271
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1901085959642950880}
+  - component: {fileID: 3727631209484175224}
+  m_Layer: 5
+  m_Name: LightingManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1901085959642950880
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6217408475008122271}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3727631209484175224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6217408475008122271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52ddb0cfbe2a6b84581fcd595f03019e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LightingManager
+  _directionalLight: {fileID: 0}
+  _lightPreset: {fileID: 11400000, guid: afcfb60afbf116540b711997267acf31, type: 2}
+  _timeOfDay: 0
+  _hdriCubeSkyDay: {fileID: 0}
+  _hdriCubeSkyNight: {fileID: 0}
+  _hdriCollection:
+  - {fileID: 8900000, guid: 3828b2a7ec7f7284ab3cc31c9e737298, type: 3}
+  - {fileID: 8900000, guid: ed127e193c450b140aaebd192f7409d2, type: 3}
+  - {fileID: 8900000, guid: 74ab08b5fecb538469d295a7c54c94f2, type: 3}
+  - {fileID: 8900000, guid: 74ab08b5fecb538469d295a7c54c94f2, type: 3}
+  - {fileID: 8900000, guid: 701f779c1d5d6704ea38923941fe8a96, type: 3}
+  _isMines: 0
+  _isSnow: 0
+  _transitionSpeed: 1
