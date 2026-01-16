@@ -692,7 +692,7 @@ GameObject:
   - component: {fileID: 100745187681622396}
   - component: {fileID: 1911738574720167987}
   m_Layer: 0
-  m_Name: PlasticCollector 1
+  m_Name: PaperCollector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -729,7 +729,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TowerController
   towerPrefab: {fileID: 0}
   towerInstance: {fileID: 0}
+  EvtOnIncreaseTowerMainDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  EvtOnIncreaseTowerAtkRate:
+    m_PersistentCalls:
+      m_Calls: []
   thisTowerUpgradeCards_SO: {fileID: 11400000, guid: d268ea17ba1119346bfc1b2e6ec18dbd, type: 2}
+  attackLocation: {fileID: 0}
   TowerHealth: {fileID: 9209285657085303806}
 --- !u!114 &9209285657085303806
 MonoBehaviour:
@@ -842,6 +849,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  EvtOnAddMoney:
+    m_PersistentCalls:
+      m_Calls: []
+  TowerDamageLevel: 1
+  StartingDamageValue: 20
+  DamageIncreasePerLevel: 10
+  checkGroupOnly: 1
+  checkSubtypeOnly: 0
+  checkBothGroupAndSubtype: 0
+  requiredGroup: 1
+  requiredSubtype: 2
 --- !u!114 &1911738574720167987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -854,6 +872,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 940c4478967465e44a0db3fad70ad4e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoneyManipulator
+  HasEnoughMoney:
+    m_PersistentCalls:
+      m_Calls: []
+  DoesNotHaveEnoughMoney:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7829012255563829913
 GameObject:
   m_ObjectHideFlags: 0
