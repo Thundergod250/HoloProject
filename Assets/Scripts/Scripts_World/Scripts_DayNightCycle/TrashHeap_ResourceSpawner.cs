@@ -15,7 +15,8 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
     private async void OnTriggerEnter(Collider other)
     {
         // Example condition: only trigger for objects tagged "Player"
-        if (other.GetComponent<PlayerController>() && ForTesting)
+        // || (other.GetComponent<NPC_MinerMovement>()) if going to disable these things
+        if ( (other.GetComponent<PlayerController>() )&& ForTesting)
         {
             Debug.Log("Player Near Heap " + gameObject.name);
             await SpawnResourceWithDelay();
@@ -41,7 +42,7 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
         SpawnResource();
     }
 
-    private void SpawnResource()
+    public void SpawnResource()
     {
         if (_resources == null || _resources.Count == 0) return;
 
