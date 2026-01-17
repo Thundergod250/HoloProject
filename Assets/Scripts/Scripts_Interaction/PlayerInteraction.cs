@@ -109,7 +109,7 @@ public class PlayerInteraction : MonoBehaviour
                 }
 
                 currentInteractable = closest;
-                if (currentInteractable != null)
+                if (currentInteractable != null && currentInteractable.GetIsInteractable())
                 {
                     currentInteractable.Focus();
                     ui_interactionTab.Show(currentInteractable.interactName);

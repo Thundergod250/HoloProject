@@ -5,7 +5,7 @@ using UnityEngine.Events;
 [Serializable]
 public class IntEvent : UnityEvent<int> { }
 
-public class TowerPlasticCollector : TowerUtilityFunction
+public class TowerPlasticCollector : TowerUtilityBase
 {
     [Header("Events")]
     public UnityEvent EvtOnGarbageObjectCollide;
@@ -17,16 +17,45 @@ public class TowerPlasticCollector : TowerUtilityFunction
     public int StartingDamageValue = 20;
     public int DamageIncreasePerLevel = 10;
 
+    [Header("Garbage Filter Settings")]
+    public bool checkGroupOnly = false;
+    public bool checkSubtypeOnly = false;
+    public bool checkBothGroupAndSubtype = false;
+
+    public GarbageObject.GarbageGroup requiredGroup;
+    public GarbageObject.GarbageSubtype requiredSubtype;
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<GarbageObject>())
-        {
-            EvtOnGarbageObjectCollide?.Invoke();
-            EvtPassObjectReference?.Invoke(other.gameObject);
+        GarbageObject garbage = other.GetComponent<GarbageObject>();
+        if (garbage == null) return;
 
-            int moneyToAdd = CalculateMoneyValue();
-            EvtOnAddMoney?.Invoke(moneyToAdd);
-        }
+        if (!IsValidGarbage(garbage)) return;
+
+        // ✅ Passed filter, trigger events
+        EvtOnGarbageObjectCollide?.Invoke();
+        EvtPassObjectReference?.Invoke(other.gameObject);
+
+        int moneyToAdd = CalculateMoneyValue();
+        EvtOnAddMoney?.Invoke(moneyToAdd);
+    }
+
+    private bool IsValidGarbage(GarbageObject garbage)
+    {
+        // Accept all garbage if no checks are enabled
+        if (!checkGroupOnly && !checkSubtypeOnly && !checkBothGroupAndSubtype)
+            return true;
+
+        if (checkGroupOnly)
+            return garbage.group == requiredGroup;
+
+        if (checkSubtypeOnly)
+            return garbage.subtype == requiredSubtype;
+
+        if (checkBothGroupAndSubtype)
+            return garbage.group == requiredGroup && garbage.subtype == requiredSubtype;
+
+        return false;
     }
 
     public void _IncreaseTowerDamageLevel()
