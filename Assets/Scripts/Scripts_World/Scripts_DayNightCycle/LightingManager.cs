@@ -25,6 +25,12 @@ public class LightingManager : MonoBehaviour
 
     private int _lastAssignedIndex = -1; // Tracks the last HDRI we triggered
 
+    public int GetTimeOfDay()
+    {
+        return (int)_timeOfDay;
+    }
+
+
     private void Update()
     {
         if (_lightPreset == null) return;
@@ -44,7 +50,7 @@ public class LightingManager : MonoBehaviour
         // --- HDRI TRIGGER LOGIC ---
 
         // 1. Night to Day Trigger (60 to 65)
-        if (_timeOfDay >= 60 && _timeOfDay < 65)
+        if (_timeOfDay >= 60 && _timeOfDay < 61)
         {
             int targetIndex = _isMines ? 1 : (_isSnow ? 3 : 0);
 
@@ -53,8 +59,8 @@ public class LightingManager : MonoBehaviour
                 StartHDRIFade(targetIndex);
             }
         }
-        // 2. Day to Night Trigger (200 to 210)
-        else if (_timeOfDay >= 240 && _timeOfDay < 245)
+        // 2. Day to Night Trigger (240 to 245)
+        else if (_timeOfDay >= 240 && _timeOfDay < 241)
         {
             int targetIndex = 1; // Your Moonless/Night HDRI
 
