@@ -42,7 +42,7 @@ public class TowerBigBase : TowerBase
             foreach(bool fullfilled in requiredCheckedType)
             {
                 if (!fullfilled) { requireCompleted = false; }
-                else { requireCompleted = true; }
+                else if (fullfilled){requireCompleted = true;}
             }
         }
     }

@@ -13,14 +13,16 @@ public class NPC_MinerMovement : MonoBehaviour
     [Header("Settings")]
     [SerializeField] protected int _objectLimit = 10;
     [SerializeField] protected int _ejectDelayMs = 150;
+    [SerializeField] int _miningDelay = 1000;
+    [SerializeField] public bool _hasActivated = false;
 
+    [Header("Resource Objects")]
     // We store the objects here to keep track of what to eject later
     [SerializeField] protected List<GameObject> _collectedObjects;
     [SerializeField] protected GameObject _currentTargetItem;
 
     public enum NPCMiningStates { roam, mining, home };
     [SerializeField] private NPCMiningStates _currentState = NPCMiningStates.roam;
-    [SerializeField] int _miningDelay = 1000;
 
     private void Start()
     {
@@ -33,6 +35,14 @@ public class NPC_MinerMovement : MonoBehaviour
 
         // Call this ONCE. The internal 'while' loop handles the rest.
         NPCActionPlan();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<PlayerController>())
+        {
+            _hasActivated = true;
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -107,7 +117,7 @@ public class NPC_MinerMovement : MonoBehaviour
     private async void NPCActionPlan()
     {
         // Adding a while loop here so it runs continuously without Update()
-        while (Application.isPlaying)
+        while (_hasActivated)
         {
             switch (_currentState)
             {
