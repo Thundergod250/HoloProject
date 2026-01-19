@@ -74,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         playerAnimation?.UpdateMovementAnimation(move.magnitude, isJumping);
+        playerAnimation?.AttackingState();
     }
 
     private void HandleNoclip()

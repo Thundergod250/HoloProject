@@ -1,34 +1,9 @@
 fileFormatVersion: 2
-guid: 76aa1ed1aab1fed469809ad2ddbd7c99
+guid: 2057e76430cf2ca4a8f732e698dcc627
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Arms
-    second: {fileID: 2100000, guid: ebfea96f0e266ae42b9c4c79ca6911d5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Feet
-    second: {fileID: 2100000, guid: 97ae109309cb5fa46a9dc64860c4148b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Hair
-    second: {fileID: 2100000, guid: 44fc796cec44035499012113f89d5e75, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Head
-    second: {fileID: 2100000, guid: ec4d3c552f3a38e44a7c05cb746d7aa3, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Torso
-    second: {fileID: 2100000, guid: e05bfde59cc171543ba71d0d6369d561, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -56,40 +31,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Rest
-      takeName: Rest
-      internalID: -5225591888644748974
+      name: Stone Mining.001
+      takeName: Stone Mining.001
+      internalID: 6853656329208079105
       firstFrame: 0
-      lastFrame: 23
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Walk
-      takeName: Walk
-      internalID: 2667949614841947897
-      firstFrame: 0
-      lastFrame: 23
+      lastFrame: 17
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -114,9 +60,38 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Jump
-      takeName: Jump
-      internalID: 5539831331247536789
+      name: Stone Mining
+      takeName: Stone Mining
+      internalID: -8309181217087041586
+      firstFrame: 0
+      lastFrame: 17
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature.001|Drilling Metal (Player)
+      takeName: Armature.001|Drilling Metal (Player)
+      internalID: 2914435020227709634
       firstFrame: 0
       lastFrame: 23
       wrapMode: 0
@@ -143,9 +118,9 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Grab
-      takeName: Grab
-      internalID: -3443985681492114326
+      name: Armature.001|Grab
+      takeName: Armature.001|Grab
+      internalID: -8215485893004058012
       firstFrame: 0
       lastFrame: 19
       wrapMode: 0
@@ -172,9 +147,9 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Grab and Walk
-      takeName: Grab and Walk
-      internalID: 2794683452805606719
+      name: Armature.001|Grab and Jump
+      takeName: Armature.001|Grab and Jump
+      internalID: 8161543308907533236
       firstFrame: 0
       lastFrame: 23
       wrapMode: 0
@@ -201,9 +176,9 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Grab and Jump
-      takeName: Grab and Jump
-      internalID: 8738405034215524141
+      name: Armature.001|Grab and Walk
+      takeName: Armature.001|Grab and Walk
+      internalID: -9028527275639161489
       firstFrame: 0
       lastFrame: 23
       wrapMode: 0
@@ -230,9 +205,9 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Grab Rest
-      takeName: Grab Rest
-      internalID: -814262808031582061
+      name: Armature.001|Grab Rest
+      takeName: Armature.001|Grab Rest
+      internalID: -6058725624729022721
       firstFrame: 0
       lastFrame: 23
       wrapMode: 0
@@ -259,38 +234,9 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Grab
-      takeName: Armature|Grab
-      internalID: 3997614985018663949
-      firstFrame: 0
-      lastFrame: 19
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Armature|Grab and Jump
-      takeName: Armature|Grab and Jump
-      internalID: -3560401772921105856
+      name: Armature.001|Jump
+      takeName: Armature.001|Jump
+      internalID: -5376665257271825894
       firstFrame: 0
       lastFrame: 23
       wrapMode: 0
@@ -317,9 +263,9 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Grab and Walk
-      takeName: Armature|Grab and Walk
-      internalID: 7693063794017446073
+      name: Armature.001|Jump.001
+      takeName: Armature.001|Jump.001
+      internalID: 8311207805352160960
       firstFrame: 0
       lastFrame: 23
       wrapMode: 0
@@ -346,9 +292,9 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Grab Rest
-      takeName: Armature|Grab Rest
-      internalID: 4573931000904243484
+      name: Armature.001|Jump.002
+      takeName: Armature.001|Jump.002
+      internalID: 8756173976574165517
       firstFrame: 0
       lastFrame: 23
       wrapMode: 0
@@ -375,9 +321,9 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Jump
-      takeName: Armature|Jump
-      internalID: 1079665108409675491
+      name: Armature.001|Jump.003
+      takeName: Armature.001|Jump.003
+      internalID: -7888473502092273058
       firstFrame: 0
       lastFrame: 23
       wrapMode: 0
@@ -404,9 +350,9 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Rest
-      takeName: Armature|Rest
-      internalID: 3883155493392930285
+      name: Armature.001|Rest
+      takeName: Armature.001|Rest
+      internalID: 7269259232728988082
       firstFrame: 0
       lastFrame: 23
       wrapMode: 0
@@ -433,11 +379,98 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Walk
-      takeName: Armature|Walk
-      internalID: 8349542763059015795
+      name: Armature.001|Shoveling(Player)
+      takeName: Armature.001|Shoveling(Player)
+      internalID: -8195848529487768654
+      firstFrame: 0
+      lastFrame: 11
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature.001|Stone Mining.001
+      takeName: Armature.001|Stone Mining.001
+      internalID: 7448767117793315386
+      firstFrame: 0
+      lastFrame: 17
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature.001|Walk
+      takeName: Armature.001|Walk
+      internalID: -448239265334008587
       firstFrame: 0
       lastFrame: 23
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Pickaxe.001|Stone Mining(Pickaxe)
+      takeName: Pickaxe.001|Stone Mining(Pickaxe)
+      internalID: -8176331436661026665
+      firstFrame: 0
+      lastFrame: 17
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -531,7 +564,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
