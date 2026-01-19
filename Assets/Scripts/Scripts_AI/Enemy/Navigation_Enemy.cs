@@ -14,9 +14,10 @@ public class Navigation_Enemy : MonoBehaviour
     [Header("Navigation Target")]
     [SerializeField] private List<GameObject> targetsAcquired = new List<GameObject>();
     [SerializeField] GameObject currentTarget;
-    [SerializeField] private List<Transform> wayPoints = new List<Transform>();
     [SerializeField] private int wayPointIndex;
-    [SerializeField] private int moveSpeed;
+    [SerializeField] private float moveSpeed;
+    public List<Transform> wayPoints = new List<Transform>();
+
 
     [Header("Vars")]
     [SerializeField] private float distance;
@@ -33,7 +34,7 @@ public class Navigation_Enemy : MonoBehaviour
 
     private void Update()
     {
-        if(targetsAcquired.Count > 0)
+        if(targetsAcquired.Count > 0 && attack_Enemy.archetype != Attack_Enemy.Targeting.Neutral)
         {
             FindNearestTarget();
             StoppingDistanceWithinTarget();
