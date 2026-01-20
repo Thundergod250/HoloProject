@@ -35,6 +35,7 @@ public class PlayerAnimation : MonoBehaviour
         _generalPlayerActions.SetActive(true);
         _shovelingAction.SetActive(false);
         _drillingAction.SetActive(false);
+        _miningAction.SetActive(false);
     }
     private void PlayState(string stateName, float crossFade = 0.15f)
     {
