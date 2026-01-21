@@ -139,7 +139,7 @@ public class NPC_MinerMovement : MonoBehaviour
                         if (_currentTargetItem != null)
                         {
                             var spawner = _currentTargetItem.GetComponent<TrashHeap_ResourceSpawner>();
-                            if (spawner != null) spawner.SpawnResource();
+                            if (spawner != null) spawner.SetResourceType();
                         }
 
                         _currentTargetItem = null;

@@ -8,6 +8,9 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
     [SerializeField] protected float _spawnDelaySeconds = 2f;
     [SerializeField] protected float _upwardForce = 2f;
 
+    [SerializeField] public GarbageObject.GarbageGroup _garbageGroupType;
+    [SerializeField] bool _randomized = false;
+
     [SerializeField] public Health _health;
     [SerializeField] bool ForTesting = false;
 
@@ -25,9 +28,24 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (_health.GetCurrentHealth() <= 0)
+        {
+            DisableThisHeap();
+        }
+
+    }
+
     private void DisableThisHeap()
     {
         this.gameObject.SetActive(false);
+    }
+
+    public void EnableThisHeap()
+    {
+        this.gameObject.SetActive(true);
+        _health.Heal(_health.startSetHealth);
     }
 
     private async Task SpawnResourceWithDelay()
@@ -39,16 +57,41 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
 
         if (this == null) return;
 
-        SpawnResource();
+        SetResourceType();
     }
 
-    public void SpawnResource()
+    public void SetResourceType()
+    {
+        if (_garbageGroupType == GarbageObject.GarbageGroup.Plastic)
+        {
+            SpawnResource(0);
+        }
+        else if (_garbageGroupType == GarbageObject.GarbageGroup.Organic)
+        {
+            SpawnResource(1);
+        }
+        else if (_garbageGroupType == GarbageObject.GarbageGroup.Metal)
+        {
+            SpawnResource(2);
+        }
+    }
+
+
+    public void SpawnResource(int targetType)
     {
         if (_resources == null || _resources.Count == 0) return;
 
-        // 1. Pick a random prefab
-        GameObject prefab = _resources[Random.Range(0, _resources.Count)];
+        GameObject prefab = null;
 
+        // 1. Pick a resource
+        if (!_randomized)
+        {
+            prefab = _resources[targetType];
+        }
+        else if (_randomized)
+        {
+            prefab = _resources[Random.Range(0, _resources.Count)];
+        }
         // 2. Spawn the object
         GameObject spawnedObj = Instantiate(prefab, transform.position, Quaternion.identity);
 

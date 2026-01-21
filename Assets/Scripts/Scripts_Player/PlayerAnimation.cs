@@ -3,13 +3,6 @@ using UnityEngine;
 public class PlayerAnimation : MonoBehaviour
 {
     [SerializeField] private Animator animator;
-
-    [SerializeField] private GameObject _generalPlayerActions;
-    [SerializeField] private GameObject _shovelingAction;
-    [SerializeField] private GameObject _drillingAction;
-    [SerializeField] private GameObject _miningAction;
-
-
     [Header("Normal States")]
     [SerializeField] private string idleState = "Idle";
     [SerializeField] private string runState = "Walk";
@@ -31,11 +24,6 @@ public class PlayerAnimation : MonoBehaviour
     private void Start()
     {
         playerGrab = GetComponent<PlayerGrab>();
-
-        _generalPlayerActions.SetActive(true);
-        _shovelingAction.SetActive(false);
-        _drillingAction.SetActive(false);
-        _miningAction.SetActive(false);
     }
     private void PlayState(string stateName, float crossFade = 0.15f)
     {
@@ -72,42 +60,6 @@ public class PlayerAnimation : MonoBehaviour
     {
         bool isCarrying = playerGrab != null && playerGrab.IsPlayerCarryingObject;
         PlayState(isCarrying ? grabIdleState : idleState, 0.1f);
-    }
-
-    public void AttackingState()
-    {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            _generalPlayerActions.gameObject.SetActive(false);
-            _drillingAction.gameObject.SetActive(true);
-        }
-        else if (Input.GetKeyUp(KeyCode.Mouse0))
-        {
-            _generalPlayerActions.gameObject.SetActive(true);
-            _drillingAction.gameObject.SetActive(false);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            _generalPlayerActions.gameObject.SetActive(false);
-            _shovelingAction.gameObject.SetActive(true);
-        }
-        else if (Input.GetKeyUp(KeyCode.Mouse1))
-        {
-            _generalPlayerActions.gameObject.SetActive(true);
-            _shovelingAction.gameObject.SetActive(false);
-        }
-        
-        if (Input.GetKeyDown(KeyCode.Backspace))
-        {
-            _generalPlayerActions.gameObject.SetActive(false);
-            _miningAction.gameObject.SetActive(true);
-        }
-        else if (Input.GetKeyUp(KeyCode.Backspace))
-        {
-            _generalPlayerActions.gameObject.SetActive(true);
-            _miningAction.gameObject.SetActive(false);
-        }
     }
 
 }

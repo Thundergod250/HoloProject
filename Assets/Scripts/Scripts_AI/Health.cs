@@ -13,7 +13,7 @@ public class Health : MonoBehaviour
     
     private bool isDead = false;
 
-    [SerializeField] private int startSetHealth; //[FOR TESTING] 
+    [SerializeField] public int startSetHealth; //[FOR TESTING] 
 
     private void Awake()
     {
