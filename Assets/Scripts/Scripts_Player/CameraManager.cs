@@ -3,17 +3,32 @@ using UnityEngine;
 public class CameraManager : MonoBehaviour
 {
     [SerializeField] private GameObject freeLookCamera;
+    [SerializeField] private GameObject RTSCamera;
+    [SerializeField] PlayerController playerController;
+    bool playerCamActive = true;
+
+    private void Start()
+    {
+        freeLookCamera.SetActive(true);
+        RTSCamera.SetActive(false); 
+    }
 
     public void EnableCamera()
     {
         if (freeLookCamera != null)
+        {
             freeLookCamera.gameObject.SetActive(true);
+            RTSCamera.gameObject.SetActive(false);
+        }
     }
 
     public void DisableCamera()
     {
         if (freeLookCamera != null)
+        {
             freeLookCamera.gameObject.SetActive(false);
+            RTSCamera.gameObject.SetActive(true);
+        }
     }
     
     public void BillboardToCamera(GameObject caller)
@@ -33,4 +48,36 @@ public class CameraManager : MonoBehaviour
             caller.transform.rotation = lookRotation;
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<PlayerController>())
+        {
+            playerController = null;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.GetComponent<PlayerController>())
+        {
+            playerController = other.GetComponent<PlayerController>();
+
+            if (playerController != null && Input.GetKeyDown(KeyCode.E))
+            {
+                if (playerCamActive)
+                {
+                    DisableCamera();
+                    playerCamActive = false;
+                }
+                else if (!playerCamActive)
+                {
+                    EnableCamera();
+                    playerCamActive = true;
+                }
+            }
+        }
+    }
+
+
 }
