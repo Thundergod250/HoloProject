@@ -28,13 +28,13 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
         }
     }
 
-    private void Update()
+    private async void Update()
     {
         if (_health.GetCurrentHealth() <= 0)
         {
+            await SpawnResourceWithDelay();
             DisableThisHeap();
         }
-
     }
 
     private void DisableThisHeap()

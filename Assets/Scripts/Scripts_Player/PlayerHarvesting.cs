@@ -23,7 +23,7 @@ public class PlayerHarvesting : MonoBehaviour
     private void Update()
     {
         // Check for Mouse0 being HELD DOWN
-        if (Input.GetKey(KeyCode.Mouse0) && !_isAttacking && targetHeap != null)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !_isAttacking && targetHeap != null)
         {
             _ = StartHarvestingLoop();
         }
@@ -32,6 +32,11 @@ public class PlayerHarvesting : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             ResetActions();
+        }
+
+        if (!targetHeap.isActiveAndEnabled)
+        {
+            targetHeap = null;
         }
     }
 
@@ -43,26 +48,20 @@ public class PlayerHarvesting : MonoBehaviour
         while (Input.GetKey(KeyCode.Mouse0) && targetHeap != null)
         {
             // Visuals
-            _generalPlayerActions.SetActive(false);
             SwitchToAnimationType();
+            _generalPlayerActions.SetActive(false);
+
+            // Wait for the interval before the next hit
+            await Task.Delay(attackIntervalMs);
 
             // Damage Logic
             if (targetHeap._health != null)
             {
-                targetHeap._health.TakeDamage(attackDamage);
+                targetHeap._health?.TakeDamage(attackDamage);
             }
-
-            // Wait for the interval before the next hit
-            await Task.Delay(attackIntervalMs);
         }
 
         _isAttacking = false;
-
-        // If we stopped holding the mouse or target is gone, reset visuals
-        if (!Input.GetKey(KeyCode.Mouse0))
-        {
-            ResetActions();
-        }
     }
 
     private void ResetActions()
@@ -75,9 +74,9 @@ public class PlayerHarvesting : MonoBehaviour
 
     private void SwitchToAnimationType()
     {
-        if (_garbageGroupType == GarbageObject.GarbageGroup.Plastic) _miningAction.SetActive(true);
-        else if (_garbageGroupType == GarbageObject.GarbageGroup.Organic) _shovelingAction.SetActive(true);
-        else if (_garbageGroupType == GarbageObject.GarbageGroup.Metal) _drillingAction.SetActive(true);
+        if (_garbageGroupType == GarbageObject.GarbageGroup.Plastic) { _miningAction.SetActive(true); }
+        else if (_garbageGroupType == GarbageObject.GarbageGroup.Organic) { _shovelingAction.SetActive(true); }
+        else if (_garbageGroupType == GarbageObject.GarbageGroup.Metal) { _drillingAction.SetActive(true); }
     }
 
     private void OnTriggerEnter(Collider other)

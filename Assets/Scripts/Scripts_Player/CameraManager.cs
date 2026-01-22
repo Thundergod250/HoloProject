@@ -4,7 +4,7 @@ public class CameraManager : MonoBehaviour
 {
     [SerializeField] private GameObject freeLookCamera;
     [SerializeField] private GameObject RTSCamera;
-    [SerializeField] PlayerController playerController;
+    [SerializeField] PlayerMovement movement;
     bool playerCamActive = true;
 
     private void Start()
@@ -51,29 +51,31 @@ public class CameraManager : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<PlayerController>())
+        if (other.GetComponent<PlayerMovement>())
         {
-            playerController = null;
+            movement = null;
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.GetComponent<PlayerController>())
+        if (other.GetComponent<PlayerMovement>())
         {
-            playerController = other.GetComponent<PlayerController>();
+            movement = other.GetComponent<PlayerMovement>();
 
-            if (playerController != null && Input.GetKeyDown(KeyCode.E))
+            if (movement != null && Input.GetKeyDown(KeyCode.E))
             {
                 if (playerCamActive)
                 {
                     DisableCamera();
                     playerCamActive = false;
+                    movement.SetCanMove(true);
                 }
                 else if (!playerCamActive)
                 {
                     EnableCamera();
                     playerCamActive = true;
+                    movement.SetCanMove(false);
                 }
             }
         }
