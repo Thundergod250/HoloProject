@@ -7,8 +7,8 @@ public class MovementAndCameraManipulator : MonoBehaviour
     public void _EnablePlayerMovement()  => GameManager.Instance.PlayerController?.EnableMovement();
 
     // === Camera Control ===
-    public void _DisableCameraMovement() => GameManager.Instance.CameraManager?.DisableCamera();
-    public void _EnableCameraMovement()  => GameManager.Instance.CameraManager?.EnableCamera();
+    public void _DisableCameraMovement() => GameManager.Instance.CameraManager?.DisableRTSCamera();
+    public void _EnableCameraMovement()  => GameManager.Instance.CameraManager?.EnableRTSCamera();
 
     // === Combined Control ===
     public void _DisableAllMovement()

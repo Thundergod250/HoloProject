@@ -45,12 +45,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a1b1083762389c49b4ee04e5ce004ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RTSCamera
-  moveSpeed: 20
-  scrollSpeed: 10
-  screenEdgeBuffer: {x: 10, y: 10}
+  moveSpeed: 30
+  scrollSpeed: 20
+  screenEdgeBuffer: {x: 5, y: 5}
   cmCamera: {fileID: 4252974541220785957}
-  minSize: 5
-  maxSize: 20
+  minSize: 1
+  maxSize: 10
+  fovMinSize: 15
+  fovMaxSize: 60
 --- !u!1 &4968330267944950219
 GameObject:
   m_ObjectHideFlags: 0
