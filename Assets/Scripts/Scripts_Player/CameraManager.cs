@@ -59,6 +59,8 @@ public class CameraManager : MonoBehaviour
     {
         if (other.GetComponent<PlayerMovement>())
         {
+            DisableRTSCamera();
+
             movement = null;
         }
     }
