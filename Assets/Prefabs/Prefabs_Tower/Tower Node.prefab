@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 2607173195040463432}
   - component: {fileID: 7945611311937052698}
   - component: {fileID: 5881300880969687044}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tower Node
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   interactName: Interact
+  isInteractable: 1
   EvtOnFocus:
     m_PersistentCalls:
       m_Calls:
@@ -345,7 +346,7 @@ GameObject:
   - component: {fileID: 8127549923084407249}
   - component: {fileID: 8319188609146670160}
   - component: {fileID: 3249814223308917050}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tower Ghost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -434,7 +435,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 904776209143387136}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tower Appearance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -529,6 +530,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TowerSilo_01
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 49fc4e586c4cb0b4db6c00d0495e0201, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -617,9 +622,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 921430334202370536, guid: 218278d1edd5c3c4dbba23738636ba0e, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2454405278843565878, guid: 218278d1edd5c3c4dbba23738636ba0e, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8237039862536809609, guid: 218278d1edd5c3c4dbba23738636ba0e, type: 3}
       propertyPath: m_Name
       value: TowerNode VFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237039862536809609, guid: 218278d1edd5c3c4dbba23738636ba0e, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281297437057291763, guid: 218278d1edd5c3c4dbba23738636ba0e, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9093370425680393239, guid: 218278d1edd5c3c4dbba23738636ba0e, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

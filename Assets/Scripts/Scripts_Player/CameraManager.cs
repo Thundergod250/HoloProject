@@ -3,14 +3,15 @@ using UnityEngine;
 public class CameraManager : MonoBehaviour
 {
     [SerializeField] private GameObject freeLookCamera;
-    [SerializeField] private GameObject RTSCamera;
+    [SerializeField] private GameObject rtsCamera;
+    [SerializeField] private RTSMouseSelector rtsMouseSelector;
     [SerializeField] PlayerMovement movement;
     bool playerCamActive = true;
 
     private void Start()
     {
         freeLookCamera.SetActive(true);
-        RTSCamera.SetActive(false); 
+        rtsCamera.SetActive(false); 
     }
 
     public void EnableRTSCamera()
@@ -20,7 +21,8 @@ public class CameraManager : MonoBehaviour
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             freeLookCamera.gameObject.SetActive(false);
-            RTSCamera.gameObject.SetActive(true);
+            rtsCamera.gameObject.SetActive(true);
+            rtsMouseSelector.enabled = true;
             movement.enabled = false;
         }
     }
@@ -32,7 +34,8 @@ public class CameraManager : MonoBehaviour
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
             freeLookCamera.gameObject.SetActive(true);
-            RTSCamera.gameObject.SetActive(false);
+            rtsCamera.gameObject.SetActive(false);
+            rtsMouseSelector.enabled = false;
             movement.enabled = true;
         }
     }
