@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class TrashHeap_ResourceSpawner : MonoBehaviour
 {
@@ -9,11 +10,18 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
     [SerializeField] protected float _upwardForce = 2f;
 
     [SerializeField] public GarbageObject.GarbageGroup _garbageGroupType;
-    [SerializeField] bool _randomized = false;
+    [SerializeField] public bool _randomized = false;
 
     [SerializeField] public Health _health;
-    [SerializeField] bool ForTesting = false;
+    [SerializeField] private Slider _healthSlider;
 
+    [SerializeField] bool ForTesting = false;
+    [SerializeField] bool hasSpawned = false;
+
+    private void Start()
+    {
+        _healthSlider.maxValue = _health.GetMaxHealth();
+    }
 
     private async void OnTriggerEnter(Collider other)
     {
@@ -30,10 +38,17 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
 
     private async void Update()
     {
-        if (_health.GetCurrentHealth() <= 0)
+        _healthSlider.value = _health.GetCurrentHealth();
+
+        if (_health.GetCurrentHealth()<=0)
         {
-            await SpawnResourceWithDelay();
-            DisableThisHeap();
+            if (!hasSpawned)
+            {
+                hasSpawned = true;
+
+                await SpawnResourceWithDelay();
+                DisableThisHeap();
+            }
         }
     }
 
