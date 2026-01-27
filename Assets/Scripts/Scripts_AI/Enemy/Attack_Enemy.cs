@@ -9,19 +9,11 @@ public class Attack_Enemy : MonoBehaviour
         Neutral
     }
 
-    public enum TargetPref
-    {
-        Wood,
-        Plastic,
-        Metal
-    }
-
     [Header("Refs")]
     [SerializeField] private Navigation_Enemy navigation_Enemy;
 
     [Header("Targeting Style")]
     [SerializeField] private Targeting targeting;
-    [SerializeField] private TargetPref targetPref;
 
     [Header("Weapon Stats")]
     [SerializeField] private GameObject bullet;
