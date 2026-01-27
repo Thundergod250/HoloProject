@@ -323,6 +323,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1469598149917183233, guid: f053eb25b6d9fd048b167b2b2674dc8d, type: 3}
+      propertyPath: TargetOrFoundation
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6738866681875411432, guid: f053eb25b6d9fd048b167b2b2674dc8d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.26
@@ -382,6 +386,7 @@ GameObject:
   - component: {fileID: 181005338}
   - component: {fileID: 181005342}
   - component: {fileID: 181005343}
+  - component: {fileID: 181005344}
   m_Layer: 0
   m_Name: Tower 5
   m_TagString: Untagged
@@ -452,7 +457,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  - {fileID: -876546973899608171, guid: bf644d485a7c9fe4887ed3752e3a3bd3, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -529,6 +534,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c1b8ee1d6a428145a35385880216bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerBase
+--- !u!114 &181005344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181005336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2627a6c15788ed445bc6efbfb686f996, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tower_Archetype
+  TargetOrFoundation: 2
 --- !u!4 &303832313 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7833066553647931003, guid: 55cc285d44017e84596f78a767ae1358, type: 3}
@@ -1222,6 +1240,7 @@ GameObject:
   - component: {fileID: 597447972}
   - component: {fileID: 597447976}
   - component: {fileID: 597447977}
+  - component: {fileID: 597447978}
   m_Layer: 0
   m_Name: Tower 4
   m_TagString: Untagged
@@ -1369,6 +1388,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c1b8ee1d6a428145a35385880216bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerBase
+--- !u!114 &597447978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597447970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2627a6c15788ed445bc6efbfb686f996, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tower_Archetype
+  TargetOrFoundation: 1
 --- !u!1 &700861866
 GameObject:
   m_ObjectHideFlags: 0
@@ -1495,6 +1527,7 @@ GameObject:
   - component: {fileID: 746609509}
   - component: {fileID: 746609512}
   - component: {fileID: 746609514}
+  - component: {fileID: 746609515}
   m_Layer: 0
   m_Name: Tower 1
   m_TagString: Untagged
@@ -1565,7 +1598,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  - {fileID: -876546973899608171, guid: bf644d485a7c9fe4887ed3752e3a3bd3, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1642,6 +1675,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c1b8ee1d6a428145a35385880216bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerBase
+--- !u!114 &746609515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746609507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2627a6c15788ed445bc6efbfb686f996, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tower_Archetype
+  TargetOrFoundation: 2
 --- !u!1 &845444474
 GameObject:
   m_ObjectHideFlags: 0
@@ -2501,6 +2547,7 @@ GameObject:
   - component: {fileID: 1092862769}
   - component: {fileID: 1092862773}
   - component: {fileID: 1092862774}
+  - component: {fileID: 1092862775}
   m_Layer: 0
   m_Name: Tower 3
   m_TagString: Untagged
@@ -2571,7 +2618,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  - {fileID: -876546973899608171, guid: bf644d485a7c9fe4887ed3752e3a3bd3, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2660,6 +2707,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c1b8ee1d6a428145a35385880216bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerBase
+--- !u!114 &1092862775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092862767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2627a6c15788ed445bc6efbfb686f996, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tower_Archetype
+  TargetOrFoundation: 2
 --- !u!1001 &1099940436
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3169,6 +3229,7 @@ GameObject:
   - component: {fileID: 1344212752}
   - component: {fileID: 1344212756}
   - component: {fileID: 1344212757}
+  - component: {fileID: 1344212758}
   m_Layer: 0
   m_Name: Tower 6
   m_TagString: Untagged
@@ -3316,6 +3377,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c1b8ee1d6a428145a35385880216bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerBase
+--- !u!114 &1344212758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344212750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2627a6c15788ed445bc6efbfb686f996, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tower_Archetype
+  TargetOrFoundation: 1
 --- !u!1 &1354469326
 GameObject:
   m_ObjectHideFlags: 0
@@ -4025,6 +4099,7 @@ GameObject:
   - component: {fileID: 1768739708}
   - component: {fileID: 1768739712}
   - component: {fileID: 1768739713}
+  - component: {fileID: 1768739714}
   m_Layer: 0
   m_Name: Tower 2
   m_TagString: Untagged
@@ -4184,6 +4259,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c1b8ee1d6a428145a35385880216bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerBase
+--- !u!114 &1768739714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768739706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2627a6c15788ed445bc6efbfb686f996, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tower_Archetype
+  TargetOrFoundation: 1
 --- !u!1 &1769664933
 GameObject:
   m_ObjectHideFlags: 0
