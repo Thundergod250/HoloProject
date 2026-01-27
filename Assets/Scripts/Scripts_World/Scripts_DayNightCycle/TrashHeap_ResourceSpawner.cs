@@ -16,7 +16,7 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
     [SerializeField] private Slider _healthSlider;
 
     [SerializeField] bool ForTesting = false;
-    [SerializeField] bool hasSpawned = false;
+    [SerializeField] bool hasSpawned = true;
 
     private void Start()
     {
@@ -40,11 +40,11 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
     {
         _healthSlider.value = _health.GetCurrentHealth();
 
-        if (_health.GetCurrentHealth()<=0)
+        if (_health.GetCurrentHealth() <= 0)
         {
-            if (!hasSpawned)
+            if (hasSpawned)
             {
-                hasSpawned = true;
+                hasSpawned = false;
 
                 await SpawnResourceWithDelay();
                 DisableThisHeap();
