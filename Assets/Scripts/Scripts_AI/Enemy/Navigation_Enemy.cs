@@ -7,6 +7,7 @@ public class Navigation_Enemy : MonoBehaviour
 {
     [Header("Refs")]
     [SerializeField] private Attack_Enemy attack_Enemy;
+    [SerializeField] private TowerAndEnemy_Archetype targeting;
 
     [Header("Colliders")]
     [SerializeField] private SphereCollider sphereCollider;
@@ -55,7 +56,10 @@ public class Navigation_Enemy : MonoBehaviour
         {
             if(other.GetComponent<Health>().GetCurrentHealth() != 0)
             {
-                targetsAcquired.Add(other.gameObject);
+                if (other.GetComponent<TowerAndEnemy_Archetype>().material == targeting.material)
+                {
+                    targetsAcquired.Add(other.gameObject);
+                }
             }
         }
     }
@@ -157,7 +161,7 @@ public class Navigation_Enemy : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, wayPoints[wayPointIndex].position, Time.deltaTime * moveSpeed);
 
             var distance = Vector3.Distance(transform.position, wayPoints[wayPointIndex].position);
-            if (distance <= 0.05f)
+            if (distance <= 1f)
             {
                 wayPointIndex++;
             }

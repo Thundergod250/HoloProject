@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7279398973919942167}
   - component: {fileID: 6094847423617437406}
   - component: {fileID: 6149120422715163426}
+  - component: {fileID: 7538640261713532623}
   - component: {fileID: 1160327043657513327}
   - component: {fileID: 706072323978820481}
   - component: {fileID: 7665023131821886088}
@@ -51,12 +52,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Navigation_Enemy
   attack_Enemy: {fileID: 6149120422715163426}
+  targeting: {fileID: 7538640261713532623}
   sphereCollider: {fileID: 1160327043657513327}
   targetsAcquired: []
   currentTarget: {fileID: 0}
+  wayPointIndex: 0
+  moveSpeed: 0
+  wayPoints: []
   distance: 0
-  nearestDistance: 21
+  aggroRange: 0
+  navMinDistance: 0
   navigation: {fileID: 7665023131821886088}
+  isMoving: 0
 --- !u!114 &6094847423617437406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,11 +98,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Attack_Enemy
   navigation_Enemy: {fileID: 7279398973919942167}
+  targeting: 0
   bullet: {fileID: 3674529731938632888, guid: 22b32847aa556ea41af26b916b2fe3f0, type: 3}
   gunBarrel: {fileID: 4560558392570752542}
   shootingInterval: 0.75
   shootingSpeed: 40
   target: {fileID: 0}
+--- !u!114 &7538640261713532623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8027776502407471498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2627a6c15788ed445bc6efbfb686f996, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tower_Archetype
+  TargetOrFoundation: 0
 --- !u!135 &1160327043657513327
 SphereCollider:
   m_ObjectHideFlags: 0
