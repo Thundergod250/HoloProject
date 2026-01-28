@@ -9,6 +9,8 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
     [SerializeField] protected float _spawnDelaySeconds = 2f;
     [SerializeField] protected float _upwardForce = 2f;
 
+    [SerializeField] protected int _howManyToSpawn = Random.Range(1, 5);
+
     [SerializeField] public GarbageObject.GarbageGroup _garbageGroupType;
     [SerializeField] public bool _randomized = false;
 
@@ -44,16 +46,20 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
         {
             if (hasSpawned)
             {
-                hasSpawned = false;
+                for (int i =0; i<_howManyToSpawn; i++)
+                {
+                    await SpawnResourceWithDelay();
+                }
 
-                await SpawnResourceWithDelay();
                 DisableThisHeap();
             }
         }
     }
 
+
     private void DisableThisHeap()
     {
+        hasSpawned = false;
         this.gameObject.SetActive(false);
     }
 
@@ -77,17 +83,37 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
 
     public void SetResourceType()
     {
-        if (_garbageGroupType == GarbageObject.GarbageGroup.Plastic)
+        if (!_randomized)
         {
-            SpawnResource(0);
+            if (_garbageGroupType == GarbageObject.GarbageGroup.Plastic)
+            {
+                SpawnResource(0);
+            }
+            else if (_garbageGroupType == GarbageObject.GarbageGroup.Organic)
+            {
+                SpawnResource(1);
+            }
+            else if (_garbageGroupType == GarbageObject.GarbageGroup.Metal)
+            {
+                SpawnResource(2);
+            }
         }
-        else if (_garbageGroupType == GarbageObject.GarbageGroup.Organic)
+
+        else if (_randomized)
         {
-            SpawnResource(1);
-        }
-        else if (_garbageGroupType == GarbageObject.GarbageGroup.Metal)
-        {
-            SpawnResource(2);
+            int randomType = Random.Range(0, 100);
+            if (randomType <= 20 && randomType !> 20) // Plastic
+            {
+                SpawnResource(0);
+            }
+            else if (randomType <= 40 && randomType !> 40) // Wood
+            {
+                SpawnResource(1);
+            }
+            else if (randomType <= 60 && randomType !> 60) // Metal
+            {
+                SpawnResource(2);
+            }
         }
     }
 

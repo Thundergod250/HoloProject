@@ -12,7 +12,7 @@ public class PlayerHarvesting : MonoBehaviour
 
     [SerializeField] TrashHeap_ResourceSpawner targetHeap;
     [SerializeField] GarbageObject.GarbageGroup _garbageGroupType;
-
+    [SerializeField] public DropResourceManager _resourceManagerRefererce;
     private bool _isAttacking = false; // Prevents overlapping attack loops
 
     private void Start()

@@ -1,19 +1,83 @@
 using UnityEngine;
-
+public enum upgradeResourceType
+{
+    Copper,
+    Iron,
+    Mythril,
+    Gold
+};
 public class DropResourceManager : MonoBehaviour
 {
-    public enum upgradeResourceType
-    {
-        Copper,
-        Iron,
-        Mythril,
-        Gold
-    };
-
     [SerializeField] int copperResources = 0;
     [SerializeField] int ironResources = 0;
     [SerializeField] int mythrilResources = 0;
     [SerializeField] int goldResources = 0;
+
+    public int CopperHold => copperResources;
+    public int IronHold => ironResources;
+    public int MythrilHold => mythrilResources;
+    public int GoldHold => goldResources;
+
+    public void AddingToResourceType(upgradeResourceType resourceTarget, int amount)
+    {
+        if (resourceTarget == upgradeResourceType.Copper)
+        {
+            copperResources += Mathf.Max(0, amount);
+        }
+        else if (resourceTarget == upgradeResourceType.Iron)
+        {
+            ironResources += Mathf.Max(0, amount);
+        }
+        else if (resourceTarget == upgradeResourceType.Mythril)
+        {
+            mythrilResources += Mathf.Max(0, amount);
+        }
+        else if (resourceTarget == upgradeResourceType.Gold)
+        {
+            goldResources += Mathf.Max(0, amount);
+        }
+    }
+    public void SpendingToResourceType(upgradeResourceType resourceTarget, int amount)
+    {
+        if (resourceTarget == upgradeResourceType.Copper)
+        {
+            copperResources -= Mathf.Max(0, amount);
+        }
+        else if (resourceTarget == upgradeResourceType.Iron)
+        {
+            ironResources -= Mathf.Max(0, amount);
+        }
+        else if (resourceTarget == upgradeResourceType.Mythril)
+        {
+            mythrilResources -= Mathf.Max(0, amount);
+        }
+        else if (resourceTarget == upgradeResourceType.Gold)
+        {
+            goldResources -= Mathf.Max(0, amount);
+        }
+    }
+
+    public int GetResourceType(upgradeResourceType resourceTarget)
+    {
+        if (resourceTarget == upgradeResourceType.Copper)
+        {
+            return copperResources;
+        }
+        else if (resourceTarget == upgradeResourceType.Iron)
+        {
+            return ironResources;
+        }
+        else if (resourceTarget == upgradeResourceType.Mythril)
+        {
+            return mythrilResources;
+        }
+        else if (resourceTarget == upgradeResourceType.Gold)
+        {
+            return goldResources;
+        }
+
+        else return 0;
+    }
 
     // Idea is to have requirement to make upgrades to Tools
 
