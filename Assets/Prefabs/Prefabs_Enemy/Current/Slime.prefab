@@ -65,12 +65,16 @@ PrefabInstance:
       value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 7279398973919942167, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
+      propertyPath: target_Arch
+      value: 
+      objectReference: {fileID: 6264357284280236608}
+    - target: {fileID: 7279398973919942167, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       propertyPath: navMinDistance
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7538640261713532623, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       propertyPath: TargetOrFoundation
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7665023131821886088, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       propertyPath: m_Height
@@ -84,6 +88,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime
       objectReference: {fileID: 0}
+    - target: {fileID: 8230038487409561773, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
+      propertyPath: DropTable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8230038487409561773, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
+      propertyPath: 'DropTable.Array.data[0]'
+      value: 
+      objectReference: {fileID: 5319242270951673010, guid: 5b12e43de38ca2d488fed4a2da94c35e, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 890133652181797668, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
@@ -142,6 +154,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.5, z: 2.5}
   m_Center: {x: 0, y: 0.3197801, z: -0.33137083}
+--- !u!114 &6264357284280236608 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7538640261713532623, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
+  m_PrefabInstance: {fileID: 4499613498208414863}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5843898326549417221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2627a6c15788ed445bc6efbfb686f996, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tower_Archetype
 --- !u!1001 &7522748517248898195
 PrefabInstance:
   m_ObjectHideFlags: 0

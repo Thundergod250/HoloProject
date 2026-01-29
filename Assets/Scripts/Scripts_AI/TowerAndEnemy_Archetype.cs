@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class TowerAndEnemy_Archetype : MonoBehaviour
 {
-    public enum TypeAndTarget //ForBothTowersAndEnemies
+    public enum TypeAndTarget //ForBothTowersAndEnemies 
     {
         Wood,
         Plastic,
         Metal,
+        All,
         None
     }
 

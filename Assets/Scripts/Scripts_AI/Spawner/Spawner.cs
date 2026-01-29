@@ -11,8 +11,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private int spawnerInterval;
     [SerializeField] private int waveVar;
     [SerializeField] private bool spawningWave = true;
-    [SerializeField] private float timeBetweenSpawns;
-    [SerializeField] private WaveData currentWave;
+    [SerializeField] private WaveData activeWave;
 
     [Header("Waypoints")]
     [SerializeField] private List<Transform> wayPoints = new List<Transform>();
@@ -20,15 +19,15 @@ public class Spawner : MonoBehaviour
     private void Start()
     {
         waveVar = 0;
-        currentWave = wave[waveVar];
+        activeWave = wave[waveVar];
         StartWave();
     }
 
     private IEnumerator spawnEnemy(float interval)
     {
-        for (int i = 0; i < currentWave.EnemiesInWaves.Length; i++)
+        for (int i = 0; i < activeWave.EnemiesInWaves.Length; i++)
         {
-            GameObject newEnemy = Instantiate(currentWave.EnemiesInWaves[i], transform.position, Quaternion.identity);
+            GameObject newEnemy = Instantiate(activeWave.EnemiesInWaves[i], transform.position, Quaternion.identity);
 
             newEnemy.GetComponent<Navigation_Enemy>().wayPoints = wayPoints;
 
@@ -52,7 +51,7 @@ public class Spawner : MonoBehaviour
         }
 
         waveVar++;
-        currentWave = wave[waveVar];
+        activeWave = wave[waveVar];
         StartWave();
     }
 
@@ -61,6 +60,6 @@ public class Spawner : MonoBehaviour
         if (!spawningWave)
             return;
 
-        StartCoroutine(spawnEnemy(spawnerInterval));
+        StartCoroutine(spawnEnemy(activeWave.timeBetweenSpawn));
     }
 }

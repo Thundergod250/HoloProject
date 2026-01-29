@@ -7,7 +7,8 @@ public class Navigation_Enemy : MonoBehaviour
 {
     [Header("Refs")]
     [SerializeField] private Attack_Enemy attack_Enemy;
-    [SerializeField] private TowerAndEnemy_Archetype targeting;
+    [SerializeField] private TowerAndEnemy_Archetype target_Arch;
+    [SerializeField] private Health helth;
 
     [Header("Colliders")]
     [SerializeField] private SphereCollider sphereCollider;
@@ -56,7 +57,7 @@ public class Navigation_Enemy : MonoBehaviour
         {
             if(other.GetComponent<Health>().GetCurrentHealth() != 0)
             {
-                if (other.GetComponent<TowerAndEnemy_Archetype>().material == targeting.material)
+                if (other.GetComponent<TowerAndEnemy_Archetype>().material == target_Arch.material || target_Arch.material == TowerAndEnemy_Archetype.TypeAndTarget.All)
                 {
                     targetsAcquired.Add(other.gameObject);
                 }
@@ -78,25 +79,17 @@ public class Navigation_Enemy : MonoBehaviour
     #region Navigation&TargetingFuncs
     private void FindNearestTarget()
     {
-        float nearestDistance = currentTarget != null
-         ? Vector3.Distance(transform.position, currentTarget.transform.position)
-         : Mathf.Infinity;
-
-        GameObject nearestTarget = currentTarget;
-
-        for (int i = 0; i < targetsAcquired.Count; i++)
+        if (targetsAcquired.Count == 0)
         {
-            float d = Vector3.Distance(transform.position, targetsAcquired[i].transform.position);
-
-            if (d < nearestDistance)
-            {
-                nearestDistance = d;
-                nearestTarget = targetsAcquired[i];
-            }
+            currentTarget = null;
+            distance = Mathf.Infinity;
+            return;
         }
 
-        currentTarget = nearestTarget;
-        distance = nearestDistance;
+        currentTarget = targetsAcquired[0];
+        distance = Vector3.Distance(transform.position, currentTarget.transform.position);
+
+        navigation.destination = currentTarget.transform.position;
 
         if (currentTarget != null)
         {
@@ -111,7 +104,7 @@ public class Navigation_Enemy : MonoBehaviour
         {
             OnReachedTarget();
         }
-        else if (distance <= 4.5f && attack_Enemy.archetype == Attack_Enemy.Targeting.Melee)
+        else if (distance <= 3.5f && attack_Enemy.archetype == Attack_Enemy.Targeting.Melee) // revert back to 4.5 if enemies have anims
         {
             OnReachedTarget();
         }
@@ -123,14 +116,15 @@ public class Navigation_Enemy : MonoBehaviour
 
         if (currentTarget != null)
         {
+            Debug.Log(this.name + "has reached the target!");
             this.GetComponent<Attack_Enemy>().target = currentTarget.transform;
-
         }
     }
 
     public void TargetHasDied()
     {
         targetsAcquired.Remove(currentTarget);
+        currentTarget.GetComponent<Health>().Die();
         currentTarget = null;
         aggroRange = 21;
         attack_Enemy.target = null;
@@ -164,6 +158,11 @@ public class Navigation_Enemy : MonoBehaviour
             if (distance <= 1f)
             {
                 wayPointIndex++;
+
+                if (wayPointIndex >= wayPoints.Count)
+                {
+                    helth.Die();
+                }
             }
         }
     }
