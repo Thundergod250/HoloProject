@@ -4860,6 +4860,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 878893755594415576, guid: 2768831ef1ca0cb46bdb587e9b9a6560, type: 3}
   m_PrefabInstance: {fileID: 5680016574357958394}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2136279765 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5968778044576740721, guid: 2768831ef1ca0cb46bdb587e9b9a6560, type: 3}
+  m_PrefabInstance: {fileID: 5680016574357958394}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136279764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b17c6eb266138f646a65dc4e96a0d5cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RTSMouseSelector
 --- !u!1001 &767146260037398750
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5687,6 +5698,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2150627223229628547, guid: 6fe7c35b50b7a1a4a98e264fa1e44748, type: 3}
+      propertyPath: rtsCamera
+      value: 
+      objectReference: {fileID: 2136279764}
+    - target: {fileID: 2150627223229628547, guid: 6fe7c35b50b7a1a4a98e264fa1e44748, type: 3}
       propertyPath: freeLookCamera
       value: 
       objectReference: {fileID: 3688964133521184812}
@@ -5694,6 +5709,10 @@ PrefabInstance:
       propertyPath: playerController
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2150627223229628547, guid: 6fe7c35b50b7a1a4a98e264fa1e44748, type: 3}
+      propertyPath: rtsMouseSelector
+      value: 
+      objectReference: {fileID: 2136279765}
     - target: {fileID: 6332830518319327434, guid: 6fe7c35b50b7a1a4a98e264fa1e44748, type: 3}
       propertyPath: m_LocalPosition.x
       value: 224.57
