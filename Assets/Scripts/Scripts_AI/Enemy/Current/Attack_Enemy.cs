@@ -11,15 +11,19 @@ public class Attack_Enemy : MonoBehaviour
 
     [Header("Refs")]
     [SerializeField] private Navigation_Enemy navigation_Enemy;
+    [SerializeField] private Effects_Enemy effects_Enemy;
 
     [Header("Targeting Style")]
     [SerializeField] private Targeting targeting;
 
-    [Header("Weapon Stats")]
+    [Header("Ranged")]
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform gunBarrel;
     [SerializeField] private float shootingInterval;
     [SerializeField] private float shootingSpeed;
+
+    [Header("Melee")]
+    [SerializeField] private float attackSpeed;
 
     public Transform target;
     public Targeting archetype => targeting;
@@ -74,6 +78,18 @@ public class Attack_Enemy : MonoBehaviour
         else if (targeting == Targeting.Neutral)
         {
             //*insert attack scipt
+        }
+    }
+
+    public void ActivateFieldFX()
+    {
+        if(effects_Enemy.fieldedEnemyFX == Effects_Enemy.FieldFX.Deathrattle)
+        {
+            Debug.Log("asd");
+        }
+        else if(effects_Enemy.fieldedEnemyFX == Effects_Enemy.FieldFX.InField)
+        {
+            Debug.Log("Waduhke"); 
         }
     }
 }
