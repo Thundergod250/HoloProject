@@ -8,7 +8,6 @@ public class Spawner : MonoBehaviour
     [SerializeField] private WaveData[] wave;
 
     [Header("Variables")]
-    [SerializeField] private int spawnerInterval;
     [SerializeField] private int waveVar;
     [SerializeField] private bool spawningWave = true;
     [SerializeField] private WaveData activeWave;
