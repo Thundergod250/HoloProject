@@ -3,7 +3,6 @@ using UnityEngine;
 public class PlayerAnimation : MonoBehaviour
 {
     [SerializeField] private Animator animator;
-
     [Header("Normal States")]
     [SerializeField] private string idleState = "Idle";
     [SerializeField] private string runState = "Walk";
@@ -14,6 +13,11 @@ public class PlayerAnimation : MonoBehaviour
     [SerializeField] private string grabWalkState = "Grab and Walk";
     [SerializeField] private string grabJumpState = "Grab and Jump";
 
+    [Header("Action States")]
+    [SerializeField] private string shovelDigState = "Shovel and Dig";
+    [SerializeField] private string miningState = "Mine and Hit";
+    [SerializeField] private string drillState = "Drill";
+
     private PlayerGrab playerGrab;
     private string currentState;
 
@@ -21,7 +25,6 @@ public class PlayerAnimation : MonoBehaviour
     {
         playerGrab = GetComponent<PlayerGrab>();
     }
-
     private void PlayState(string stateName, float crossFade = 0.15f)
     {
         if (animator == null) return;
@@ -58,4 +61,5 @@ public class PlayerAnimation : MonoBehaviour
         bool isCarrying = playerGrab != null && playerGrab.IsPlayerCarryingObject;
         PlayState(isCarrying ? grabIdleState : idleState, 0.1f);
     }
+
 }

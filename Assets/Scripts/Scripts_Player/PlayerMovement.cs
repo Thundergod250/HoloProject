@@ -34,11 +34,12 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         if (!canMove) return;
+        
+        else if (canMove)
+            HandleNormalMovement();
 
         if (noclip)
             HandleNoclip();
-        else
-            HandleNormalMovement();
     }
 
     private void HandleNormalMovement()

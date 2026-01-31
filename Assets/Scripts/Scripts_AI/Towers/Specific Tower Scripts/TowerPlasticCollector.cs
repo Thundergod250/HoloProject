@@ -22,6 +22,8 @@ public class TowerPlasticCollector : TowerUtilityBase
     public bool checkSubtypeOnly = false;
     public bool checkBothGroupAndSubtype = false;
 
+    [SerializeField] bool _deleteGarbage = true;
+
     public GarbageObject.GarbageGroup requiredGroup;
     public GarbageObject.GarbageSubtype requiredSubtype;
 
@@ -67,7 +69,11 @@ public class TowerPlasticCollector : TowerUtilityBase
 
     public void _DisableGarbageObject(GameObject obj)
     {
-        obj.SetActive(false);
+        if (_deleteGarbage)
+        {
+            Destroy(obj);
+        }
+        else { obj.SetActive(false); }
     }
 
     public int CalculateMoneyValue()
