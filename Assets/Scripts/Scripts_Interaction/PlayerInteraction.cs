@@ -129,7 +129,7 @@ public class PlayerInteraction : MonoBehaviour
         if (!enabled || !ctx.performed || currentInteractable == null)
             return;
 
-        currentInteractable.Interact();
+        currentInteractable.InteractWithTarget();
         currentInteractable = null;
         ui_interactionTab.Hide();
     }

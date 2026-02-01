@@ -21,7 +21,7 @@ public class RTSMouseSelector : MonoBehaviour
                 if (hit.collider.GetComponent<Interactable>())
                 {
                     Interactable interactable = hit.collider.GetComponent<Interactable>();
-                    interactable.Interact();
+                    interactable.InteractWithTarget();
                 }
             }
         }

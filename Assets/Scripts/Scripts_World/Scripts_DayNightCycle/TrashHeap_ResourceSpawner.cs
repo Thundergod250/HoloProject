@@ -9,7 +9,7 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
     [SerializeField] protected float _spawnDelaySeconds = 2f;
     [SerializeField] protected float _upwardForce = 2f;
 
-    [SerializeField] protected int _howManyToSpawn = Random.Range(1, 5);
+    [SerializeField] protected int _howManyToSpawn = 1; //= Random.Range(1, 5);
 
     [SerializeField] public GarbageObject.GarbageGroup _garbageGroupType;
     [SerializeField] public bool _randomized = false;
@@ -29,12 +29,33 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
     {
         // Example condition: only trigger for objects tagged "Player"
         // || (other.GetComponent<NPC_MinerMovement>()) if going to disable these things
-        if ( (other.GetComponent<PlayerController>() )&& ForTesting)
+        if ( (other.GetComponent<PlayerController>() ))
         {
-            Debug.Log("Player Near Heap " + gameObject.name);
-            await SpawnResourceWithDelay();
+            SetRandomized();
 
-            DisableThisHeap();
+            _howManyToSpawn = Random.Range(1, 5);
+
+            if (ForTesting)
+            {
+                Debug.Log("Player Near Heap " + gameObject.name);
+                await SpawnResourceWithDelay();
+
+                DisableThisHeap();
+            }
+        }
+    }
+
+    private void SetRandomized()
+    {
+        int testRandom = Random.Range(1, 2);
+
+        if (testRandom == 1)
+        {
+            _randomized = true;
+        }
+        else if (testRandom == 2)
+        {
+            _randomized = false;
         }
     }
 

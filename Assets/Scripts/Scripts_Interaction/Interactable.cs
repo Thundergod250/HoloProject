@@ -29,7 +29,7 @@ public class Interactable : MonoBehaviour
     }
 
     // Called when player presses interact key
-    public void Interact()
+    public void InteractWithTarget()
     {
         if (!isInteractable) return;
 
