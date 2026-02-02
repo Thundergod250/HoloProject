@@ -19,6 +19,7 @@ public class Tower_Defensive_HealingTower : TowerDefensiveBase
             CheckforPlayerToHeal();
             healCooldown = delayPerTick;
         }
+
     }
 
     private void CheckforPlayerToHeal()

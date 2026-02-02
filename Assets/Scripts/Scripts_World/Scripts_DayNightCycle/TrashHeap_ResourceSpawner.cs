@@ -16,6 +16,7 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
 
     [SerializeField] public Health _health;
     [SerializeField] private Slider _healthSlider;
+    [SerializeField] private PlayerController _playerController;
 
     [SerializeField] bool ForTesting = false;
     [SerializeField] bool hasSpawned = true;
@@ -23,6 +24,7 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
     private void Start()
     {
         _healthSlider.maxValue = _health.GetMaxHealth();
+        _healthSlider.gameObject.SetActive(false);
     }
 
     private async void OnTriggerEnter(Collider other)
@@ -31,7 +33,10 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
         // || (other.GetComponent<NPC_MinerMovement>()) if going to disable these things
         if ( (other.GetComponent<PlayerController>() ))
         {
+            _playerController = other.GetComponent<PlayerController>();
             SetRandomized();
+
+            _healthSlider.gameObject.SetActive(true);
 
             _howManyToSpawn = Random.Range(1, 5);
 
@@ -44,6 +49,16 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
             }
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if ((other.GetComponent<PlayerController>()))
+        {
+            _playerController = null;
+            _healthSlider.gameObject.SetActive(false);
+        }
+    }
+
 
     private void SetRandomized()
     {
@@ -75,6 +90,11 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
                 DisableThisHeap();
             }
         }
+
+        if(_playerController != null)
+        {
+            _healthSlider.gameObject.transform.LookAt(_playerController.gameObject.transform.position);
+        }
     }
 
 
@@ -87,7 +107,8 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
     public void EnableThisHeap()
     {
         this.gameObject.SetActive(true);
-        _health.Heal(_health.startSetHealth);
+        _health.ReviveHealth();
+        //_health.Heal(_health.startSetHealth);
     }
 
     private async Task SpawnResourceWithDelay()
@@ -97,7 +118,7 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
 
         await Task.Delay(delayMs);
 
-        if (this == null) return;
+        //if (this == null) return;
 
         SetResourceType();
     }

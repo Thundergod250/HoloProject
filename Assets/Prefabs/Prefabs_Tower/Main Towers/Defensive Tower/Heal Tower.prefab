@@ -1222,6 +1222,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   startSetHealth: 50
+  _toBeDeleted: 1
 --- !u!65 &7090967949583467492
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1300,9 +1301,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a30131f3b27c4464ca338add9e4ff15f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tower_Defensive_HealingTower
+  playerController: {fileID: 0}
   healAmount: 10
   delayPerTick: 1
-  playerController: {fileID: 0}
+  detectionRadius: 5
 --- !u!135 &5882814700636677500
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1350,6 +1352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be9fb5c7c15018243b5cc24f1117168f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HighlightableToggle
+  interactDistance: 5
 --- !u!114 &8522572267000915740
 MonoBehaviour:
   m_ObjectHideFlags: 0

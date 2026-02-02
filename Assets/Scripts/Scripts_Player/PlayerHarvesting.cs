@@ -93,6 +93,7 @@ public class PlayerHarvesting : MonoBehaviour
         if (other.GetComponent<TrashHeap_ResourceSpawner>())
         {
             targetHeap = null;
+            _isAttacking = false;
             ResetActions(); // Stop animations if we walk away while clicking
         }
     }
