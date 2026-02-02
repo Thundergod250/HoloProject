@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2244850358726891844}
+  - component: {fileID: 1503566752513330350}
   m_Layer: 0
   m_Name: Grid Tower Placements
   m_TagString: Untagged
@@ -45,6 +46,39 @@ Transform:
   - {fileID: 5935729057743683881}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1503566752513330350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698883354314225308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a2b9e1899bba947ac367827d2a712e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridTowerManagement
+  _gridPlacements:
+  - {fileID: 8774658356382343903}
+  - {fileID: 5100839524708384808}
+  - {fileID: 8682207441541316057}
+  - {fileID: 5444066140808258413}
+  - {fileID: 4299349604595198758}
+  - {fileID: 2393251374779703155}
+  - {fileID: 3014920960657234583}
+  - {fileID: 1322519277572771876}
+  - {fileID: 3291315771838104121}
+  - {fileID: 1728007440012822225}
+  - {fileID: 5533482253143186123}
+  - {fileID: 2171722359221143521}
+  - {fileID: 4263080082930319647}
+  - {fileID: 39747311396286623}
+  OnGridDisabled:
+    m_PersistentCalls:
+      m_Calls: []
+  OnGridEnabled:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &775298346580700790
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55,7 +89,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 742913915338268393, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
       propertyPath: m_Name
-      value: Tower Grid Placement Spawner (9)
+      value: TGPS 3x1 Middle Right
       objectReference: {fileID: 0}
     - target: {fileID: 4140650895129904043, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
       propertyPath: width
@@ -110,6 +144,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
+--- !u!1 &39747311396286623 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 742913915338268393, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
+  m_PrefabInstance: {fileID: 775298346580700790}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5935729057743683881 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6385430941520965471, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
@@ -125,7 +164,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 742913915338268393, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
       propertyPath: m_Name
-      value: Tower Grid Placement Spawner (2)
+      value: TGPS 2x3 Middle Middle
       objectReference: {fileID: 0}
     - target: {fileID: 4140650895129904043, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
       propertyPath: width
@@ -180,6 +219,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
+--- !u!1 &2171722359221143521 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 742913915338268393, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
+  m_PrefabInstance: {fileID: 1471794993508702472}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5544289735451473495 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6385430941520965471, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
@@ -195,7 +239,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 742913915338268393, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
       propertyPath: m_Name
-      value: Tower Grid Placement Spawner (13)
+      value: TGPS 1x1 Split Front Left
       objectReference: {fileID: 0}
     - target: {fileID: 4140650895129904043, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
       propertyPath: width
@@ -250,6 +294,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
+--- !u!1 &1322519277572771876 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 742913915338268393, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
+  m_PrefabInstance: {fileID: 1735526343761350349}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4650054162482946450 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6385430941520965471, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
@@ -265,7 +314,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 742913915338268393, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
       propertyPath: m_Name
-      value: Tower Grid Placement Spawner (7)
+      value: TGPS 2x2 Middle Left
       objectReference: {fileID: 0}
     - target: {fileID: 4140650895129904043, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
       propertyPath: width
@@ -320,6 +369,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
+--- !u!1 &1728007440012822225 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 742913915338268393, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
+  m_PrefabInstance: {fileID: 2140408124939229240}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4983754454537467751 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6385430941520965471, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
@@ -335,7 +389,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 742913915338268393, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
       propertyPath: m_Name
-      value: Tower Grid Placement Spawner (12)
+      value: TGPS 3x1 Split Front Left
       objectReference: {fileID: 0}
     - target: {fileID: 4140650895129904043, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
       propertyPath: width
@@ -390,6 +444,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
+--- !u!1 &3014920960657234583 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 742913915338268393, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
+  m_PrefabInstance: {fileID: 2564935119331918974}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8864739359351450401 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6385430941520965471, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
@@ -405,7 +464,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 742913915338268393, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
       propertyPath: m_Name
-      value: Tower Grid Placement Spawner (6)
+      value: TGPS 2x2 Middle Middle
       objectReference: {fileID: 0}
     - target: {fileID: 4140650895129904043, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
       propertyPath: width
@@ -460,6 +519,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
+--- !u!1 &3291315771838104121 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 742913915338268393, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
+  m_PrefabInstance: {fileID: 2873936498269592784}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9187305412603851663 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6385430941520965471, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
@@ -475,7 +539,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 742913915338268393, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
       propertyPath: m_Name
-      value: Tower Grid Placement Spawner (11)
+      value: TGPS 3x1 Split Front Left
       objectReference: {fileID: 0}
     - target: {fileID: 4140650895129904043, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
       propertyPath: width
@@ -530,6 +594,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
+--- !u!1 &2393251374779703155 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 742913915338268393, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
+  m_PrefabInstance: {fileID: 3132769448375288218}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8350886105578352325 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6385430941520965471, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
@@ -545,7 +614,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 742913915338268393, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
       propertyPath: m_Name
-      value: Tower Grid Placement Spawner (8)
+      value: TGPS 2x2 Middle Right
       objectReference: {fileID: 0}
     - target: {fileID: 4140650895129904043, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
       propertyPath: width
@@ -600,6 +669,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
+--- !u!1 &4263080082930319647 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 742913915338268393, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
+  m_PrefabInstance: {fileID: 3559775524978188278}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7636776099255513257 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6385430941520965471, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
@@ -615,7 +689,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 742913915338268393, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
       propertyPath: m_Name
-      value: Tower Grid Placement Spawner (10)
+      value: TGPS 2x1 Front Left
       objectReference: {fileID: 0}
     - target: {fileID: 4140650895129904043, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
       propertyPath: width
@@ -670,6 +744,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
+--- !u!1 &4299349604595198758 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 742913915338268393, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
+  m_PrefabInstance: {fileID: 3595288582038910415}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7599996404799855248 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6385430941520965471, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
@@ -685,7 +764,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 742913915338268393, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
       propertyPath: m_Name
-      value: Tower Grid Placement Spawner (3)
+      value: TGPS 4x2 Middle Left
       objectReference: {fileID: 0}
     - target: {fileID: 4140650895129904043, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
       propertyPath: width
@@ -745,6 +824,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6385430941520965471, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
   m_PrefabInstance: {fileID: 4738465252821515652}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5444066140808258413 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 742913915338268393, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
+  m_PrefabInstance: {fileID: 4738465252821515652}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5081675079942243362
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -755,7 +839,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 742913915338268393, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
       propertyPath: m_Name
-      value: Tower Grid Placement Spawner (4)
+      value: TGPS 4x2 Middle Left
       objectReference: {fileID: 0}
     - target: {fileID: 4140650895129904043, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
       propertyPath: width
@@ -815,6 +899,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6385430941520965471, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
   m_PrefabInstance: {fileID: 5081675079942243362}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5533482253143186123 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 742913915338268393, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
+  m_PrefabInstance: {fileID: 5081675079942243362}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5514251751746346689
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -825,7 +914,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 742913915338268393, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
       propertyPath: m_Name
-      value: Tower Grid Placement Spawner (1)
+      value: TGPS 2x3 Front Right
       objectReference: {fileID: 0}
     - target: {fileID: 4140650895129904043, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
       propertyPath: width
@@ -885,6 +974,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6385430941520965471, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
   m_PrefabInstance: {fileID: 5514251751746346689}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5100839524708384808 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 742913915338268393, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
+  m_PrefabInstance: {fileID: 5514251751746346689}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8228703171665208112
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -895,7 +989,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 742913915338268393, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
       propertyPath: m_Name
-      value: Tower Grid Placement Spawner (5)
+      value: TGPS 2x3 Back Right
       objectReference: {fileID: 0}
     - target: {fileID: 4140650895129904043, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
       propertyPath: width
@@ -955,6 +1049,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6385430941520965471, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
   m_PrefabInstance: {fileID: 8228703171665208112}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8682207441541316057 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 742913915338268393, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
+  m_PrefabInstance: {fileID: 8228703171665208112}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8325613155853777974
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -965,7 +1064,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 742913915338268393, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
       propertyPath: m_Name
-      value: Tower Grid Placement Spawner
+      value: TGPS 5x3 Front
       objectReference: {fileID: 0}
     - target: {fileID: 4140650895129904043, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
       propertyPath: width
@@ -1019,5 +1118,10 @@ PrefabInstance:
 --- !u!4 &3104984080456782697 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6385430941520965471, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
+  m_PrefabInstance: {fileID: 8325613155853777974}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8774658356382343903 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 742913915338268393, guid: 66db00eb7552be64c8cbbf77a2a0c188, type: 3}
   m_PrefabInstance: {fileID: 8325613155853777974}
   m_PrefabAsset: {fileID: 0}
