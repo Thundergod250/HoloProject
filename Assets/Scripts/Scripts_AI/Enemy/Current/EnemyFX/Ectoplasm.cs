@@ -11,8 +11,7 @@ public class Ectoplasm : Effects_Enemy
         for (int i = 0; i < spawnCount; i++)
         {
             GameObject drattleSlime =  Instantiate(slime, transform.position, Quaternion.identity);
-            drattleSlime.GetComponent<Navigation_Enemy>().waypoints
-
+            drattleSlime.GetComponent<Navigation_Enemy>().wayPoints = this.gameObject.GetComponent<Navigation_Enemy>().wayPoints;
 
         }
     }

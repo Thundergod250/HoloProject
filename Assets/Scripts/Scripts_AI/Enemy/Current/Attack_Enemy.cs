@@ -11,7 +11,6 @@ public class Attack_Enemy : MonoBehaviour
 
     [Header("Refs")]
     [SerializeField] private Navigation_Enemy navigation_Enemy;
-    [SerializeField] private Effects_Enemy effects_Enemy;
 
     [Header("Targeting Style")]
     [SerializeField] private Targeting targeting;
@@ -78,18 +77,6 @@ public class Attack_Enemy : MonoBehaviour
         else if (targeting == Targeting.Neutral)
         {
             //*insert attack scipt
-        }
-    }
-
-    public void ActivateFieldFX()
-    {
-        if(effects_Enemy.fieldedEnemyFX == Effects_Enemy.FieldFX.Deathrattle)
-        {
-            Debug.Log("asd");
-        }
-        else if(effects_Enemy.fieldedEnemyFX == Effects_Enemy.FieldFX.InField)
-        {
-            Debug.Log("Waduhke"); 
         }
     }
 }

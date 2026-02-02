@@ -18,13 +18,14 @@ public class Navigation_Enemy : MonoBehaviour
     [SerializeField] GameObject currentTarget;
     [SerializeField] private int wayPointIndex;
     [SerializeField] private float moveSpeed;
+
     public List<Transform> wayPoints = new List<Transform>();
 
 
     [Header("Vars")]
     [SerializeField] private float distance;
     [SerializeField] private float aggroRange;
-    [SerializeField] private int navMinDistance;
+    [SerializeField] private float navMinDistance;
 
     public NavMeshAgent navigation;
     public bool isMoving;
@@ -41,11 +42,13 @@ public class Navigation_Enemy : MonoBehaviour
             FindNearestTarget();
             StoppingDistanceWithinTarget();
             SetMove(false);
+            Debug.Log("Finding Enemy");
         }
         else
         {
             SetMove(true);
             StartMoving();
+            Debug.Log("Moving to Waypoint");
         }
 
     }
@@ -130,9 +133,10 @@ public class Navigation_Enemy : MonoBehaviour
         attack_Enemy.target = null;
         navigation.isStopped = false;
 
+        navigation.ResetPath();
+
         FindNearestWaypoint(); // Optional" May feel better or worse
 
-        navigation.ResetPath();
     }
     #endregion
 
@@ -144,26 +148,18 @@ public class Navigation_Enemy : MonoBehaviour
 
     public void StartMoving()
     {
-        if (!isMoving)
-        {
+        if (!isMoving || navigation.pathPending)
             return;
+
+        if (!navigation.hasPath)
+        {
+            navigation.SetDestination(wayPoints[wayPointIndex].position);
         }
 
-
-        if(wayPointIndex < wayPoints.Count)
+        // Near current waypoint go NEXT
+        if (!navigation.pathPending && navigation.remainingDistance <= navigation.stoppingDistance)
         {
-            transform.position = Vector3.MoveTowards(transform.position, wayPoints[wayPointIndex].position, Time.deltaTime * moveSpeed);
-
-            var distance = Vector3.Distance(transform.position, wayPoints[wayPointIndex].position);
-            if (distance <= 1f)
-            {
-                wayPointIndex++;
-
-                if (wayPointIndex >= wayPoints.Count)
-                {
-                    helth.Die();
-                }
-            }
+            AdvanceWaypoint();
         }
     }
 
@@ -172,12 +168,11 @@ public class Navigation_Enemy : MonoBehaviour
         if (wayPoints.Count == 0) return;
 
         float nearestDistance = Mathf.Infinity;
-        int nearestIndex = wayPointIndex;
+        int nearestIndex = 0;
 
         for (int i = 0; i < wayPoints.Count; i++)
         {
             float d = Vector3.Distance(transform.position, wayPoints[i].position);
-
             if (d < nearestDistance)
             {
                 nearestDistance = d;
@@ -187,11 +182,23 @@ public class Navigation_Enemy : MonoBehaviour
 
         wayPointIndex = nearestIndex;
 
-        navigation.ResetPath();
-        navigation.isStopped = false;
-        navigation.SetDestination(wayPoints[wayPointIndex].position);
-
         SetMove(true);
+        navigation.isStopped = false;
+        navigation.ResetPath();
+        navigation.SetDestination(wayPoints[wayPointIndex].position);
+    }
+
+    private void AdvanceWaypoint()
+    {
+        wayPointIndex++;
+
+        if (wayPointIndex >= wayPoints.Count)
+        {
+            helth.Die();
+            return;
+        }
+
+        navigation.SetDestination(wayPoints[wayPointIndex].position);
     }
     #endregion
 }
