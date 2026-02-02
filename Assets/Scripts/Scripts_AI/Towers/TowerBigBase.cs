@@ -23,7 +23,6 @@ public class TowerBigBase : TowerBase
                     currentNumberByGroup[i]++;
                 }
             }
-
         }
     }
 

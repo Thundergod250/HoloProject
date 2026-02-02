@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2344409736879555987}
   - component: {fileID: 4760902954771394929}
   - component: {fileID: 8591556890517460522}
+  - component: {fileID: 9113670015810376164}
   m_Layer: 0
   m_Name: Boulder_1
   m_TagString: Untagged
@@ -109,7 +110,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1.6674256, y: 1.6289564, z: 1.383828}
   m_Center: {x: 0.08181038, y: 0.12378288, z: 0.0039531915}
@@ -130,7 +131,29 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 2.0056465, y: 2.347554, z: 0.81160766}
   m_Center: {x: -1.817381, y: 0.02493205, z: -0.2821565}
+--- !u!64 &9113670015810376164
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8318067299872654383}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7006454611544186470, guid: de3d572f0b13e36418f4b075490a3a69, type: 3}

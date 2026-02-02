@@ -13,7 +13,8 @@ public class Health : MonoBehaviour
     
     private bool isDead = false;
 
-    [SerializeField] private int startSetHealth; //[FOR TESTING] 
+    [SerializeField] public int startSetHealth; //[FOR TESTING] 
+    [SerializeField] protected bool _toBeDeleted = false;
 
     private void Awake()
     {
@@ -41,7 +42,13 @@ public class Health : MonoBehaviour
     {
         if (isDead) return;
 
-        isDead = true;
+        else if (_toBeDeleted)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+            isDead = true;
         OnDeath?.Invoke();
 
         Debug.Log($"{gameObject.name} has died.");
@@ -53,6 +60,11 @@ public class Health : MonoBehaviour
         if (isDead) return;
 
         currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
+    }
+
+    public void ReviveHealth()
+    {
+        currentHealth = startSetHealth;
     }
 
     public int GetCurrentHealth() => currentHealth;
