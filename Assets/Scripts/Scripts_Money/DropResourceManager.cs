@@ -3,7 +3,7 @@ public enum upgradeResourceType
 {
     Copper,
     Iron,
-    Mythril,
+    Mithril,
     Gold
 };
 public class DropResourceManager : MonoBehaviour
