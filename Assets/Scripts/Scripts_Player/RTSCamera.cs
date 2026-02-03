@@ -1,6 +1,6 @@
 using UnityEngine;
 using Unity.Cinemachine;
-using UnityEngine.InputSystem;
+using TMPro;
 
 public class RTSCamera : MonoBehaviour
 {
@@ -10,6 +10,8 @@ public class RTSCamera : MonoBehaviour
 
     // For Isometric Zoom (Orthographic Size)
     [SerializeField] public CinemachineCamera cmCamera;
+    [SerializeField] public TextMeshProUGUI fovCMText;
+
     public float minSize = 5f;
     public float maxSize = 20f;
 
@@ -21,7 +23,6 @@ public class RTSCamera : MonoBehaviour
         Move();
         HandleZoom();
     }
-
     private void Move()
     {
         Vector3 moveDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
@@ -45,6 +46,8 @@ public class RTSCamera : MonoBehaviour
         {
             float newSize = cmCamera.Lens.OrthographicSize - (scroll * scrollSpeed);
             cmCamera.Lens.OrthographicSize = Mathf.Clamp(newSize, minSize, maxSize);
+
+            fovCMText.text = newSize.ToString();
         }
         else
         {
