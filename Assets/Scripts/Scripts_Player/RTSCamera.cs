@@ -17,11 +17,13 @@ public class RTSCamera : MonoBehaviour
 
     public float fovMinSize = 35f;
     public float fovMaxSize = 60f;
+    float newFOVSize = 15;
 
     private void Update()
     {
         Move();
         HandleZoom();
+        fovCMText.text = newFOVSize.ToString();
     }
     private void Move()
     {
@@ -44,10 +46,8 @@ public class RTSCamera : MonoBehaviour
         // Correct Cinemachine 3.x API check
         if (cmCamera.Lens.ModeOverride == LensSettings.OverrideModes.Orthographic)
         {
-            float newSize = cmCamera.Lens.OrthographicSize - (scroll * scrollSpeed);
-            cmCamera.Lens.OrthographicSize = Mathf.Clamp(newSize, minSize, maxSize);
-
-            fovCMText.text = newSize.ToString();
+            newFOVSize = cmCamera.Lens.OrthographicSize - (scroll * scrollSpeed);
+            cmCamera.Lens.OrthographicSize = Mathf.Clamp(newFOVSize, minSize, maxSize);
         }
         else
         {
