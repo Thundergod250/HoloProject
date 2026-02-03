@@ -24,7 +24,6 @@ public class Navigation_Enemy : MonoBehaviour
 
     [Header("Vars")]
     [SerializeField] private float distance;
-    [SerializeField] private float aggroRange;
     [SerializeField] private float navMinDistance;
 
     public NavMeshAgent navigation;
@@ -74,7 +73,7 @@ public class Navigation_Enemy : MonoBehaviour
 
         if (targetsAcquired.Count == 0)
         {
-            aggroRange = 20;
+
         }
     }
     #endregion
@@ -129,7 +128,6 @@ public class Navigation_Enemy : MonoBehaviour
         targetsAcquired.Remove(currentTarget);
         currentTarget.GetComponent<Health>().Die();
         currentTarget = null;
-        aggroRange = 21;
         attack_Enemy.target = null;
         navigation.isStopped = false;
 
