@@ -20,7 +20,7 @@ public class UI_Gold : MonoBehaviour
             goldText.text = goldManager.PlayerGold.ToString();
             copperResourceText.text = resourceManager.GetResourceType(upgradeResourceType.Copper).ToString();
             ironResourceText.text = resourceManager.GetResourceType(upgradeResourceType.Iron).ToString();
-            mythrilResourceText.text = resourceManager.GetResourceType(upgradeResourceType.Mythril).ToString();
+            mythrilResourceText.text = resourceManager.GetResourceType(upgradeResourceType.Mithril).ToString();
             goldResourceText.text = resourceManager.GetResourceType(upgradeResourceType.Gold).ToString();
         }
     }
