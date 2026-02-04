@@ -62,7 +62,6 @@ MonoBehaviour:
   moveSpeed: 0
   wayPoints: []
   distance: 0
-  aggroRange: 0
   navMinDistance: 0
   navigation: {fileID: 7665023131821886088}
   isMoving: 0
@@ -98,7 +97,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6094847423617437406}
+        m_TargetAssemblyTypeName: Health, Assembly-CSharp
+        m_MethodName: Die
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   startSetHealth: 0
+  _toBeDeleted: 0
 --- !u!114 &6149120422715163426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,7 +124,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Attack_Enemy
   navigation_Enemy: {fileID: 7279398973919942167}
-  effects_Enemy: {fileID: 0}
   targeting: 0
   bullet: {fileID: 3674529731938632888, guid: 22b32847aa556ea41af26b916b2fe3f0, type: 3}
   gunBarrel: {fileID: 4560558392570752542}

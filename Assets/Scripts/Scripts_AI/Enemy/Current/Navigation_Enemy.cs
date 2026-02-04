@@ -55,7 +55,7 @@ public class Navigation_Enemy : MonoBehaviour
     #region Collisions
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<TowerBase>() != null)
+        if (other.GetComponent<TowerBase>() != null && other.GetComponent<TowerBase>() != other.GetComponent<TowerBigBase>())
         {
             if(other.GetComponent<Health>().GetCurrentHealth() != 0)
             {

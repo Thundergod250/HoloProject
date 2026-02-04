@@ -53,6 +53,7 @@ public class Health : MonoBehaviour
 
         Debug.Log($"{gameObject.name} has died.");
         // Optional: Destroy(gameObject); or disable
+        Destroy(gameObject);
     }
     
     public void Heal(int amount)
