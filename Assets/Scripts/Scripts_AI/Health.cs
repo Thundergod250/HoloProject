@@ -48,12 +48,12 @@ public class Health : MonoBehaviour
             return;
         }
 
-            isDead = true;
+        isDead = true;
         OnDeath?.Invoke();
 
         Debug.Log($"{gameObject.name} has died.");
         // Optional: Destroy(gameObject); or disable
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
     
     public void Heal(int amount)
