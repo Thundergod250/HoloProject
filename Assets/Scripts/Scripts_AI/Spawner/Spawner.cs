@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    [Header("Ref")]
+    [SerializeField] private LightingManager lightingManager;
+
     [Header("Spawner")]
     [SerializeField] private WaveData[] wave;
 
     [Header("Variables")]
     [SerializeField] private int waveVar;
     [SerializeField] private bool spawningWave = true;
+    [SerializeField] private bool isNighttime;
     [SerializeField] private WaveData activeWave;
 
     [Header("Waypoints")]
@@ -19,7 +23,15 @@ public class Spawner : MonoBehaviour
     {
         waveVar = 0;
         activeWave = wave[waveVar];
-        StartWave();
+        if (lightingManager._isNight)
+        {
+            StartWave();
+        }
+        else
+        {
+            // Optional: start a coroutine that waits until night begins
+            StartCoroutine(WaitForNight());
+        }
     }
 
     private IEnumerator spawnEnemy(float interval)
@@ -36,6 +48,16 @@ public class Spawner : MonoBehaviour
         OnWaveFinishedSpawning();
     }
 
+    private IEnumerator WaitForNight()
+    {
+        while (!lightingManager._isNight)
+        {
+            yield return null; // wait a frame
+        }
+
+        StartWave(); // fire exactly once
+    }
+
     void OnWaveFinishedSpawning()
     {
         GoToNextWave();
@@ -43,7 +65,7 @@ public class Spawner : MonoBehaviour
 
     private void GoToNextWave()
     {
-        if (waveVar == wave.Length - 1)
+        if (waveVar == wave.Length - 1) // if at last wave
         {
             spawningWave = false;
             return;
@@ -59,6 +81,13 @@ public class Spawner : MonoBehaviour
         if (!spawningWave)
             return;
 
-        StartCoroutine(spawnEnemy(activeWave.timeBetweenSpawn));
+        if(lightingManager._isNight)
+        {
+            StartCoroutine(spawnEnemy(activeWave.timeBetweenSpawn));
+        }
+        else
+        {
+            return;
+        }
     }
 }
