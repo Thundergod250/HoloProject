@@ -8,7 +8,9 @@ public class PlayerDayNightUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI timeTextUGUI;
     [SerializeField] TextMeshProUGUI dayStatusTextUGUI;
 
-    [SerializeField] Slider dayNightslider;
+    [SerializeField] Slider dayNightSlider;
+    [SerializeField] Slider daySlider;
+    [SerializeField] Slider nightSlider;
 
     [SerializeField] private GameObject _dayUI;
     [SerializeField] private GameObject _nightUI;
@@ -23,16 +25,24 @@ public class PlayerDayNightUI : MonoBehaviour
     {
         if (!lightingManager._isNight)
         {
-            //_dayUI?.gameObject.SetActive(true);
-            //_nightUI?.gameObject.SetActive(false);
+            _dayUI?.gameObject.SetActive(true);
+            _nightUI?.gameObject.SetActive(false);
+
+            daySlider.value = lightingManager.GetTimeOfDay();
+
+            nightSlider.value = 0;
 
             dayStatusTextUGUI.text = "Day Time";
 
         }
         else if (lightingManager._isNight)
         {
-            //_dayUI?.gameObject.SetActive(false);
-            //_nightUI?.gameObject.SetActive(true);
+            _dayUI?.gameObject.SetActive(false);
+            _nightUI?.gameObject.SetActive(true);
+
+            nightSlider.value = lightingManager.GetTimeOfDay();
+
+            daySlider.value = 0;
 
             dayStatusTextUGUI.text = "Night Time";
         }
@@ -42,7 +52,7 @@ public class PlayerDayNightUI : MonoBehaviour
     {
         if (lightingManager != null)
         {
-            dayNightslider.value = lightingManager.GetTimeOfDay();
+            dayNightSlider.value = lightingManager.GetTimeOfDay();
             timeTextUGUI.text = lightingManager.GetTimeOfDay().ToString();
         }
     }

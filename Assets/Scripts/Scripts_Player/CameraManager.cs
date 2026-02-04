@@ -5,7 +5,7 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private GameObject freeLookCamera;
     [SerializeField] private GameObject rtsCamera;
     [SerializeField] private RTSMouseSelector rtsMouseSelector;
-    [SerializeField] PlayerMovement movement;
+    [SerializeField] public PlayerMovement movement;
     bool playerCamActive = true;
 
     private void Start()
@@ -40,6 +40,26 @@ public class CameraManager : MonoBehaviour
         }
     }
     
+    public void SetCameraChange()
+    {
+        if (movement != null)
+        {
+            if (playerCamActive)
+            {
+                DisableRTSCamera();
+                playerCamActive = false;
+                movement.SetCanMove(true);
+            }
+            else if (!playerCamActive)
+            {
+                EnableRTSCamera();
+                playerCamActive = true;
+                movement.SetCanMove(false);
+            }
+        }
+    }
+
+
     public void BillboardToCamera(GameObject caller)
     {
         if (freeLookCamera == null || caller == null) return;
@@ -63,6 +83,8 @@ public class CameraManager : MonoBehaviour
         if (other.GetComponent<PlayerMovement>())
         {
             DisableRTSCamera();
+            playerCamActive = false;
+            movement.SetCanMove(true);
 
             movement = null;
         }
@@ -74,23 +96,7 @@ public class CameraManager : MonoBehaviour
         {
             movement = other.GetComponent<PlayerMovement>();
 
-            if (movement != null)
-            {
-                if (playerCamActive)
-                {
-                    DisableRTSCamera();
-                    playerCamActive = false;
-                    movement.SetCanMove(true);
-                }
-                else if (!playerCamActive)
-                {
-                    EnableRTSCamera();
-                    playerCamActive = true;
-                    movement.SetCanMove(false);
-                }
-            }
+            SetCameraChange();
         }
     }
-
-
 }

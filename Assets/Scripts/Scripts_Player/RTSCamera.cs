@@ -18,12 +18,13 @@ public class RTSCamera : MonoBehaviour
     public float fovMinSize = 35f;
     public float fovMaxSize = 60f;
     float newFOVSize = 15;
+    float newPOVSize = 30;
 
     private void Update()
     {
         Move();
         HandleZoom();
-        fovCMText.text = newFOVSize.ToString();
+        fovCMText.text = newPOVSize.ToString();
     }
     private void Move()
     {
@@ -52,8 +53,8 @@ public class RTSCamera : MonoBehaviour
         else
         {
             // Fallback for Perspective Overview
-            float newFOV = cmCamera.Lens.FieldOfView - (scroll * scrollSpeed);
-            cmCamera.Lens.FieldOfView = Mathf.Clamp(newFOV, fovMinSize, fovMaxSize);
+            newPOVSize = cmCamera.Lens.FieldOfView - (scroll * scrollSpeed);
+            cmCamera.Lens.FieldOfView = Mathf.Clamp(newPOVSize, fovMinSize, fovMaxSize);
         }
     }
 }
