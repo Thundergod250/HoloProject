@@ -14,5 +14,6 @@ public class Drops_Enemy : MonoBehaviour
             Destroy(tempLoot, 1.5f);  //DespawnDrop
         }
 
+        Destroy(gameObject);
     }
 }

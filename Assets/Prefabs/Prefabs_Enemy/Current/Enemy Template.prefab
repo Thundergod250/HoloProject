@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 706072323978820481}
   - component: {fileID: 1160327043657513327}
   - component: {fileID: 7665023131821886088}
+  - component: {fileID: -4331329839823721017}
   m_Layer: 0
   m_Name: Enemy Template
   m_TagString: Untagged
@@ -227,6 +228,21 @@ NavMeshAgent:
   m_BaseOffset: 2.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-4331329839823721017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8027776502407471498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f581272cbb6874a43a371a34e94dcfbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyBase
+  Health: {fileID: 0}
+  Movement: {fileID: 0}
+  EnemyAttack: {fileID: 0}
 --- !u!1001 &43639645646878325
 PrefabInstance:
   m_ObjectHideFlags: 0
