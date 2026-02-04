@@ -34,10 +34,10 @@ public class PlayerHarvesting : MonoBehaviour
             ResetActions();
         }
 
-        else if (!targetHeap.isActiveAndEnabled)
-        {
-            targetHeap = null;
-        }
+        //else if (!targetHeap.isActiveAndEnabled)
+        //{
+        //    targetHeap = null;
+        //}
     }
 
     private async Task StartHarvestingLoop()
