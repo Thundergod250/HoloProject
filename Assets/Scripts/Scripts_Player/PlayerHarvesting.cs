@@ -29,12 +29,12 @@ public class PlayerHarvesting : MonoBehaviour
         }
 
         // Reset when the button is released
-        if (Input.GetKeyUp(KeyCode.Mouse0))
+        else if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             ResetActions();
         }
 
-        if (!targetHeap.isActiveAndEnabled)
+        else if (!targetHeap.isActiveAndEnabled)
         {
             targetHeap = null;
         }

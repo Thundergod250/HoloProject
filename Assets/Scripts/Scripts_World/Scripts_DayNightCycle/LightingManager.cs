@@ -11,8 +11,11 @@ public class LightingManager : MonoBehaviour
     [SerializeField] private Light _directionalLight;
     [SerializeField] private LightingPreset _lightPreset;
 
+
     [Header("Variables")] // Change 2nd number (24 total secs  * 15  = (360 secs) == 6 mins per day)
     [SerializeField, Range(0, 360)] private float _timeOfDay;
+    [SerializeField] public bool _isNight = false;
+
 
     [SerializeField] protected Volume _hdriCubeSkyDay;
     [SerializeField] protected Volume _hdriCubeSkyNight;
@@ -49,8 +52,8 @@ public class LightingManager : MonoBehaviour
 
         // --- HDRI TRIGGER LOGIC ---
 
-        // 1. Night to Day Trigger (60 to 65)
-        if (_timeOfDay >= 60 && _timeOfDay < 61)
+        // 1. Night to Day Trigger (60 to 65) // 0 - 220 Day
+        if (_timeOfDay >= 0 && _timeOfDay < 220) 
         {
             int targetIndex = _isMines ? 1 : (_isSnow ? 3 : 0);
 
@@ -58,9 +61,11 @@ public class LightingManager : MonoBehaviour
             {
                 StartHDRIFade(targetIndex);
             }
+
+            _isNight = false;
         }
-        // 2. Day to Night Trigger (240 to 245)
-        else if (_timeOfDay >= 240 && _timeOfDay < 241)
+        // 2. Day to Night Trigger (240 to 245) // 221 - 360 Night
+        else if (_timeOfDay >= 221 && _timeOfDay < 360) 
         {
             int targetIndex = 1; // Your Moonless/Night HDRI
 
@@ -68,8 +73,11 @@ public class LightingManager : MonoBehaviour
             {
                 StartHDRIFade(targetIndex);
             }
+
+            _isNight = true;
         }
     }
+
 
     private void StartHDRIFade(int index)
     {

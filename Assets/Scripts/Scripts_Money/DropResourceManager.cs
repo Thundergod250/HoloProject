@@ -3,7 +3,7 @@ public enum upgradeResourceType
 {
     Copper,
     Iron,
-    Mythril,
+    Mithril,
     Gold
 };
 public class DropResourceManager : MonoBehaviour
@@ -28,7 +28,7 @@ public class DropResourceManager : MonoBehaviour
         {
             ironResources += Mathf.Max(0, amount);
         }
-        else if (resourceTarget == upgradeResourceType.Mythril)
+        else if (resourceTarget == upgradeResourceType.Mithril)
         {
             mythrilResources += Mathf.Max(0, amount);
         }
@@ -47,7 +47,7 @@ public class DropResourceManager : MonoBehaviour
         {
             ironResources -= Mathf.Max(0, amount);
         }
-        else if (resourceTarget == upgradeResourceType.Mythril)
+        else if (resourceTarget == upgradeResourceType.Mithril)
         {
             mythrilResources -= Mathf.Max(0, amount);
         }
@@ -67,7 +67,7 @@ public class DropResourceManager : MonoBehaviour
         {
             return ironResources;
         }
-        else if (resourceTarget == upgradeResourceType.Mythril)
+        else if (resourceTarget == upgradeResourceType.Mithril)
         {
             return mythrilResources;
         }
