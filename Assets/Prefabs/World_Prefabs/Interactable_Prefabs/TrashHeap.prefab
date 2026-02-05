@@ -344,7 +344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14859af3159dfdd448013f3c76001a3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  maxHealth: 2
+  maxHealth: 10
   currentHealth: 0
   OnDamaged:
     m_PersistentCalls:
@@ -352,7 +352,7 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
-  startSetHealth: 2
+  startSetHealth: 10
   _toBeDeleted: 0
 --- !u!114 &7857921181583767866
 MonoBehaviour:
@@ -372,7 +372,7 @@ MonoBehaviour:
   - {fileID: 5371119382644848549, guid: 25f88cb7abf882546b8a732255cb1941, type: 3}
   - {fileID: 8078221279830555554, guid: 31f66a7afc7ba384ca2fe87968ce8fc7, type: 3}
   - {fileID: 8078221279830555554, guid: 37f75c63c805463418410a6061440575, type: 3}
-  - {fileID: 919132149155446097, guid: ddca5e7950ef3ff40aceef5b2d55801b, type: 3}
+  - {fileID: 5172804434979823616, guid: 6098b26bbc871cb4cbafff0892af036b, type: 3}
   _spawnDelaySeconds: 0.2
   _upwardForce: 5
   _howManyToSpawn: 1
@@ -380,9 +380,7 @@ MonoBehaviour:
   _randomized: 0
   _health: {fileID: 1696999632113733230}
   _healthSlider: {fileID: 9069270460470698288}
-  _playerController: {fileID: 0}
   ForTesting: 0
-  hasSpawned: 1
 --- !u!1 &3416704245076788193
 GameObject:
   m_ObjectHideFlags: 0
