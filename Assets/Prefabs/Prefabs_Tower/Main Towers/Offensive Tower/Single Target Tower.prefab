@@ -1167,6 +1167,7 @@ GameObject:
   - component: {fileID: 721818880151090668}
   - component: {fileID: 5012143656289452167}
   - component: {fileID: 5818345394654817171}
+  - component: {fileID: 427577870210762952}
   m_Layer: 6
   m_Name: Single Target Tower
   m_TagString: Untagged
@@ -1390,7 +1391,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be9fb5c7c15018243b5cc24f1117168f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HighlightableToggle
-  interactDistance: 5
+  objectToToggle: {fileID: 0}
+--- !u!114 &427577870210762952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7795377701471874775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2627a6c15788ed445bc6efbfb686f996, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerAndEnemy_Archetype
+  TargetOrFoundation: 0
 --- !u!1 &7849389352835609314
 GameObject:
   m_ObjectHideFlags: 0

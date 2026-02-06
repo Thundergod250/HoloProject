@@ -10,11 +10,12 @@ public class Spawner : MonoBehaviour
     [Header("Spawner")]
     [SerializeField] private WaveData[] wave;
 
-    [Header("Variables")]
+    [Header("Variables DO NOT TOUCH")]
     [SerializeField] private int waveVar;
     [SerializeField] private bool spawningWave = true;
     [SerializeField] private bool isNighttime;
     [SerializeField] private WaveData activeWave;
+    [SerializeField] private bool testingMode;
 
     [Header("Waypoints")]
     [SerializeField] private List<Transform> wayPoints = new List<Transform>();
@@ -23,14 +24,21 @@ public class Spawner : MonoBehaviour
     {
         waveVar = 0;
         activeWave = wave[waveVar];
-        if (lightingManager._isNight)
+        if(!testingMode)
         {
-            StartWave();
+            if (lightingManager._isNight)
+            {
+                StartWave();
+            }
+            else
+            {
+                // Optional: start a coroutine that waits until night begins
+                StartCoroutine(WaitForNight());
+            }
         }
         else
         {
-            // Optional: start a coroutine that waits until night begins
-            StartCoroutine(WaitForNight());
+            StartCoroutine(spawnEnemy(activeWave.timeBetweenSpawn));
         }
     }
 

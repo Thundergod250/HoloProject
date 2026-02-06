@@ -25,13 +25,21 @@ public class Navigation_Enemy : MonoBehaviour
     [Header("Vars")]
     [SerializeField] private float distance;
     [SerializeField] private float navMinDistance;
+    [SerializeField] private float meleeStopDistance;
 
     public NavMeshAgent navigation;
     public bool isMoving;
 
     private void Start()
     {
-        navigation.stoppingDistance = navMinDistance;
+        if(meleeStopDistance != 0)
+        {
+            navigation.stoppingDistance = meleeStopDistance;
+        }
+        else
+        {
+            navigation.stoppingDistance = navMinDistance;
+        }
     }
 
     private void Update()

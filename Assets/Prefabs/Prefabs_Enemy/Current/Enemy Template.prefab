@@ -64,6 +64,7 @@ MonoBehaviour:
   wayPoints: []
   distance: 0
   navMinDistance: 0
+  meleeStopDistance: 0
   navigation: {fileID: 7665023131821886088}
   isMoving: 0
 --- !u!114 &6094847423617437406
@@ -240,7 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f581272cbb6874a43a371a34e94dcfbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBase
-  Health: {fileID: 0}
+  Health: {fileID: 6094847423617437406}
   Movement: {fileID: 0}
   EnemyAttack: {fileID: 0}
 --- !u!1001 &43639645646878325
