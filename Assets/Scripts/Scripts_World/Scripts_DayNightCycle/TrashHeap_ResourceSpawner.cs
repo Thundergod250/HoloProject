@@ -107,6 +107,7 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
             if (_garbageGroupType == GarbageObject.GarbageGroup.Plastic) SpawnResource(0);
             else if (_garbageGroupType == GarbageObject.GarbageGroup.Organic) SpawnResource(1);
             else if (_garbageGroupType == GarbageObject.GarbageGroup.Metal) SpawnResource(2);
+            else if (_garbageGroupType == GarbageObject.GarbageGroup.Ore) SpawnResource(Random.Range(4, 6));
         }
         else
         {
