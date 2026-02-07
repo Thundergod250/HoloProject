@@ -1,6 +1,6 @@
 using UnityEngine;
 using Unity.Cinemachine;
-using UnityEngine.InputSystem;
+using TMPro;
 
 public class RTSCamera : MonoBehaviour
 {
@@ -10,15 +10,22 @@ public class RTSCamera : MonoBehaviour
 
     // For Isometric Zoom (Orthographic Size)
     [SerializeField] public CinemachineCamera cmCamera;
+    [SerializeField] public TextMeshProUGUI fovCMText;
+
     public float minSize = 5f;
     public float maxSize = 20f;
+
+    public float fovMinSize = 35f;
+    public float fovMaxSize = 60f;
+    float newFOVSize = 15;
+    float newPOVSize = 30;
 
     private void Update()
     {
         Move();
         HandleZoom();
+        fovCMText.text = newPOVSize.ToString();
     }
-
     private void Move()
     {
         Vector3 moveDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
@@ -40,14 +47,14 @@ public class RTSCamera : MonoBehaviour
         // Correct Cinemachine 3.x API check
         if (cmCamera.Lens.ModeOverride == LensSettings.OverrideModes.Orthographic)
         {
-            float newSize = cmCamera.Lens.OrthographicSize - (scroll * scrollSpeed);
-            cmCamera.Lens.OrthographicSize = Mathf.Clamp(newSize, minSize, maxSize);
+            newFOVSize = cmCamera.Lens.OrthographicSize - (scroll * scrollSpeed);
+            cmCamera.Lens.OrthographicSize = Mathf.Clamp(newFOVSize, minSize, maxSize);
         }
         else
         {
             // Fallback for Perspective Overview
-            float newFOV = cmCamera.Lens.FieldOfView - (scroll * scrollSpeed);
-            cmCamera.Lens.FieldOfView = Mathf.Clamp(newFOV, 30f, 90f);
+            newPOVSize = cmCamera.Lens.FieldOfView - (scroll * scrollSpeed);
+            cmCamera.Lens.FieldOfView = Mathf.Clamp(newPOVSize, fovMinSize, fovMaxSize);
         }
     }
 }

@@ -95,6 +95,7 @@ public class NPC_MinerMovement : MonoBehaviour
             {
                 // Optional: check if the heap still has resources here
                 float dist = Vector3.Distance(transform.position, heap.transform.position);
+
                 if (dist < closestDistance)
                 {
                     closestDistance = dist;

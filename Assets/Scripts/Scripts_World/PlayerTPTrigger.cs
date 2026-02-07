@@ -12,7 +12,10 @@ public class PlayerTPTrigger : MonoBehaviour
     {
         if (other.GetComponent<PlayerController>())
         {
-            _hideUI.SetActive(true);
+            if (_hideUI != null)
+            {
+                _hideUI?.SetActive(true);
+            }
             _playerController = other.GetComponent<PlayerController>();
         }
     }
@@ -21,9 +24,16 @@ public class PlayerTPTrigger : MonoBehaviour
     {
         if (other.GetComponent<PlayerController>()) 
         {
-            _hideUI.SetActive(true);
-            _playerController.gameObject.transform.position = _spawnPoint.position;
-            _hideUI.SetActive(false);
+            if (_hideUI != null)
+            {
+                _hideUI?.SetActive(true);
+                _playerController.gameObject.transform.position = _spawnPoint.position;
+                _hideUI?.SetActive(false);
+            }
+            else
+            {
+                _playerController.gameObject.transform.position = _spawnPoint.position;
+            }
         }
         else if (other.GetComponent<GarbageObject>())
         {
@@ -33,5 +43,4 @@ public class PlayerTPTrigger : MonoBehaviour
         }
         
     }
-
 }

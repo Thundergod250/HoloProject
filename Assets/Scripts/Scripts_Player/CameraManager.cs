@@ -3,34 +3,63 @@ using UnityEngine;
 public class CameraManager : MonoBehaviour
 {
     [SerializeField] private GameObject freeLookCamera;
-    [SerializeField] private GameObject RTSCamera;
-    [SerializeField] PlayerMovement movement;
+    [SerializeField] private GameObject rtsCamera;
+    [SerializeField] private RTSMouseSelector rtsMouseSelector;
+    [SerializeField] public PlayerMovement movement;
     bool playerCamActive = true;
 
     private void Start()
     {
         freeLookCamera.SetActive(true);
-        RTSCamera.SetActive(false); 
+        rtsCamera.SetActive(false); 
     }
 
-    public void EnableCamera()
+    public void EnableRTSCamera()
     {
         if (freeLookCamera != null)
         {
-            freeLookCamera.gameObject.SetActive(true);
-            RTSCamera.gameObject.SetActive(false);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            freeLookCamera.gameObject.SetActive(false);
+            rtsCamera.gameObject.SetActive(true);
+            rtsMouseSelector.enabled = true;
+            movement.enabled = false;
         }
     }
 
-    public void DisableCamera()
+    public void DisableRTSCamera()
     {
         if (freeLookCamera != null)
         {
-            freeLookCamera.gameObject.SetActive(false);
-            RTSCamera.gameObject.SetActive(true);
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            freeLookCamera.gameObject.SetActive(true);
+            rtsCamera.gameObject.SetActive(false);
+            rtsMouseSelector.enabled = false;
+            movement.enabled = true;
         }
     }
     
+    public void SetCameraChange()
+    {
+        if (movement != null)
+        {
+            if (playerCamActive)
+            {
+                DisableRTSCamera();
+                playerCamActive = false;
+                movement.SetCanMove(true);
+            }
+            else if (!playerCamActive)
+            {
+                EnableRTSCamera();
+                playerCamActive = true;
+                movement.SetCanMove(false);
+            }
+        }
+    }
+
+
     public void BillboardToCamera(GameObject caller)
     {
         if (freeLookCamera == null || caller == null) return;
@@ -53,33 +82,21 @@ public class CameraManager : MonoBehaviour
     {
         if (other.GetComponent<PlayerMovement>())
         {
+            DisableRTSCamera();
+            playerCamActive = false;
+            movement.SetCanMove(true);
+
             movement = null;
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.GetComponent<PlayerMovement>())
+        if (other.GetComponent<PlayerMovement>() && Input.GetKeyDown(KeyCode.E))
         {
             movement = other.GetComponent<PlayerMovement>();
 
-            if (movement != null && Input.GetKeyDown(KeyCode.E))
-            {
-                if (playerCamActive)
-                {
-                    DisableCamera();
-                    playerCamActive = false;
-                    movement.SetCanMove(true);
-                }
-                else if (!playerCamActive)
-                {
-                    EnableCamera();
-                    playerCamActive = true;
-                    movement.SetCanMove(false);
-                }
-            }
+            SetCameraChange();
         }
     }
-
-
 }

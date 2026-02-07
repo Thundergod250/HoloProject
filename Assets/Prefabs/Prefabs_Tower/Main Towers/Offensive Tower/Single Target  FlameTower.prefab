@@ -1060,6 +1060,7 @@ GameObject:
   - component: {fileID: 6471933164807088856}
   - component: {fileID: 4308005521496981677}
   - component: {fileID: 157886178921894249}
+  - component: {fileID: 9182693712244483474}
   m_Layer: 6
   m_Name: Single Target  FlameTower
   m_TagString: Untagged
@@ -1155,6 +1156,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   startSetHealth: 200
+  _toBeDeleted: 1
 --- !u!65 &7090967949583467492
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1165,10 +1167,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -1269,6 +1271,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CurvedUI_Health
   meshRenderer: {fileID: 1139816552562539428}
   health: {fileID: 9209285657085303806}
+--- !u!114 &9182693712244483474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7795377701471874775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be9fb5c7c15018243b5cc24f1117168f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HighlightableToggle
+  interactDistance: 5
 --- !u!1 &7849389352835609314
 GameObject:
   m_ObjectHideFlags: 0

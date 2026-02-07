@@ -12,7 +12,7 @@ public class PlayerHarvesting : MonoBehaviour
 
     [SerializeField] TrashHeap_ResourceSpawner targetHeap;
     [SerializeField] GarbageObject.GarbageGroup _garbageGroupType;
-
+    [SerializeField] public DropResourceManager _resourceManagerRefererce;
     private bool _isAttacking = false; // Prevents overlapping attack loops
 
     private void Start()
@@ -29,15 +29,15 @@ public class PlayerHarvesting : MonoBehaviour
         }
 
         // Reset when the button is released
-        if (Input.GetKeyUp(KeyCode.Mouse0))
+        else if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             ResetActions();
         }
 
-        if (!targetHeap.isActiveAndEnabled)
-        {
-            targetHeap = null;
-        }
+        //else if (!targetHeap.isActiveAndEnabled)
+        //{
+        //    targetHeap = null;
+        //}
     }
 
     private async Task StartHarvestingLoop()
@@ -93,6 +93,7 @@ public class PlayerHarvesting : MonoBehaviour
         if (other.GetComponent<TrashHeap_ResourceSpawner>())
         {
             targetHeap = null;
+            _isAttacking = false;
             ResetActions(); // Stop animations if we walk away while clicking
         }
     }
