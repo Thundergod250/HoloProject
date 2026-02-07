@@ -35,7 +35,7 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
         if (other.TryGetComponent<PlayerController>(out var player))
         {
             _playerController = player;
-            SetRandomized(); // Fixed logic inside this function
+           // SetRandomized(); // Fixed logic inside this function
             _healthSlider.gameObject.SetActive(true);
 
             _howManyToSpawn = Random.Range(1, 5);
@@ -111,6 +111,7 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
             else if (_garbageGroupType == GarbageObject.GarbageGroup.Ore)
             {
                 i = Random.Range(3, 6);
+                Debug.Log("i: " + i);
                 SpawnResource(i);
                 Debug.Log(_resources[i]);
             }
