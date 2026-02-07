@@ -103,10 +103,17 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
         Debug.Log("Set Resource Logic Running");
         if (!_randomized)
         {
+            int i;
             // Use your Enum-based logic
             if (_garbageGroupType == GarbageObject.GarbageGroup.Plastic) SpawnResource(0);
             else if (_garbageGroupType == GarbageObject.GarbageGroup.Organic) SpawnResource(1);
             else if (_garbageGroupType == GarbageObject.GarbageGroup.Metal) SpawnResource(2);
+            else if (_garbageGroupType == GarbageObject.GarbageGroup.Ore)
+            {
+                i = Random.Range(3, 6);
+                SpawnResource(i);
+                Debug.Log(_resources[i]);
+            }
         }
         else
         {
