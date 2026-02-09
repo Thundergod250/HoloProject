@@ -15,10 +15,11 @@ public class Spawner : MonoBehaviour
     [SerializeField] private bool spawningWave = true;
     [SerializeField] private bool isNighttime;
     [SerializeField] private WaveData activeWave;
-    [SerializeField] private bool testingMode;
-    [SerializeField] private float timeAfterWave = 10f;
     private bool waveInProgress;
 
+    [Header("Var Safe to Adjust")]
+    [SerializeField] private float timeAfterWave = 10f;
+    [SerializeField] private bool testingMode;
 
     [Header("Waypoints")]
     [SerializeField] private List<Transform> wayPoints = new List<Transform>();
