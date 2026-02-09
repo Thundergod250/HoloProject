@@ -285,6 +285,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 211afe5f56a31924eaa05570522442bf, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4705660966619114808}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 211afe5f56a31924eaa05570522442bf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -5100736886734144774}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 211afe5f56a31924eaa05570522442bf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1494257175690928449}
   m_SourcePrefab: {fileID: 100100000, guid: 211afe5f56a31924eaa05570522442bf, type: 3}
 --- !u!1 &8078221279830555554 stripped
 GameObject:
@@ -353,6 +359,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MineralObject
   _resourceType: 1
   _resourceManager: {fileID: 0}
+  isPickedUp: 1
 --- !u!64 &4705660966619114808
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -375,6 +382,68 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4308292583003311895, guid: 4b23071597828bc44bbebdf265df15e8, type: 3}
+--- !u!114 &-5100736886734144774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8078221279830555554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9904cccab47a4c4f931f3b927a97bad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  interactName: Grab
+  isInteractable: 1
+  EvtOnFocus:
+    m_PersistentCalls:
+      m_Calls: []
+  EvtOnFocusExit:
+    m_PersistentCalls:
+      m_Calls: []
+  EvtOnInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  EvtOnInteractWithObj:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -1494257175690928449}
+        m_TargetAssemblyTypeName: GrabManipulator, Assembly-CSharp
+        m_MethodName: _Grab
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3703168117179705581}
+        m_TargetAssemblyTypeName: MineralObject, Assembly-CSharp
+        m_MethodName: PickedUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &-1494257175690928449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8078221279830555554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7842c0f9522958e4183189877e6c26f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GrabManipulator
 --- !u!4 &8885685458906734872 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 211afe5f56a31924eaa05570522442bf, type: 3}
