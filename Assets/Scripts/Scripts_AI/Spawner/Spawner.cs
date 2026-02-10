@@ -27,18 +27,18 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("Night: " + lightingManager._isNight);
         waveVar = 0;
         activeWave = wave[waveVar];
         if(!testingMode)
         {
-            if (lightingManager._isNight)
+            if (!lightingManager._isNight)
             {
-                StartWave();
-            }
-            else
-            {
-                // Optional: start a coroutine that waits until night begins
                 StartCoroutine(WaitForNight());
+            }
+            else if (lightingManager._isNight)
+            {              
+                StartWave();
             }
         }
         else

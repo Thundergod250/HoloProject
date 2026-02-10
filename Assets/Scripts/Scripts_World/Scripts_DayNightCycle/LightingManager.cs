@@ -33,6 +33,10 @@ public class LightingManager : MonoBehaviour
         return (int)_timeOfDay;
     }
 
+    private void Start()
+    {
+        _isNight = false;
+    }
 
     private void Update()
     {
