@@ -138,5 +138,16 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
         {
             rb.AddForce(Vector3.up * _upwardForce, ForceMode.Impulse);
         }
+
+        DisableCollision(0.5f, spawnedObj);
+    }
+
+    private IEnumerator DisableCollision(float timer, GameObject ore)
+    {
+        ore.GetComponent<MeshCollider>().enabled = false;
+        ore.GetComponent<SphereCollider>().enabled = false;
+        yield return new WaitForSeconds(timer);
+        ore.GetComponent<MeshCollider>().enabled = true;
+        ore.GetComponent<SphereCollider>().enabled = true;
     }
 }
