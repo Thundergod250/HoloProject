@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Attack_Enemy
   navigation_Enemy: {fileID: 7279398973919942167}
+  effects_Enemy: {fileID: 0}
   targeting: 0
   bullet: {fileID: 3674529731938632888, guid: 22b32847aa556ea41af26b916b2fe3f0, type: 3}
   gunBarrel: {fileID: 4560558392570752542}
@@ -220,8 +221,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 20
-  m_Center: {x: -1, y: 0, z: 0}
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &7665023131821886088
 NavMeshAgent:
   m_ObjectHideFlags: 0

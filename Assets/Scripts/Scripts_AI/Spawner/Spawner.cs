@@ -15,10 +15,15 @@ public class Spawner : MonoBehaviour
     [SerializeField] private bool spawningWave = true;
     [SerializeField] private bool isNighttime;
     [SerializeField] private WaveData activeWave;
+    private bool waveInProgress;
+
+    [Header("Var Safe to Adjust")]
+    [SerializeField] private float timeAfterWave = 10f;
     [SerializeField] private bool testingMode;
 
     [Header("Waypoints")]
     [SerializeField] private List<Transform> wayPoints = new List<Transform>();
+
 
     private void Start()
     {
@@ -53,6 +58,8 @@ public class Spawner : MonoBehaviour
             yield return new WaitForSeconds(interval);
         }
 
+        yield return new WaitForSeconds(timeAfterWave);
+
         OnWaveFinishedSpawning();
     }
 
@@ -68,6 +75,7 @@ public class Spawner : MonoBehaviour
 
     void OnWaveFinishedSpawning()
     {
+        waveInProgress = false;
         GoToNextWave();
     }
 
@@ -86,16 +94,13 @@ public class Spawner : MonoBehaviour
 
     public void StartWave()
     {
-        if (!spawningWave)
+        if (!spawningWave || waveInProgress)
             return;
 
-        if(lightingManager._isNight)
+        if (lightingManager._isNight)
         {
+            waveInProgress = true;
             StartCoroutine(spawnEnemy(activeWave.timeBetweenSpawn));
-        }
-        else
-        {
-            return;
         }
     }
 }
