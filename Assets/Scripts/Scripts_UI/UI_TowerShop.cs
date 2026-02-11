@@ -59,7 +59,7 @@ public class UI_TowerShop : MonoBehaviour
         {
             if (cardInfo.towerCardPrefab == null)
             {
-                Debug.LogError($"Card prefab missing for {cardInfo.title}");
+                Debug.LogError($"Card prefab missing for {cardInfo.towerName}");
                 continue;
             }
 

@@ -13,21 +13,27 @@ MonoBehaviour:
   m_Name: DefensiveTowers
   m_EditorClassIdentifier: Assembly-CSharp::TowerCategoryData_SO
   cards:
-  - title: Healing Tower
+  - towerName: Heal Tower
     description: Heals the Player
-    cost: 20
-    icon: {fileID: 0}
+    towerIcon: {fileID: 0}
+    neededUpgradeResourceType: 1
+    oreCost: 1
+    oreIcon: {fileID: 21300000, guid: 02332038d6998734d86e3b1fddb1857a, type: 3}
     towerPrefab: {fileID: 7795377701471874775, guid: 1b65dfc4bfaf8fb4baca69d2b75d3297, type: 3}
     towerCardPrefab: {fileID: 9017402507749122417, guid: dc4e15fd578b3ed41bebcc3e3efb07ef, type: 3}
-  - title: Slow Field Tower
+  - towerName: Slow Tower
     description: Slows down Enemies near by
-    cost: 20
-    icon: {fileID: 0}
+    towerIcon: {fileID: 0}
+    neededUpgradeResourceType: 1
+    oreCost: 1
+    oreIcon: {fileID: 21300000, guid: 02332038d6998734d86e3b1fddb1857a, type: 3}
     towerPrefab: {fileID: 7795377701471874775, guid: 7fe333536c5ea3e49a50be509233b9f1, type: 3}
     towerCardPrefab: {fileID: 9017402507749122417, guid: dc4e15fd578b3ed41bebcc3e3efb07ef, type: 3}
-  - title: Repair Tower
+  - towerName: Repair Tower
     description: Repair health of near by towers
-    cost: 20
-    icon: {fileID: 0}
+    towerIcon: {fileID: 0}
+    neededUpgradeResourceType: 1
+    oreCost: 1
+    oreIcon: {fileID: 21300000, guid: 02332038d6998734d86e3b1fddb1857a, type: 3}
     towerPrefab: {fileID: 7795377701471874775, guid: cece0c658909bb240abbdb303b8af21a, type: 3}
     towerCardPrefab: {fileID: 9017402507749122417, guid: dc4e15fd578b3ed41bebcc3e3efb07ef, type: 3}

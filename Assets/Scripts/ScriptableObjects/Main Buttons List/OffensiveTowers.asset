@@ -13,21 +13,27 @@ MonoBehaviour:
   m_Name: OffensiveTowers
   m_EditorClassIdentifier: Assembly-CSharp::TowerCategoryData_SO
   cards:
-  - title: Single Target Tower
+  - towerName: Single Fire
     description: Shoots enemy
-    cost: 20
-    icon: {fileID: 0}
+    towerIcon: {fileID: 0}
+    neededUpgradeResourceType: 0
+    oreCost: 1
+    oreIcon: {fileID: 21300000, guid: 920a71200444c1f42abaf19d08e9a43a, type: 3}
     towerPrefab: {fileID: 7795377701471874775, guid: 090254ab1ad366e4ca33287a7c66759d, type: 3}
     towerCardPrefab: {fileID: 9017402507749122417, guid: dc4e15fd578b3ed41bebcc3e3efb07ef, type: 3}
-  - title: Long Ranged Tower
+  - towerName: Tower TEST
     description: 
-    cost: 20
-    icon: {fileID: 0}
+    towerIcon: {fileID: 0}
+    neededUpgradeResourceType: 0
+    oreCost: 1
+    oreIcon: {fileID: 21300000, guid: 920a71200444c1f42abaf19d08e9a43a, type: 3}
     towerPrefab: {fileID: 1065772514863795281, guid: e8036666d76b89f4a94e91ebdfb671c6, type: 3}
     towerCardPrefab: {fileID: 9017402507749122417, guid: dc4e15fd578b3ed41bebcc3e3efb07ef, type: 3}
-  - title: Flame Tower
+  - towerName: Fire Enemy Tower
     description: Applies Fire to Enemy
-    cost: 20
-    icon: {fileID: 0}
+    towerIcon: {fileID: 0}
+    neededUpgradeResourceType: 0
+    oreCost: 1
+    oreIcon: {fileID: 21300000, guid: 920a71200444c1f42abaf19d08e9a43a, type: 3}
     towerPrefab: {fileID: 7795377701471874775, guid: 437070fd48821b047a3358cf39583fed, type: 3}
     towerCardPrefab: {fileID: 9017402507749122417, guid: dc4e15fd578b3ed41bebcc3e3efb07ef, type: 3}
