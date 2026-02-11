@@ -66,6 +66,7 @@ public class Health : MonoBehaviour
     public void ReviveHealth()
     {
         currentHealth = startSetHealth;
+        isDead = false;
     }
 
     public int GetCurrentHealth() => currentHealth;

@@ -19,7 +19,7 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
     private PlayerController _playerController;
 
     [SerializeField] bool ForTesting = false;
-    private bool hasSpawned = false; // Flag to prevent multiple triggerings
+    [SerializeField] private bool hasSpawned = false; // Flag to prevent multiple triggerings
 
     private void Start()
     {
@@ -149,5 +149,10 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
         yield return new WaitForSeconds(timer);
         ore.GetComponent<MeshCollider>().enabled = true;
         ore.GetComponent<SphereCollider>().enabled = true;
+    }
+
+    public void ResetBool()
+    {
+        hasSpawned = false; 
     }
 }
