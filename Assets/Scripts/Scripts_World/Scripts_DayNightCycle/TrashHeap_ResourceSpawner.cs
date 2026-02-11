@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class TrashHeap_ResourceSpawner : MonoBehaviour
 {
     [SerializeField] protected List<GameObject> _resources;
+    [SerializeField] protected Transform resourceSpawnPoint;
     [SerializeField] protected float _spawnDelaySeconds = 2f;
     [SerializeField] protected float _upwardForce = 2f;
 
@@ -132,14 +133,16 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
         if (_resources == null || _resources.Count <= targetType) return;
 
         GameObject prefab = _resources[targetType];
-        GameObject spawnedObj = Instantiate(prefab, transform.position, Quaternion.identity);
+        GameObject spawnedObj = Instantiate(prefab, resourceSpawnPoint.transform.position, Quaternion.identity);
 
-        if (spawnedObj.TryGetComponent<Rigidbody>(out Rigidbody rb))
+        DisableCollision(0.5f, spawnedObj);
+
+        /*if (spawnedObj.TryGetComponent<Rigidbody>(out Rigidbody rb))
         {
             rb.AddForce(Vector3.up * _upwardForce, ForceMode.Impulse);
         }
-
-        DisableCollision(0.5f, spawnedObj);
+        */
+       
     }
 
     private IEnumerator DisableCollision(float timer, GameObject ore)
@@ -147,6 +150,10 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
         ore.GetComponent<MeshCollider>().enabled = false;
         ore.GetComponent<SphereCollider>().enabled = false;
         yield return new WaitForSeconds(timer);
+        if (ore.TryGetComponent<Rigidbody>(out Rigidbody rb))
+        {
+            rb.AddForce(Vector3.up * _upwardForce, ForceMode.Impulse);
+        }
         ore.GetComponent<MeshCollider>().enabled = true;
         ore.GetComponent<SphereCollider>().enabled = true;
     }

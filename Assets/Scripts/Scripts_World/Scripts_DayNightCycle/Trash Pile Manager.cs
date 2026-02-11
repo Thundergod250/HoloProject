@@ -22,7 +22,7 @@ public class TrashPileManager : MonoBehaviour
             _trashHeaps[i]?.gameObject.SetActive(true);
             _trashHeaps[i]?.gameObject.GetComponent<Health>().ReviveHealth();
 
-            //_trashHeaps[i]?.gameObject.GetComponent<TrashHeap_ResourceSpawner>().ResetBool();
+            _trashHeaps[i]?.gameObject.GetComponent<TrashHeap_ResourceSpawner>().ResetBool();
 
             if (_trashHeaps[i]?.GetComponent<Health>().GetCurrentHealth() <= 0)
             {
