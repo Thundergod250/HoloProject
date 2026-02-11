@@ -5,16 +5,22 @@ public class MineralObject : MonoBehaviour
     public upgradeResourceType _resourceType;
     [SerializeField] public DropResourceManager _resourceManager; // will be injected when spawned
     [SerializeField] public bool isPickedUp = false;
+    [SerializeField] private bool hasBeenCollected = false;
+    [SerializeField] public int amountToAddInResource = 0;
 
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<PlayerHarvesting>() && isPickedUp)
+        if (hasBeenCollected)
+            return;
+
+        if (other.TryGetComponent(out PlayerHarvesting targetPlayer) && isPickedUp)
         {
-            PlayerHarvesting targetPlayer = other.GetComponent<PlayerHarvesting>();
+            hasBeenCollected=true;
 
             _resourceManager = targetPlayer._resourceManagerRefererce;
-            _resourceManager.AddingToResourceType(_resourceType, 1);
+            _resourceManager.AddingToResourceType(_resourceType, amountToAddInResource);
+            Debug.Log("Adding To Ores");
 
             Destroy(this.gameObject);
         }
