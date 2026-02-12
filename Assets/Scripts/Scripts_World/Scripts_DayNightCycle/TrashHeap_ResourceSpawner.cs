@@ -112,9 +112,7 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
             else if (_garbageGroupType == GarbageObject.GarbageGroup.Ore)
             {
                 i = Random.Range(3, 6);
-                Debug.Log("i: " + i);
                 SpawnResource(i);
-                Debug.Log(_resources[i]);
             }
         }
         else
@@ -149,11 +147,11 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
     {
         ore.GetComponent<MeshCollider>().enabled = false;
         ore.GetComponent<SphereCollider>().enabled = false;
-        yield return new WaitForSeconds(timer);
         if (ore.TryGetComponent<Rigidbody>(out Rigidbody rb))
         {
             rb.AddForce(Vector3.up * _upwardForce, ForceMode.Impulse);
         }
+        yield return new WaitForSeconds(timer);
         ore.GetComponent<MeshCollider>().enabled = true;
         ore.GetComponent<SphereCollider>().enabled = true;
     }
