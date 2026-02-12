@@ -112,9 +112,7 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
             else if (_garbageGroupType == GarbageObject.GarbageGroup.Ore)
             {
                 i = Random.Range(3, 6);
-                Debug.Log("i: " + i);
                 SpawnResource(i);
-                Debug.Log(_resources[i]);
             }
         }
         else

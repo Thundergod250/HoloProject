@@ -38,6 +38,12 @@ public class PlayerHarvesting : MonoBehaviour
         //{
         //    targetHeap = null;
         //}
+        if(targetHeap != null && targetHeap.GetComponent<Health>().GetCurrentHealth() <= 0)
+        {
+            targetHeap = null;
+            _isAttacking = false;
+            ResetActions(); // Stop animations if we walk away while clicking
+        }
     }
 
     private async Task StartHarvestingLoop()
@@ -77,6 +83,7 @@ public class PlayerHarvesting : MonoBehaviour
         if (_garbageGroupType == GarbageObject.GarbageGroup.Plastic) { _miningAction.SetActive(true); }
         else if (_garbageGroupType == GarbageObject.GarbageGroup.Organic) { _shovelingAction.SetActive(true); }
         else if (_garbageGroupType == GarbageObject.GarbageGroup.Metal) { _drillingAction.SetActive(true); }
+        else if (_garbageGroupType == GarbageObject.GarbageGroup.Ore) { _drillingAction.SetActive(true); }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -90,11 +97,11 @@ public class PlayerHarvesting : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<TrashHeap_ResourceSpawner>())
-        {
-            targetHeap = null;
-            _isAttacking = false;
-            ResetActions(); // Stop animations if we walk away while clicking
-        }
+        /* if (other.GetComponent<TrashHeap_ResourceSpawner>())
+         {
+             targetHeap = null;
+             _isAttacking = false;
+             ResetActions(); // Stop animations if we walk away while clicking
+         }*/
     }
 }
