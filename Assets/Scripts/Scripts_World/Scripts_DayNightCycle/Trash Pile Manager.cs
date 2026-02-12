@@ -27,7 +27,7 @@ public class TrashPileManager : MonoBehaviour
             if (_trashHeaps[i]?.GetComponent<Health>().GetCurrentHealth() <= 0)
             {
                 _trashHeaps[i].GetComponent<Health>().Heal(10);
-            }
+            }   
         }
         Debug.Log("Enabled All Heaps");
     }

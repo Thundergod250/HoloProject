@@ -14,9 +14,9 @@ public class MineralObject : MonoBehaviour
         if (hasBeenCollected)
             return;
 
-        if (other.TryGetComponent(out PlayerHarvesting targetPlayer) && isPickedUp)
+        if (other.TryGetComponent(out PlayerHarvesting targetPlayer) && !isPickedUp)
         {
-            hasBeenCollected=true;
+            hasBeenCollected = true;
 
             _resourceManager = targetPlayer._resourceManagerRefererce;
             _resourceManager.AddingToResourceType(_resourceType, amountToAddInResource);

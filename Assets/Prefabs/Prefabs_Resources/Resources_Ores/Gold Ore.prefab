@@ -277,12 +277,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ddca5e7950ef3ff40aceef5b2d55801b, type: 3}
       insertIndex: -1
       addedObject: {fileID: -8181667902677691599}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ddca5e7950ef3ff40aceef5b2d55801b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6635763841443765476}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ddca5e7950ef3ff40aceef5b2d55801b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5744732786688850354}
   m_SourcePrefab: {fileID: 100100000, guid: ddca5e7950ef3ff40aceef5b2d55801b, type: 3}
 --- !u!1 &5172804434979823616 stripped
 GameObject:
@@ -373,71 +367,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MineralObject
   _resourceType: 3
   _resourceManager: {fileID: 0}
-  isPickedUp: 1
+  isPickedUp: 0
   hasBeenCollected: 0
   amountToAddInResource: 1
---- !u!114 &6635763841443765476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5172804434979823616}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9904cccab47a4c4f931f3b927a97bad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Interactable
-  interactName: Grab
-  isInteractable: 1
-  EvtOnFocus:
-    m_PersistentCalls:
-      m_Calls: []
-  EvtOnFocusExit:
-    m_PersistentCalls:
-      m_Calls: []
-  EvtOnInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  EvtOnInteractWithObj:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5744732786688850354}
-        m_TargetAssemblyTypeName: GrabManipulator, Assembly-CSharp
-        m_MethodName: _Grab
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: -8181667902677691599}
-        m_TargetAssemblyTypeName: MineralObject, Assembly-CSharp
-        m_MethodName: PickedUp
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &5744732786688850354
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5172804434979823616}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7842c0f9522958e4183189877e6c26f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GrabManipulator
 --- !u!4 &5513160855492623034 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ddca5e7950ef3ff40aceef5b2d55801b, type: 3}
