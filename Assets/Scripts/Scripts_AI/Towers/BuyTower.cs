@@ -14,6 +14,8 @@ public class BuyTower : MonoBehaviour
     private int cost;
     public upgradeResourceType targetResourceType;
 
+
+
     private void OnEnable()
     {
         CurrentTowerNode = GameManager.Instance.CurrentTowerNode;
@@ -43,6 +45,7 @@ public class BuyTower : MonoBehaviour
         }
         else if (DropResourceManager?.GetResourceType(resourceTarget) < cost)
         {
+            GameManager.Instance.UIManager.UI_Gold.NotEnoughResource(resourceTarget);
             Debug.Log("Not enough ores " + resourceTarget.ToString() + resourceTarget);
             return false;
         }
@@ -53,17 +56,16 @@ public class BuyTower : MonoBehaviour
     public void _BuyButtonClicked()
     {
         // OLD
-        if (TrySpendGold(cost))
-        {
-            DespawnCurrentTower();
-            EvtOnBuySuccessful?.Invoke(TowerCardManager.TowerPrefab);
-        }
+        //if (TrySpendGold(cost))
+        //{
+        //    DespawnCurrentTower();
+        //    EvtOnBuySuccessful?.Invoke(TowerCardManager.TowerPrefab);
+        //}
 
         // NOT WORKING
         if (TrySpendOreReqiurement(targetResourceType, cost))
         {
             //targetResourceType = GetComponentInChildren<CardInfo>().neededUpgradeResourceType;
-
 
             DropResourceManager?.SpendingToResourceType(targetResourceType, cost);
             Debug.Log("Bought Tower?");
@@ -75,11 +77,11 @@ public class BuyTower : MonoBehaviour
     public void _DespawnButtonClicked()
     {
         // OLD
-        if (TrySpendGold(cost))
-        {
-            DespawnCurrentTower();
-            GameManager.Instance.GoldManager?.AddGold(cost); // refund
-        }
+        //if (TrySpendGold(cost))
+        //{
+        //    DespawnCurrentTower();
+        //    GameManager.Instance.GoldManager?.AddGold(cost); // refund
+        //}
 
         if (TrySpendOreReqiurement(targetResourceType, cost))
         {
@@ -91,11 +93,11 @@ public class BuyTower : MonoBehaviour
     public void _RepairButtonClicked()
     {
         // OLD
-        if (TrySpendGold(cost))
-        {
-            CurrentTowerNode?.towerController?.TowerHealth
-                ?.Heal(CurrentTowerNode.towerController.TowerHealth.GetMaxHealth());
-        }
+        //if (TrySpendGold(cost))
+        //{
+        //    CurrentTowerNode?.towerController?.TowerHealth
+        //        ?.Heal(CurrentTowerNode.towerController.TowerHealth.GetMaxHealth());
+        //}
 
         if (TrySpendOreReqiurement(targetResourceType, cost))
         {
