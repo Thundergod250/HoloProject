@@ -34,6 +34,11 @@ public class LightingManager : MonoBehaviour
         return (int)_timeOfDay;
     }
 
+    public void ForceTimeOfDay(int targetTime)
+    {
+        _timeOfDay = targetTime;
+    }
+
     private void Start()
     {
         _isNight = false;

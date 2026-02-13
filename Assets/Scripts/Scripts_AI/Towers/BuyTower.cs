@@ -10,12 +10,14 @@ public class BuyTower : MonoBehaviour
     public TowerBuyEvent EvtOnBuySuccessful;
     
     private TowerNodeManager CurrentTowerNode;
+    private DropResourceManager DropResourceManager;
     private int cost;
     public upgradeResourceType targetResourceType;
 
     private void OnEnable()
     {
         CurrentTowerNode = GameManager.Instance.CurrentTowerNode;
+        DropResourceManager = GameManager.Instance.DropManager;
         cost = TowerCardManager.GetCostValue();
     }
 
@@ -32,16 +34,20 @@ public class BuyTower : MonoBehaviour
     public bool TrySpendOreReqiurement(upgradeResourceType resourceTarget, int cost)
     {
         //GameManager.Instance.DropManager?.SpendingToResourceType(resourceTarget, amount);
-        if (GameManager.Instance.DropManager?.GetResourceType(resourceTarget) >= cost)
+        Debug.Log(resourceTarget + resourceTarget.ToString());
+
+        if (DropResourceManager?.GetResourceType(resourceTarget) >= cost)
         {
             Debug.Log("Have ores " + resourceTarget.ToString() + resourceTarget);
             return true;
         }
-        else
+        else if (DropResourceManager?.GetResourceType(resourceTarget) < cost)
         {
             Debug.Log("Not enough ores " + resourceTarget.ToString() + resourceTarget);
             return false;
         }
+        Debug.Log("Skipped whole code");
+        return false;
     }
 
     public void _BuyButtonClicked()
@@ -56,7 +62,10 @@ public class BuyTower : MonoBehaviour
         // NOT WORKING
         if (TrySpendOreReqiurement(targetResourceType, cost))
         {
-            GameManager.Instance.DropManager?.SpendingToResourceType(targetResourceType, cost);
+            //targetResourceType = GetComponentInChildren<CardInfo>().neededUpgradeResourceType;
+
+
+            DropResourceManager?.SpendingToResourceType(targetResourceType, cost);
             Debug.Log("Bought Tower?");
             DespawnCurrentTower();
             EvtOnBuySuccessful?.Invoke(TowerCardManager.TowerPrefab);
@@ -75,7 +84,7 @@ public class BuyTower : MonoBehaviour
         if (TrySpendOreReqiurement(targetResourceType, cost))
         {
             DespawnCurrentTower();
-            GameManager.Instance.DropManager?.AddingToResourceType(targetResourceType, cost); // refund
+            DropResourceManager?.AddingToResourceType(targetResourceType, cost); // refund
         }
     }
 

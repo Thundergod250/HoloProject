@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Attack_Enemy : MonoBehaviour
@@ -24,7 +25,11 @@ public class Attack_Enemy : MonoBehaviour
 
     [Header("Melee")]
     [SerializeField] private float attackSpeed;
+    [SerializeField] private int damage;
+    private bool isAttacking = false;
 
+
+    public Animator animator;
     public Transform target;
     public Targeting archetype => targeting;
 
@@ -73,11 +78,29 @@ public class Attack_Enemy : MonoBehaviour
         }
         else if(targeting == Targeting.Melee)
         {
-            //*insert attack scipt
+            if (!isAttacking)
+            {
+                animator.SetBool("isAttacking", true);
+                StartCoroutine(MeleeAttackSpeed());
+            }
         }
         else if (targeting == Targeting.Neutral)
         {
             //*insert attack scipt
         }
+    }
+
+    public IEnumerator MeleeAttackSpeed()
+    {
+        isAttacking = true; // prevent multiple coroutines
+        Debug.Log("DANEG");
+
+        // Wait for attack cooldown
+        yield return new WaitForSeconds(attackSpeed);
+
+        // Deal damage
+        target.GetComponent<Health>().TakeDamage(damage);
+
+        isAttacking = false; // allow next attack
     }
 }
