@@ -4,10 +4,11 @@ using UnityEngine.UI;
 
 public class TowerCardManager : MonoBehaviour, IPoolable
 {
-    public Image Image;
-    public TextMeshProUGUI Title;
+    public Image TowerImage;
+    public TextMeshProUGUI TowerName;
     public TextMeshProUGUI Description;
-    public TextMeshProUGUI Cost;
+    public Image OreCostImage;
+    public TextMeshProUGUI OreCost;
     public Button Button;
     public GameObject TowerPrefab;
 
@@ -22,15 +23,16 @@ public class TowerCardManager : MonoBehaviour, IPoolable
 
     public int GetCostValue()
     {
-        return int.TryParse(Cost.text, out int value) ? value : 0;
+        return int.TryParse(OreCost.text, out int value) ? value : 0;
     }
 
     public void ResetCard(CardInfo info)
     {
-        Title.text = info.title;
+        TowerName.text = info.towerName;
         Description.text = info.description;
-        Cost.text = info.cost.ToString();
-        Image.sprite = info.icon;
+        OreCostImage.sprite = info.oreIcon;
+        OreCost.text = info.oreCost.ToString();
+        TowerImage.sprite = info.towerIcon;
         TowerPrefab = info.towerPrefab;
     }
     
