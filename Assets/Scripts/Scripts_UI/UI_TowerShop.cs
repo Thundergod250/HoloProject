@@ -30,6 +30,8 @@ public class UI_TowerShop : MonoBehaviour
             { "Defensive", defensiveButton },
             { "Utility", utilityButton }
         };
+
+        OpenOffensiveTowers();
     }
 
     public void SetUpgradeCategoryData(TowerCategoryData_SO data) => towerUpgradesData = data;
@@ -101,7 +103,7 @@ public class UI_TowerShop : MonoBehaviour
     {
         shopButtons["Upgrades"].SetActive(showUpgrades);
         shopButtons["Offensive"].SetActive(true);
-        shopButtons["Defensive"].SetActive(true);
+        //shopButtons["Defensive"].SetActive(true);
         //shopButtons["Utility"].SetActive(true);
     }
 }

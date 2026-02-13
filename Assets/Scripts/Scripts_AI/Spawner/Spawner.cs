@@ -119,4 +119,11 @@ public class Spawner : MonoBehaviour
         waveInProgress = true;
         StartCoroutine(spawnEnemy(activeWave.timeBetweenSpawn));
     }
+
+    public void SpawnEnemy(GameObject DebugEnemies)
+    {
+        GameObject newEnemy = Instantiate(DebugEnemies, transform.position, Quaternion.identity);
+
+        newEnemy.GetComponent<Navigation_Enemy>().wayPoints = wayPoints;
+    }
 }
