@@ -8,6 +8,7 @@ public class TowerAndEnemy_Archetype : MonoBehaviour
         Plastic,
         Metal,
         All,
+        Base,
         None
     }
 

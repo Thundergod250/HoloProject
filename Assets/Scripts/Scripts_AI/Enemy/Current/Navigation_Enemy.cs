@@ -2,6 +2,7 @@ using NUnit.Framework;
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.AI;
+using Unity.VisualScripting;
 
 public class Navigation_Enemy : MonoBehaviour
 {
@@ -12,13 +13,13 @@ public class Navigation_Enemy : MonoBehaviour
 
     [Header("Colliders")]
     [SerializeField] private SphereCollider sphereCollider;
+    private bool meleeTrigger = false;
 
     [Header("Navigation Target")]
-    [SerializeField] private List<GameObject> targetsAcquired = new List<GameObject>();
     [SerializeField] GameObject currentTarget;
     [SerializeField] private int wayPointIndex;
     [SerializeField] private float moveSpeed;
-
+    public List<GameObject> targetsAcquired = new List<GameObject>();
     public List<Transform> wayPoints = new List<Transform>();
 
 
@@ -67,7 +68,7 @@ public class Navigation_Enemy : MonoBehaviour
         {
             if(other.GetComponent<Health>().GetCurrentHealth() != 0)
             {
-                if (other.GetComponent<TowerAndEnemy_Archetype>().material == target_Arch.material || target_Arch.material == TowerAndEnemy_Archetype.TypeAndTarget.All)
+                if (other.GetComponent<TowerAndEnemy_Archetype>().material == target_Arch.material || target_Arch.material == TowerAndEnemy_Archetype.TypeAndTarget.All) // if Type is same as enemy or is All
                 {
                     targetsAcquired.Add(other.gameObject);
                 }
@@ -82,6 +83,14 @@ public class Navigation_Enemy : MonoBehaviour
         if (targetsAcquired.Count == 0)
         {
 
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.GetComponent<TowerBase>() != null)
+        {
+            meleeTrigger = true;
         }
     }
     #endregion
@@ -114,7 +123,7 @@ public class Navigation_Enemy : MonoBehaviour
         {
             OnReachedTarget();
         }
-        else if (distance <= 3.5f && attack_Enemy.archetype == Attack_Enemy.Targeting.Melee) // revert back to 4.5 if enemies have anims
+        else if (meleeTrigger && attack_Enemy.archetype == Attack_Enemy.Targeting.Melee) 
         {
             OnReachedTarget();
         }
@@ -133,10 +142,13 @@ public class Navigation_Enemy : MonoBehaviour
 
     public void TargetHasDied()
     {
+        StopCoroutine(attack_Enemy.MeleeAttackSpeed());
+        attack_Enemy.animator.SetBool("isAttacking", false);
         targetsAcquired.Remove(currentTarget);
         currentTarget.GetComponent<Health>().Die();
         currentTarget = null;
         attack_Enemy.target = null;
+
         navigation.isStopped = false;
 
         navigation.ResetPath();
@@ -200,7 +212,7 @@ public class Navigation_Enemy : MonoBehaviour
 
         if (wayPointIndex >= wayPoints.Count)
         {
-            helth.Die();
+           // helth.Die();
             return;
         }
 

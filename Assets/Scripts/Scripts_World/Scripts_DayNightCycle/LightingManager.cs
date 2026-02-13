@@ -12,10 +12,11 @@ public class LightingManager : MonoBehaviour
     [SerializeField] private LightingPreset _lightPreset;
 
 
-    [Header("Variables")] // Change 2nd number (24 total secs  * 15  = (360 secs) == 6 mins per day)
-    [SerializeField, Range(0, 360)] private float _timeOfDay;
+    [Header("Variables")] 
+    // Changed to 240 secs == 4 Mins per day 
+    [SerializeField] private float _timeOfDay;
     [SerializeField] public bool _isNight = false;
-
+    [SerializeField] float _maxTimeOfDay = 180;
 
     [SerializeField] protected Volume _hdriCubeSkyDay;
     [SerializeField] protected Volume _hdriCubeSkyNight;
@@ -33,6 +34,15 @@ public class LightingManager : MonoBehaviour
         return (int)_timeOfDay;
     }
 
+    public void ForceTimeOfDay(int targetTime)
+    {
+        _timeOfDay = targetTime;
+    }
+
+    private void Start()
+    {
+        _isNight = false;
+    }
 
     private void Update()
     {
@@ -42,18 +52,22 @@ public class LightingManager : MonoBehaviour
         if (Application.isPlaying)
         {
             _timeOfDay += Time.deltaTime;
-            _timeOfDay %= 360;
-            UpdateTimeOfDay(_timeOfDay / 360f);
+            _timeOfDay %= _maxTimeOfDay;
+            UpdateTimeOfDay(_timeOfDay / _maxTimeOfDay);
+        }
+        else if (_timeOfDay > _maxTimeOfDay)
+        {
+            _timeOfDay = 0f;
         }
         else
         {
-            UpdateTimeOfDay(_timeOfDay / 360f);
+            UpdateTimeOfDay(_timeOfDay / _maxTimeOfDay);
         }
 
         // --- HDRI TRIGGER LOGIC ---
 
-        // 1. Night to Day Trigger (60 to 65) // 0 - 220 Day
-        if (_timeOfDay >= 0 && _timeOfDay < 220) 
+        // 1. Night to Day Trigger (60 to 65) // 0 - 150 Day
+        if (_timeOfDay >= 0 && _timeOfDay < 120) 
         {
             int targetIndex = _isMines ? 1 : (_isSnow ? 3 : 0);
 
@@ -65,7 +79,7 @@ public class LightingManager : MonoBehaviour
             _isNight = false;
         }
         // 2. Day to Night Trigger (240 to 245) // 221 - 360 Night
-        else if (_timeOfDay >= 221 && _timeOfDay < 360) 
+        else if (_timeOfDay >= 121 && _timeOfDay < _maxTimeOfDay) 
         {
             int targetIndex = 1; // Your Moonless/Night HDRI
 
@@ -113,7 +127,7 @@ public class LightingManager : MonoBehaviour
         activeVol.weight = 0f;
     }
 
-    // Currently 360 Seconds is 1 Day
+    // Currently 240 Seconds is 1 Day
     // Night time At 300 (Reset Piles) -> 60 Night end
 
     private void UpdateTimeOfDay(float timePercent)

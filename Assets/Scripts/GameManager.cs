@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public CameraManager CameraManager;
     public UI_Manager UIManager;
     public GoldManager GoldManager;
+    public DropResourceManager DropManager;
     public ObjectPooling ObjectPooling;
     public DebugCheats DebugCheats;
 

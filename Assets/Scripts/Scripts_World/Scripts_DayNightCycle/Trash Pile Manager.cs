@@ -20,11 +20,14 @@ public class TrashPileManager : MonoBehaviour
         for (int i = 0; i < _trashHeaps.Count; i++)
         {
             _trashHeaps[i]?.gameObject.SetActive(true);
+            _trashHeaps[i]?.gameObject.GetComponent<Health>().ReviveHealth();
+
+            _trashHeaps[i]?.gameObject.GetComponent<TrashHeap_ResourceSpawner>().ResetBool();
 
             if (_trashHeaps[i]?.GetComponent<Health>().GetCurrentHealth() <= 0)
             {
                 _trashHeaps[i].GetComponent<Health>().Heal(10);
-            }
+            }   
         }
         Debug.Log("Enabled All Heaps");
     }

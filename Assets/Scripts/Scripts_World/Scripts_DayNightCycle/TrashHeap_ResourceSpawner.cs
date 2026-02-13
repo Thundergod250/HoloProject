@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class TrashHeap_ResourceSpawner : MonoBehaviour
 {
     [SerializeField] protected List<GameObject> _resources;
+    [SerializeField] protected Transform resourceSpawnPoint;
     [SerializeField] protected float _spawnDelaySeconds = 2f;
     [SerializeField] protected float _upwardForce = 2f;
 
@@ -19,7 +20,7 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
     private PlayerController _playerController;
 
     [SerializeField] bool ForTesting = false;
-    private bool hasSpawned = false; // Flag to prevent multiple triggerings
+    [SerializeField] private bool hasSpawned = false; // Flag to prevent multiple triggerings
 
     private void Start()
     {
@@ -35,7 +36,7 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
         if (other.TryGetComponent<PlayerController>(out var player))
         {
             _playerController = player;
-            SetRandomized(); // Fixed logic inside this function
+           // SetRandomized(); // Fixed logic inside this function
             _healthSlider.gameObject.SetActive(true);
 
             _howManyToSpawn = Random.Range(1, 5);
@@ -103,10 +104,16 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
         Debug.Log("Set Resource Logic Running");
         if (!_randomized)
         {
+            int i;
             // Use your Enum-based logic
             if (_garbageGroupType == GarbageObject.GarbageGroup.Plastic) SpawnResource(0);
             else if (_garbageGroupType == GarbageObject.GarbageGroup.Organic) SpawnResource(1);
             else if (_garbageGroupType == GarbageObject.GarbageGroup.Metal) SpawnResource(2);
+            else if (_garbageGroupType == GarbageObject.GarbageGroup.Ore)
+            {
+                i = Random.Range(3, 6);
+                SpawnResource(i);
+            }
         }
         else
         {
@@ -124,11 +131,33 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
         if (_resources == null || _resources.Count <= targetType) return;
 
         GameObject prefab = _resources[targetType];
-        GameObject spawnedObj = Instantiate(prefab, transform.position, Quaternion.identity);
+        GameObject spawnedObj = Instantiate(prefab, resourceSpawnPoint.transform.position, Quaternion.identity);
 
-        if (spawnedObj.TryGetComponent<Rigidbody>(out Rigidbody rb))
+        DisableCollision(0.5f, spawnedObj);
+
+        /*if (spawnedObj.TryGetComponent<Rigidbody>(out Rigidbody rb))
         {
             rb.AddForce(Vector3.up * _upwardForce, ForceMode.Impulse);
         }
+        */
+       
+    }
+
+    private IEnumerator DisableCollision(float timer, GameObject ore)
+    {
+        ore.GetComponent<MeshCollider>().enabled = false;
+        ore.GetComponent<SphereCollider>().enabled = false;
+        if (ore.TryGetComponent<Rigidbody>(out Rigidbody rb))
+        {
+            rb.AddForce(Vector3.up * _upwardForce, ForceMode.Impulse);
+        }
+        yield return new WaitForSeconds(timer);
+        ore.GetComponent<MeshCollider>().enabled = true;
+        ore.GetComponent<SphereCollider>().enabled = true;
+    }
+
+    public void ResetBool()
+    {
+        hasSpawned = false; 
     }
 }

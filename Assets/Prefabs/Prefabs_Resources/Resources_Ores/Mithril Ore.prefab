@@ -203,6 +203,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 01ad49ac28ac5654d8aa40e0d899628b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 01ad49ac28ac5654d8aa40e0d899628b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 01ad49ac28ac5654d8aa40e0d899628b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 01ad49ac28ac5654d8aa40e0d899628b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -360,3 +372,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MineralObject
   _resourceType: 2
   _resourceManager: {fileID: 0}
+  isPickedUp: 0
+  hasBeenCollected: 0
+  amountToAddInResource: 1

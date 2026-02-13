@@ -10,12 +10,12 @@ public class DropResourceManager : MonoBehaviour
 {
     [SerializeField] int copperResources = 0;
     [SerializeField] int ironResources = 0;
-    [SerializeField] int mythrilResources = 0;
+    [SerializeField] int mithrilResources = 0;
     [SerializeField] int goldResources = 0;
 
     public int CopperHold => copperResources;
     public int IronHold => ironResources;
-    public int MythrilHold => mythrilResources;
+    public int MythrilHold => mithrilResources;
     public int GoldHold => goldResources;
 
     public void AddingToResourceType(upgradeResourceType resourceTarget, int amount)
@@ -30,7 +30,7 @@ public class DropResourceManager : MonoBehaviour
         }
         else if (resourceTarget == upgradeResourceType.Mithril)
         {
-            mythrilResources += Mathf.Max(0, amount);
+            mithrilResources += Mathf.Max(0, amount);
         }
         else if (resourceTarget == upgradeResourceType.Gold)
         {
@@ -39,19 +39,19 @@ public class DropResourceManager : MonoBehaviour
     }
     public void SpendingToResourceType(upgradeResourceType resourceTarget, int amount)
     {
-        if (resourceTarget == upgradeResourceType.Copper)
+        if (resourceTarget == upgradeResourceType.Copper && copperResources > 0)
         {
             copperResources -= Mathf.Max(0, amount);
         }
-        else if (resourceTarget == upgradeResourceType.Iron)
+        else if (resourceTarget == upgradeResourceType.Iron && ironResources > 0)
         {
             ironResources -= Mathf.Max(0, amount);
         }
-        else if (resourceTarget == upgradeResourceType.Mithril)
+        else if (resourceTarget == upgradeResourceType.Mithril && mithrilResources > 0)
         {
-            mythrilResources -= Mathf.Max(0, amount);
+            mithrilResources -= Mathf.Max(0, amount);
         }
-        else if (resourceTarget == upgradeResourceType.Gold)
+        else if (resourceTarget == upgradeResourceType.Gold && goldResources > 0)
         {
             goldResources -= Mathf.Max(0, amount);
         }
@@ -69,7 +69,7 @@ public class DropResourceManager : MonoBehaviour
         }
         else if (resourceTarget == upgradeResourceType.Mithril)
         {
-            return mythrilResources;
+            return mithrilResources;
         }
         else if (resourceTarget == upgradeResourceType.Gold)
         {

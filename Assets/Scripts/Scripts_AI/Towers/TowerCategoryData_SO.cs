@@ -4,10 +4,12 @@ using UnityEngine;
 [System.Serializable]
 public class CardInfo
 {
-    public string title;
+    public string towerName;
     public string description;
-    public int cost;
-    public Sprite icon;
+    public Sprite towerIcon;
+    public upgradeResourceType neededUpgradeResourceType;
+    public int oreCost;
+    public Sprite oreIcon;
     public GameObject towerPrefab;
     public GameObject towerCardPrefab;
 }
