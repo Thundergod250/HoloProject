@@ -21,12 +21,22 @@ public class PlayerDayNightUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textFade;
     private bool _hasTriggeredFade = false;
 
+    [SerializeField] private GameObject clockHandUIImage;
+    float targetZ = 0; 
+
 
     private void Update()
     {
         UpdateUIDayNight();
         ChangeDayNightUI();
         CheckForFadeTrigger();
+        UpdateHandUIImage();
+    }
+
+    private void UpdateHandUIImage()
+    {
+       targetZ = Mathf.Lerp(0, -180, lightingManager.GetTimeOfDay());
+        clockHandUIImage.transform.localRotation = Quaternion.Euler(0, 0, targetZ);
     }
 
     private void CheckForFadeTrigger()
@@ -114,7 +124,8 @@ public class PlayerDayNightUI : MonoBehaviour
         if (lightingManager != null)
         {
             dayNightSlider.value = lightingManager.GetTimeOfDay();
-            timeTextUGUI.text = lightingManager.GetTimeOfDay().ToString();
+            // timeTextUGUI.text = lightingManager.GetTimeOfDay().ToString();
+            timeTextUGUI.text = lightingManager.GetFormattedTime();
         }
     }
 
