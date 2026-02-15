@@ -35,7 +35,23 @@ public class PlayerDayNightUI : MonoBehaviour
 
     private void UpdateHandUIImage()
     {
-       targetZ = Mathf.Lerp(0, -180, lightingManager.GetTimeOfDay());
+        float currentTime = lightingManager.GetTimeOfDay();
+        float maxTime = 240f;
+
+        // 1. Clamp the time so it never goes above 240 or below 0
+        float clampedTime = Mathf.Clamp(currentTime, 0f, maxTime);
+
+        // 2. Convert to 0.0 - 1.0 range
+        float timePercent = clampedTime / maxTime;
+
+        // 3. Map to your vertical half-circle (-90 to 90 or 90 to 270)
+        // For a "downward" arc starting from the side:
+        float startAngle = -90f; // Starting point (e.g., 9 o'clock)
+        float endAngle = 90f;    // Ending point (e.g., 3 o'clock)
+
+        float targetZ = Mathf.Lerp(startAngle, endAngle, timePercent);
+
+        // 4. Apply rotation
         clockHandUIImage.transform.localRotation = Quaternion.Euler(0, 0, targetZ);
     }
 
@@ -48,11 +64,20 @@ public class PlayerDayNightUI : MonoBehaviour
         {
             StartCoroutine(FadeImageSequence());
             _hasTriggeredFade = true;
+            textFade.text = "The Night is here defend the Base";
+            _fadeImage.gameObject.SetActive(true);
+        }
+
+        else if (Mathf.FloorToInt(currentTime) == 0 && !_hasTriggeredFade)
+        {
+            StartCoroutine(FadeImageSequence());
+            _hasTriggeredFade = true;
+            textFade.text = "The Day of gathering resources";
             _fadeImage.gameObject.SetActive(true);
         }
 
         // Reset the flag for the next cycle (assuming day length is > 150)
-        if (currentTime < 10)
+        if ( ( ((currentTime <= 153) && (currentTime >= 151)) || (currentTime >= 2) && (currentTime <= 4)) && _hasTriggeredFade)
         {
             _hasTriggeredFade = false;
         }
