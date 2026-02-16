@@ -96,6 +96,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8247928734744029528, guid: 1835a841c572615478f4bc26a3f54349, type: 3}
+      propertyPath: EvtOnInteractWithObj.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8247928734744029528, guid: 1835a841c572615478f4bc26a3f54349, type: 3}
+      propertyPath: EvtOnInteractWithObj.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2037953766310097873}
+    - target: {fileID: 8247928734744029528, guid: 1835a841c572615478f4bc26a3f54349, type: 3}
+      propertyPath: EvtOnInteractWithObj.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8247928734744029528, guid: 1835a841c572615478f4bc26a3f54349, type: 3}
+      propertyPath: EvtOnInteractWithObj.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: _Grab
+      objectReference: {fileID: 0}
+    - target: {fileID: 8247928734744029528, guid: 1835a841c572615478f4bc26a3f54349, type: 3}
+      propertyPath: EvtOnInteractWithObj.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GrabManipulator, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8247928734744029528, guid: 1835a841c572615478f4bc26a3f54349, type: 3}
+      propertyPath: EvtOnInteractWithObj.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 1140971959443750258, guid: 1835a841c572615478f4bc26a3f54349, type: 3}
@@ -105,6 +129,17 @@ PrefabInstance:
       addedObject: {fileID: 7168359656724022199}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1835a841c572615478f4bc26a3f54349, type: 3}
+--- !u!114 &2037953766310097873 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5138309100560675807, guid: 1835a841c572615478f4bc26a3f54349, type: 3}
+  m_PrefabInstance: {fileID: 6559128644181442574}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7842c0f9522958e4183189877e6c26f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GrabManipulator
 --- !u!4 &6283446947077733283 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 879887981258931117, guid: 1835a841c572615478f4bc26a3f54349, type: 3}
