@@ -14,7 +14,7 @@ public class BuyTower : MonoBehaviour
     private int cost;
     public upgradeResourceType targetResourceType;
 
-
+    [SerializeField] private UI_PromtWarnings _promptWarning;
 
     private void OnEnable()
     {
@@ -46,6 +46,7 @@ public class BuyTower : MonoBehaviour
         else if (DropResourceManager?.GetResourceType(resourceTarget) < cost)
         {
             GameManager.Instance.UIManager.UI_Gold.NotEnoughResource(resourceTarget);
+            //_promptWarning.SetPromptTextDisplay("Not Enough ores: " + resourceTarget.ToString() );
             Debug.Log("Not enough ores " + resourceTarget.ToString() + resourceTarget);
             return false;
         }
@@ -108,11 +109,11 @@ public class BuyTower : MonoBehaviour
     public void _IncreaseDamageButtonClicked()
     {
         // OLD
-        if (TrySpendGold(cost))
-        {
-            CurrentTowerNode?.towerController?.IncreaseTowerMainDamage();
-            Debug.Log("Tower Damage Level Increased");
-        }
+        //if (TrySpendGold(cost))
+        //{
+        //    CurrentTowerNode?.towerController?.IncreaseTowerMainDamage();
+        //    Debug.Log("Tower Damage Level Increased");
+        //}
 
         if (TrySpendOreReqiurement(targetResourceType, cost))
         {

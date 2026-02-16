@@ -17,6 +17,8 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private UI_Interaction ui_interactionTab;
     [SerializeField] private float enableDelay = 0.1f;
 
+    [SerializeField] private LightingManager lightingManager;
+
     private Interactable currentInteractable;
     private Coroutine raycastRoutine;
     private Coroutine enableRoutine;
@@ -26,6 +28,13 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (enableRoutine == null)
             enableRoutine = StartCoroutine(EnableWithDelay());
+
+        if (lightingManager != null)
+        {
+            lightingManager = FindAnyObjectByType<LightingManager>();
+            Debug.Log("Found Light Manager");
+        }
+
     }
 
     private void OnDisable()
@@ -126,7 +135,7 @@ public class PlayerInteraction : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext ctx)
     {
-        if (!enabled || !ctx.performed || currentInteractable == null)
+        if (!enabled || !ctx.performed || currentInteractable == null || !lightingManager._isNight)
             return;
 
         currentInteractable.InteractWithTarget();

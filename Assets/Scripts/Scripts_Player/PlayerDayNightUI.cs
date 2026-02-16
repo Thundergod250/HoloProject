@@ -1,7 +1,6 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class PlayerDayNightUI : MonoBehaviour
 {
@@ -15,21 +14,20 @@ public class PlayerDayNightUI : MonoBehaviour
 
     [SerializeField] private GameObject _dayUI;
     [SerializeField] private GameObject _nightUI;
-
-    // Fading Variables
-    [SerializeField] private Image _fadeImage;
-    [SerializeField] private TextMeshProUGUI textFade;
-    private bool _hasTriggeredFade = false;
+    [SerializeField] private bool _debugUISliders = false;
 
     [SerializeField] private GameObject clockHandUIImage;
-    float targetZ = 0; 
+    float targetZ = 0;
 
+    private void Start()
+    {
+        dayStatusTextUGUI.gameObject.SetActive(false);
+    }
 
     private void Update()
     {
         UpdateUIDayNight();
         ChangeDayNightUI();
-        CheckForFadeTrigger();
         UpdateHandUIImage();
     }
 
@@ -55,92 +53,41 @@ public class PlayerDayNightUI : MonoBehaviour
         clockHandUIImage.transform.localRotation = Quaternion.Euler(0, 0, targetZ);
     }
 
-    private void CheckForFadeTrigger()
-    {
-        float currentTime = lightingManager.GetTimeOfDay();
-
-        // Trigger when time hits 150
-        if (Mathf.FloorToInt(currentTime) == 150 && !_hasTriggeredFade)
-        {
-            StartCoroutine(FadeImageSequence());
-            _hasTriggeredFade = true;
-            textFade.text = "The Night is here defend the Base";
-            _fadeImage.gameObject.SetActive(true);
-        }
-
-        else if (Mathf.FloorToInt(currentTime) == 0 && !_hasTriggeredFade)
-        {
-            StartCoroutine(FadeImageSequence());
-            _hasTriggeredFade = true;
-            textFade.text = "The Day of gathering resources";
-            _fadeImage.gameObject.SetActive(true);
-        }
-
-        // Reset the flag for the next cycle (assuming day length is > 150)
-        if ( ( ((currentTime <= 153) && (currentTime >= 151)) || (currentTime >= 2) && (currentTime <= 4)) && _hasTriggeredFade)
-        {
-            _hasTriggeredFade = false;
-        }
-    }
-
-    private IEnumerator FadeImageSequence()
-    {
-        // 1. Fade In over 1 second
-        yield return StartCoroutine(FadeAlpha(0, 1, 1f));
-
-        // 2. Wait for 2 seconds
-        yield return new WaitForSeconds(2f);
-
-        // 3. Fade Out over 2 seconds
-        yield return StartCoroutine(FadeAlpha(1, 0, 2f));
-        _fadeImage.gameObject.SetActive(false);
-    }
-
-    private IEnumerator FadeAlpha(float startAlpha, float endAlpha, float duration)
-    {
-        float elapsed = 0f;
-        Color tempColor = _fadeImage.color;
-        tempColor = textFade.color;
-
-        while (elapsed < duration)
-        {
-            elapsed += Time.deltaTime;
-            // Linearly interpolate the alpha value
-            tempColor.a = Mathf.Lerp(startAlpha, endAlpha, elapsed / duration);
-            _fadeImage.color = tempColor;
-            textFade.color = tempColor;
-            yield return null;
-        }
-
-        // Ensure we hit the exact target at the end
-        tempColor.a = endAlpha;
-        _fadeImage.color = tempColor;
-        textFade.color = tempColor;
-    }
     private void ChangeDayNightUI()
     {
         if (!lightingManager._isNight)
         {
-            _dayUI?.gameObject.SetActive(true);
-            _nightUI?.gameObject.SetActive(false);
+            if (_debugUISliders)
+            {
+                _dayUI?.gameObject.SetActive(true);
+                _nightUI?.gameObject.SetActive(false);
+            }
 
             daySlider.value = lightingManager.GetTimeOfDay();
 
             nightSlider.value = 0;
 
-            dayStatusTextUGUI.text = "Day Time";
+            dayStatusTextUGUI.gameObject.SetActive(true);
+
+            dayStatusTextUGUI.text = "Day";
 
         }
         else if (lightingManager._isNight)
         {
-            _dayUI?.gameObject.SetActive(false);
-            _nightUI?.gameObject.SetActive(true);
+
+            if (_debugUISliders)
+            {
+                _dayUI?.gameObject.SetActive(false);
+                _nightUI?.gameObject.SetActive(true);
+            }
 
             nightSlider.value = lightingManager.GetTimeOfDay();
 
             daySlider.value = 0;
 
-            dayStatusTextUGUI.text = "Night Time";
+            dayStatusTextUGUI.gameObject.SetActive(false);
+
+            dayStatusTextUGUI.text = "Night";
         }
     }
 
