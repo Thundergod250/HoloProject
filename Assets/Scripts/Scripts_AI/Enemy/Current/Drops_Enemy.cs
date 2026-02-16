@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class Drops_Enemy : MonoBehaviour
 {
+    [Header("Refs")]
+    public Spawner parentSpawner;
+
     [Header("Drop Table")]
     [SerializeField] private GameObject[] DropTable;
 
@@ -13,5 +16,10 @@ public class Drops_Enemy : MonoBehaviour
         }
 
         Destroy(gameObject);
+    }
+
+    public void RemoveFromList()
+    {
+        parentSpawner.UpdateEnemyCounterText();
     }
 }
