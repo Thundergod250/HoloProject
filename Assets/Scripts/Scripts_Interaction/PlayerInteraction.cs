@@ -24,6 +24,8 @@ public class PlayerInteraction : MonoBehaviour
     private Coroutine enableRoutine;
     private WaitForSeconds raycastInterval = new WaitForSeconds(0.1f);
 
+    public Interactable interactable => currentInteractable;
+
     private void OnEnable()
     {
         if (enableRoutine == null)
