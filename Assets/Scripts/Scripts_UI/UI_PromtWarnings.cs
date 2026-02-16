@@ -11,12 +11,21 @@ public class UI_PromtWarnings : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textFade;
     private bool _hasTriggeredFade = false;
 
-    // MAKE this when no ORES
+    private void OnEnable()
+    {
+        // Subscribe: When BuyTower broadcasts, run SetPromptTextDisplay
+        BuyTower.OnResourceShortage += SetPromptTextDisplay;
+    }
 
+    private void OnDisable()
+    {
+        // Unsubscribe: Clean up when this UI is hidden/destroyed
+        BuyTower.OnResourceShortage -= SetPromptTextDisplay;
+    }
 
     private void Update()
     {
-        CheckForFadeTrigger();
+        CheckForFadeTrigger(); 
     }
 
     private void CheckForFadeTrigger()
@@ -46,6 +55,7 @@ public class UI_PromtWarnings : MonoBehaviour
             _hasTriggeredFade = false;
         }
     }
+
 
 
     public void SetPromptTextDisplay(string targetText)

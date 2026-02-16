@@ -64,7 +64,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private IEnumerator RaycastRoutine()
     {
-        while (true)
+        while (false) // Checking if this is the Interactable
         {
             Interactable closest = null;
             float closestDistance = Mathf.Infinity;

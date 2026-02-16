@@ -53,15 +53,35 @@ public class PlayerDayNightUI : MonoBehaviour
         clockHandUIImage.transform.localRotation = Quaternion.Euler(0, 0, targetZ);
     }
 
-    private void ChangeDayNightUI()
+    private void DebugSliders(bool targetTime)
     {
-        if (!lightingManager._isNight)
+        if (_debugUISliders)
         {
-            if (_debugUISliders)
+            if (targetTime)
             {
                 _dayUI?.gameObject.SetActive(true);
                 _nightUI?.gameObject.SetActive(false);
             }
+            else if (!targetTime)
+            {
+                _dayUI?.gameObject.SetActive(false);
+                _nightUI?.gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            dayNightSlider.gameObject.SetActive(false);
+            daySlider.gameObject.SetActive(false);
+            nightSlider.gameObject.SetActive(false);
+        }
+    }
+
+
+    private void ChangeDayNightUI()
+    {
+        if (!lightingManager._isNight)
+        {
+            DebugSliders(!lightingManager._isNight);
 
             daySlider.value = lightingManager.GetTimeOfDay();
 
@@ -74,12 +94,7 @@ public class PlayerDayNightUI : MonoBehaviour
         }
         else if (lightingManager._isNight)
         {
-
-            if (_debugUISliders)
-            {
-                _dayUI?.gameObject.SetActive(false);
-                _nightUI?.gameObject.SetActive(true);
-            }
+            DebugSliders(lightingManager._isNight);
 
             nightSlider.value = lightingManager.GetTimeOfDay();
 
