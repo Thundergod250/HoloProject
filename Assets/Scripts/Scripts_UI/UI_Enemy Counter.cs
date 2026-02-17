@@ -26,6 +26,7 @@ public class UI_EnemyCounter : MonoBehaviour
         if(ligthingManager._isNight)
         {
             enemyCounterUI.enabled = true;
+            UpdateEnemyCounter();
         }
         else if(!ligthingManager._isNight)
         {

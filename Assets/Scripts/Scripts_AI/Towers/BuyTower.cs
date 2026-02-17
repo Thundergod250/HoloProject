@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -14,7 +15,7 @@ public class BuyTower : MonoBehaviour
     private int cost;
     public upgradeResourceType targetResourceType;
 
-    [SerializeField] private UI_PromtWarnings _promptWarning;
+    public static event Action<string> OnResourceShortage;
 
     private void OnEnable()
     {
@@ -45,9 +46,12 @@ public class BuyTower : MonoBehaviour
         }
         else if (DropResourceManager?.GetResourceType(resourceTarget) < cost)
         {
-            GameManager.Instance.UIManager.UI_Gold.NotEnoughResource(resourceTarget);
-            //_promptWarning.SetPromptTextDisplay("Not Enough ores: " + resourceTarget.ToString() );
-            Debug.Log("Not enough ores " + resourceTarget.ToString() + resourceTarget);
+            // GameManager.Instance.UIManager.UI_Gold.NotEnoughResource(resourceTarget);
+            // _promptWarning.SetPromptTextDisplay("Not Enough ores: " + resourceTarget.ToString() );
+
+            string message = "Not Enough ores: " + resourceTarget.ToString();
+            OnResourceShortage?.Invoke(message);
+
             return false;
         }
         Debug.Log("Skipped whole code");
