@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1430237043837707181}
   - component: {fileID: 1047080081499528055}
   - component: {fileID: 6312560625190636974}
+  - component: {fileID: 2676937828821234790}
   m_Layer: 0
   m_Name: Workbench
   m_TagString: Untagged
@@ -34,6 +35,7 @@ Transform:
   m_Children:
   - {fileID: 6836996728019326053}
   - {fileID: 6662843546884618859}
+  - {fileID: 5659942956463023696}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!65 &1430237043837707181
@@ -70,13 +72,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Workbench_PickaxeUpgrade
   pickaxeRend: {fileID: 0}
-  pickaxeRendTable: {fileID: 0}
+  pickaxeRendTable: {fileID: 2916829952143526746}
   gold: {fileID: 0}
   playerInteract: {fileID: 0}
   copperPick: {fileID: 2800000, guid: ce1aa40482f017348a28af297d452432, type: 3}
   ironPick: {fileID: 2800000, guid: 667123c13daff954f927403f69163098, type: 3}
   goldPick: {fileID: 2800000, guid: 5bf7c7027642f5b4ba2b55139e6276dd, type: 3}
-  upgradeText: {fileID: 0}
+  upgradeText: {fileID: 6570632643242779192}
 --- !u!114 &6312560625190636974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,6 +117,27 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!135 &2676937828821234790
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1479904091271619900}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 4
+  m_Center: {x: 0, y: 0, z: 1.33}
 --- !u!1 &1788568810465903189
 GameObject:
   m_ObjectHideFlags: 0
@@ -421,6 +444,96 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: -3309394800285066431, guid: b313ebe72eb70874793bad518465a19f, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &7094566155073998971
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5659942956463023696}
+  - component: {fileID: 6769021619296294017}
+  - component: {fileID: 2916829952143526746}
+  m_Layer: 0
+  m_Name: TalbePick
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5659942956463023696
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7094566155073998971}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.0000000074505797, y: 0.000000029802319, z: -0.91231734, w: 0.409484}
+  m_LocalPosition: {x: -0.28, y: 0.21, z: 2.19}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4500699981842584928}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -131.655}
+--- !u!33 &6769021619296294017
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7094566155073998971}
+  m_Mesh: {fileID: 4987632398419711469, guid: 2057e76430cf2ca4a8f732e698dcc627, type: 3}
+--- !u!23 &2916829952143526746
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7094566155073998971}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 9d727278e0ce24947b7ce1e86d6c687a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

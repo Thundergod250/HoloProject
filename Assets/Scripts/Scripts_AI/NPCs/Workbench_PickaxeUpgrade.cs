@@ -16,6 +16,7 @@ public class Workbench_PickaxeUpgrade : MonoBehaviour
     [SerializeField] private TextMeshProUGUI upgradeText;
     private Texture2D currentTexture;
     private Texture2D initialTexture;
+    private bool playerInside = false;
 
     private void Start()
     {
@@ -23,26 +24,16 @@ public class Workbench_PickaxeUpgrade : MonoBehaviour
         initialTexture = copperPick;
         pickaxeRend.material.mainTexture = initialTexture;
         currentTexture = copperPick;
+        pickaxeRendTable.enabled = false;
 
     }
 
     private void Update()
     {
-        if(playerInteract.interactable == this.gameObject.GetComponent<Interactable>())
+        if (playerInside && Input.GetKeyDown(KeyCode.F))
         {
-            upgradeText.enabled = true;
-            pickaxeRendTable.enabled = true;
+            UpgradePick();
             pickaxeRendTable.material.mainTexture = pickaxeRend.material.mainTexture;
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                UpgradePick();
-            }
-        }
-        else if (playerInteract.interactable == null)
-        {
-            upgradeText.enabled = false;
-            pickaxeRendTable.enabled = false;
-
         }
     }
 
@@ -73,5 +64,26 @@ public class Workbench_PickaxeUpgrade : MonoBehaviour
 
         pickaxeRend.material.mainTexture = currentTexture;
         Debug.Log(pickaxeRend.material.mainTexture);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<PlayerController>() != null)
+        {
+            playerInside = true;
+
+            upgradeText.enabled = true;
+            pickaxeRendTable.enabled = true;
+
+          //  pickaxeRendTable.material.mainTexture = pickaxeRend.material.mainTexture;
+        }    
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        playerInside = false;
+
+        upgradeText.enabled = false;
+        pickaxeRendTable.enabled = false;
     }
 }
