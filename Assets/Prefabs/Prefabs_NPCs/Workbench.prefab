@@ -70,9 +70,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Workbench_PickaxeUpgrade
   pickaxeRend: {fileID: 0}
+  pickaxeRendTable: {fileID: 0}
+  gold: {fileID: 0}
+  playerInteract: {fileID: 0}
   copperPick: {fileID: 2800000, guid: ce1aa40482f017348a28af297d452432, type: 3}
   ironPick: {fileID: 2800000, guid: 667123c13daff954f927403f69163098, type: 3}
   goldPick: {fileID: 2800000, guid: 5bf7c7027642f5b4ba2b55139e6276dd, type: 3}
+  upgradeText: {fileID: 0}
 --- !u!114 &6312560625190636974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,7 +142,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1788568810465903189}
   m_LocalRotation: {x: 0, y: 0.70710677, z: 0.70710677, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 3.3913}
+  m_LocalPosition: {x: 0, y: 0, z: 3.0809}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -147,8 +151,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -90, y: 90, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.064, y: 1.292}
-  m_SizeDelta: {x: 4.1883, y: 1.136}
+  m_AnchoredPosition: {x: -0.0632, y: 1.292}
+  m_SizeDelta: {x: 4.1867, y: 1.7568}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &2051893120933600092
 Canvas:
@@ -278,7 +282,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Upgrade
+  m_text: F) Upgrade
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 83d204ba580075a40a7e3005483db1bf, type: 2}
   m_sharedMaterial: {fileID: 8643133298494127716, guid: 83d204ba580075a40a7e3005483db1bf, type: 2}
@@ -305,15 +309,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 1
+  m_fontSize: 0.75
   m_fontSizeBase: 1
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 0
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_characterHorizontalScale: 1
