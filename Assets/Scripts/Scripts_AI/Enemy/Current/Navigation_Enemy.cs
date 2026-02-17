@@ -219,4 +219,16 @@ public class Navigation_Enemy : MonoBehaviour
         navigation.SetDestination(wayPoints[wayPointIndex].position);
     }
     #endregion
+
+    #region 
+    public void SlowDownAgent(int slowValueTarget)
+    {
+        navigation.speed = moveSpeed / slowValueTarget;
+    }
+
+    public void SpeedUpAgent(int speedValueTarget)
+    {
+        navigation.speed = moveSpeed * speedValueTarget;
+    }
+    #endregion
 }
