@@ -9,6 +9,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 8885685458906734872}
     m_Modifications:
     - target: {fileID: 6884818576177637472, guid: 2139391b76a7194489dd026f313b680c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6884818576177637472, guid: 2139391b76a7194489dd026f313b680c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6884818576177637472, guid: 2139391b76a7194489dd026f313b680c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6884818576177637472, guid: 2139391b76a7194489dd026f313b680c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -18,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6884818576177637472, guid: 2139391b76a7194489dd026f313b680c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.03
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6884818576177637472, guid: 2139391b76a7194489dd026f313b680c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -53,6 +65,14 @@ PrefabInstance:
       value: Copper_Highlight(Visual Graph)
       objectReference: {fileID: 0}
     - target: {fileID: 8136146510531904429, guid: 2139391b76a7194489dd026f313b680c, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136146510531904429, guid: 2139391b76a7194489dd026f313b680c, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[2].m_Name
+      value: Glow Color
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136146510531904429, guid: 2139391b76a7194489dd026f313b680c, type: 3}
       propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.x
       value: 0.1981132
       objectReference: {fileID: 0}
@@ -63,6 +83,38 @@ PrefabInstance:
     - target: {fileID: 8136146510531904429, guid: 2139391b76a7194489dd026f313b680c, type: 3}
       propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.z
       value: 0.16727483
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136146510531904429, guid: 2139391b76a7194489dd026f313b680c, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[1].m_Value.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136146510531904429, guid: 2139391b76a7194489dd026f313b680c, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[1].m_Value.x
+      value: 0.5622641
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136146510531904429, guid: 2139391b76a7194489dd026f313b680c, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[1].m_Value.y
+      value: 0.4484852
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136146510531904429, guid: 2139391b76a7194489dd026f313b680c, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[1].m_Value.z
+      value: 0.41055885
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136146510531904429, guid: 2139391b76a7194489dd026f313b680c, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[2].m_Value.x
+      value: 0.31308523
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136146510531904429, guid: 2139391b76a7194489dd026f313b680c, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[2].m_Value.y
+      value: 0.25525892
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136146510531904429, guid: 2139391b76a7194489dd026f313b680c, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[2].m_Value.z
+      value: 0.23570001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136146510531904429, guid: 2139391b76a7194489dd026f313b680c, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[2].m_Overridden
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -89,6 +141,10 @@ PrefabInstance:
     - target: {fileID: 5766691976136461342, guid: 43d1d06cf70fcb2488255051aaae40a5, type: 3}
       propertyPath: m_Name
       value: Resource Aura
+      objectReference: {fileID: 0}
+    - target: {fileID: 5766691976136461342, guid: 43d1d06cf70fcb2488255051aaae40a5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5808733625277994035, guid: 43d1d06cf70fcb2488255051aaae40a5, type: 3}
       propertyPath: prewarm
@@ -455,6 +511,7 @@ MonoBehaviour:
   isPickedUp: 0
   hasBeenCollected: 0
   amountToAddInResource: 1
+  addedOreTextEffect: {fileID: 0}
 --- !u!4 &8885685458906734872 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 211afe5f56a31924eaa05570522442bf, type: 3}

@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -17,6 +18,8 @@ public class Workbench_PickaxeUpgrade : MonoBehaviour
     private Texture2D currentTexture;
     private Texture2D initialTexture;
     private bool playerInside = false;
+
+    public static event Action<string> OnResourceShortage;
 
     private void Start()
     {
@@ -46,6 +49,8 @@ public class Workbench_PickaxeUpgrade : MonoBehaviour
         }
         else
         {
+            string message = "Not Enough ores:   Mithril";
+            OnResourceShortage?.Invoke(message);
             Debug.Log("Missing Mithril");
         }
     }

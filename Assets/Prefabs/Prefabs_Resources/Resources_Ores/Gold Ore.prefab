@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Resource Aura
       objectReference: {fileID: 0}
+    - target: {fileID: 5766691976136461342, guid: 43d1d06cf70fcb2488255051aaae40a5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5808733625277994035, guid: 43d1d06cf70fcb2488255051aaae40a5, type: 3}
       propertyPath: prewarm
       value: 1
@@ -373,6 +377,7 @@ MonoBehaviour:
   isPickedUp: 0
   hasBeenCollected: 0
   amountToAddInResource: 1
+  addedOreTextEffect: {fileID: 0}
 --- !u!4 &5513160855492623034 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ddca5e7950ef3ff40aceef5b2d55801b, type: 3}
@@ -387,16 +392,28 @@ PrefabInstance:
     m_TransformParent: {fileID: 5513160855492623034}
     m_Modifications:
     - target: {fileID: 6884818576177637472, guid: 2139391b76a7194489dd026f313b680c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6884818576177637472, guid: 2139391b76a7194489dd026f313b680c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6884818576177637472, guid: 2139391b76a7194489dd026f313b680c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6884818576177637472, guid: 2139391b76a7194489dd026f313b680c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6884818576177637472, guid: 2139391b76a7194489dd026f313b680c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6884818576177637472, guid: 2139391b76a7194489dd026f313b680c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 6884818576177637472, guid: 2139391b76a7194489dd026f313b680c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -431,12 +448,44 @@ PrefabInstance:
       value: Copper_Highlight(Visual Graph)
       objectReference: {fileID: 0}
     - target: {fileID: 8136146510531904429, guid: 2139391b76a7194489dd026f313b680c, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136146510531904429, guid: 2139391b76a7194489dd026f313b680c, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[2].m_Name
+      value: Glow Color
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136146510531904429, guid: 2139391b76a7194489dd026f313b680c, type: 3}
       propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.y
       value: 0.7311777
       objectReference: {fileID: 0}
     - target: {fileID: 8136146510531904429, guid: 2139391b76a7194489dd026f313b680c, type: 3}
       propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.z
       value: 0.062745094
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136146510531904429, guid: 2139391b76a7194489dd026f313b680c, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[1].m_Value.y
+      value: 0.72305536
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136146510531904429, guid: 2139391b76a7194489dd026f313b680c, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[1].m_Value.z
+      value: 0.07227186
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136146510531904429, guid: 2139391b76a7194489dd026f313b680c, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[2].m_Value.x
+      value: 1.5157166
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136146510531904429, guid: 2139391b76a7194489dd026f313b680c, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[2].m_Value.y
+      value: 0.7256477
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136146510531904429, guid: 2139391b76a7194489dd026f313b680c, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[2].m_Value.z
+      value: 0.071421154
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136146510531904429, guid: 2139391b76a7194489dd026f313b680c, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[2].m_Overridden
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

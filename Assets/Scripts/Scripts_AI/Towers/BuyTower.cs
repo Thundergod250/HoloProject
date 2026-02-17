@@ -13,7 +13,6 @@ public class BuyTower : MonoBehaviour
     private TowerNodeManager CurrentTowerNode;
     private DropResourceManager DropResourceManager;
     private int cost;
-    public upgradeResourceType targetResourceType;
 
     public static event Action<string> OnResourceShortage;
 
@@ -60,20 +59,16 @@ public class BuyTower : MonoBehaviour
 
     public void _BuyButtonClicked()
     {
-        // OLD
-        //if (TrySpendGold(cost))
-        //{
-        //    DespawnCurrentTower();
-        //    EvtOnBuySuccessful?.Invoke(TowerCardManager.TowerPrefab);
-        //}
+        // Get fresh data from the manager in case the card changed
+        upgradeResourceType targetType = TowerCardManager.upgradeResourceType;
+        int currentCost = TowerCardManager.GetCostValue();
 
-        // NOT WORKING
-        if (TrySpendOreReqiurement(targetResourceType, cost))
+        if (TrySpendOreReqiurement(targetType, currentCost))
         {
-            //targetResourceType = GetComponentInChildren<CardInfo>().neededUpgradeResourceType;
+            DropResourceManager?.SpendingToResourceType(targetType, currentCost);
 
-            DropResourceManager?.SpendingToResourceType(targetResourceType, cost);
-            Debug.Log("Bought Tower?");
+            Debug.Log($"Bought Tower using {targetType}");
+
             DespawnCurrentTower();
             EvtOnBuySuccessful?.Invoke(TowerCardManager.TowerPrefab);
         }
@@ -81,48 +76,40 @@ public class BuyTower : MonoBehaviour
 
     public void _DespawnButtonClicked()
     {
-        // OLD
-        //if (TrySpendGold(cost))
-        //{
-        //    DespawnCurrentTower();
-        //    GameManager.Instance.GoldManager?.AddGold(cost); // refund
-        //}
+        upgradeResourceType targetType = TowerCardManager.upgradeResourceType;
+        int currentCost = TowerCardManager.GetCostValue();
 
-        if (TrySpendOreReqiurement(targetResourceType, cost))
-        {
-            DespawnCurrentTower();
-            DropResourceManager?.AddingToResourceType(targetResourceType, cost); // refund
-        }
+        // Logic: If we despawn, we usually refund. 
+        // If you want to spend to despawn, keep TrySpend. If it's a refund, just Add.
+        DespawnCurrentTower();
+        DropResourceManager?.AddingToResourceType(targetType, currentCost);
+        Debug.Log($"Refunded {currentCost} {targetType}");
     }
 
     public void _RepairButtonClicked()
     {
-        // OLD
-        //if (TrySpendGold(cost))
-        //{
-        //    CurrentTowerNode?.towerController?.TowerHealth
-        //        ?.Heal(CurrentTowerNode.towerController.TowerHealth.GetMaxHealth());
-        //}
+        upgradeResourceType targetType = TowerCardManager.upgradeResourceType;
+        int currentCost = TowerCardManager.GetCostValue();
 
-        if (TrySpendOreReqiurement(targetResourceType, cost))
+        if (TrySpendOreReqiurement(targetType, currentCost))
         {
-            CurrentTowerNode?.towerController?.TowerHealth?.Heal(CurrentTowerNode.towerController.TowerHealth.GetMaxHealth());
+            DropResourceManager?.SpendingToResourceType(targetType, currentCost);
+            CurrentTowerNode?.towerController?.TowerHealth?.Heal(
+                CurrentTowerNode.towerController.TowerHealth.GetMaxHealth()
+            );
         }
     }
 
     public void _IncreaseDamageButtonClicked()
     {
-        // OLD
-        //if (TrySpendGold(cost))
-        //{
-        //    CurrentTowerNode?.towerController?.IncreaseTowerMainDamage();
-        //    Debug.Log("Tower Damage Level Increased");
-        //}
+        upgradeResourceType targetType = TowerCardManager.upgradeResourceType;
+        int currentCost = TowerCardManager.GetCostValue();
 
-        if (TrySpendOreReqiurement(targetResourceType, cost))
+        if (TrySpendOreReqiurement(targetType, currentCost))
         {
+            DropResourceManager?.SpendingToResourceType(targetType, currentCost);
             CurrentTowerNode?.towerController?.IncreaseTowerMainDamage();
-            Debug.Log("2 Tower Damage Level Increased");
+            Debug.Log("Tower Damage Level Increased");
         }
     }
 
