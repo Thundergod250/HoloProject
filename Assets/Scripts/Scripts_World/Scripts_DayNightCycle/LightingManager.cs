@@ -16,7 +16,7 @@ public class LightingManager : MonoBehaviour
     // Changed to 240 secs == 4 Mins per day 
     [SerializeField] private float _timeOfDay;
     [SerializeField] public bool _isNight = false;
-    [SerializeField] float _maxTimeOfDay = 180;
+    [SerializeField] float _maxTimeOfDay = 240;
 
     [SerializeField] protected Volume _hdriCubeSkyDay;
     [SerializeField] protected Volume _hdriCubeSkyNight;
@@ -67,7 +67,7 @@ public class LightingManager : MonoBehaviour
         // --- HDRI TRIGGER LOGIC ---
 
         // 1. Night to Day Trigger (60 to 65) // 0 - 150 Day
-        if (_timeOfDay >= 0 && _timeOfDay < 120) 
+        if (_timeOfDay >= 0 && _timeOfDay < 150) 
         {
             int targetIndex = _isMines ? 1 : (_isSnow ? 3 : 0);
 
@@ -79,7 +79,7 @@ public class LightingManager : MonoBehaviour
             _isNight = false;
         }
         // 2. Day to Night Trigger (240 to 245) // 221 - 360 Night
-        else if (_timeOfDay >= 121 && _timeOfDay < _maxTimeOfDay) 
+        else if (_timeOfDay >= 151 && _timeOfDay < _maxTimeOfDay) 
         {
             int targetIndex = 1; // Your Moonless/Night HDRI
 
@@ -92,7 +92,19 @@ public class LightingManager : MonoBehaviour
         }
     }
 
+    public string GetFormattedTime()
+    {
+        // 1. Calculate total in-game minutes passed
+        // (timeOfDay / maxTimeOfDay) gives us the percentage of the day completed
+        float totalMinutes = (_timeOfDay / _maxTimeOfDay) * 1440f;
 
+        // 2. Breakdown into hours and minutes
+        int hours = Mathf.FloorToInt(totalMinutes / 60);
+        int minutes = Mathf.FloorToInt(totalMinutes % 60);
+
+        // 3. Format as "00:00"
+        return string.Format("{0:00}:{1:00}", hours, minutes);
+    }
     private void StartHDRIFade(int index)
     {
         _lastAssignedIndex = index;

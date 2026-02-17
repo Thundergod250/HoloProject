@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -13,6 +14,8 @@ public class BuyTower : MonoBehaviour
     private DropResourceManager DropResourceManager;
     private int cost;
     public upgradeResourceType targetResourceType;
+
+    public static event Action<string> OnResourceShortage;
 
     private void OnEnable()
     {
@@ -43,7 +46,12 @@ public class BuyTower : MonoBehaviour
         }
         else if (DropResourceManager?.GetResourceType(resourceTarget) < cost)
         {
-            Debug.Log("Not enough ores " + resourceTarget.ToString() + resourceTarget);
+            // GameManager.Instance.UIManager.UI_Gold.NotEnoughResource(resourceTarget);
+            // _promptWarning.SetPromptTextDisplay("Not Enough ores: " + resourceTarget.ToString() );
+
+            string message = "Not Enough ores: " + resourceTarget.ToString();
+            OnResourceShortage?.Invoke(message);
+
             return false;
         }
         Debug.Log("Skipped whole code");
@@ -53,17 +61,16 @@ public class BuyTower : MonoBehaviour
     public void _BuyButtonClicked()
     {
         // OLD
-        if (TrySpendGold(cost))
-        {
-            DespawnCurrentTower();
-            EvtOnBuySuccessful?.Invoke(TowerCardManager.TowerPrefab);
-        }
+        //if (TrySpendGold(cost))
+        //{
+        //    DespawnCurrentTower();
+        //    EvtOnBuySuccessful?.Invoke(TowerCardManager.TowerPrefab);
+        //}
 
         // NOT WORKING
         if (TrySpendOreReqiurement(targetResourceType, cost))
         {
             //targetResourceType = GetComponentInChildren<CardInfo>().neededUpgradeResourceType;
-
 
             DropResourceManager?.SpendingToResourceType(targetResourceType, cost);
             Debug.Log("Bought Tower?");
@@ -75,11 +82,11 @@ public class BuyTower : MonoBehaviour
     public void _DespawnButtonClicked()
     {
         // OLD
-        if (TrySpendGold(cost))
-        {
-            DespawnCurrentTower();
-            GameManager.Instance.GoldManager?.AddGold(cost); // refund
-        }
+        //if (TrySpendGold(cost))
+        //{
+        //    DespawnCurrentTower();
+        //    GameManager.Instance.GoldManager?.AddGold(cost); // refund
+        //}
 
         if (TrySpendOreReqiurement(targetResourceType, cost))
         {
@@ -91,11 +98,11 @@ public class BuyTower : MonoBehaviour
     public void _RepairButtonClicked()
     {
         // OLD
-        if (TrySpendGold(cost))
-        {
-            CurrentTowerNode?.towerController?.TowerHealth
-                ?.Heal(CurrentTowerNode.towerController.TowerHealth.GetMaxHealth());
-        }
+        //if (TrySpendGold(cost))
+        //{
+        //    CurrentTowerNode?.towerController?.TowerHealth
+        //        ?.Heal(CurrentTowerNode.towerController.TowerHealth.GetMaxHealth());
+        //}
 
         if (TrySpendOreReqiurement(targetResourceType, cost))
         {
@@ -106,11 +113,11 @@ public class BuyTower : MonoBehaviour
     public void _IncreaseDamageButtonClicked()
     {
         // OLD
-        if (TrySpendGold(cost))
-        {
-            CurrentTowerNode?.towerController?.IncreaseTowerMainDamage();
-            Debug.Log("Tower Damage Level Increased");
-        }
+        //if (TrySpendGold(cost))
+        //{
+        //    CurrentTowerNode?.towerController?.IncreaseTowerMainDamage();
+        //    Debug.Log("Tower Damage Level Increased");
+        //}
 
         if (TrySpendOreReqiurement(targetResourceType, cost))
         {

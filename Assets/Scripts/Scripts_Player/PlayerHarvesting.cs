@@ -83,7 +83,7 @@ public class PlayerHarvesting : MonoBehaviour
         if (_garbageGroupType == GarbageObject.GarbageGroup.Plastic) { _miningAction.SetActive(true); }
         else if (_garbageGroupType == GarbageObject.GarbageGroup.Organic) { _shovelingAction.SetActive(true); }
         else if (_garbageGroupType == GarbageObject.GarbageGroup.Metal) { _drillingAction.SetActive(true); }
-        else if (_garbageGroupType == GarbageObject.GarbageGroup.Ore) { _miningAction.SetActive(true); }
+        else if (_garbageGroupType == GarbageObject.GarbageGroup.CopperOre|| _garbageGroupType == GarbageObject.GarbageGroup.IronOre|| _garbageGroupType == GarbageObject.GarbageGroup.GoldOre) { _miningAction.SetActive(true); }
     }
 
     private void OnTriggerEnter(Collider other)

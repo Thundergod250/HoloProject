@@ -1,7 +1,6 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class PlayerDayNightUI : MonoBehaviour
 {
@@ -15,97 +14,95 @@ public class PlayerDayNightUI : MonoBehaviour
 
     [SerializeField] private GameObject _dayUI;
     [SerializeField] private GameObject _nightUI;
+    [SerializeField] private bool _debugUISliders = false;
 
-    // Fading Variables
-    [SerializeField] private Image _fadeImage;
-    [SerializeField] private TextMeshProUGUI textFade;
-    private bool _hasTriggeredFade = false;
+    [SerializeField] private GameObject clockHandUIImage;
+    float targetZ = 0;
 
+    private void Start()
+    {
+        dayStatusTextUGUI.gameObject.SetActive(false);
+    }
 
     private void Update()
     {
         UpdateUIDayNight();
         ChangeDayNightUI();
-        CheckForFadeTrigger();
+        UpdateHandUIImage();
     }
 
-    private void CheckForFadeTrigger()
+    private void UpdateHandUIImage()
     {
         float currentTime = lightingManager.GetTimeOfDay();
+        float maxTime = 240f;
 
-        // Trigger when time hits 150
-        if (Mathf.FloorToInt(currentTime) == 150 && !_hasTriggeredFade)
-        {
-            StartCoroutine(FadeImageSequence());
-            _hasTriggeredFade = true;
-            _fadeImage.gameObject.SetActive(true);
-        }
+        // 1. Clamp the time so it never goes above 240 or below 0
+        float clampedTime = Mathf.Clamp(currentTime, 0f, maxTime);
 
-        // Reset the flag for the next cycle (assuming day length is > 150)
-        if (currentTime < 10)
-        {
-            _hasTriggeredFade = false;
-        }
+        // 2. Convert to 0.0 - 1.0 range
+        float timePercent = clampedTime / maxTime;
+
+        // 3. Map to your vertical half-circle (-90 to 90 or 90 to 270)
+        // For a "downward" arc starting from the side:
+        float startAngle = -90f; // Starting point (e.g., 9 o'clock)
+        float endAngle = 90f;    // Ending point (e.g., 3 o'clock)
+
+        float targetZ = Mathf.Lerp(startAngle, endAngle, timePercent);
+
+        // 4. Apply rotation
+        clockHandUIImage.transform.localRotation = Quaternion.Euler(0, 0, targetZ);
     }
 
-    private IEnumerator FadeImageSequence()
+    private void DebugSliders(bool targetTime)
     {
-        // 1. Fade In over 1 second
-        yield return StartCoroutine(FadeAlpha(0, 1, 1f));
-
-        // 2. Wait for 2 seconds
-        yield return new WaitForSeconds(2f);
-
-        // 3. Fade Out over 2 seconds
-        yield return StartCoroutine(FadeAlpha(1, 0, 2f));
-        _fadeImage.gameObject.SetActive(false);
-    }
-
-    private IEnumerator FadeAlpha(float startAlpha, float endAlpha, float duration)
-    {
-        float elapsed = 0f;
-        Color tempColor = _fadeImage.color;
-        tempColor = textFade.color;
-
-        while (elapsed < duration)
+        if (_debugUISliders)
         {
-            elapsed += Time.deltaTime;
-            // Linearly interpolate the alpha value
-            tempColor.a = Mathf.Lerp(startAlpha, endAlpha, elapsed / duration);
-            _fadeImage.color = tempColor;
-            textFade.color = tempColor;
-            yield return null;
+            if (targetTime)
+            {
+                _dayUI?.gameObject.SetActive(true);
+                _nightUI?.gameObject.SetActive(false);
+            }
+            else if (!targetTime)
+            {
+                _dayUI?.gameObject.SetActive(false);
+                _nightUI?.gameObject.SetActive(true);
+            }
         }
-
-        // Ensure we hit the exact target at the end
-        tempColor.a = endAlpha;
-        _fadeImage.color = tempColor;
-        textFade.color = tempColor;
+        else
+        {
+            dayNightSlider.gameObject.SetActive(false);
+            daySlider.gameObject.SetActive(false);
+            nightSlider.gameObject.SetActive(false);
+        }
     }
+
+
     private void ChangeDayNightUI()
     {
         if (!lightingManager._isNight)
         {
-            _dayUI?.gameObject.SetActive(true);
-            _nightUI?.gameObject.SetActive(false);
+            DebugSliders(!lightingManager._isNight);
 
             daySlider.value = lightingManager.GetTimeOfDay();
 
             nightSlider.value = 0;
 
-            dayStatusTextUGUI.text = "Day Time";
+            dayStatusTextUGUI.gameObject.SetActive(true);
+
+            dayStatusTextUGUI.text = "Day";
 
         }
         else if (lightingManager._isNight)
         {
-            _dayUI?.gameObject.SetActive(false);
-            _nightUI?.gameObject.SetActive(true);
+            DebugSliders(lightingManager._isNight);
 
             nightSlider.value = lightingManager.GetTimeOfDay();
 
             daySlider.value = 0;
 
-            dayStatusTextUGUI.text = "Night Time";
+            dayStatusTextUGUI.gameObject.SetActive(false);
+
+            dayStatusTextUGUI.text = "Night";
         }
     }
 
@@ -114,7 +111,8 @@ public class PlayerDayNightUI : MonoBehaviour
         if (lightingManager != null)
         {
             dayNightSlider.value = lightingManager.GetTimeOfDay();
-            timeTextUGUI.text = lightingManager.GetTimeOfDay().ToString();
+            // timeTextUGUI.text = lightingManager.GetTimeOfDay().ToString();
+            timeTextUGUI.text = lightingManager.GetFormattedTime();
         }
     }
 

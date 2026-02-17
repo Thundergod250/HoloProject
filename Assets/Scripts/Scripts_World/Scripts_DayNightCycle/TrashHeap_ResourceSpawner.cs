@@ -104,15 +104,24 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
         Debug.Log("Set Resource Logic Running");
         if (!_randomized)
         {
-            int i;
             // Use your Enum-based logic
             if (_garbageGroupType == GarbageObject.GarbageGroup.Plastic) SpawnResource(0);
             else if (_garbageGroupType == GarbageObject.GarbageGroup.Organic) SpawnResource(1);
             else if (_garbageGroupType == GarbageObject.GarbageGroup.Metal) SpawnResource(2);
-            else if (_garbageGroupType == GarbageObject.GarbageGroup.Ore)
+            else if (_garbageGroupType == GarbageObject.GarbageGroup.CopperOre)
             {
-                i = Random.Range(3, 6);
-                SpawnResource(i);
+                //i = Random.Range(3, 6);
+                SpawnResource(3);
+            }
+            else if (_garbageGroupType == GarbageObject.GarbageGroup.IronOre)
+            {
+                //i = Random.Range(3, 6);
+                SpawnResource(4);
+            }
+            else if (_garbageGroupType == GarbageObject.GarbageGroup.GoldOre)
+            {
+                //i = Random.Range(3, 6);
+                SpawnResource(5);
             }
         }
         else
@@ -120,9 +129,9 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
             int randomType = Random.Range(0, 101); // 0 to 100
 
             // Fixed the range logic and removed the invalid !> operator
-            if (randomType <= 33) SpawnResource(0);
-            else if (randomType <= 66) SpawnResource(1);
-            else SpawnResource(2);
+            if (randomType <= 33) SpawnResource(4);
+            else if (randomType <= 66) SpawnResource(6);
+            else SpawnResource(3);
         }
     }
 

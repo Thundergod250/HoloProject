@@ -9,7 +9,9 @@ public class GarbageObject : MonoBehaviour
         Metal,
         Glass,
         Electronic,
-        Ore
+        CopperOre,
+        IronOre,
+        GoldOre,
     }
 
     public enum GarbageSubtype
