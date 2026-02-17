@@ -6,7 +6,7 @@ public class Tower_Defense_SlowFieldTower : TowerDefensiveBase
     [SerializeField] protected int slowMultiplier = 4;
     public float detectionRadius = 15f;
 
-    [SerializeField] protected List<EnemyMovement> enemiesMovement;
+    [SerializeField] protected List<Navigation_Enemy> enemiesMovement;
 
     private void Update()
     {
@@ -16,12 +16,12 @@ public class Tower_Defense_SlowFieldTower : TowerDefensiveBase
     private void SlowDownNearEnemies()
     {
         Collider[] hits = Physics.OverlapSphere(transform.position, detectionRadius);
-        List<EnemyMovement> currentEnemies = new List<EnemyMovement>();
+        List<Navigation_Enemy> currentEnemies = new List<Navigation_Enemy>();
 
         // 1. Slow down new enemies
         foreach (Collider hit in hits)
         {
-            if (hit.TryGetComponent<EnemyMovement>(out EnemyMovement enemy))
+            if (hit.TryGetComponent<Navigation_Enemy>(out Navigation_Enemy enemy))
             {
                 currentEnemies.Add(enemy);
                 if (!enemiesMovement.Contains(enemy))
@@ -32,7 +32,7 @@ public class Tower_Defense_SlowFieldTower : TowerDefensiveBase
         }
 
         // 2. Revert enemies who are no longer in range
-        foreach (EnemyMovement enemy in enemiesMovement)
+        foreach (Navigation_Enemy enemy in enemiesMovement)
         {
             if (!currentEnemies.Contains(enemy))
             {

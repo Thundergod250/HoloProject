@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class MineralObject : MonoBehaviour
@@ -7,6 +8,8 @@ public class MineralObject : MonoBehaviour
     [SerializeField] public bool isPickedUp = false;
     [SerializeField] private bool hasBeenCollected = false;
     [SerializeField] public int amountToAddInResource = 0;
+
+    public TextMeshProUGUI addedOreTextEffect;
 
 
     private void OnTriggerEnter(Collider other)
