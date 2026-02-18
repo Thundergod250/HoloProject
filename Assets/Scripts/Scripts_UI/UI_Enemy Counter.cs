@@ -9,6 +9,7 @@ public class UI_EnemyCounter : MonoBehaviour
 
     [Header("Vars")]
     [SerializeField] private TextMeshProUGUI enemyCounterUI;
+
     public int totalEnemies;
 
     private void Start()
@@ -18,15 +19,16 @@ public class UI_EnemyCounter : MonoBehaviour
 
     public void UpdateEnemyCounter()
     {
-        enemyCounterUI.text = "Enemies Remaining: " + totalEnemies;
+        Debug.Log(totalEnemies);
+        enemyCounterUI.text = "Enemies Remaining: " + totalEnemies.ToString();
     }
 
-    public void LateUpdate()
+    public void Update()
     {
         if(ligthingManager._isNight)
         {
             enemyCounterUI.enabled = true;
-            UpdateEnemyCounter();
+            //UpdateEnemyCounter();
         }
         else if(!ligthingManager._isNight)
         {
