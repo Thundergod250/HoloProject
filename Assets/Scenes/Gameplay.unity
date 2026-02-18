@@ -2570,6 +2570,17 @@ MonoBehaviour:
       m_Calls: []
   lockModeWhenEnabled: 0
   lockModeWhenDisabled: 1
+--- !u!114 &724600842 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2126528836062608189, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
+  m_PrefabInstance: {fileID: 1986892047}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca3608f18045f274495724747939c95f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI_EnemyCounter
 --- !u!114 &768452403 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2370820433130923278, guid: fcce39b208aa7b94e8d6c5b8d065d9f3, type: 3}
@@ -7840,6 +7851,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2126528836062608189, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
+      propertyPath: ligthingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 2126528836062608189, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
+      propertyPath: 'spawners.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1671940033}
+    - target: {fileID: 2126528836062608189, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
+      propertyPath: 'spawners.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1075615591}
     - target: {fileID: 2921770044430172603, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -8560,10 +8583,178 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 31434754827981444, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 31434754827981444, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 95417741525382660, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 95417741525382660, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 281583649022454770, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 281583649022454770, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 581053376694541405, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 581053376694541405, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 617991400858678884, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 617991400858678884, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
     - target: {fileID: 698883354314225308, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: m_Name
       value: Grid Tower Placements
       objectReference: {fileID: 0}
+    - target: {fileID: 870341974631373032, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 870341974631373032, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 1301356923421196849, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 1301356923421196849, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 1478530321596152455, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 1478530321596152455, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 1508438716176122262, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 1508438716176122262, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 1518919058887177302, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 1518919058887177302, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 1556878608985660430, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 1556878608985660430, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 1759648691897475454, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 1759648691897475454, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 1827278543633125989, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 1827278543633125989, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 1881901129595835271, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 1881901129595835271, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 1886046129473142581, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 1886046129473142581, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 1886364878262575119, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 1886364878262575119, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 1908661707262376049, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 1908661707262376049, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 1940759982054770645, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 1940759982054770645, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 2084749317992359031, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 2084749317992359031, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 2087598118739418392, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 2087598118739418392, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 2203608260806483835, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 2203608260806483835, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
     - target: {fileID: 2244850358726891844, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -8604,6 +8795,374 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2405863446272101734, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 2405863446272101734, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 2471001164279730708, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 2471001164279730708, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 2644144549499876506, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 2644144549499876506, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 2648905842979756947, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 2648905842979756947, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 2701152012194204131, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 2701152012194204131, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 2890432971833204821, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 2890432971833204821, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 3059806376046375406, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 3059806376046375406, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 3249999908821260963, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 3249999908821260963, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 3275757557455145901, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 3275757557455145901, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 3662280079839479347, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 3662280079839479347, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 3725855335852600797, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 3725855335852600797, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 3959673738807465021, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 3959673738807465021, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 3959933733573915787, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 3959933733573915787, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 4040193680624477259, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 4040193680624477259, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 4115274669910132459, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 4115274669910132459, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 4341125580328797091, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 4341125580328797091, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 4378086169395957219, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 4378086169395957219, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 4515297570123094063, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 4515297570123094063, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 4650783660467618717, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 4650783660467618717, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 4667369816577206823, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 4667369816577206823, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 4743148547676741097, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 4743148547676741097, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 4755777231176276544, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 4755777231176276544, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 4760488000497319682, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 4760488000497319682, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 4813492882865758048, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 4813492882865758048, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 4878514278341339845, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 4878514278341339845, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 4890171665218165983, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 4890171665218165983, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 5403203552516816797, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 5403203552516816797, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 5423659837456326811, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 5423659837456326811, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 5639685288840678693, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 5639685288840678693, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 5764881956343431170, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 5764881956343431170, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 6211621819292216420, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 6211621819292216420, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 6214934252944976386, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 6214934252944976386, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 6474151392547311302, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 6474151392547311302, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 6647612666756146246, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 6647612666756146246, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 6912898805665453759, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 6912898805665453759, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 7686760950217397302, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 7686760950217397302, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 7798404943976136565, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 7798404943976136565, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 7990313220340945682, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 7990313220340945682, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 8017303345852301883, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 8017303345852301883, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 8498295579291786602, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 8498295579291786602, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 8509630220652960128, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 8509630220652960128, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 8535251141685901298, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 8535251141685901298, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 8696843350352368207, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 8696843350352368207, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 8697828601571720751, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 8697828601571720751, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 8843995891168396893, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 8843995891168396893, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
+    - target: {fileID: 9219766200231692169, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: lightingManager
+      value: 
+      objectReference: {fileID: 435587768}
+    - target: {fileID: 9219766200231692169, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: playerCamManager
+      value: 
+      objectReference: {fileID: 1811346360}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10306,7 +10865,7 @@ PrefabInstance:
     - target: {fileID: 8892429567609284227, guid: f754e1f36df3d2642bca472b580e1b36, type: 3}
       propertyPath: enemyCounterUI
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 724600842}
     - target: {fileID: 8892429567609284227, guid: f754e1f36df3d2642bca472b580e1b36, type: 3}
       propertyPath: lightingManager
       value: 
@@ -10350,7 +10909,7 @@ PrefabInstance:
     - target: {fileID: 8992801533120583285, guid: f754e1f36df3d2642bca472b580e1b36, type: 3}
       propertyPath: enemyCounterUI
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 724600842}
     - target: {fileID: 8992801533120583285, guid: f754e1f36df3d2642bca472b580e1b36, type: 3}
       propertyPath: lightingManager
       value: 

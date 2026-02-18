@@ -26,9 +26,6 @@ public class Spawner : MonoBehaviour
     [Header("Waypoints")]
     [SerializeField] private List<Transform> wayPoints = new List<Transform>();
 
-    [Header("Public Vars")]
-    public int enemyCounter;
-
     private Coroutine spawnRoutine;
     private bool wasNightLastFrame;
 
@@ -74,9 +71,7 @@ public class Spawner : MonoBehaviour
             newEnemy.GetComponent<Navigation_Enemy>().wayPoints = wayPoints;
             newEnemy.GetComponent<Drops_Enemy>().parentSpawner = this;
 
-            enemyCounter++;
-
-            enemyCounterUI.totalEnemies ++;
+            enemyCounterUI.totalEnemies++;
             enemyCounterUI.UpdateEnemyCounter();
 
             yield return new WaitForSeconds(interval);

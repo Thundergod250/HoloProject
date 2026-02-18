@@ -3660,6 +3660,7 @@ GameObject:
   - component: {fileID: 3312061076205034180}
   - component: {fileID: 7152428713889080607}
   - component: {fileID: 4554521604742241052}
+  - component: {fileID: 2126528836062608189}
   m_Layer: 5
   m_Name: Player HUD Info
   m_TagString: Untagged
@@ -3729,6 +3730,24 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2126528836062608189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6278199506064860527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca3608f18045f274495724747939c95f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI_EnemyCounter
+  spawners:
+  - {fileID: 0}
+  - {fileID: 0}
+  ligthingManager: {fileID: 0}
+  enemyCounterUI: {fileID: 4910248729578107635}
+  totalEnemies: 0
 --- !u!1 &6363414921098040791
 GameObject:
   m_ObjectHideFlags: 0

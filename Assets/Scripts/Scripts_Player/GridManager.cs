@@ -7,6 +7,10 @@ public class GridAreaCell
 }
 public class GridManager : MonoBehaviour
 {
+    [Header("Refs")]
+    [SerializeField] private LightingManager lightingManager;
+    [SerializeField] private PlayerCamManager playerCamManager; // just so this can feed it into tower nodes
+
     [Header("Grid Status")]
     [SerializeField] public bool _enableThisGrid;
 
@@ -34,6 +38,9 @@ public class GridManager : MonoBehaviour
                 Vector3 spawnPos = transform.position + new Vector3(x * cellSize + (cellSize / 2), 0, z * cellSize + (cellSize / 2));
 
                 GameObject newNode = Instantiate(nodePrefab, spawnPos, Quaternion.identity, transform);
+
+                newNode.GetComponent<HighlightableToggle>().lightingManager = lightingManager;
+                newNode.GetComponent<HighlightableToggle>().playerCamMan = playerCamManager;
 
                 // Since you have your own Tower Node script, you can initialize it here:
                 // var nodeScript = newNode.GetComponent<TowerNode>();
