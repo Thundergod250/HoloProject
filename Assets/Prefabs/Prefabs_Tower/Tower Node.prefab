@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 7945611311937052698}
   - component: {fileID: 5881300880969687044}
   - component: {fileID: 1478368309580505828}
+  - component: {fileID: 1179628948789693300}
   m_Layer: 6
   m_Name: Tower Node
   m_TagString: Untagged
@@ -349,6 +350,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HighlightableToggle
   objectToToggle: {fileID: 3635888915932420505}
+  lightingManager: {fileID: 0}
+  playerCamMan: {fileID: 0}
+--- !u!114 &1179628948789693300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3364266961026395771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a12b04d020415d044abc0cd00652f672, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerNodeHeapChecker
+  _trashHeapOnThisNode: {fileID: 0}
+  _towerInteractable: {fileID: 6390198802589204848}
 --- !u!1 &3635888915932420505
 GameObject:
   m_ObjectHideFlags: 0

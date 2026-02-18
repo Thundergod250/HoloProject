@@ -22,6 +22,8 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
 
     [SerializeField] bool ForTesting = false;
     [SerializeField] private bool hasSpawned = false; // Flag to prevent multiple triggerings
+    [SerializeField] private bool willRespawn = true;
+
 
     private void Start()
     {
@@ -92,7 +94,14 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
             SetResourceType(); // Calls your specific logic
         }
 
-        DisableThisHeap();
+        if (willRespawn)
+        {
+            DisableThisHeap();
+        }
+        else if(!willRespawn)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     private void DisableThisHeap()
