@@ -284,6 +284,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ddca5e7950ef3ff40aceef5b2d55801b, type: 3}
       insertIndex: -1
       addedObject: {fileID: -8181667902677691599}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ddca5e7950ef3ff40aceef5b2d55801b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7988161466564365127}
   m_SourcePrefab: {fileID: 100100000, guid: ddca5e7950ef3ff40aceef5b2d55801b, type: 3}
 --- !u!1 &5172804434979823616 stripped
 GameObject:
@@ -378,6 +381,19 @@ MonoBehaviour:
   hasBeenCollected: 0
   amountToAddInResource: 1
   addedOreTextEffect: {fileID: 0}
+--- !u!114 &7988161466564365127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5172804434979823616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87be2ada904658144830f5c6191120ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VFX_ForceUpward
+  _vfxForcedTarget: {fileID: 1201404187797375986}
 --- !u!4 &5513160855492623034 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ddca5e7950ef3ff40aceef5b2d55801b, type: 3}
@@ -492,6 +508,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2139391b76a7194489dd026f313b680c, type: 3}
+--- !u!1 &1201404187797375986 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7257025816863106610, guid: 2139391b76a7194489dd026f313b680c, type: 3}
+  m_PrefabInstance: {fileID: 8366030291728510400}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3139525973519009184 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6884818576177637472, guid: 2139391b76a7194489dd026f313b680c, type: 3}

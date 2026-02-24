@@ -121,6 +121,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2139391b76a7194489dd026f313b680c, type: 3}
+--- !u!1 &5692642673340928987 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7257025816863106610, guid: 2139391b76a7194489dd026f313b680c, type: 3}
+  m_PrefabInstance: {fileID: 3149835686492878313}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8376058529728273801 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6884818576177637472, guid: 2139391b76a7194489dd026f313b680c, type: 3}
@@ -418,6 +423,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 211afe5f56a31924eaa05570522442bf, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3703168117179705581}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 211afe5f56a31924eaa05570522442bf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4253051881815013864}
   m_SourcePrefab: {fileID: 100100000, guid: 211afe5f56a31924eaa05570522442bf, type: 3}
 --- !u!1 &8078221279830555554 stripped
 GameObject:
@@ -512,6 +520,19 @@ MonoBehaviour:
   hasBeenCollected: 0
   amountToAddInResource: 1
   addedOreTextEffect: {fileID: 0}
+--- !u!114 &4253051881815013864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8078221279830555554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87be2ada904658144830f5c6191120ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VFX_ForceUpward
+  _vfxForcedTarget: {fileID: 5692642673340928987}
 --- !u!4 &8885685458906734872 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 211afe5f56a31924eaa05570522442bf, type: 3}

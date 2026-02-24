@@ -21,6 +21,8 @@ public class NPC_MinerMovement : MonoBehaviour
     [SerializeField] protected List<GameObject> _collectedObjects;
     [SerializeField] protected GameObject _currentTargetItem;
 
+    [SerializeField] protected CartMovement _cartReference;
+
     public enum NPCMiningStates { roam, mining, home };
     [SerializeField] private NPCMiningStates _currentState = NPCMiningStates.roam;
 
@@ -34,7 +36,7 @@ public class NPC_MinerMovement : MonoBehaviour
         }
 
         // Call this ONCE. The internal 'while' loop handles the rest.
-        NPCActionPlan();
+        // NPCActionPlan();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -42,6 +44,7 @@ public class NPC_MinerMovement : MonoBehaviour
         if (other.GetComponent<PlayerController>())
         {
             _hasActivated = true;
+            NPCActionPlan();
         }
     }
 
@@ -49,9 +52,9 @@ public class NPC_MinerMovement : MonoBehaviour
     {
         if (_collectedObjects.Count < _objectLimit)
         {
-            if (other.GetComponent<GarbageObject>() && !_collectedObjects.Contains(other.GetComponent<GarbageObject>().gameObject) && (_currentState != NPCMiningStates.home))
+            if (other.GetComponent<MineralObject>() && !_collectedObjects.Contains(other.GetComponent<MineralObject>().gameObject) && (_currentState != NPCMiningStates.home))
             {
-                GameObject targetGarbageObj = other.GetComponent<GarbageObject>().gameObject;
+                GameObject targetGarbageObj = other.GetComponent<MineralObject>().gameObject;
 
                 _collectedObjects.Add(targetGarbageObj);
 
@@ -163,12 +166,17 @@ public class NPC_MinerMovement : MonoBehaviour
 
                         while (_agent.pathPending || _agent.remainingDistance > 1.0f) await Task.Yield();
 
-                        await EjectItemsWithDelay();
+                        if (_cartReference != null || !_cartReference._isFull )
+                        {
+                            await EjectItemsWithDelay();
+                        }
+
                         _currentState = NPCMiningStates.roam;
                     }
                     break;
             }
             await Task.Yield();
+            
         }
     }
 
