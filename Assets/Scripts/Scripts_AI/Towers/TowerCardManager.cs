@@ -21,6 +21,8 @@ public class TowerCardManager : MonoBehaviour, IPoolable
     public int CurrentFireRate;
     public int FireRateIncrease;
 
+    [SerializeField] public upgradeResourceType upgradeResourceType;
+
     public int GetCostValue()
     {
         return int.TryParse(OreCost.text, out int value) ? value : 0;
@@ -28,6 +30,7 @@ public class TowerCardManager : MonoBehaviour, IPoolable
 
     public void ResetCard(CardInfo info)
     {
+        upgradeResourceType = info.neededUpgradeResourceType;
         TowerName.text = info.towerName;
         Description.text = info.description;
         OreCostImage.sprite = info.oreIcon;

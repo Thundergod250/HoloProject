@@ -27,7 +27,10 @@ public class LightingManager : MonoBehaviour
 
     [SerializeField] float _transitionSpeed = 0.5f;
 
+    public SaveGameManager saveGameManager;
+
     private int _lastAssignedIndex = -1; // Tracks the last HDRI we triggered
+    private bool hasSavedToday = false;
 
     public int GetTimeOfDay()
     {
@@ -71,6 +74,13 @@ public class LightingManager : MonoBehaviour
         {
             int targetIndex = _isMines ? 1 : (_isSnow ? 3 : 0);
 
+            if (!hasSavedToday)
+            {
+                saveGameManager.SaveGame(_timeOfDay,GameManager.Instance.DropManager); // Trigger your SaveData logic
+                hasSavedToday = true;
+                Debug.Log("Sun is up! Progress saved.");
+            }
+
             if (_lastAssignedIndex != targetIndex)
             {
                 StartHDRIFade(targetIndex);
@@ -82,6 +92,9 @@ public class LightingManager : MonoBehaviour
         else if (_timeOfDay >= 151 && _timeOfDay < _maxTimeOfDay) 
         {
             int targetIndex = 1; // Your Moonless/Night HDRI
+
+            hasSavedToday = true;
+            Debug.Log("Night is up! Waiting for Day Save9.");
 
             if (_lastAssignedIndex != targetIndex)
             {

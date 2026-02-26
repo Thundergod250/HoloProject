@@ -9,6 +9,7 @@ public class TowerNodeManagerManipulator : MonoBehaviour
     
     private TowerNodeManager towerNodeManager;
 
+
     private void OnEnable()
     {
         towerNodeManager = GetComponent<TowerNodeManager>();

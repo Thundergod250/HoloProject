@@ -8,6 +8,7 @@ public class PlayerCamManager : MonoBehaviour
 
     [Header("Checkers")]
     [SerializeField] public bool _canSwitchCameras = true;
+
     public bool _freeCam = true;
 
     private void LateUpdate()

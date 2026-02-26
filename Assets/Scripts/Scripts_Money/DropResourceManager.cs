@@ -1,3 +1,5 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
 public enum upgradeResourceType
 {
@@ -13,6 +15,9 @@ public class DropResourceManager : MonoBehaviour
     [SerializeField] int mithrilResources = 0;
     [SerializeField] int goldResources = 0;
 
+    [Header("Text")]
+    [SerializeField] GameObject[] addedTextFX; // 0 for Copper, 1 for Iron, 2 for Gold, 3 for Mithril
+
     public int CopperHold => copperResources;
     public int IronHold => ironResources;
     public int MythrilHold => mithrilResources;
@@ -23,19 +28,25 @@ public class DropResourceManager : MonoBehaviour
         if (resourceTarget == upgradeResourceType.Copper)
         {
             copperResources += Mathf.Max(0, amount);
+            StartCoroutine(ShowAddedTextFX(0));
         }
         else if (resourceTarget == upgradeResourceType.Iron)
         {
             ironResources += Mathf.Max(0, amount);
-        }
-        else if (resourceTarget == upgradeResourceType.Mithril)
-        {
-            mithrilResources += Mathf.Max(0, amount);
+            StartCoroutine(ShowAddedTextFX(1));
         }
         else if (resourceTarget == upgradeResourceType.Gold)
         {
             goldResources += Mathf.Max(0, amount);
+            StartCoroutine(ShowAddedTextFX(2));
         }
+        else if (resourceTarget == upgradeResourceType.Mithril)
+        {
+            mithrilResources += Mathf.Max(0, amount);
+            StartCoroutine(ShowAddedTextFX(3));
+        }
+
+
     }
     public void SpendingToResourceType(upgradeResourceType resourceTarget, int amount)
     {
@@ -45,7 +56,7 @@ public class DropResourceManager : MonoBehaviour
         }
         else if (resourceTarget == upgradeResourceType.Iron && ironResources > 0)
         {
-            ironResources -= Mathf.Max(0, amount);
+            ironResources -= Mathf.Max(0, amount);  
         }
         else if (resourceTarget == upgradeResourceType.Mithril && mithrilResources > 0)
         {
@@ -83,4 +94,15 @@ public class DropResourceManager : MonoBehaviour
 
     // Things we can say, Dealing Damage is faster 1 - 5 - 10 - 30 respectively
     // Requirements 5 Cop, 10 Iron, 25 Mythril, 50 Gold
+        
+    private IEnumerator ShowAddedTextFX(int textint)
+    {
+        addedTextFX[textint].SetActive(true);
+
+        Debug.Log("ShowText");
+
+        yield return new WaitForSeconds(.25f);
+
+        addedTextFX[textint].SetActive(false);
+    }
 }

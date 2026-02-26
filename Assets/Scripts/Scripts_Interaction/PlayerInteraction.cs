@@ -19,7 +19,7 @@ public class PlayerInteraction : MonoBehaviour
 
     [SerializeField] private LightingManager lightingManager;
 
-    private Interactable currentInteractable;
+    [SerializeField] private Interactable currentInteractable;
     private Coroutine raycastRoutine;
     private Coroutine enableRoutine;
     private WaitForSeconds raycastInterval = new WaitForSeconds(0.1f);
