@@ -3,7 +3,7 @@ using UnityEngine;
 public class Projectile_Enemy : MonoBehaviour
 {
     [Header("Damage")]
-    [SerializeField] private int bulletDamage;
+    public int bulletDamage;
 
     private void OnCollisionEnter(Collision collision)
     {
