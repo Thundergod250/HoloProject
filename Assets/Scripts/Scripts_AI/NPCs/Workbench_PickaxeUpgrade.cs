@@ -19,6 +19,8 @@ public class Workbench_PickaxeUpgrade : MonoBehaviour
     private Texture2D initialTexture;
     private bool playerInside = false;
 
+
+    private DropResourceManager DropResourceManager;
     public static event Action<string> OnResourceShortage;
 
     private void Start()
@@ -28,7 +30,7 @@ public class Workbench_PickaxeUpgrade : MonoBehaviour
         pickaxeRend.material.mainTexture = initialTexture;
         currentTexture = copperPick;
         pickaxeRendTable.enabled = false;
-
+        DropResourceManager = GameManager.Instance.DropManager;
     }
 
     private void Update()
@@ -51,6 +53,7 @@ public class Workbench_PickaxeUpgrade : MonoBehaviour
         {
             string message = "Not Enough ores:   Mithril";
             OnResourceShortage?.Invoke(message);
+
             Debug.Log("Missing Mithril");
         }
     }
