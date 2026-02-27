@@ -166,7 +166,7 @@ public class NPC_MinerMovement : MonoBehaviour
 
                         while (_agent.pathPending || _agent.remainingDistance > 1.0f) await Task.Yield();
 
-                        if (_cartReference != null || !_cartReference._isFull )
+                        if (_cartReference != null && !_cartReference._isFull )
                         {
                             await EjectItemsWithDelay();
                         }

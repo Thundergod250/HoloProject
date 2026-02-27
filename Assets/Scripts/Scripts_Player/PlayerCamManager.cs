@@ -29,7 +29,7 @@ public class PlayerCamManager : MonoBehaviour
 
         if (changedToRTS)
         {
-            _playerUITarget.SetActive(false);
+            _playerUITarget.SetActive(true);
             _camSwitcher.SetCameraChange();
             _camSwitcher.movement = _playerMovement;
 
@@ -37,7 +37,7 @@ public class PlayerCamManager : MonoBehaviour
         }
         else if (!changedToRTS)
         {
-            _playerUITarget.SetActive(true);
+            _playerUITarget.SetActive(false);
             _camSwitcher.SetCameraChange();
             _camSwitcher.movement = null;
 

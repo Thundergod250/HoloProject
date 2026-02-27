@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.VFX;
 
 public class TrashHeap_ResourceSpawner : MonoBehaviour
 {
@@ -24,6 +25,15 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
     [SerializeField] private bool hasSpawned = false; // Flag to prevent multiple triggerings
     [SerializeField] private bool willRespawn = true;
 
+    [SerializeField] private VisualEffect _highlightColor;
+
+    private static readonly int GlowColorID = Shader.PropertyToID("Glow Color");
+    [SerializeField] private string CopperPropName = "CopperColor";
+    [SerializeField] private string IronPropName = "IronColor";
+    [SerializeField] private string GoldPropName = "GoldColor"; 
+    public Color CopperColor = new Color(0.8f, 0.5f, 0.200f);
+    public Color IronColor = new Color(0.6f, 0.6f, 0.65f);
+    public Color GoldColor = new Color(1.0f, 0.85f, 0.0f);
 
     private void Start()
     {
@@ -32,6 +42,8 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
             _healthSlider.maxValue = _health.GetMaxHealth();
             _healthSlider.gameObject.SetActive(false);
         }
+
+        SetHeapHighLight();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -58,6 +70,25 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
             _playerController = null;
             _healthSlider.gameObject.SetActive(false);
         }
+    }
+
+    private void SetHeapHighLight()
+    {
+        if (_highlightColor == null) return;
+
+        // Pick the color based on the ore type
+        Color targetColor = Color.white;
+
+        if (_garbageGroupType == GarbageObject.GarbageGroup.CopperOre)
+            targetColor = CopperColor;
+        else if (_garbageGroupType == GarbageObject.GarbageGroup.IronOre)
+            targetColor = IronColor;
+        else if (_garbageGroupType == GarbageObject.GarbageGroup.GoldOre)
+            targetColor = GoldColor;
+
+        // 2. Apply it to the VFX
+        float intensity = 5.0f; // Increase for more glow
+        _highlightColor.SetVector4(GlowColorID, targetColor * intensity);
     }
 
     private void SetRandomized()
@@ -118,6 +149,7 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
             if (_garbageGroupType == GarbageObject.GarbageGroup.Plastic) SpawnResource(0);
             else if (_garbageGroupType == GarbageObject.GarbageGroup.Organic) SpawnResource(1);
             else if (_garbageGroupType == GarbageObject.GarbageGroup.Metal) SpawnResource(2);
+
             else if (_garbageGroupType == GarbageObject.GarbageGroup.CopperOre)
             {
                 //i = Random.Range(3, 6);
