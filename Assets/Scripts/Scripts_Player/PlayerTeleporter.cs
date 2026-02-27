@@ -8,21 +8,23 @@ public class PlayerTeleporter : MonoBehaviour
     [SerializeField] private PlayerCamManager _playercamManager;
     [SerializeField] private Transform _spawnPoint;
 
-    private void Update()
+    [SerializeField] public bool _isActive = false;
+
+    public void SetTeleporterButton(bool targetActive)
     {
-        if (_playercamManager._freeCam)
+        if (targetActive == true)
         {
-            _playerTeleportMeButton.gameObject.SetActive(false);
+            _playerTeleportMeButton.interactable = true;
         }
-        else if (!_playercamManager._freeCam)
+        else if (targetActive == false)
         {
-            _playerTeleportMeButton.gameObject.SetActive(true);
+            _playerTeleportMeButton.interactable = false;
         }
     }
 
-    public void TeleportPlayerHere()
+public void TeleportPlayerHere()
     {
-        _playercamManager.SwapCameraToRTSCamera(false);
+        _playercamManager.SwapCameraToRTSCamera(true);
         _playerController.gameObject.transform.position = _spawnPoint.transform.position;
     }
 }
