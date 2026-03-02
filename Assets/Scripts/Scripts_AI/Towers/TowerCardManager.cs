@@ -11,6 +11,7 @@ public class TowerCardManager : MonoBehaviour, IPoolable
     public TextMeshProUGUI OreCost;
     public Button Button;
     public GameObject TowerPrefab;
+    public GameObject lockFilter;
 
     private GameObject sourcePrefab;
     

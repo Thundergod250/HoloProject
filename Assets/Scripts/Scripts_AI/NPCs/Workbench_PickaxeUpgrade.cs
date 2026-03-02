@@ -8,7 +8,7 @@ public class Workbench_PickaxeUpgrade : MonoBehaviour
     [SerializeField] private Renderer pickaxeRend;
     [SerializeField] private Renderer pickaxeRendTable;
     [SerializeField] private DropResourceManager gold;
-    [SerializeField] private PlayerInteraction playerInteract;
+    [SerializeField] private PlayerInteraction playerInteract; //NOT USED
 
     [Header("Vars")]
     [SerializeField] private Texture2D copperPick;

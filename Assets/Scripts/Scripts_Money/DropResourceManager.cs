@@ -101,7 +101,7 @@ public class DropResourceManager : MonoBehaviour
 
         Debug.Log("ShowText");
 
-        yield return new WaitForSeconds(.25f);
+        yield return new WaitForSeconds(.75f);
 
         addedTextFX[textint].SetActive(false);
     }
