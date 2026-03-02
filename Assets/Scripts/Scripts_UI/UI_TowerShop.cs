@@ -79,7 +79,16 @@ public class UI_TowerShop : MonoBehaviour
             if (buyTower != null)
                 buyTower.TowerCardManager = card;
 
-            activeCards.Add(cardGO);
+            if(cardInfo.islocked == true)
+            {
+                card.lockFilter.SetActive(true);
+            }
+            else if(cardInfo.islocked == false)
+            {
+                card.lockFilter.SetActive(false);
+            }
+
+                activeCards.Add(cardGO);
         }
     }
 
