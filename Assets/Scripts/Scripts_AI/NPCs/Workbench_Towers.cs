@@ -6,21 +6,26 @@ public class Workbench_Towers : MonoBehaviour
     [Header("Ref")]
     [SerializeField] private TextMeshProUGUI upgradeText;
     [SerializeField] private TowerCategoryData_SO offensiveTowerData;
+    [SerializeField] private string towerUnlock;
     private bool playerInside = false;
 
     private void Update()
     {
         if (playerInside && Input.GetKeyDown(KeyCode.F))
         {
-            UnlockTowers();
+            UnlockTowers(towerUnlock);
         }
     }
 
-    public void UnlockTowers()
+    public void UnlockTowers(string towerName)
     {
         foreach (CardInfo card in offensiveTowerData.cards)
         {
-            card.islocked = false;
+            if (card.towerName == towerName)
+            {
+                card.islocked = false;
+                break;
+            }
         }
     }
 
