@@ -1994,7 +1994,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 10
+  field of view: 60.000004
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -2020,8 +2020,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 493890560}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 314, y: 200, z: 168}
+  m_LocalRotation: {x: 0.1547436, y: 0.53016174, z: -0.099111736, w: 0.8277439}
+  m_LocalPosition: {x: 285.96515, y: 35.990932, z: 238.8454}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2642,7 +2642,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &653941722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4924,7 +4924,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1132388008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5223,6 +5223,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Workbench_Towers
   upgradeText: {fileID: 653941722}
   offensiveTowerData: {fileID: 11400000, guid: c2e8f1e7f4a4c66419aa5108af78b6c1, type: 2}
+  gold: {fileID: 1985952153}
+  oreToSpend: 1
+  towerUnlockCost: 3
   towerUnlock: 
 --- !u!65 &1202404624
 BoxCollider:
@@ -6289,7 +6292,7 @@ MonoBehaviour:
   EvtOnInteractWithObj:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1383873055}
+      - m_Target: {fileID: 1202404623}
         m_TargetAssemblyTypeName: Workbench_Towers, Assembly-CSharp
         m_MethodName: UnlockTowers
         m_Mode: 1
@@ -6315,6 +6318,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Workbench_Towers
   upgradeText: {fileID: 1132388008}
   offensiveTowerData: {fileID: 11400000, guid: c2e8f1e7f4a4c66419aa5108af78b6c1, type: 2}
+  gold: {fileID: 1985952153}
+  oreToSpend: 1
+  towerUnlockCost: 3
   towerUnlock: TEST TOWER 2
 --- !u!65 &1383873056
 BoxCollider:
@@ -11269,31 +11275,31 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4797289088119219, guid: d243a37e12ba1eb47a5ba13f193d4765, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 314
+      value: 285.96515
       objectReference: {fileID: 0}
     - target: {fileID: 4797289088119219, guid: d243a37e12ba1eb47a5ba13f193d4765, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 200
+      value: 35.990932
       objectReference: {fileID: 0}
     - target: {fileID: 4797289088119219, guid: d243a37e12ba1eb47a5ba13f193d4765, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 168
+      value: 238.8454
       objectReference: {fileID: 0}
     - target: {fileID: 4797289088119219, guid: d243a37e12ba1eb47a5ba13f193d4765, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 0.8277439
       objectReference: {fileID: 0}
     - target: {fileID: 4797289088119219, guid: d243a37e12ba1eb47a5ba13f193d4765, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.7071068
+      value: 0.1547436
       objectReference: {fileID: 0}
     - target: {fileID: 4797289088119219, guid: d243a37e12ba1eb47a5ba13f193d4765, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.53016174
       objectReference: {fileID: 0}
     - target: {fileID: 4797289088119219, guid: d243a37e12ba1eb47a5ba13f193d4765, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.099111736
       objectReference: {fileID: 0}
     - target: {fileID: 4797289088119219, guid: d243a37e12ba1eb47a5ba13f193d4765, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -11574,12 +11580,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7015868403471551584}
-        m_TargetAssemblyTypeName: Workbench_Towers, Assembly-CSharp
-        m_MethodName: UnlockTowers
-        m_Mode: 1
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -12199,6 +12205,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Workbench_Towers
   upgradeText: {fileID: 5549148711777224942}
   offensiveTowerData: {fileID: 11400000, guid: c2e8f1e7f4a4c66419aa5108af78b6c1, type: 2}
+  gold: {fileID: 1985952153}
+  oreToSpend: 1
+  towerUnlockCost: 3
   towerUnlock: TEST TOWER 1
 --- !u!1 &7279148125709941823
 GameObject:
@@ -12325,7 +12334,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &8411994618726765025
 GameObject:
   m_ObjectHideFlags: 0
