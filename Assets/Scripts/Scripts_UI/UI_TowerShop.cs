@@ -10,6 +10,10 @@ public class UI_TowerShop : MonoBehaviour
     [SerializeField] private TowerCategoryData_SO defensiveTowersData;
     [SerializeField] private TowerCategoryData_SO utilityTowersData;
 
+    [SerializeField] private GameObject _LeftPanel;
+    [SerializeField] private GameObject _RightPanel;
+
+
     [Header("Shop Buttons")]
     [SerializeField] private GameObject towerUpgradesButton;
     [SerializeField] private GameObject offensiveButton;
@@ -33,6 +37,15 @@ public class UI_TowerShop : MonoBehaviour
 
         OpenOffensiveTowers();
     }
+
+    public void EnableTowerShopUI()
+    {
+        _LeftPanel.SetActive(true); 
+        _RightPanel.SetActive(true);
+
+        TrySpawnCategory(offensiveTowersData);
+    }
+
 
     public void SetUpgradeCategoryData(TowerCategoryData_SO data) => towerUpgradesData = data;
 
