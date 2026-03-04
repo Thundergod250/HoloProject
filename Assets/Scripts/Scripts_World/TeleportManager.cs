@@ -6,6 +6,9 @@ public class TeleportManager : MonoBehaviour
     [SerializeField] private List<PlayerTeleporter> _teleporters;
     [SerializeField] private GameObject _teleportUI;
     [SerializeField] private GameObject _teleportTextUI;
+
+    PlayerController playerRef;
+
     private bool _tpUIEnabled = false;
 
     private void Start()
@@ -18,6 +21,7 @@ public class TeleportManager : MonoBehaviour
     {
         if (other.GetComponent<PlayerController>())
         {
+           playerRef = other.GetComponent<PlayerController>();
             _teleportTextUI.SetActive(true);
         }
     }
@@ -26,7 +30,11 @@ public class TeleportManager : MonoBehaviour
     {
         if (other.GetComponent<PlayerController>())
         {
+            playerRef = other.GetComponent<PlayerController>();
+
             _teleportTextUI.SetActive(false);
+
+            playerRef = null;
         }
     }
 
@@ -43,12 +51,19 @@ public class TeleportManager : MonoBehaviour
                 if (!_tpUIEnabled)
                 {
                     _teleportUI.SetActive(true);
+                    _tpUIEnabled = true;
                 }
                 else if (_tpUIEnabled)
                 {
                     _teleportUI.SetActive(false);
+                    _tpUIEnabled = false;
                 }
             }
+        }
+        else if (playerRef == null) 
+        {
+            _tpUIEnabled = false;
+            _teleportUI.SetActive(false);
         }
     }
 
