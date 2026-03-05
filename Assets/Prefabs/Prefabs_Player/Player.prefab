@@ -578,7 +578,7 @@ MonoBehaviour:
   grabWalkState: Grab and Walk
   grabJumpState: Grab and Jump
   shovelDigState: Shovel and Dig
-  miningState: Mine and Hit
+  miningState: Mining Start
   drillState: Drill
 --- !u!114 &8430264172108288562
 MonoBehaviour:
@@ -689,6 +689,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d53b2cfba28059468682628db0d42e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHarvesting
+  playerAnimation: {fileID: 0}
   _generalPlayerActions: {fileID: 8430694864698018182}
   _shovelingAction: {fileID: 7751857528735341437}
   _drillingAction: {fileID: 1885148647064198069}
@@ -712,6 +713,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCamManager
   _camSwitcher: {fileID: 0}
   _playerMovement: {fileID: 1127985473742766121}
+  _playerUITarget: {fileID: 0}
   _canSwitchCameras: 1
   _freeCam: 1
 --- !u!1 &1885148647064198069
@@ -729,7 +731,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4565136075238660253
 Transform:
   m_ObjectHideFlags: 0
@@ -823,7 +825,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3084580736334684081
 Transform:
   m_ObjectHideFlags: 0
@@ -1072,7 +1074,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2834524260260310997
 Transform:
   m_ObjectHideFlags: 0
@@ -1510,7 +1512,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c70aafb22effe83429a1982a5e65325a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1935885978243341255, guid: c70aafb22effe83429a1982a5e65325a, type: 3}
       propertyPath: m_Layer
@@ -1688,9 +1690,17 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: -1758604040217016760, guid: 2057e76430cf2ca4a8f732e698dcc627, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 588188512093617599, guid: 2057e76430cf2ca4a8f732e698dcc627, type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 588188512093617599, guid: 2057e76430cf2ca4a8f732e698dcc627, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 765757443619947440, guid: 2057e76430cf2ca4a8f732e698dcc627, type: 3}
       propertyPath: m_Layer
@@ -1716,6 +1726,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 1984191929939742178, guid: 2057e76430cf2ca4a8f732e698dcc627, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2191244423572148157, guid: 2057e76430cf2ca4a8f732e698dcc627, type: 3}
       propertyPath: m_Layer
       value: 9
@@ -1724,9 +1738,17 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 3373896553601658115, guid: 2057e76430cf2ca4a8f732e698dcc627, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3378901029268547860, guid: 2057e76430cf2ca4a8f732e698dcc627, type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3378901029268547860, guid: 2057e76430cf2ca4a8f732e698dcc627, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4894992946947337996, guid: 2057e76430cf2ca4a8f732e698dcc627, type: 3}
       propertyPath: m_Layer
@@ -1748,9 +1770,17 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 6167369639808131867, guid: 2057e76430cf2ca4a8f732e698dcc627, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7607722699587004229, guid: 2057e76430cf2ca4a8f732e698dcc627, type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7607722699587004229, guid: 2057e76430cf2ca4a8f732e698dcc627, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1906,7 +1936,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1691e81d8844aea48984d6019c2f54dd, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1725310646111424032, guid: 1691e81d8844aea48984d6019c2f54dd, type: 3}
       propertyPath: m_Layer
@@ -2119,7 +2149,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9072121998675430500}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: 76aa1ed1aab1fed469809ad2ddbd7c99, type: 3}
   m_Controller: {fileID: 9100000, guid: 24d9abe7f543aec43b1facdf0bea1ffd, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0

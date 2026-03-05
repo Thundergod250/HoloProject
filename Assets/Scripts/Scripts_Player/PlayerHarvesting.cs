@@ -2,6 +2,8 @@ using UnityEngine;
 using System.Threading.Tasks;
 public class PlayerHarvesting : MonoBehaviour
 {
+    [SerializeField] private PlayerAnimation playerAnimation;
+
     [SerializeField] private GameObject _generalPlayerActions;
     [SerializeField] private GameObject _shovelingAction;
     [SerializeField] private GameObject _drillingAction;
@@ -17,7 +19,7 @@ public class PlayerHarvesting : MonoBehaviour
 
     private void Start()
     {
-        ResetActions();
+        //ResetActions();
     }
 
     private void Update()
@@ -55,7 +57,9 @@ public class PlayerHarvesting : MonoBehaviour
         {
             // Visuals
             SwitchToAnimationType();
-            _generalPlayerActions.SetActive(false);
+            //_generalPlayerActions.SetActive(false);
+
+            playerAnimation.TriggerMining();
 
             // Wait for the interval before the next hit
             await Task.Delay(attackIntervalMs);
@@ -68,11 +72,12 @@ public class PlayerHarvesting : MonoBehaviour
         }
 
         _isAttacking = false;
+        playerAnimation.ResetAnimations();
     }
 
     private void ResetActions()
     {
-        _generalPlayerActions.SetActive(true);
+        //_generalPlayerActions.SetActive(true);
         _shovelingAction.SetActive(false);
         _drillingAction.SetActive(false);
         _miningAction.SetActive(false);
