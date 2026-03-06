@@ -4,8 +4,8 @@ using UnityEngine;
 public class TeleportManager : MonoBehaviour
 {
     [SerializeField] private List<PlayerTeleporter> _teleporters;
-    [SerializeField] private GameObject _teleportUI;
-    [SerializeField] private GameObject _teleportTextUI;
+    [SerializeField] private GameObject _teleportUIFollowText;
+    [SerializeField] private GameObject _teleportHUDUI;
 
     PlayerController playerRef;
 
@@ -13,8 +13,8 @@ public class TeleportManager : MonoBehaviour
 
     private void Start()
     {
-        _teleportTextUI.SetActive(false);
-        _teleportUI.SetActive(false);
+        _teleportHUDUI.SetActive(false);
+        _teleportUIFollowText.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -22,7 +22,7 @@ public class TeleportManager : MonoBehaviour
         if (other.GetComponent<PlayerController>())
         {
            playerRef = other.GetComponent<PlayerController>();
-            _teleportTextUI.SetActive(true);
+            _teleportHUDUI.SetActive(true);
         }
     }
 
@@ -32,7 +32,7 @@ public class TeleportManager : MonoBehaviour
         {
             playerRef = other.GetComponent<PlayerController>();
 
-            _teleportTextUI.SetActive(false);
+            _teleportHUDUI.SetActive(false);
 
             playerRef = null;
         }
@@ -44,18 +44,18 @@ public class TeleportManager : MonoBehaviour
         {
             PlayerController playerRef = other.GetComponent<PlayerController>();
 
-            _teleportTextUI.transform.LookAt(playerRef.transform.position);
+            _teleportHUDUI.transform.LookAt(playerRef.transform.position);
 
             if (Input.GetKeyDown(KeyCode.Tab) && playerRef != null)
             {
                 if (!_tpUIEnabled)
                 {
-                    _teleportUI.SetActive(true);
+                    _teleportUIFollowText.SetActive(true);
                     _tpUIEnabled = true;
                 }
                 else if (_tpUIEnabled)
                 {
-                    _teleportUI.SetActive(false);
+                    _teleportUIFollowText.SetActive(false);
                     _tpUIEnabled = false;
                 }
             }
@@ -63,12 +63,17 @@ public class TeleportManager : MonoBehaviour
         else if (playerRef == null) 
         {
             _tpUIEnabled = false;
-            _teleportUI.SetActive(false);
+            _teleportUIFollowText.SetActive(false);
         }
     }
 
     public void TeleportPlayerToTeleporterRef(int targetTPNumber)
     {
         _teleporters[targetTPNumber].TeleportPlayerHere();
+
+        _tpUIEnabled = false;
+        _teleportUIFollowText.SetActive(false);
+        playerRef = null;
+
     }
 }

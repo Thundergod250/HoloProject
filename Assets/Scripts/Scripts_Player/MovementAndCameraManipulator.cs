@@ -4,11 +4,11 @@ public class MovementAndCameraManipulator : MonoBehaviour
 {
     // === Player Movement Control ===
     public void _DisablePlayerMovement() => GameManager.Instance.PlayerController?.DisableMovement();
-    public void _EnablePlayerMovement()  => GameManager.Instance.PlayerController?.EnableMovement();
+    public void _EnablePlayerMovement() => GameManager.Instance.PlayerController?.EnableMovement();
 
     // === Camera Control ===
     public void _DisableCameraMovement() => GameManager.Instance.CameraManager?.DisableRTSCamera();
-    public void _EnableCameraMovement()  => GameManager.Instance.CameraManager?.EnableRTSCamera();
+    public void _EnableCameraMovement() => GameManager.Instance.CameraManager?.EnableRTSCamera();
 
     // === Combined Control ===
     public void _DisableAllMovement()
@@ -22,4 +22,5 @@ public class MovementAndCameraManipulator : MonoBehaviour
         _EnablePlayerMovement();
         _EnableCameraMovement();
     }
+
 }

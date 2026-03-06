@@ -56,14 +56,15 @@ public class PlayerHarvesting : MonoBehaviour
         while (Input.GetKey(KeyCode.Mouse0) && targetHeap != null)
         {
             // Visuals
-            SwitchToAnimationType();
+            //SwitchToAnimationType();
             //_generalPlayerActions.SetActive(false);
 
-            playerAnimation.TriggerMining();
+            playerAnimation.TriggerMiningStart();
 
             // Wait for the interval before the next hit
             await Task.Delay(attackIntervalMs);
 
+            playerAnimation.TriggerMiningLoop(true);
             // Damage Logic
             if (targetHeap._health != null)
             {

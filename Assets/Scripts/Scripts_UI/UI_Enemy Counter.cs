@@ -20,7 +20,7 @@ public class UI_EnemyCounter : MonoBehaviour
     public void UpdateEnemyCounter()
     {
         Debug.Log(totalEnemies);
-        enemyCounterUI.text = "Enemies Remaining: " + totalEnemies.ToString();
+        enemyCounterUI.text = "Enemies Left: " + totalEnemies.ToString();
     }
 
     public void Update()

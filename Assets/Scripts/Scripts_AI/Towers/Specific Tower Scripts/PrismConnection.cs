@@ -2,29 +2,31 @@ using UnityEngine;
 
 public class PrismConnection : MonoBehaviour
 {
-    [Header("Damage Settings")]
-    public int instantDamage = 5;
-
     private LineRenderer line;
     private CapsuleCollider col;
     private Transform startPoint;
     private Transform endPoint;
+    private TowerPrism sourceTower;
+    private TowerPrism targetTower;
+    private float rangeLimit;
 
-    public void Setup(Transform start, Transform end)
+    public int instantDamage = 10;
+
+    public void Setup(Transform start, Transform end, TowerPrism source, TowerPrism target, float range)
     {
         line = GetComponent<LineRenderer>();
         col = GetComponent<CapsuleCollider>();
 
         startPoint = start;
         endPoint = end;
+        sourceTower = source;
+        targetTower = target;
+        rangeLimit = range; // Received from the Tower
 
-        // Essential: Make sure LineRenderer uses World Space
         line.useWorldSpace = true;
         line.positionCount = 2;
-
         col.isTrigger = true;
-        // Direction 2 is the Z-axis. This is vital for the 'LookAt' logic.
-        col.direction = 2;
+        col.direction = 2; // Z-Axis
     }
 
     void Update()
@@ -35,28 +37,25 @@ public class PrismConnection : MonoBehaviour
             return;
         }
 
-        // 1. STRETCH THE VISUAL (LineRenderer)
+        float currentDistance = Vector3.Distance(startPoint.position, endPoint.position);
+
+        // Break if we exceed the range passed from the Tower
+        if (currentDistance > rangeLimit)
+        {
+            sourceTower.RemoveConnection(targetTower);
+            targetTower.RemoveConnection(sourceTower);
+            Destroy(gameObject);
+            return;
+        }
+
+        // Visual Stretch
         line.SetPosition(0, startPoint.position);
         line.SetPosition(1, endPoint.position);
 
-        // 2. POSITION THE BEAM OBJECT
-        // We move the beam's center to the middle point between towers
-        Vector3 midpoint = (startPoint.position + endPoint.position) / 2f;
-        transform.position = midpoint;
-
-        // 3. ROTATE THE BEAM
-        // We point the Z-axis of this object toward the target tower
+        // Physical Stretch
+        transform.position = (startPoint.position + endPoint.position) / 2f;
         transform.LookAt(endPoint);
-
-        // 4. STRETCH THE COLLIDER
-        // Calculate the actual distance between towers
-        float distance = Vector3.Distance(startPoint.position, endPoint.position);
-
-        // Set the height of the capsule to that distance
-        col.height = distance;
-
-        // Ensure the radius is thick enough to hit enemies (e.g., 0.2)
-        col.radius = 0.2f;
+        col.height = currentDistance;
     }
 
     // Triggered only once when the enemy touches the beam
