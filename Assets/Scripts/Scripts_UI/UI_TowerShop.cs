@@ -20,6 +20,10 @@ public class UI_TowerShop : MonoBehaviour
     [SerializeField] private GameObject defensiveButton;
     [SerializeField] private GameObject utilityButton;
 
+    [Header("Towers To Lock At Start (String)")]
+    [SerializeField] private List<string> offensiveStartLocked;
+
+
     private TowerCategoryData_SO towerUpgradesData;
     private Dictionary<string, GameObject> shopButtons;
     private readonly List<GameObject> activeCards = new();
@@ -34,6 +38,8 @@ public class UI_TowerShop : MonoBehaviour
             { "Defensive", defensiveButton },
             { "Utility", utilityButton }
         };
+
+        LockTowersFromInspector(offensiveTowersData, offensiveStartLocked);
 
         OpenOffensiveTowers();
     }
@@ -118,6 +124,19 @@ public class UI_TowerShop : MonoBehaviour
         }
         activeCards.Clear();
         currentCategory = null;
+    }
+
+    // === Lock Cards at Start ===
+    private void LockTowersFromInspector(TowerCategoryData_SO data, List<string> namesToLock)
+    {
+        if (data == null || namesToLock == null) return;
+
+        HashSet<string> lockSet = new HashSet<string>(namesToLock);
+
+        foreach (CardInfo card in data.cards)
+        {
+            card.islocked = lockSet.Contains(card.towerName);
+        }
     }
 
     // === Button visibility ===

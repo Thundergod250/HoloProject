@@ -33,17 +33,27 @@ public class Workbench_Towers : MonoBehaviour
     {
         foreach (CardInfo card in offensiveTowerData.cards)
         {
+            if (towerName.ToLower() == "all")
+            {
+                if (card.islocked)
+                {
+                    card.islocked = false;
+                    Debug.Log("Cheat Unlock: Unlocked " + card.towerName + " for free!");
+                }
+                else Debug.Log(card.towerName + " is already unlocked!");
+
+                continue; 
+            }
+
             if (card.towerName != towerName)
                 continue;
 
-            // Already unlocked
             if (!card.islocked)
             {
                 Debug.Log(card.towerName + " is already unlocked!");
                 return;
             }
 
-            // Check if player has enough of the chosen ore
             int playerAmount = gold.GetResourceType(oreTypeToSpend);
 
             if (playerAmount >= customCost)
