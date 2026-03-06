@@ -11,7 +11,6 @@ public class UI_Manager : MonoBehaviour
 
     [SerializeField] private GameObject mainUiGroup;
     [SerializeField] private GameObject towerUpgrades;
-
     private List<GameObject> uiGroups;
 
     private void Awake()

@@ -11,8 +11,14 @@ public class Interactable : MonoBehaviour
     public UnityEvent EvtOnFocus;             
     public UnityEvent EvtOnFocusExit;         
     public UnityEvent EvtOnInteract;          
-    public UnityEvent<GameObject> EvtOnInteractWithObj; 
+    public UnityEvent<GameObject> EvtOnInteractWithObj;
 
+    [SerializeField] public UI_TowerShop _towerShop;
+
+    private void Awake()
+    {
+        _towerShop = UI_TowerShop.FindFirstObjectByType<UI_TowerShop>();
+    }
 
     // Called by PlayerInteraction when this is the current target
     public void Focus()
@@ -35,6 +41,14 @@ public class Interactable : MonoBehaviour
 
         EvtOnInteract?.Invoke();
         EvtOnInteractWithObj?.Invoke(gameObject);
+    }
+
+    public void ForceOpenShop()
+    {
+        if (_towerShop)
+        {
+            _towerShop.OpenOffensiveTowers();
+        }
     }
 
     public bool GetIsInteractable() => isInteractable;

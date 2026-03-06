@@ -20,6 +20,7 @@ public class Attack_Enemy : MonoBehaviour
     [Header("Ranged")]
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform gunBarrel;
+    [SerializeField] private int bulletDamage;
     [SerializeField] private float shootingInterval;
     [SerializeField] private float shootingSpeed;
 
@@ -71,6 +72,8 @@ public class Attack_Enemy : MonoBehaviour
             Vector3 direction = (target.position - transform.position).normalized;
             GameObject proj = Instantiate(bullet, gunBarrel.transform.position, Quaternion.identity);
             Rigidbody rb = proj.GetComponent<Rigidbody>();
+            proj.GetComponent<Projectile_Enemy>().bulletDamage = bulletDamage;
+
 
             rb.linearVelocity = direction * 40f;
 

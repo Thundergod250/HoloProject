@@ -5,11 +5,12 @@ public class PlayerCamManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private CameraManager _camSwitcher;
     [SerializeField] private PlayerMovement _playerMovement;
+    [SerializeField] private GameObject _playerUITarget;
 
     [Header("Checkers")]
     [SerializeField] public bool _canSwitchCameras = true;
 
-    public bool _freeCam = true;
+    public bool _freeCam = false;
 
     private void LateUpdate()
     {
@@ -28,6 +29,7 @@ public class PlayerCamManager : MonoBehaviour
 
         if (changedToRTS)
         {
+            _playerUITarget.SetActive(true);
             _camSwitcher.SetCameraChange();
             _camSwitcher.movement = _playerMovement;
 
@@ -35,6 +37,7 @@ public class PlayerCamManager : MonoBehaviour
         }
         else if (!changedToRTS)
         {
+            _playerUITarget.SetActive(false);
             _camSwitcher.SetCameraChange();
             _camSwitcher.movement = null;
 

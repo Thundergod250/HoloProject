@@ -10,11 +10,19 @@ public class UI_TowerShop : MonoBehaviour
     [SerializeField] private TowerCategoryData_SO defensiveTowersData;
     [SerializeField] private TowerCategoryData_SO utilityTowersData;
 
+    [SerializeField] private GameObject _LeftPanel;
+    [SerializeField] private GameObject _RightPanel;
+
+
     [Header("Shop Buttons")]
     [SerializeField] private GameObject towerUpgradesButton;
     [SerializeField] private GameObject offensiveButton;
     [SerializeField] private GameObject defensiveButton;
     [SerializeField] private GameObject utilityButton;
+
+    [Header("Towers To Lock At Start (String)")]
+    [SerializeField] private List<string> offensiveStartLocked;
+
 
     private TowerCategoryData_SO towerUpgradesData;
     private Dictionary<string, GameObject> shopButtons;
@@ -31,8 +39,19 @@ public class UI_TowerShop : MonoBehaviour
             { "Utility", utilityButton }
         };
 
+        LockTowersFromInspector(offensiveTowersData, offensiveStartLocked);
+
         OpenOffensiveTowers();
     }
+
+    public void EnableTowerShopUI()
+    {
+        _LeftPanel.SetActive(true); 
+        _RightPanel.SetActive(true);
+
+        TrySpawnCategory(offensiveTowersData);
+    }
+
 
     public void SetUpgradeCategoryData(TowerCategoryData_SO data) => towerUpgradesData = data;
 
@@ -79,7 +98,16 @@ public class UI_TowerShop : MonoBehaviour
             if (buyTower != null)
                 buyTower.TowerCardManager = card;
 
-            activeCards.Add(cardGO);
+            if(cardInfo.islocked == true)
+            {
+                card.lockFilter.SetActive(true);
+            }
+            else if(cardInfo.islocked == false)
+            {
+                card.lockFilter.SetActive(false);
+            }
+
+                activeCards.Add(cardGO);
         }
     }
 
@@ -96,6 +124,19 @@ public class UI_TowerShop : MonoBehaviour
         }
         activeCards.Clear();
         currentCategory = null;
+    }
+
+    // === Lock Cards at Start ===
+    private void LockTowersFromInspector(TowerCategoryData_SO data, List<string> namesToLock)
+    {
+        if (data == null || namesToLock == null) return;
+
+        HashSet<string> lockSet = new HashSet<string>(namesToLock);
+
+        foreach (CardInfo card in data.cards)
+        {
+            card.islocked = lockSet.Contains(card.towerName);
+        }
     }
 
     // === Button visibility ===
