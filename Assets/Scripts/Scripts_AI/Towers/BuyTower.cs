@@ -16,6 +16,8 @@ public class BuyTower : MonoBehaviour
 
     public static event Action<string> OnResourceShortage;
 
+    [SerializeField] private AudioClip _buyTowerClip;
+
     private void OnEnable()
     {
         CurrentTowerNode = GameManager.Instance.CurrentTowerNode;
@@ -68,6 +70,11 @@ public class BuyTower : MonoBehaviour
             DropResourceManager?.SpendingToResourceType(targetType, currentCost);
 
             Debug.Log($"Bought Tower using {targetType}");
+
+            if (_buyTowerClip != null)
+            {
+                AudioManager.Instance?.PlaySFXOnce(_buyTowerClip);
+            }
 
             DespawnCurrentTower();
             EvtOnBuySuccessful?.Invoke(TowerCardManager.TowerPrefab);

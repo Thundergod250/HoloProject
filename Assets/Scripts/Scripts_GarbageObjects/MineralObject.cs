@@ -9,6 +9,8 @@ public class MineralObject : MonoBehaviour
     [SerializeField] private bool hasBeenCollected = false;
     [SerializeField] public int amountToAddInResource = 0;
 
+    [SerializeField] private AudioClip _pickupSoundClip;
+
     public TextMeshProUGUI addedOreTextEffect;
 
 
@@ -20,6 +22,11 @@ public class MineralObject : MonoBehaviour
         if (other.TryGetComponent(out PlayerHarvesting targetPlayer) && !isPickedUp)
         {
             hasBeenCollected = true;
+
+            if (_pickupSoundClip!= null)
+            {
+                AudioManager.Instance.PlaySFXOnce(_pickupSoundClip);
+            }
 
             _resourceManager = targetPlayer._resourceManagerRefererce;
             _resourceManager.AddingToResourceType(_resourceType, amountToAddInResource);

@@ -82,13 +82,14 @@ public class LightingManager : MonoBehaviour
                 saveGameManager.SaveGame(_timeOfDay,GameManager.Instance.DropManager); // Trigger your SaveData logic
                 hasSavedToday = true;
 
-                AudioManager.Instance.PlayMusic(_dayThemeClip);
                 Debug.Log("Sun is up! Progress saved.");
             }
 
             if (_lastAssignedIndex != targetIndex)
             {
                 StartHDRIFade(targetIndex);
+
+                AudioManager.Instance.PlayMusic(_dayThemeClip);
             }
 
             _isNight = false;
@@ -100,12 +101,13 @@ public class LightingManager : MonoBehaviour
 
             hasSavedToday = true;
 
-            AudioManager.Instance.PlayMusic(_nightThemeClip);
             Debug.Log("Night is up!");
 
             if (_lastAssignedIndex != targetIndex)
             {
                 StartHDRIFade(targetIndex);
+
+                AudioManager.Instance.PlayMusic(_nightThemeClip);
             }
 
             _isNight = true;

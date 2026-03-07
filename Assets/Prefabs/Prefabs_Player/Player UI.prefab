@@ -3347,10 +3347,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 2003676612602186617}
   m_HandleRect: {fileID: 7397765869533676180}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.001
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -9282,10 +9282,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 6060976004022379187}
   m_HandleRect: {fileID: 1845190728278771902}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.001
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -11111,6 +11111,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7113526971844569680}
     m_Modifications:
+    - target: {fileID: 1076973904866172499, guid: dc4e15fd578b3ed41bebcc3e3efb07ef, type: 3}
+      propertyPath: _buyTowerClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1cc85d2fc46e88e42a3244b7b1271ba0, type: 3}
     - target: {fileID: 3026949624857135280, guid: dc4e15fd578b3ed41bebcc3e3efb07ef, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

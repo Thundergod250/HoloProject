@@ -34,7 +34,7 @@ public class Health : MonoBehaviour
         if (_damageClip != null)
         {
             // Debate if this is too LOUD
-            AudioManager.Instance.PlaySFX(_damageClip);
+            AudioManager.Instance.PlaySFXOnce(_damageClip);
         }
 
         // Trigger damage event
