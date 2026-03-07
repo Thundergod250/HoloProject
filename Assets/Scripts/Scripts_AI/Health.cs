@@ -16,6 +16,8 @@ public class Health : MonoBehaviour
     [SerializeField] public int startSetHealth; //[FOR TESTING] 
     [SerializeField] protected bool _toBeDeleted = false;
 
+    [SerializeField] private AudioClip _damageClip;
+
     private void Awake()
     {
         currentHealth = maxHealth;
@@ -28,6 +30,12 @@ public class Health : MonoBehaviour
 
         currentHealth -= amount;
         currentHealth = Mathf.Max(currentHealth, 0);
+
+        if (_damageClip != null)
+        {
+            // Debate if this is too LOUD
+            AudioManager.Instance.PlaySFX(_damageClip);
+        }
 
         // Trigger damage event
         OnDamaged?.Invoke(currentHealth);

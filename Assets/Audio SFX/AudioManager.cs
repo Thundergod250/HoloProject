@@ -12,7 +12,8 @@ public class AudioManager : MonoBehaviour
     public Slider sfxSlider;
 
     [Header("Audio Source")]
-    public AudioSource audioSource;
+    public AudioSource audioMusicSource;
+    public AudioSource audioSFXSource;
 
     private void Awake()
     {
@@ -20,6 +21,9 @@ public class AudioManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
+            audioMusicSource.Play();
+
         }
         else
         {
@@ -37,7 +41,17 @@ public class AudioManager : MonoBehaviour
     {
         if (clip != null)
         {
-            audioSource.PlayOneShot(clip);
+            audioSFXSource.PlayOneShot(clip);
+        }
+    }
+    public void PlayMusic(AudioClip clip)
+    {
+        if (clip != null)
+        {
+            //audioMusicSource.PlayOneShot(clip);
+
+            audioMusicSource.clip = clip;
+            audioMusicSource.Play();
         }
     }
     public void SetMusicVolume(float value)

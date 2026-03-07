@@ -27,6 +27,9 @@ public class LightingManager : MonoBehaviour
 
     [SerializeField] float _transitionSpeed = 0.5f;
 
+    [SerializeField] private AudioClip _dayThemeClip;
+    [SerializeField] private AudioClip _nightThemeClip;
+
     public SaveGameManager saveGameManager;
 
     private int _lastAssignedIndex = -1; // Tracks the last HDRI we triggered
@@ -78,6 +81,8 @@ public class LightingManager : MonoBehaviour
             {
                 saveGameManager.SaveGame(_timeOfDay,GameManager.Instance.DropManager); // Trigger your SaveData logic
                 hasSavedToday = true;
+
+                AudioManager.Instance.PlayMusic(_dayThemeClip);
                 Debug.Log("Sun is up! Progress saved.");
             }
 
@@ -94,7 +99,9 @@ public class LightingManager : MonoBehaviour
             int targetIndex = 1; // Your Moonless/Night HDRI
 
             hasSavedToday = true;
-            Debug.Log("Night is up! Waiting for Day Save9.");
+
+            AudioManager.Instance.PlayMusic(_nightThemeClip);
+            Debug.Log("Night is up!");
 
             if (_lastAssignedIndex != targetIndex)
             {

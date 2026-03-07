@@ -17,6 +17,8 @@ public class PlayerHarvesting : MonoBehaviour
     [SerializeField] public DropResourceManager _resourceManagerRefererce;
     private bool _isAttacking = false; // Prevents overlapping attack loops
 
+    [SerializeField] private AudioClip _miningAudioClip;
+
     private void Start()
     {
         //ResetActions();
@@ -60,6 +62,8 @@ public class PlayerHarvesting : MonoBehaviour
             //_generalPlayerActions.SetActive(false);
 
             playerAnimation.TriggerMiningStart();
+
+            AudioManager.Instance?.PlaySFX(_miningAudioClip);
 
             // Wait for the interval before the next hit
             await Task.Delay(attackIntervalMs);

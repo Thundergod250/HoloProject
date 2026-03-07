@@ -13,22 +13,26 @@ public class HighlightableToggle : MonoBehaviour
     }
 
     // This works for the Collider method
-    void OnMouseEnter() 
+    void OnMouseEnter()
     {
-        if (lightingManager._isNight)
-        {
-            Debug.Log("Night");
-            ToggleObject(true);
-        }
-        else return;
+        ToggleObject(true);
+
+        //if (lightingManager._isNight)
+        //{
+        //    Debug.Log("Night");
+        //    ToggleObject(true);
+        //}
+        //else return;
     }
     void OnMouseExit() 
     {
-        if (lightingManager._isNight)
-        {
-            ToggleObject(false);
-        }
-        else return;
+        ToggleObject(false);
+
+        //if (lightingManager._isNight)
+        //{
+        //    ToggleObject(false);
+        //}
+        //else return;
     }
 
     // This is called by the Raycast method
