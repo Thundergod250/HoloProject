@@ -18,6 +18,9 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         // Apply the loaded slider values to the actual Mixer groups
+        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 1f);
+        sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 1f);
+
         SetMusicVolume(musicSlider.value);
         SetSFXVolume(sfxSlider.value);
     }
@@ -31,17 +34,12 @@ public class AudioManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
 
             audioMusicSource.Play();
-
         }
         else
         {
             Destroy(gameObject);
             return;
         }
-
-        // Load saved volumes
-        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 1f);
-        sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 1f);
     }
 
     // This is the "Play Once" function
