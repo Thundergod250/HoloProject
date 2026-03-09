@@ -16,8 +16,6 @@ public class Workbench_Towers : MonoBehaviour
     [SerializeField] private string towerUnlock;
 
     [Header("Reclaim Tower")]
-    [SerializeField] private upgradeResourceType oreToSpendReclaim;
-    [SerializeField] private int reclaimUnlockCost;
     [SerializeField] private GameObject destroyedState;
     [SerializeField] private GameObject fixedState;
 
@@ -33,65 +31,58 @@ public class Workbench_Towers : MonoBehaviour
         // Reset to Destroyed
         destroyedState.SetActive(true);
         fixedState.SetActive(false);
-        isReclaimed = false;
     }
 
     private void Update()
     {
-        if (playerInside && Input.GetKeyDown(KeyCode.F) && isReclaimed)
+        if (playerInside && Input.GetKeyDown(KeyCode.F))
         {
             UnlockTowers(towerUnlock, oreToSpendTower, towerUnlockCost);
-        }
-        else if (playerInside && Input.GetKeyDown(KeyCode.F) && !isReclaimed)
-        {
-            ReclaimTower(oreToSpendReclaim, reclaimUnlockCost);
         }
     }
 
     public void UnlockTowers(string towerName, upgradeResourceType oreTypeToSpend, int customCost)
     {
-        if (isReclaimed)
+        foreach (CardInfo card in offensiveTowerData.cards)
         {
-            foreach (CardInfo card in offensiveTowerData.cards)
+            if (towerName.ToLower() == "all")
             {
-                if (towerName.ToLower() == "all")
+                if (card.islocked)
                 {
-                    if (card.islocked)
-                    {
-                        card.islocked = false;
-                        Debug.Log("Cheat Unlock: Unlocked " + card.towerName + " for free!");
-                    }
-                    else Debug.Log(card.towerName + " is already unlocked!");
-
-                    continue;
-                }
-
-                if (card.towerName != towerName)
-                    continue;
-
-                if (!card.islocked)
-                {
-                    Debug.Log(card.towerName + " is already unlocked!");
-                    return;
-                }
-
-                int playerAmount = gold.GetResourceType(oreTypeToSpend);
-
-                if (playerAmount >= customCost)
-                {
-                    gold.SpendingToResourceType(oreTypeToSpend, customCost);
-
-                    // Unlock the tower
                     card.islocked = false;
+                    Debug.Log("Cheat Unlock: Unlocked " + card.towerName + " for free!");
+                }
+                else Debug.Log(card.towerName + " is already unlocked!");
 
-                    Debug.Log("Unlocked " + card.towerName + " using " + customCost + " " + oreTypeToSpend);
-                }
-                else
-                {
-                    Debug.Log("Not enough " + oreTypeToSpend + " to unlock " + card.towerName);
-                }
-                break;
+                continue;
             }
+
+            if (card.towerName != towerName)
+                continue;
+
+            if (!card.islocked)
+            {
+                Debug.Log(card.towerName + " is already unlocked!");
+                return;
+            }
+
+            int playerAmount = gold.GetResourceType(oreTypeToSpend);
+
+            if (playerAmount >= customCost)
+            {
+                gold.SpendingToResourceType(oreTypeToSpend, customCost);
+
+                card.islocked = false;
+
+                ReclaimTower();
+
+                Debug.Log("Unlocked " + card.towerName + " using " + customCost + " " + oreTypeToSpend);
+            }
+            else
+            {
+                Debug.Log("Not enough " + oreTypeToSpend + " to unlock " + card.towerName);
+            }
+            break;
         }
     }
 
@@ -101,21 +92,10 @@ public class Workbench_Towers : MonoBehaviour
         fixedState.SetActive(true);
     }
 
-    private void ReclaimTower(upgradeResourceType oreTypeToSpend, int customCost)
+    private void ReclaimTower()
     {
-        int playerAmount = gold.GetResourceType(oreTypeToSpend);
-
-        if (playerAmount >= customCost)
-        {
-            gold.SpendingToResourceType(oreTypeToSpend, customCost);
-            ChangeTexture();
-            isReclaimed = true;
-            reclaimText.enabled = false;
-        }
-        else
-        {
-            Debug.Log("Not enough " + oreTypeToSpend + " to reclaim!");
-        }
+        ChangeTexture();
+        reclaimText.enabled = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -124,14 +104,7 @@ public class Workbench_Towers : MonoBehaviour
         {
             playerInside = true;
 
-            if (isReclaimed)
-            {
-                upgradeText.enabled = true;
-            }
-            else if (!isReclaimed)
-            {
-                reclaimText.enabled = true;
-            }
+            upgradeText.enabled = true;
         }
     }
 
@@ -139,13 +112,6 @@ public class Workbench_Towers : MonoBehaviour
     {
         playerInside = false;
 
-        if (isReclaimed)
-        {
-            upgradeText.enabled = false;
-        }
-        else if (!isReclaimed)
-        {
-            reclaimText.enabled = false;
-        }
+        upgradeText.enabled = false;
     }
 }
