@@ -31,9 +31,8 @@ public class Health : MonoBehaviour
         currentHealth -= amount;
         currentHealth = Mathf.Max(currentHealth, 0);
 
-        if (_damageClip != null)
+        if (_damageClip != null && AudioManager.Instance != null )
         {
-            // Debate if this is too LOUD
             AudioManager.Instance.PlaySFXOnce(_damageClip);
         }
 

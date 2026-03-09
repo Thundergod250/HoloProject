@@ -10,9 +10,11 @@ public class Drops_Enemy : MonoBehaviour
 
     public void DropLoot()
     {
-        for(int i = 0; i < DropTable.Length; i++)
+        for (int i = 0; i < DropTable.Length; i++)
         {
-            GameObject tempLoot = Instantiate(DropTable[i], transform.position, Quaternion.identity);
+            GameObject tempLoot = Instantiate(DropTable[i], transform.position, Quaternion.identity, null);
+
+            tempLoot.transform.position = this.transform.position;
         }
 
         Destroy(gameObject);
