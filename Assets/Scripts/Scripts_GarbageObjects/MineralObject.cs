@@ -23,7 +23,7 @@ public class MineralObject : MonoBehaviour
         {
             hasBeenCollected = true;
 
-            if (_pickupSoundClip!= null)
+            if (_pickupSoundClip!= null && AudioManager.Instance != null)
             {
                 AudioManager.Instance.PlaySFXOnce(_pickupSoundClip);
             }

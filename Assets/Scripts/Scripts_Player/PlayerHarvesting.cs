@@ -30,7 +30,12 @@ public class PlayerHarvesting : MonoBehaviour
         // Check for Mouse0 being HELD DOWN
         if (Input.GetKeyDown(KeyCode.Mouse0) && !_isAttacking && targetHeap != null)
         {
-            AudioManager.Instance?.PlaySFXLoop(_miningAudioClip);
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance?.PlaySFXLoop(_miningAudioClip);
+            }
+
+            playerAnimation.TriggerMiningStart();
             _ = StartHarvestingLoop();
         }
 
@@ -60,16 +65,10 @@ public class PlayerHarvesting : MonoBehaviour
         // While the button is held and we have a target
         while (Input.GetKey(KeyCode.Mouse0) && targetHeap != null)
         {
-            // Visuals
-            //SwitchToAnimationType();
-            //_generalPlayerActions.SetActive(false);
-
-            playerAnimation.TriggerMiningStart();
-
             // Wait for the interval before the next hit
             await Task.Delay(attackIntervalMs);
+            //playerAnimation.TriggerMiningLoop(false);
 
-            playerAnimation.TriggerMiningLoop(true);
             // Damage Logic
             if (targetHeap._health != null)
             {
@@ -80,6 +79,7 @@ public class PlayerHarvesting : MonoBehaviour
         _isAttacking = false;
         playerAnimation.ResetAnimations();
     }
+
 
     private void ResetActions()
     {
