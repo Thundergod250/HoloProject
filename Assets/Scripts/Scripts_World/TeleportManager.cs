@@ -46,7 +46,7 @@ public class TeleportManager : MonoBehaviour
 
             _teleportHUDUI.transform.LookAt(playerRef.transform.position);
 
-            if (Input.GetKeyDown(KeyCode.Tab) && playerRef != null)
+            if (Input.GetKeyDown(KeyCode.F) && playerRef != null)
             {
                 if (!_tpUIEnabled)
                 {
