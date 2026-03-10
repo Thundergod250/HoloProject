@@ -1,12 +1,14 @@
+using System.Collections;
 using System.Resources;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Workbench_Towers : MonoBehaviour
 {
     [Header("Ref")]
-    [SerializeField] private TextMeshProUGUI upgradeText;
-    [SerializeField] private TextMeshProUGUI reclaimText;
+    [SerializeField] private GameObject upgradeText;
+    [SerializeField] private GameObject insufficientOreUI;
     [SerializeField] private TowerCategoryData_SO offensiveTowerData;
     [SerializeField] private DropResourceManager gold;
 
@@ -25,8 +27,8 @@ public class Workbench_Towers : MonoBehaviour
 
     private void Start()
     {
-        upgradeText.enabled = false;
-        reclaimText.enabled = false;
+        upgradeText.SetActive(false);
+        insufficientOreUI.SetActive(false);
 
         // Reset to Destroyed
         destroyedState.SetActive(true);
@@ -35,7 +37,7 @@ public class Workbench_Towers : MonoBehaviour
 
     private void Update()
     {
-        if (playerInside && Input.GetKeyDown(KeyCode.F))
+        if (playerInside && Input.GetKeyDown(KeyCode.F) && !isReclaimed)
         {
             UnlockTowers(towerUnlock, oreToSpendTower, towerUnlockCost);
         }
@@ -77,9 +79,12 @@ public class Workbench_Towers : MonoBehaviour
                 ReclaimTower();
 
                 Debug.Log("Unlocked " + card.towerName + " using " + customCost + " " + oreTypeToSpend);
+
+                upgradeText.SetActive(false);
             }
             else
             {
+                StartCoroutine(ShowError());
                 Debug.Log("Not enough " + oreTypeToSpend + " to unlock " + card.towerName);
             }
             break;
@@ -95,23 +100,33 @@ public class Workbench_Towers : MonoBehaviour
     private void ReclaimTower()
     {
         ChangeTexture();
-        reclaimText.enabled = false;
+        isReclaimed = true;
+    }
+
+    public IEnumerator ShowError()
+    {
+        insufficientOreUI.SetActive(true);
+        yield return new WaitForSeconds(0.2f);
+        insufficientOreUI.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<PlayerController>() != null)
+        if (other.GetComponent<PlayerController>() != null && !isReclaimed)
         {
             playerInside = true;
 
-            upgradeText.enabled = true;
+            upgradeText.SetActive(true);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        playerInside = false;
+        if (!isReclaimed)
+        {
+            playerInside = false;
 
-        upgradeText.enabled = false;
+            upgradeText.SetActive(false);
+        }
     }
 }
