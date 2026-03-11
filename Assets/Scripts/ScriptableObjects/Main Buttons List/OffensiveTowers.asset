@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: OffensiveTowers
   m_EditorClassIdentifier: Assembly-CSharp::TowerCategoryData_SO
   cards:
-  - towerName: Single Fire
-    description: Shoots enemy
+  - towerName: Onsight Shot
+    description: Basic that Shoots enemies
     towerIcon: {fileID: 0}
     neededUpgradeResourceType: 0
     oreCost: 1
@@ -49,12 +49,30 @@ MonoBehaviour:
     towerPrefab: {fileID: 7795377701471874775, guid: 7fe333536c5ea3e49a50be509233b9f1, type: 3}
     towerCardPrefab: {fileID: 9017402507749122417, guid: dc4e15fd578b3ed41bebcc3e3efb07ef, type: 3}
     islocked: 0
-  - towerName: Prism Tower
+  - towerName: Scorching Ray
+    description: It breathes flames to near by enemies
+    towerIcon: {fileID: 0}
+    neededUpgradeResourceType: 0
+    oreCost: 2
+    oreIcon: {fileID: 21300000, guid: 02332038d6998734d86e3b1fddb1857a, type: 3}
+    towerPrefab: {fileID: 7795377701471874775, guid: 437070fd48821b047a3358cf39583fed, type: 3}
+    towerCardPrefab: {fileID: 9017402507749122417, guid: dc4e15fd578b3ed41bebcc3e3efb07ef, type: 3}
+    islocked: 0
+  - towerName: Chain Pylon Tower
+    description: 'It zaps the closest enemy to the other near by enemies '
+    towerIcon: {fileID: 0}
+    neededUpgradeResourceType: 1
+    oreCost: 1
+    oreIcon: {fileID: 21300000, guid: 02332038d6998734d86e3b1fddb1857a, type: 3}
+    towerPrefab: {fileID: 7795377701471874775, guid: 4ab72ffc601b3944c9a2008ec2b635fd, type: 3}
+    towerCardPrefab: {fileID: 9017402507749122417, guid: dc4e15fd578b3ed41bebcc3e3efb07ef, type: 3}
+    islocked: 0
+  - towerName: Refraction Core
     description: It shines a Beam of Light damaging enemies, must be connected with
       other Prism Towers
     towerIcon: {fileID: 0}
     neededUpgradeResourceType: 1
-    oreCost: 1
+    oreCost: 3
     oreIcon: {fileID: 21300000, guid: 02332038d6998734d86e3b1fddb1857a, type: 3}
     towerPrefab: {fileID: 7795377701471874775, guid: f9406fdd45e0b9142af16cb700732f7a, type: 3}
     towerCardPrefab: {fileID: 9017402507749122417, guid: dc4e15fd578b3ed41bebcc3e3efb07ef, type: 3}

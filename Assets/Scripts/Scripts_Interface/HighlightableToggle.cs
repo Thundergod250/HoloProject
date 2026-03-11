@@ -15,7 +15,11 @@ public class HighlightableToggle : MonoBehaviour
     // This works for the Collider method
     void OnMouseEnter()
     {
-        ToggleObject(true);
+        if (!playerCamMan._freeCam)
+        {
+            ToggleObject(true);
+        }
+
 
         //if (lightingManager._isNight)
         //{

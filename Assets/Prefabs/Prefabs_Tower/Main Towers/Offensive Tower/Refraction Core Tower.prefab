@@ -1373,7 +1373,7 @@ GameObject:
   - component: {fileID: 427577870210762952}
   - component: {fileID: 7461467991367902750}
   m_Layer: 6
-  m_Name: Prism Tower
+  m_Name: Refraction Core Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1469,6 +1469,7 @@ MonoBehaviour:
         m_CallState: 2
   startSetHealth: 100
   _toBeDeleted: 1
+  _damageClip: {fileID: 0}
 --- !u!65 &7090967949583467492
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1624,11 +1625,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerPrism
   connectionRange: 50
-  firePoint: {fileID: 1932060655702197655}
   towerLayer:
     serializedVersion: 2
     m_Bits: 64
   connectionPrefab: {fileID: 2034366257171201412, guid: ce1dace8619e97b4ca1861166fa87b2f, type: 3}
+  firePoint: {fileID: 1932060655702197655}
 --- !u!1 &7849389352835609314
 GameObject:
   m_ObjectHideFlags: 0
