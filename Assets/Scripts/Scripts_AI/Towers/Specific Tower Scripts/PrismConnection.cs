@@ -28,7 +28,6 @@ public class PrismConnection : MonoBehaviour
         col.isTrigger = true;
         col.direction = 2; // Z-Axis
     }
-
     void Update()
     {
         if (startPoint == null || endPoint == null)
@@ -39,23 +38,45 @@ public class PrismConnection : MonoBehaviour
 
         float currentDistance = Vector3.Distance(startPoint.position, endPoint.position);
 
-        // Break if we exceed the range passed from the Tower
+        // 1. Check Range (Existing logic)
         if (currentDistance > rangeLimit)
         {
-            sourceTower.RemoveConnection(targetTower);
-            targetTower.RemoveConnection(sourceTower);
-            Destroy(gameObject);
+            BreakConnection();
             return;
         }
 
-        // Visual Stretch
-        line.SetPosition(0, startPoint.position);
-        line.SetPosition(1, endPoint.position);
+        // 2. Check for new Obstructions
+        if (IsObstructed())
+        {
+            BreakConnection();
+            return;
+        }
 
-        // Physical Stretch
-        transform.position = (startPoint.position + endPoint.position) / 2f;
-        transform.LookAt(endPoint);
-        col.height = currentDistance;
+        // ... (Keep existing Stretching/Rotation logic)
+    }
+
+    private bool IsObstructed()
+    {
+        Vector3 direction = endPoint.position - startPoint.position;
+        float distance = Vector3.Distance(startPoint.position, endPoint.position);
+
+        // We use a Raycast to see if something on the obstructionMask is now in the way
+        // Note: We use a LayerMask here so the beam doesn't "hit" itself!
+        // Set your obstructionMask in Setup() or make it public
+        LayerMask mask = sourceTower.obstructionMask;
+
+        if (Physics.Raycast(startPoint.position, direction, out RaycastHit hit, distance, mask))
+        {
+            return true; // Path is blocked
+        }
+        return false;
+    }
+
+    private void BreakConnection()
+    {
+        sourceTower.RemoveConnection(targetTower);
+        targetTower.RemoveConnection(sourceTower);
+        Destroy(gameObject);
     }
 
     // Triggered only once when the enemy touches the beam
