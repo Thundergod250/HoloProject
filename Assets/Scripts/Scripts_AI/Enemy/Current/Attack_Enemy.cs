@@ -29,57 +29,78 @@ public class Attack_Enemy : MonoBehaviour
     [SerializeField] private int damage;
     private bool isAttacking = false;
 
+    [Header("Attack Limit")]
+    [SerializeField] private int maxAttacks = 3;
+    private int attackCounter = 0;
 
     public Animator animator;
     public Transform target;
+    private Transform lastTarget;
+
     public Targeting archetype => targeting;
 
     private float timer;
 
     void Update()
     {
-        if(target != null) // if has target
+        if (target == null)
         {
-            timer += Time.deltaTime;
+            if (animator != null)
+                animator.SetBool("isAttacking", false);
 
-            if (timer >= shootingInterval && targeting == Targeting.Ranged)
-            {
-                AttackType();
-                timer = 0f;
-            }
-            else if (targeting == Targeting.Melee)
-            {
-                AttackType();
-            }
-            else if (targeting == Targeting.Neutral)
-            {
-                AttackType();
-            }
+            return;
+        }
 
-            if (target.GetComponent<Health>().GetCurrentHealth() == 0)
-            {
-                Debug.Log("changing target");
-                navigation_Enemy.TargetHasDied();
-            }
+        timer += Time.deltaTime;
+
+        if (timer >= shootingInterval && targeting == Targeting.Ranged)
+        {
+            AttackType();
+            timer = 0f;
+        }
+        else if (targeting == Targeting.Melee)
+        {
+            AttackType();
+        }
+        else if (targeting == Targeting.Neutral)
+        {
+            AttackType();
+        }
+
+        if (target.GetComponent<Health>().GetCurrentHealth() <= 0)
+        {
+            navigation_Enemy.TargetHasDied();
+            ResetTarget();
         }
     }
 
     void AttackType()
     {
-        if(targeting == Targeting.Ranged)
+        // Stop attacking after max attacks
+        if (attackCounter >= maxAttacks)
         {
-            transform.LookAt(target.transform);
+            ResetTarget();
+            return;
+        }
+
+        if (targeting == Targeting.Ranged)
+        {
+            transform.LookAt(target);
+
             Vector3 direction = (target.position - transform.position).normalized;
-            GameObject proj = Instantiate(bullet, gunBarrel.transform.position, Quaternion.identity);
+
+            GameObject proj = Instantiate(bullet, gunBarrel.position, Quaternion.identity);
+
             Rigidbody rb = proj.GetComponent<Rigidbody>();
             proj.GetComponent<Projectile_Enemy>().bulletDamage = bulletDamage;
-
 
             rb.linearVelocity = direction * 40f;
 
             Destroy(proj, 2f);
+
+            attackCounter++;
         }
-        else if(targeting == Targeting.Melee)
+        else if (targeting == Targeting.Melee)
         {
             if (!isAttacking)
             {
@@ -87,23 +108,47 @@ public class Attack_Enemy : MonoBehaviour
                 StartCoroutine(MeleeAttackSpeed());
             }
         }
-        else if (targeting == Targeting.Neutral)
-        {
-            //*insert attack scipt
-        }
     }
 
     public IEnumerator MeleeAttackSpeed()
     {
-        isAttacking = true; // prevent multiple coroutines
-        Debug.Log("DANEG");
+        isAttacking = true;
 
-        // Wait for attack cooldown
         yield return new WaitForSeconds(attackSpeed);
 
-        // Deal damage
-        target.GetComponent<Health>().TakeDamage(damage);
+        if (target != null)
+        {
+            target.GetComponent<Health>().TakeDamage(damage);
+            attackCounter++;
+        }
 
-        isAttacking = false; // allow next attack
+        isAttacking = false;
+    }
+
+    void ResetTarget()
+    {
+        lastTarget = target;
+        target = null;
+        attackCounter = 0;
+
+        if (animator != null)
+            animator.SetBool("isAttacking", false);
+
+        navigation_Enemy.TargetHasDied();
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (!other.CompareTag("Tower"))
+            return;
+
+        // Prevent attacking the same tower again
+        if (other.transform == lastTarget)
+            return;
+
+        if (target == null)
+        {
+            target = other.transform;
+        }
     }
 }
