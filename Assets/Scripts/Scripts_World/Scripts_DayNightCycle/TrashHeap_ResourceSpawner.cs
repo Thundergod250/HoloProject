@@ -27,6 +27,8 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
 
     [SerializeField] private VisualEffect _highlightColor;
 
+    [SerializeField] private Animator _animAttackLOreLode;
+
     private static readonly int GlowColorID = Shader.PropertyToID("Glow Color");
     [SerializeField] private string CopperPropName = "CopperColor";
     [SerializeField] private string IronPropName = "IronColor";
@@ -34,6 +36,9 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
     public Color CopperColor = new Color(0.8f, 0.5f, 0.200f);
     public Color IronColor = new Color(0.6f, 0.6f, 0.65f);
     public Color GoldColor = new Color(1.0f, 0.85f, 0.0f);
+
+    [SerializeField] private Material[] _oreMaterials;
+    [SerializeField] private GameObject _oreObjReference;
 
     private void Start()
     {
@@ -80,11 +85,20 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
         Color targetColor = Color.white;
 
         if (_garbageGroupType == GarbageObject.GarbageGroup.CopperOre)
+        {
             targetColor = CopperColor;
+            _oreObjReference.GetComponent<MeshRenderer>().material = _oreMaterials[0];
+        }
         else if (_garbageGroupType == GarbageObject.GarbageGroup.IronOre)
+        {
             targetColor = IronColor;
+            _oreObjReference.GetComponent<MeshRenderer>().material = _oreMaterials[1];
+        }
         else if (_garbageGroupType == GarbageObject.GarbageGroup.GoldOre)
+        {
             targetColor = GoldColor;
+            _oreObjReference.GetComponent<MeshRenderer>().material = _oreMaterials[2];
+        }
 
         // 2. Apply it to the VFX
         float intensity = 5.0f; // Increase for more glow
@@ -98,6 +112,16 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
         int testRandom = Random.Range(1, 3);
         _randomized = (testRandom == 1);
     }
+
+    public void AttackTriggerAnimation()
+    {
+        _animAttackLOreLode.Play("Wiggle");
+    }
+    public void StopTriggerAnimation()
+    {
+        _animAttackLOreLode.Play("Idle");
+    }
+
 
     private void Update()
     {

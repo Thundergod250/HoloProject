@@ -5,11 +5,6 @@ public class TrashPileManager : MonoBehaviour
     [SerializeField] protected List<TrashHeap_ResourceSpawner> _trashHeaps;
     [SerializeField] protected LightingManager _lightingManager;
 
-    private void Start()
-    {
-        
-    }
-
     private void FixedUpdate()
     {
         CheckTime();

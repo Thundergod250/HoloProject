@@ -72,10 +72,12 @@ public class PlayerHarvesting : MonoBehaviour
             // Damage Logic
             if (targetHeap._health != null)
             {
+                targetHeap.AttackTriggerAnimation();
                 targetHeap._health?.TakeDamage(attackDamage);
             }
         }
 
+        targetHeap.StopTriggerAnimation();
         _isAttacking = false;
         playerAnimation.ResetAnimations();
     }
