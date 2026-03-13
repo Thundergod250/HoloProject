@@ -12,6 +12,8 @@ public class Workbench_Towers : MonoBehaviour
     [SerializeField] private TowerCategoryData_SO offensiveTowerData;
     [SerializeField] private DropResourceManager gold;
 
+    [SerializeField] private UI_PromtWarnings _promptWarnings;
+
     [Header("Unlock Tower Vars")]
     [SerializeField] private upgradeResourceType oreToSpendTower;
     [SerializeField] private int towerUnlockCost;
@@ -100,6 +102,12 @@ public class Workbench_Towers : MonoBehaviour
     private void ReclaimTower()
     {
         ChangeTexture();
+
+        if (_promptWarnings != null)
+        {
+            _promptWarnings.SetPromptTextDisplay("You have Reclaimed a Tower");
+        }
+
         isReclaimed = true;
     }
 

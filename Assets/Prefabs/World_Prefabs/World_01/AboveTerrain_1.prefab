@@ -929,7 +929,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1038103995101189405}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 14859af3159dfdd448013f3c76001a3d, type: 3}
   m_Name: 
@@ -944,6 +944,7 @@ MonoBehaviour:
       m_Calls: []
   startSetHealth: 200
   _toBeDeleted: 0
+  _damageClip: {fileID: 0}
 --- !u!65 &7153844606290283172
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26418,15 +26419,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4177271409185727689, guid: abb866fce3f869c4d8c6ef140e28b759, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4665860839795050829}
-    - targetCorrespondingSourceObject: {fileID: 4177271409185727689, guid: abb866fce3f869c4d8c6ef140e28b759, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6972187900526949604}
-    - targetCorrespondingSourceObject: {fileID: 4177271409185727689, guid: abb866fce3f869c4d8c6ef140e28b759, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5760543269629564140}
-    - targetCorrespondingSourceObject: {fileID: 4177271409185727689, guid: abb866fce3f869c4d8c6ef140e28b759, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4402517655437716009}
   m_SourcePrefab: {fileID: 100100000, guid: abb866fce3f869c4d8c6ef140e28b759, type: 3}
 --- !u!1 &2303523450660212165 stripped
 GameObject:
@@ -26447,48 +26439,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NPC_HealthBarUI
   slider: {fileID: 3029465123836783396}
   helth: {fileID: 8089289732871968655}
---- !u!114 &6972187900526949604
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2303523450660212165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 459a275da0d34694599b97ff2c8d5263, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NPC_HealthBarUI
-  slider: {fileID: 0}
-  helth: {fileID: 0}
---- !u!114 &5760543269629564140
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2303523450660212165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 459a275da0d34694599b97ff2c8d5263, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NPC_HealthBarUI
-  slider: {fileID: 0}
-  helth: {fileID: 0}
---- !u!114 &4402517655437716009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2303523450660212165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 459a275da0d34694599b97ff2c8d5263, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NPC_HealthBarUI
-  slider: {fileID: 0}
-  helth: {fileID: 0}
 --- !u!114 &3029465123836783396 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 866298700072387112, guid: abb866fce3f869c4d8c6ef140e28b759, type: 3}
