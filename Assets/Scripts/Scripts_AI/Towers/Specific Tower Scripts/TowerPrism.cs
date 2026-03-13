@@ -3,10 +3,8 @@ using UnityEngine;
 
 public class TowerPrism : MonoBehaviour
 {
-    [Header("Settings")]
     public float connectionRange = 10f;
-    public LayerMask towerLayer;       // The layer your towers are on
-    public LayerMask obstructionMask;  // The layer your walls/buildings are on
+    public LayerMask towerLayer;
     public GameObject connectionPrefab;
     public Transform firePoint;
 
@@ -14,6 +12,7 @@ public class TowerPrism : MonoBehaviour
 
     void Start()
     {
+        // Start the repeating scan instead of using Update
         StartCoroutine(ScanForTowers());
     }
 
@@ -22,6 +21,7 @@ public class TowerPrism : MonoBehaviour
         while (true)
         {
             EstablishConnections();
+            // Wait for 0.2 seconds (5 scans per second)
             yield return new WaitForSeconds(0.2f);
         }
     }
@@ -36,38 +36,16 @@ public class TowerPrism : MonoBehaviour
 
             TowerPrism otherTower = hit.GetComponent<TowerPrism>();
 
+            // The list check here ensures we only spawn ONE beam per neighbor
             if (otherTower != null && !connectedTowers.Contains(otherTower))
             {
-                // Check if the path is clear before connecting
-                if (HasLineOfSight(otherTower))
-                {
-                    CreateBeam(otherTower);
-                    connectedTowers.Add(otherTower);
-                    otherTower.RegisterExistingConnection(this);
-                }
+                CreateBeam(otherTower);
+                connectedTowers.Add(otherTower);
+                otherTower.RegisterExistingConnection(this);
             }
         }
     }
 
-    private bool HasLineOfSight(TowerPrism target)
-    {
-        Vector3 direction = target.firePoint.position - firePoint.position;
-        float distance = Vector3.Distance(firePoint.position, target.firePoint.position);
-
-        // Raycast from our firepoint to their firepoint
-        // We check against both the obstructionMask AND the towerLayer
-        if (Physics.Raycast(firePoint.position, direction, out RaycastHit hit, distance, obstructionMask | towerLayer))
-        {
-            // If the first thing we hit is the other tower, the path is clear
-            if (hit.collider.gameObject == target.gameObject)
-            {
-                return true;
-            }
-        }
-
-        // Something else (like a wall) was in the way
-        return false;
-    }
     void CreateBeam(TowerPrism target)
     {
         GameObject beamObj = Instantiate(connectionPrefab, firePoint.position, Quaternion.identity);
