@@ -36,7 +36,7 @@ public class Spawner : MonoBehaviour
 
         if (testingMode)
         {
-            spawnRoutine = StartCoroutine(spawnEnemy(activeWave.timeBetweenSpawn));
+            StartCoroutine(spawnEnemy(activeWave.timeBetweenSpawn));
         }
     }
 
@@ -79,7 +79,7 @@ public class Spawner : MonoBehaviour
 
         yield return new WaitForSeconds(timeAfterWave);
 
-        OnWaveFinishedSpawning();
+       if(!testingMode) OnWaveFinishedSpawning();
     }
 
     void OnWaveFinishedSpawning()

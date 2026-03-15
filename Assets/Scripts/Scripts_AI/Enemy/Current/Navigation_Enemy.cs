@@ -22,7 +22,6 @@ public class Navigation_Enemy : MonoBehaviour
     public List<GameObject> targetsAcquired = new List<GameObject>();
     public List<Transform> wayPoints = new List<Transform>();
 
-
     [Header("Vars")]
     [SerializeField] private float distance;
     [SerializeField] private float navMinDistance;
@@ -70,6 +69,11 @@ public class Navigation_Enemy : MonoBehaviour
             {
                 if (other.GetComponent<TowerAndEnemy_Archetype>().material == target_Arch.material || target_Arch.material == TowerAndEnemy_Archetype.TypeAndTarget.All) // if Type is same as enemy or is All
                 {
+                    if(attack_Enemy.attackedTowers.Contains(other.gameObject))
+                    {
+                        return;
+                    }
+
                     targetsAcquired.Add(other.gameObject);
                 }
             }
@@ -146,6 +150,8 @@ public class Navigation_Enemy : MonoBehaviour
         attack_Enemy.animator.SetBool("isAttacking", false);
         targetsAcquired.Remove(currentTarget);
         currentTarget.GetComponent<Health>().Die();
+        attack_Enemy.attackedTowers.Remove(currentTarget);
+
         currentTarget = null;
         attack_Enemy.target = null;
 
@@ -153,8 +159,28 @@ public class Navigation_Enemy : MonoBehaviour
 
         navigation.ResetPath();
 
+        if(meleeTrigger) meleeTrigger = false;
+
         FindNearestWaypoint(); // Optional" May feel better or worse
 
+    }
+
+    public void ChangeTarget()
+    {
+        StopCoroutine(attack_Enemy.MeleeAttackSpeed());
+        attack_Enemy.animator.SetBool("isAttacking", false);
+        targetsAcquired.Remove(currentTarget);
+
+        currentTarget = null;
+        attack_Enemy.target = null;
+
+        navigation.isStopped = false;
+
+        navigation.ResetPath();
+
+        if (meleeTrigger) meleeTrigger = false;
+
+        FindNearestWaypoint(); // Optional" May feel better or worse
     }
     #endregion
 

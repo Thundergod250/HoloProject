@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Attack_Enemy : MonoBehaviour
@@ -30,12 +32,13 @@ public class Attack_Enemy : MonoBehaviour
     private bool isAttacking = false;
 
     [Header("Attack Limit")]
-    [SerializeField] private int maxAttacks = 3;
-    private int attackCounter = 0;
+    [SerializeField] private int maxHits = 3;
+    public List<GameObject> attackedTowers = new List<GameObject>();
+
+    private int hitCounter = 0;
 
     public Animator animator;
     public Transform target;
-    private Transform lastTarget;
 
     public Targeting archetype => targeting;
 
@@ -43,62 +46,56 @@ public class Attack_Enemy : MonoBehaviour
 
     void Update()
     {
-        if (target == null)
+        if (target != null) // if has target
         {
-            if (animator != null)
-                animator.SetBool("isAttacking", false);
+            timer += Time.deltaTime;
 
-            return;
-        }
+            if (timer >= shootingInterval && targeting == Targeting.Ranged)
+            {
+                AttackType();
+                timer = 0f;
+            }
+            else if (targeting == Targeting.Melee)
+            {
+                AttackType();
+            }
+            else if (targeting == Targeting.Neutral)
+            {
+                AttackType();
+            }
 
-        timer += Time.deltaTime;
-
-        if (timer >= shootingInterval && targeting == Targeting.Ranged)
-        {
-            AttackType();
-            timer = 0f;
-        }
-        else if (targeting == Targeting.Melee)
-        {
-            AttackType();
-        }
-        else if (targeting == Targeting.Neutral)
-        {
-            AttackType();
-        }
-
-        if (target.GetComponent<Health>().GetCurrentHealth() <= 0)
-        {
-            navigation_Enemy.TargetHasDied();
-            ResetTarget();
+            if (target.GetComponent<Health>().GetCurrentHealth() == 0)
+            {
+                Debug.Log("changing target");
+                navigation_Enemy.TargetHasDied();
+            }
         }
     }
 
     void AttackType()
     {
-        // Stop attacking after max attacks
-        if (attackCounter >= maxAttacks)
+        if (hitCounter >= maxHits)
         {
-            ResetTarget();
+            Debug.Log("Hit limit reached");
+            ResetAttack();
             return;
         }
 
         if (targeting == Targeting.Ranged)
         {
-            transform.LookAt(target);
+            transform.LookAt(target.transform);
 
             Vector3 direction = (target.position - transform.position).normalized;
 
-            GameObject proj = Instantiate(bullet, gunBarrel.position, Quaternion.identity);
+            GameObject proj = Instantiate(bullet, gunBarrel.transform.position, Quaternion.identity);
 
             Rigidbody rb = proj.GetComponent<Rigidbody>();
+
             proj.GetComponent<Projectile_Enemy>().bulletDamage = bulletDamage;
 
             rb.linearVelocity = direction * 40f;
 
             Destroy(proj, 2f);
-
-            attackCounter++;
         }
         else if (targeting == Targeting.Melee)
         {
@@ -108,47 +105,38 @@ public class Attack_Enemy : MonoBehaviour
                 StartCoroutine(MeleeAttackSpeed());
             }
         }
+        else if (targeting == Targeting.Neutral)
+        {
+            //*insert attack script
+        }
     }
 
     public IEnumerator MeleeAttackSpeed()
     {
         isAttacking = true;
 
+        Debug.Log("DANEG");
+
         yield return new WaitForSeconds(attackSpeed);
 
         if (target != null)
         {
             target.GetComponent<Health>().TakeDamage(damage);
-            attackCounter++;
+            hitCounter++;
         }
 
         isAttacking = false;
     }
 
-    void ResetTarget()
+    void ResetAttack()
     {
-        lastTarget = target;
+        attackedTowers.Add(target.gameObject);
+        hitCounter = 0;
         target = null;
-        attackCounter = 0;
 
         if (animator != null)
             animator.SetBool("isAttacking", false);
 
-        navigation_Enemy.TargetHasDied();
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (!other.CompareTag("Tower"))
-            return;
-
-        // Prevent attacking the same tower again
-        if (other.transform == lastTarget)
-            return;
-
-        if (target == null)
-        {
-            target = other.transform;
-        }
+        navigation_Enemy.ChangeTarget();
     }
 }
