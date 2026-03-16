@@ -101,9 +101,10 @@ public class PlayerHarvesting : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<TrashHeap_ResourceSpawner>(out var heap))
+        // if (other.TryGetComponent<TrashHeap_ResourceSpawner>(out var heap))
+        if (other.GetComponent<TrashHeap_ResourceSpawner>())
         {
-            targetHeap = heap;
+            targetHeap = other.GetComponent<TrashHeap_ResourceSpawner>();
             _garbageGroupType = targetHeap._garbageGroupType;
         }
     }

@@ -94,8 +94,10 @@ public class NPC_MinerMovement : MonoBehaviour
 
         foreach (var hit in hitColliders)
         {
-            if (hit.TryGetComponent(out TrashHeap_ResourceSpawner heap))
+            //if (hit.TryGetComponent(out TrashHeap_ResourceSpawner heap))
+            if (hit.GetComponent<TrashHeap_ResourceSpawner>())
             {
+                TrashHeap_ResourceSpawner heap = hit.GetComponent<TrashHeap_ResourceSpawner>();
                 // Optional: check if the heap still has resources here
                 float dist = Vector3.Distance(transform.position, heap.transform.position);
 

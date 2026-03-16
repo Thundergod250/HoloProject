@@ -64,7 +64,7 @@ public class Attack_Enemy : MonoBehaviour
                 AttackType();
             }
 
-            if (target.GetComponent<Health>().GetCurrentHealth() == 0)
+            else if (target.GetComponent<Health>().GetCurrentHealth() <= 0)
             {
                 Debug.Log("changing target");
                 navigation_Enemy.TargetHasDied();

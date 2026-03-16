@@ -62,11 +62,11 @@ public class TowerBaseHealer : MonoBehaviour
         int gold = Mathf.CeilToInt(ratio * _goldHealNeed);
 
         // Show the player what the current "Best Option" is
-        if (_dropResourceReference.CopperHold >= copper)
+        //if (_dropResourceReference.CopperHold >= copper)
             _costDisplayTextCop.text = $"Repair Cost: {copper} Copper";
-        else if (_dropResourceReference.IronHold >= iron)
+        //else if (_dropResourceReference.IronHold >= iron)
             _costDisplayTextIron.text = $"Repair Cost: {iron} Iron";
-        else if (_dropResourceReference.GoldHold >= gold)
+        //else if (_dropResourceReference.GoldHold >= gold)
             _costDisplayTextGold.text = $"Repair Cost: {gold} Gold";
         //else
             //_costDisplayText.text = "<color=red>Not Enough Resources</color>";

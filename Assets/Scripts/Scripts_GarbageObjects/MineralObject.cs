@@ -19,8 +19,10 @@ public class MineralObject : MonoBehaviour
         if (hasBeenCollected)
             return;
 
-        if (other.TryGetComponent(out PlayerHarvesting targetPlayer) && !isPickedUp)
+        //if (other.TryGetComponent(out PlayerHarvesting targetPlayer) && !isPickedUp)
+        if (other.GetComponent<PlayerHarvesting>() && !isPickedUp)
         {
+            PlayerHarvesting playerHarvest = other.GetComponent<PlayerHarvesting>();
             hasBeenCollected = true;
 
             if (_pickupSoundClip!= null && AudioManager.Instance != null)
@@ -28,7 +30,7 @@ public class MineralObject : MonoBehaviour
                 AudioManager.Instance.PlaySFXOnce(_pickupSoundClip);
             }
 
-            _resourceManager = targetPlayer._resourceManagerRefererce;
+            _resourceManager = playerHarvest._resourceManagerRefererce;
             _resourceManager.AddingToResourceType(_resourceType, amountToAddInResource);
             Debug.Log("Adding To Ores");
 

@@ -21,12 +21,14 @@ public class Tower_Defense_SlowFieldTower : TowerDefensiveBase
         // 1. Slow down new enemies
         foreach (Collider hit in hits)
         {
-            if (hit.TryGetComponent<Navigation_Enemy>(out Navigation_Enemy enemy))
+            //if (hit.TryGetComponent<Navigation_Enemy>(out Navigation_Enemy enemy))
+            if (hit.GetComponent<Navigation_Enemy>())
             {
-                currentEnemies.Add(enemy);
-                if (!enemiesMovement.Contains(enemy))
+                Navigation_Enemy navEnemy = hit.GetComponent<Navigation_Enemy>();
+                currentEnemies.Add(navEnemy);
+                if (!enemiesMovement.Contains(navEnemy))
                 {
-                    enemy.SlowDownAgent(slowMultiplier);
+                    navEnemy.SlowDownAgent(slowMultiplier);
                 }
             }
         }

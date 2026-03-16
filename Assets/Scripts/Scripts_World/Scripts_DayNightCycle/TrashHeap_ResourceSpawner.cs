@@ -53,9 +53,10 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<PlayerController>(out var player))
+        //if (other.TryGetComponent<PlayerController>(out var player))
+        if (other.GetComponent<PlayerController>())
         {
-            _playerController = player;
+            _playerController = other.GetComponent<PlayerController>();
            // SetRandomized(); // Fixed logic inside this function
             _healthSlider.gameObject.SetActive(true);
 

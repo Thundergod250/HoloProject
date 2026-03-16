@@ -78,28 +78,26 @@ public class ProjectileBase : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Ignore self collisions or unrelated colliders
-        if (other.gameObject == gameObject) return;
-
-        if (ownerType == ProjectileOwnerType.Tower)
+        // if (other.gameObject == gameObject) return;
+         
+        if(other.GetComponent<TowerController>() && ownerType == ProjectileOwnerType.Enemy )
         {
-            if (other.TryGetComponent(out EnemyBase enemy))
-            {
-                ApplyDamageToEnemy(enemy);
-                Debug.Log($"{gameObject.name} hit Enemy: {enemy.name}");
-                Explode();
-                ReturnToPool();
-            }
+            TowerController targetTower = other.GetComponent<TowerController>();
+
+            ApplyDamageToTower(targetTower);
+            Debug.Log($"{gameObject.name} hit Tower: {targetTower.name}");
+            Explode();
+            ReturnToPool();
         }
 
-        if (ownerType == ProjectileOwnerType.Enemy)
+        else if (other.GetComponent<EnemyBase>() && ownerType == ProjectileOwnerType.Tower )
         {
-            if (other.TryGetComponent(out TowerController tower))
-            {
-                ApplyDamageToTower(tower);
-                Debug.Log($"{gameObject.name} hit Tower: {tower.name}");
-                Explode();
-                ReturnToPool();
-            }
+            EnemyBase targetEnemy = other.GetComponent<EnemyBase>();
+
+            ApplyDamageToEnemy(targetEnemy);
+            Debug.Log($"{gameObject.name} hit Enemy: {targetEnemy.name}");
+            Explode();
+            ReturnToPool();
         }
     }
 
