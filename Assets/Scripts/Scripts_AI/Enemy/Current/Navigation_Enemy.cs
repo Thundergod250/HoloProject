@@ -30,6 +30,8 @@ public class Navigation_Enemy : MonoBehaviour
     public NavMeshAgent navigation;
     public bool isMoving;
 
+    public Attack_Enemy AttackEnemyRef => attack_Enemy;
+
     private void Start()
     {
         if(meleeStopDistance != 0)
@@ -71,10 +73,11 @@ public class Navigation_Enemy : MonoBehaviour
                 {
                     if(attack_Enemy.attackedTowers.Contains(other.gameObject))
                     {
-                        return;
+                  //      return;
                     }
 
-                    targetsAcquired.Add(other.gameObject);
+                  //  Debug.Log("Add Tower to List");
+                  //  targetsAcquired.Add(other.gameObject);
                 }
             }
         }
