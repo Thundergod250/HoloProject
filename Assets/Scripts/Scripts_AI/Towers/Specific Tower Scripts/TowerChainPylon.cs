@@ -11,6 +11,10 @@ public class TowerChainPylon : MonoBehaviour
     public int _damage = 5;
     public LayerMask enemyLayer;
 
+    [Header("Visual Settings")]
+    public LineRenderer lineRenderer;
+    public Transform firePoint;
+
     private float _nextFireTime;
     private GameObject[] _hitHistory = new GameObject[3];
 
@@ -35,32 +39,54 @@ public class TowerChainPylon : MonoBehaviour
 
     private async Task ExecuteDominoChainAsync(GameObject startEnemy)
     {
-        for (int i = 0; i < _hitHistory.Length; i++) _hitHistory[i] = null;
-
-        GameObject currentTarget = startEnemy;
-
-        for (int hitCount = 0; hitCount < 3; hitCount++)
+        try
         {
-            if (currentTarget == null) break;
-
-            _hitHistory[hitCount] = currentTarget;
-
-            // Direct check as requested
-            if (currentTarget.GetComponent<EnemyBase>().Health)
+            if (lineRenderer)
             {
-                currentTarget.GetComponent<EnemyBase>().Health.TakeDamage(_damage);
+                lineRenderer.enabled = true;
+                lineRenderer.positionCount = 1;
+                lineRenderer.SetPosition(0, firePoint.position);
             }
 
-            Debug.Log($"Hit {hitCount + 1}: {currentTarget.name}");
+            for (int i = 0; i < _hitHistory.Length; i++) _hitHistory[i] = null;
 
-            GameObject nextTarget = null;
-            if (hitCount < 2)
+            GameObject currentTarget = startEnemy;
+
+            for (int hitCount = 0; hitCount < 3; hitCount++)
             {
-                nextTarget = FindNextClosest(currentTarget.transform.position);
-            }
+                if (currentTarget == null) break;
 
-            await Task.Delay((int)(shotDelay * 1000));
-            currentTarget = nextTarget;
+                _hitHistory[hitCount] = currentTarget;
+
+                if (lineRenderer)
+                {
+                    lineRenderer.positionCount = hitCount + 2;
+                    lineRenderer.SetPosition(hitCount + 1, currentTarget.transform.position);
+                }
+
+                if (currentTarget.GetComponent<EnemyBase>().Health)
+                {
+                    currentTarget.GetComponent<EnemyBase>().Health.TakeDamage(_damage);
+                }
+
+                GameObject nextTarget = null;
+                if (hitCount < 2)
+                {
+                    nextTarget = FindNextClosest(currentTarget.transform.position);
+                }
+
+                await Task.Delay((int)(shotDelay * 1000));
+                currentTarget = nextTarget;
+            }
+        }
+        finally
+        {
+            // This block runs no matter what, ensuring the line always resets
+            if (lineRenderer)
+            {
+                lineRenderer.positionCount = 0;
+                lineRenderer.enabled = false;
+            }
         }
     }
 
