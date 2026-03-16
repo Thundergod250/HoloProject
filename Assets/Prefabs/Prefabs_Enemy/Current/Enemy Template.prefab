@@ -194,6 +194,7 @@ MonoBehaviour:
         m_CallState: 2
   startSetHealth: 100
   _toBeDeleted: 0
+  _damageClip: {fileID: 0}
 --- !u!114 &6149120422715163426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,10 +212,13 @@ MonoBehaviour:
   targeting: 0
   bullet: {fileID: 3674529731938632888, guid: 22b32847aa556ea41af26b916b2fe3f0, type: 3}
   gunBarrel: {fileID: 4560558392570752542}
+  bulletDamage: 0
   shootingInterval: 0.75
   shootingSpeed: 40
   attackSpeed: 0
   damage: 0
+  maxHits: 3
+  attackedTowers: []
   animator: {fileID: 0}
   target: {fileID: 0}
 --- !u!114 &7538640261713532623
@@ -229,7 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2627a6c15788ed445bc6efbfb686f996, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tower_Archetype
-  TargetOrFoundation: 0
+  TargetOrFoundation: 3
 --- !u!114 &8230038487409561773
 MonoBehaviour:
   m_ObjectHideFlags: 0
