@@ -1247,9 +1247,9 @@ GameObject:
   - component: {fileID: 3676215705264287566}
   - component: {fileID: 1911738574720167987}
   - component: {fileID: 5882814700636677500}
-  - component: {fileID: 9080690367692353907}
   - component: {fileID: 8019835506632618270}
   - component: {fileID: 1463616580491497337}
+  - component: {fileID: 8529942907678228749}
   m_Layer: 6
   m_Name: Ward Tower
   m_TagString: Untagged
@@ -1427,21 +1427,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 15
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &9080690367692353907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7795377701471874775}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e1b44e111d7b324cb699836ba48f9f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Tower_Defense_SlowFieldTower
-  slowMultiplier: 5
-  detectionRadius: 15
-  enemiesMovement: []
 --- !u!114 &8019835506632618270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1471,6 +1456,24 @@ MonoBehaviour:
   objectToToggle: {fileID: 0}
   lightingManager: {fileID: 0}
   playerCamMan: {fileID: 0}
+--- !u!114 &8529942907678228749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7795377701471874775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d25eb3b659399fe48b30404dcfb8e64a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerWard
+  range: 10
+  freezeDuration: 2
+  attackInterval: 5
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &7849389352835609314
 GameObject:
   m_ObjectHideFlags: 0
