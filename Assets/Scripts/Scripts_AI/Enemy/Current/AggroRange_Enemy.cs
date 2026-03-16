@@ -14,7 +14,7 @@ public class AggroRange_Enemy : MonoBehaviour
             {
                 if (other.GetComponent<TowerAndEnemy_Archetype>().material == target_Arch.material || target_Arch.material == TowerAndEnemy_Archetype.TypeAndTarget.All)
                 {
-                    navigation_enemy.targetsAcquired.Add(other.gameObject);
+                   //  navigation_enemy.targetsAcquired.Add(other.gameObject);
                 }
             }
         }
