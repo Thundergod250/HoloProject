@@ -9,6 +9,8 @@ public class TowerWard : MonoBehaviour
     public float attackInterval = 5f;
     public LayerMask enemyLayer; // Set this to your Enemy layer in the Inspector
 
+
+    [SerializeField] private AudioSource _wardTowerAudioSource;
     private bool canAttack = true;
 
     void Update()
@@ -36,6 +38,11 @@ public class TowerWard : MonoBehaviour
                 {
                     //movement.ApplyFreeze(freezeDuration);
                     // just check if invisible here, then function to be detected and raise
+
+                    if (_wardTowerAudioSource != null)
+                    {
+                        _wardTowerAudioSource.Play();
+                    }
                 }
             }
 

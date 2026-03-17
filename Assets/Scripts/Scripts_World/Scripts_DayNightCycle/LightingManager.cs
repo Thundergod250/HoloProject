@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.HighDefinition;
@@ -27,8 +28,8 @@ public class LightingManager : MonoBehaviour
 
     [SerializeField] float _transitionSpeed = 0.5f;
 
-    [SerializeField] private AudioClip _dayThemeClip;
-    [SerializeField] private AudioClip _nightThemeClip;
+    [SerializeField] private AudioClip[] _dayThemeClip;
+    [SerializeField] private AudioClip[] _nightThemeClip;
 
     public SaveGameManager saveGameManager;
 
@@ -89,7 +90,9 @@ public class LightingManager : MonoBehaviour
             {
                 StartHDRIFade(targetIndex);
 
-                AudioManager.Instance.PlayMusic(_dayThemeClip);
+                int randomClip = Random.Range( 0,_dayThemeClip.Count());
+
+                AudioManager.Instance.PlayMusic(_dayThemeClip[randomClip]);
             }
 
             _isNight = false;
@@ -107,7 +110,8 @@ public class LightingManager : MonoBehaviour
             {
                 StartHDRIFade(targetIndex);
 
-                AudioManager.Instance.PlayMusic(_nightThemeClip);
+                int randomClip = Random.Range(0, _nightThemeClip.Count());
+                AudioManager.Instance.PlayMusic(_nightThemeClip[randomClip]);
             }
 
             _isNight = true;

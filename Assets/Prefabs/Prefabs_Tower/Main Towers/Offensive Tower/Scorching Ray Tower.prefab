@@ -1324,13 +1324,13 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3661980126799368487}
   - {fileID: 8687752461539450032}
   - {fileID: 8686652750663414425}
   - {fileID: 1642905607622213723}
   - {fileID: 3647304328558938778}
   - {fileID: 2275308987433354383}
   - {fileID: 1290836347639502279}
-  - {fileID: 3661980126799368487}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4655473061654607957
@@ -1368,6 +1368,8 @@ MonoBehaviour:
   thisTowerUpgradeCards_SO: {fileID: 11400000, guid: f89237371cb494948815dd4448584183, type: 2}
   attackLocation: {fileID: 0}
   TowerHealth: {fileID: 9209285657085303806}
+  _smokeVFX: {fileID: 4151414591742140466}
+  _smokeVFXActive: 0
 --- !u!114 &9209285657085303806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1512,7 +1514,7 @@ MonoBehaviour:
   damagePerTick: 1
   attackInterval: 0.5
   rotationSpeed: 5
-  _fireParticles: {fileID: 0}
+  _fireParticles: {fileID: 6508705751755870208}
 --- !u!1 &7849389352835609314
 GameObject:
   m_ObjectHideFlags: 0
@@ -1928,6 +1930,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Beta Flamethrower VFX
       objectReference: {fileID: 0}
+    - target: {fileID: 896101618768408516, guid: 5b531ce153b126449b766c9d89094b3e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2306164640209183383, guid: 5b531ce153b126449b766c9d89094b3e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1972,6 +1978,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: f58cd99961af9f448b048e5c07634577, type: 2}
+    - target: {fileID: 9015668154724384707, guid: 5b531ce153b126449b766c9d89094b3e, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1980,6 +1990,11 @@ PrefabInstance:
 --- !u!4 &525975075685043540 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2306164640209183383, guid: 5b531ce153b126449b766c9d89094b3e, type: 3}
+  m_PrefabInstance: {fileID: 2832068238774808515}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &6508705751755870208 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 9015668154724384707, guid: 5b531ce153b126449b766c9d89094b3e, type: 3}
   m_PrefabInstance: {fileID: 2832068238774808515}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4155446402148441493
@@ -2052,13 +2067,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8574923633557309200}
     m_Modifications:
+    - target: {fileID: 7295653107764146706, guid: ecbaf61c5f08a3d41921b724d34679f2, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7822651895172334817, guid: ecbaf61c5f08a3d41921b724d34679f2, type: 3}
       propertyPath: m_Name
       value: Smoke
       objectReference: {fileID: 0}
     - target: {fileID: 7822651895172334817, guid: ecbaf61c5f08a3d41921b724d34679f2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7958533229886227207, guid: ecbaf61c5f08a3d41921b724d34679f2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2108,5 +2127,10 @@ PrefabInstance:
 --- !u!4 &3661980126799368487 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7958533229886227207, guid: ecbaf61c5f08a3d41921b724d34679f2, type: 3}
+  m_PrefabInstance: {fileID: 6675342124900700704}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &4151414591742140466 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7295653107764146706, guid: ecbaf61c5f08a3d41921b724d34679f2, type: 3}
   m_PrefabInstance: {fileID: 6675342124900700704}
   m_PrefabAsset: {fileID: 0}

@@ -12,7 +12,32 @@ public class TowerController : MonoBehaviour
     [SerializeField] private TowerCategoryData_SO thisTowerUpgradeCards_SO; 
     [SerializeField] private Transform attackLocation; 
     public Health TowerHealth;
-    
+
+    [SerializeField] private ParticleSystem _smokeVFX;
+    [SerializeField] private bool _smokeVFXActive = false;
+
+    private void LateUpdate()
+    {
+        if (_smokeVFX == null)
+        {
+            return;
+        }
+        else
+        {
+            if ((TowerHealth.GetCurrentHealth() <= TowerHealth.GetMaxHealth() / 2) && !_smokeVFXActive)
+            {
+                _smokeVFXActive = true;
+                _smokeVFX.Play();
+            }
+
+            else if ((TowerHealth.GetCurrentHealth() >= TowerHealth.GetMaxHealth() / 2) && _smokeVFXActive)
+            {
+                _smokeVFXActive = false;
+                _smokeVFX.Stop();
+            }
+        }
+    }
+
     private void Awake() => towerInstance = gameObject;
 
     public void IncreaseTowerMainDamage() => EvtOnIncreaseTowerMainDamage?.Invoke();
@@ -26,6 +51,7 @@ public class TowerController : MonoBehaviour
         else
             Debug.LogWarning($"{name} could not find TowerNodeManager in parent hierarchy.");
     }
+
 
     public TowerCategoryData_SO GetUpgradeData() => thisTowerUpgradeCards_SO;
 
