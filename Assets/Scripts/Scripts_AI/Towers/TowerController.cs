@@ -24,7 +24,7 @@ public class TowerController : MonoBehaviour
         }
         else
         {
-            if ((TowerHealth.GetCurrentHealth() <= TowerHealth.GetMaxHealth() / 2) && !_smokeVFXActive)
+            if ((TowerHealth.GetCurrentHealth() < TowerHealth.GetMaxHealth() / 2) && !_smokeVFXActive)
             {
                 _smokeVFXActive = true;
                 _smokeVFX.Play();

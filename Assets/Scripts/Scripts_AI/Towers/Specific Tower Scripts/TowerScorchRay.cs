@@ -80,7 +80,7 @@ public class TowerScorchRay : MonoBehaviour
             if (this == null) return;
 
             // Damage everyone inside the narrow Sensor Trigger
-            for (int i = _enemiesInDamageZone.Count - 1; i >= 0; i--)
+            for (int i = 0; i < _enemiesInDamageZone.Count ; i++)
             {
                 EnemyBase enemy = _enemiesInDamageZone[i];
 
@@ -88,7 +88,7 @@ public class TowerScorchRay : MonoBehaviour
                 {
                     enemy.Health.TakeDamage(damagePerTick);
                 }
-                else
+                else if (enemy == null)
                 {
                     _enemiesInDamageZone.RemoveAt(i);
                     ToggleParticles();
@@ -115,12 +115,14 @@ public class TowerScorchRay : MonoBehaviour
     public void OnEnemyExit(Collider other)
     {
         EnemyBase enemy = other.GetComponent<EnemyBase>();
-        if (enemy != null)
+
+        if (enemy != null || enemy == null) // might be a fail safe to removing null?
         {
             _enemiesInDamageZone.Remove(enemy);
             ToggleParticles(); // Check if we should stop playing
         }
     }
+
     private void ToggleParticles()
     {
         if (_fireParticles == null) return;
