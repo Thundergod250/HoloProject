@@ -11,6 +11,8 @@ public class UI_PromtWarnings : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textFade;
     private bool _hasTriggeredFade = false;
 
+    [SerializeField] AudioClip _fadeInClip;
+
     private void OnEnable()
     {
         // Subscribe: When BuyTower broadcasts, run SetPromptTextDisplay
@@ -71,6 +73,11 @@ public class UI_PromtWarnings : MonoBehaviour
     {
         // 1. Fade In over 1 second
         yield return StartCoroutine(FadeAlpha(0, 1, 1f));
+
+        if (AudioManager.Instance != null && _fadeInClip != null)
+        {
+            AudioManager.Instance.PlaySFXOnce(_fadeInClip);
+        }
 
         // 2. Wait for 2 seconds
         yield return new WaitForSeconds(2f);

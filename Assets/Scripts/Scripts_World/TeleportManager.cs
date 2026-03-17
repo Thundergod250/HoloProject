@@ -22,6 +22,9 @@ public class TeleportManager : MonoBehaviour
         if (other.GetComponent<PlayerController>())
         {
            playerRef = other.GetComponent<PlayerController>();
+
+            ForceMouseEnable();
+
             _teleportHUDUI.SetActive(true);
         }
     }
@@ -31,6 +34,8 @@ public class TeleportManager : MonoBehaviour
         if (other.GetComponent<PlayerController>())
         {
             playerRef = other.GetComponent<PlayerController>();
+
+            ForceMouseDisable();
 
             _teleportHUDUI.SetActive(false);
 
@@ -66,6 +71,18 @@ public class TeleportManager : MonoBehaviour
             _teleportUIFollowText.SetActive(false);
         }
     }
+
+    public void ForceMouseDisable()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+    public void ForceMouseEnable()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
 
     public void TeleportPlayerToTeleporterRef(int targetTPNumber)
     {
