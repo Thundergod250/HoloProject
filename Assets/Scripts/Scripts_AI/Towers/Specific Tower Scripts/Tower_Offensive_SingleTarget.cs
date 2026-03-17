@@ -16,6 +16,8 @@ public class Tower_Offensive_SingleTarget : TowerOffensiveBase
 
     private float fireCooldown;
 
+    [SerializeField] private AudioSource _onsightTowerAudioSource;
+
     private void Update()
     {
         fireCooldown -= Time.deltaTime;
@@ -37,6 +39,11 @@ public class Tower_Offensive_SingleTarget : TowerOffensiveBase
             if (enemy != null)
             {
                 Debug.Log(enemy);
+
+                if (_onsightTowerAudioSource != null)
+                {
+                    _onsightTowerAudioSource.Play();
+                }
 
                 FireProjectile(enemy.transform);
                 break; // Only fire at one target
