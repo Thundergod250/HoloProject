@@ -87,6 +87,12 @@ public class Workbench_Towers : MonoBehaviour
             else
             {
                 StartCoroutine(ShowError());
+
+                if (_promptWarnings != null)
+                {
+                    _promptWarnings.SetPromptTextDisplay("Not enough " + oreTypeToSpend + " to unlock " + card.towerName);
+                }
+
                 Debug.Log("Not enough " + oreTypeToSpend + " to unlock " + card.towerName);
             }
             break;
