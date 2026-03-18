@@ -37,14 +37,14 @@ public class PlayerCamManager : MonoBehaviour
         if (changedToRTS)
         {
             _camSwitcher.SetCameraChange();
-            _camSwitcher.movement = _playerMovement;
+            _camSwitcher.movement = null;//_playerMovement;
 
             _freeCam = false;
         }
         else if (!changedToRTS)
         {
             _camSwitcher.SetCameraChange();
-            _camSwitcher.movement = null;
+            _camSwitcher.movement = _playerMovement;
 
             _freeCam = true;
         }
