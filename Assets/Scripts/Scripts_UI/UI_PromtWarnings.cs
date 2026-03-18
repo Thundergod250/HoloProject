@@ -43,6 +43,22 @@ public class UI_PromtWarnings : MonoBehaviour
             _fadeImage.gameObject.SetActive(true);
         }
 
+        else if (Mathf.FloorToInt(currentTime) == 120 && !_hasTriggeredFade)
+        {
+            StartCoroutine(FadeImageSequence());
+            _hasTriggeredFade = true;
+            textFade.text = "It is almost Night time";
+            _fadeImage.gameObject.SetActive(true);
+        }
+
+        else if (Mathf.FloorToInt(currentTime) == 200 && !_hasTriggeredFade)
+        {
+            StartCoroutine(FadeImageSequence());
+            _hasTriggeredFade = true;
+            textFade.text = "The Night is ending, almost there";
+            _fadeImage.gameObject.SetActive(true);
+        }
+
         else if (Mathf.FloorToInt(currentTime) == 0 && !_hasTriggeredFade)
         {
             StartCoroutine(FadeImageSequence());
@@ -50,7 +66,7 @@ public class UI_PromtWarnings : MonoBehaviour
             textFade.text = "The Day of gathering resources";
             _fadeImage.gameObject.SetActive(true);
         }
-
+        
         // Reset the flag for the next cycle (assuming day length is > 150)
         if ((((currentTime <= 153) && (currentTime >= 151)) || (currentTime >= 2) && (currentTime <= 4)) && _hasTriggeredFade)
         {

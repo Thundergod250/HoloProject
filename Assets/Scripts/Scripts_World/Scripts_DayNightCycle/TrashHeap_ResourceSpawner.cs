@@ -19,6 +19,7 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
 
     [SerializeField] public Health _health;
     [SerializeField] private GameObject _canvasUI;
+    [SerializeField] private GameObject _toRotateOnPlayer;
     [SerializeField] private Slider healthSlider;
 
     private PlayerController _playerController;
@@ -137,7 +138,8 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
 
         if (_playerController != null && _canvasUI.gameObject.activeSelf)
         {
-            _canvasUI.transform.LookAt(_playerController.transform.position);
+            //_toRotateOnPlayer.transform.LookAt(_playerController.transform.position);
+            _toRotateOnPlayer.transform.Rotate(Vector3.up);
         }
     }
 

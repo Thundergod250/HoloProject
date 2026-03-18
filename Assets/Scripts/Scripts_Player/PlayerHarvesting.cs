@@ -67,16 +67,19 @@ public class PlayerHarvesting : MonoBehaviour
     {
         _isAttacking = true;
 
-        // While the button is held and we have a target
-        // Wait for the interval before the next hit
-        await Task.Delay(attackIntervalMs);
-        //playerAnimation.TriggerMiningLoop(false);
-
-        // Damage Logic
-        if (targetHeap._health != null)
+        while(_isAttacking) 
         {
-            targetHeap.AttackTriggerAnimation();
-            targetHeap._health?.TakeDamage(attackDamage);
+            // While the button is held and we have a target
+            // Wait for the interval before the next hit
+            await Task.Delay(attackIntervalMs);
+            //playerAnimation.TriggerMiningLoop(false);
+
+            // Damage Logic
+            if (targetHeap._health != null)
+            {
+                targetHeap.AttackTriggerAnimation();
+                targetHeap._health?.TakeDamage(attackDamage);
+            }
         }
         
         //targetHeap.StopTriggerAnimation();
@@ -103,7 +106,7 @@ public class PlayerHarvesting : MonoBehaviour
         else if (_garbageGroupType == GarbageObject.GarbageGroup.CopperOre|| _garbageGroupType == GarbageObject.GarbageGroup.IronOre|| _garbageGroupType == GarbageObject.GarbageGroup.GoldOre) { _miningAction.SetActive(true); }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         // if (other.TryGetComponent<TrashHeap_ResourceSpawner>(out var heap))
         if (other.GetComponent<TrashHeap_ResourceSpawner>())
@@ -115,11 +118,13 @@ public class PlayerHarvesting : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        /* if (other.GetComponent<TrashHeap_ResourceSpawner>())
-         {
-             targetHeap = null;
-             _isAttacking = false;
-             ResetActions(); // Stop animations if we walk away while clicking
-         }*/
+        if (other.GetComponent<TrashHeap_ResourceSpawner>())
+        {
+            targetHeap = null;
+            _isAttacking = false;
+            ResetActions(); // Stop animations if we walk away while clicking
+
+            playerAnimation.ForceIdleState();
+        }
     }
 }
