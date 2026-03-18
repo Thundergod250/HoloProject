@@ -8,6 +8,7 @@ public class Tower_Defense_SlowFieldTower : TowerDefensiveBase
 
     [SerializeField] protected List<Navigation_Enemy> enemiesMovement;
 
+
     private void Update()
     {
         SlowDownNearEnemies();
@@ -26,6 +27,7 @@ public class Tower_Defense_SlowFieldTower : TowerDefensiveBase
             {
                 Navigation_Enemy navEnemy = hit.GetComponent<Navigation_Enemy>();
                 currentEnemies.Add(navEnemy);
+
                 if (!enemiesMovement.Contains(navEnemy))
                 {
                     navEnemy.SlowDownAgent(slowMultiplier);
@@ -38,7 +40,8 @@ public class Tower_Defense_SlowFieldTower : TowerDefensiveBase
         {
             if (!currentEnemies.Contains(enemy))
             {
-                enemy.SpeedUpAgent(slowMultiplier);
+                //enemy.SpeedUpAgent(slowMultiplier);
+                enemy.SetSpeedAgent(enemy.defaultMovementSpeed);
             }
         }
 

@@ -2,7 +2,6 @@ using NUnit.Framework;
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.AI;
-using Unity.VisualScripting;
 
 public class Navigation_Enemy : MonoBehaviour
 {
@@ -28,12 +27,15 @@ public class Navigation_Enemy : MonoBehaviour
     [SerializeField] private float meleeStopDistance;
 
     public NavMeshAgent navigation;
+    public int defaultMovementSpeed;
     public bool isMoving;
 
     public Attack_Enemy AttackEnemyRef => attack_Enemy;
 
     private void Start()
     {
+        navigation.speed = defaultMovementSpeed;
+
         if(meleeStopDistance != 0)
         {
             navigation.stoppingDistance = meleeStopDistance;
@@ -258,6 +260,16 @@ public class Navigation_Enemy : MonoBehaviour
     public void SpeedUpAgent(int speedValueTarget)
     {
         navigation.speed = moveSpeed * speedValueTarget;
+    }
+
+    public void SetSpeedAgent(int defaultTargetSpeed)
+    {
+        navigation.speed = defaultTargetSpeed;
+    }
+
+    public float GetSpeedEnemy()
+    {
+        return navigation.speed;
     }
     #endregion
 }
