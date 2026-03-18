@@ -71,6 +71,11 @@ public class RTSCamera : MonoBehaviour
         transform.position = new Vector3(clampedX, transform.position.y, clampedZ);
     }
 
+    public void EnableZoom()
+    {
+        _enableZoom = true;
+    }
+
     private void HandleZoom()
     {
         if (_enableZoom)

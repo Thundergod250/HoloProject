@@ -11,6 +11,7 @@ public class PlayerCamManager : MonoBehaviour
     [SerializeField] public bool _canSwitchCameras = true;
 
     public bool _freeCam = false;
+    public bool _buildMenu = false;
 
     private void LateUpdate()
     {
@@ -20,6 +21,12 @@ public class PlayerCamManager : MonoBehaviour
             {
                 SwapCameraToRTSCamera(_freeCam);
             }
+
+            if (Input.GetKeyDown(KeyCode.B) && _freeCam) 
+            {
+                SwapBuildMenu(_buildMenu);
+            }
+
         }
     }
 
@@ -29,7 +36,6 @@ public class PlayerCamManager : MonoBehaviour
 
         if (changedToRTS)
         {
-            _playerUITarget.SetActive(true);
             _camSwitcher.SetCameraChange();
             _camSwitcher.movement = _playerMovement;
 
@@ -37,11 +43,25 @@ public class PlayerCamManager : MonoBehaviour
         }
         else if (!changedToRTS)
         {
-            _playerUITarget.SetActive(false);
             _camSwitcher.SetCameraChange();
             _camSwitcher.movement = null;
 
             _freeCam = true;
         }
     }
+
+    public void SwapBuildMenu(bool rtsCamEnabled)
+    {
+        if (rtsCamEnabled)
+        {
+            _playerUITarget.SetActive(true);
+            _buildMenu = true;
+        }
+        else if (!rtsCamEnabled)
+        {
+            _playerUITarget.SetActive(false);
+            _buildMenu = false;
+        }
+    }
+
 }

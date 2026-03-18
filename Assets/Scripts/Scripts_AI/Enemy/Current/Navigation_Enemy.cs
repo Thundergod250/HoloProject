@@ -27,7 +27,7 @@ public class Navigation_Enemy : MonoBehaviour
     [SerializeField] private float meleeStopDistance;
 
     public NavMeshAgent navigation;
-    public int defaultMovementSpeed;
+    public float defaultMovementSpeed;
     public bool isMoving;
 
     public Attack_Enemy AttackEnemyRef => attack_Enemy;
@@ -262,7 +262,7 @@ public class Navigation_Enemy : MonoBehaviour
         navigation.speed = moveSpeed * speedValueTarget;
     }
 
-    public void SetSpeedAgent(int defaultTargetSpeed)
+    public void SetSpeedAgent(float defaultTargetSpeed)
     {
         navigation.speed = defaultTargetSpeed;
     }

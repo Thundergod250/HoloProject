@@ -11,14 +11,18 @@ public class Drops_Enemy : MonoBehaviour
 
     public void DropLoot()
     {
+
         for (int i = 0; i < DropTable.Length; i++)
         {
-            GameObject tempLoot = Instantiate(DropTable[i], _spawnPoint.position, Quaternion.identity, null);
+            // GameObject tempLoot = Instantiate(DropTable[i], _spawnPoint.position, Quaternion.identity, null);
 
+            Instantiate(DropTable[i], _spawnPoint.position, Quaternion.identity, null);
+
+            _spawnPoint.SetParent(null); // Spawn it first then reject spawn point
             // tempLoot.transform.position = this.transform.position;
         }
 
-        Destroy(gameObject);
+        // Destroy(gameObject);
     }
 
     public void RemoveFromList()
