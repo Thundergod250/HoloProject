@@ -16,7 +16,14 @@ public class TowerChainPylon : MonoBehaviour
     public Transform firePoint;
 
     private float _nextFireTime;
-    private GameObject[] _hitHistory = new GameObject[3];
+    [SerializeField] private GameObject[] _hitHistory;
+    [SerializeField] private int _totalChainHits = 3;
+
+    private void Start()
+    {
+        _hitHistory = new GameObject[_totalChainHits];
+    }
+
 
     void Update()
     {
@@ -52,7 +59,7 @@ public class TowerChainPylon : MonoBehaviour
 
             GameObject currentTarget = startEnemy;
 
-            for (int hitCount = 0; hitCount < 3; hitCount++)
+            for (int hitCount = 0; hitCount < _totalChainHits; hitCount++)
             {
                 if (currentTarget == null) break;
 

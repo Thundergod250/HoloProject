@@ -87,15 +87,15 @@ public class TowerBaseHealer : MonoBehaviour
         // Priority Check (Back to your original logic style)
         if (_dropResourceReference.CopperHold >= currentCopperCost)
         {
-            ApplyHeal(currentCopperCost, "Copper");
+            ApplyHeal(currentCopperCost, upgradeResourceType.Copper); // "Copper");
         }
         else if (_dropResourceReference.IronHold >= currentIronCost)
         {
-            ApplyHeal(currentIronCost, "Iron");
+            ApplyHeal(currentIronCost, upgradeResourceType.Iron);//"Iron");
         }
         else if (_dropResourceReference.GoldHold >= currentGoldCost)
         {
-            ApplyHeal(currentGoldCost, "Gold");
+            ApplyHeal(currentGoldCost, upgradeResourceType.Gold);//"Gold");
         }
 
         if (_promtWarnings != null)
@@ -104,12 +104,12 @@ public class TowerBaseHealer : MonoBehaviour
         }
     }
 
-    private void ApplyHeal(int cost, string resourceType)
+    private void ApplyHeal(int cost, upgradeResourceType resourceType)
     {
         // Since resource variables are read-only, 
         // you should call a "Spend" method on your manager here.
         // Example: _dropResourceReference.Spend(resourceType, cost);
-
+        _dropResourceReference.SpendingToResourceType(resourceType, cost);
         _baseHealth.Heal(_baseHealth.GetMaxHealth());
         Debug.Log($"Healed using {cost} {resourceType}");
     }

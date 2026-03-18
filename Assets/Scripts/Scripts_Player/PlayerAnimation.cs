@@ -51,6 +51,11 @@ public class PlayerAnimation : MonoBehaviour
         }
     }
 
+    public void ForceIdleState()
+    {
+        PlayState(false ? grabIdleState : idleState); ;
+    }
+
     public void TriggerJump()
     {
         bool isCarrying = playerGrab != null && playerGrab.IsPlayerCarryingObject;

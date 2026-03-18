@@ -43,6 +43,9 @@ public class PlayerHarvesting : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             AudioManager.Instance?.StopSFXSound();
+
+            playerAnimation.ForceIdleState();
+            _isAttacking = false;
             ResetActions();
         }
 
@@ -54,6 +57,8 @@ public class PlayerHarvesting : MonoBehaviour
         {
             targetHeap = null;
             _isAttacking = false;
+
+            playerAnimation.ForceIdleState();
             ResetActions(); // Stop animations if we walk away while clicking
         }
     }
@@ -63,23 +68,22 @@ public class PlayerHarvesting : MonoBehaviour
         _isAttacking = true;
 
         // While the button is held and we have a target
-        while (Input.GetKey(KeyCode.Mouse0) && targetHeap != null)
+        // Wait for the interval before the next hit
+        await Task.Delay(attackIntervalMs);
+        //playerAnimation.TriggerMiningLoop(false);
+
+        // Damage Logic
+        if (targetHeap._health != null)
         {
-            // Wait for the interval before the next hit
-            await Task.Delay(attackIntervalMs);
-            //playerAnimation.TriggerMiningLoop(false);
-
-            // Damage Logic
-            if (targetHeap._health != null)
-            {
-                targetHeap.AttackTriggerAnimation();
-                targetHeap._health?.TakeDamage(attackDamage);
-            }
+            targetHeap.AttackTriggerAnimation();
+            targetHeap._health?.TakeDamage(attackDamage);
         }
+        
+        //targetHeap.StopTriggerAnimation();
+        //_isAttacking = false;
 
-        targetHeap.StopTriggerAnimation();
-        _isAttacking = false;
-        playerAnimation.ResetAnimations();
+        //playerAnimation.ForceIdleState();
+        //playerAnimation.ResetAnimations();
     }
 
 
