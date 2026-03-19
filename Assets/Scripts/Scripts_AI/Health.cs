@@ -17,7 +17,7 @@ public class Health : MonoBehaviour
     [SerializeField] protected bool _toBeDeleted = false;
 
     [SerializeField] private AudioClip _damageClip;
-
+    [SerializeField] private HitFlash _hitFlash; 
     private void Awake()
     {
         currentHealth = maxHealth;
@@ -34,6 +34,11 @@ public class Health : MonoBehaviour
         if (_damageClip != null && AudioManager.Instance != null )
         {
             AudioManager.Instance.PlaySFXOnce(_damageClip);
+        }
+
+        if (_hitFlash != null)
+        {
+            _hitFlash.Flash();
         }
 
         // Trigger damage event

@@ -1,9 +1,11 @@
 using UnityEngine;
-
+using System.Collections;
 public class HitFlash : MonoBehaviour
 {
     public Renderer rend;
     public float duration = 0.1f;
+
+    [SerializeField] GameObject _hitObject;
 
     Material mat;
 
@@ -15,7 +17,8 @@ public class HitFlash : MonoBehaviour
     public void Flash()
     {
         StopAllCoroutines();
-        StartCoroutine(FlashRoutine());
+        // StartCoroutine(FlashRoutine());
+        StartCoroutine(CO_PlayHit());
     }
 
     System.Collections.IEnumerator FlashRoutine()
@@ -24,4 +27,12 @@ public class HitFlash : MonoBehaviour
         yield return new WaitForSeconds(duration);
         mat.SetFloat("_FlashAmount", 0f);
     }
+
+    private IEnumerator CO_PlayHit()
+    {
+        _hitObject.SetActive(true);
+        yield return new WaitForSeconds(duration);
+        _hitObject.SetActive(true);
+    }
+
 }
