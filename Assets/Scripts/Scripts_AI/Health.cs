@@ -38,7 +38,7 @@ public class Health : MonoBehaviour
 
         if (_hitFlash != null)
         {
-            _hitFlash.Flash();
+            _hitFlash.PlayHitEffect();
         }
 
         // Trigger damage event
@@ -60,7 +60,9 @@ public class Health : MonoBehaviour
             return;
         }
 
+        // _hitFlash.DieVFXEffect();
             isDead = true;
+
         OnDeath?.Invoke();
 
         Debug.Log($"{gameObject.name} has died.");

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Threading.Tasks;
+using System.Linq;
 
 public class TowerChainPylon : MonoBehaviour
 {
@@ -37,7 +38,7 @@ public class TowerChainPylon : MonoBehaviour
     {
         Collider[] enemiesInRange = Physics.OverlapSphere(transform.position, attackRange, enemyLayer);
 
-        if (enemiesInRange.Length > 0)
+        if (enemiesInRange.Length > 0 && enemiesInRange != null)
         {
             _nextFireTime = Time.time + fireRate;
             _ = ExecuteDominoChainAsync(enemiesInRange[0].gameObject);

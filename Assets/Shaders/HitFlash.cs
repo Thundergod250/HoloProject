@@ -2,37 +2,53 @@ using UnityEngine;
 using System.Collections;
 public class HitFlash : MonoBehaviour
 {
-    public Renderer rend;
-    public float duration = 0.1f;
+    [Header("Hit Flash Objects")]
+    [SerializeField] private GameObject flashModel; // The red version of your model
+    [SerializeField] private GameObject flashLight; // The Red Point Light
+    [SerializeField] private float flashDuration = 0.5f;
 
-    [SerializeField] GameObject _hitObject;
-
-    Material mat;
+    private Coroutine hitCoroutine;
 
     void Start()
     {
-        mat = rend.material;
+        // Ensure both start OFF
+        if (flashModel != null) flashModel.SetActive(false);
+        if (flashLight != null) flashLight.SetActive(false);
     }
 
-    public void Flash()
+    // --- CALL THIS ON TAKE DAMAGE ---
+    public void PlayHitEffect()
+    {
+        // Safety check to ensure we don't error if object is already being destroyed
+        if (!gameObject.activeInHierarchy) return;
+
+        else if (hitCoroutine != null) StopCoroutine(hitCoroutine);
+        hitCoroutine = StartCoroutine(HitRoutine());
+    }
+
+    private IEnumerator HitRoutine()
+    {
+        // Turn BOTH on
+        flashModel.SetActive(true);
+        flashLight.SetActive(true);
+
+        yield return new WaitForSeconds(flashDuration);
+
+        // Turn BOTH off
+        flashModel.SetActive(false);
+        flashLight.SetActive(false);
+    }
+
+    // --- CALL THIS ON DEATH ---
+    public void DieVFXEffect()
     {
         StopAllCoroutines();
-        // StartCoroutine(FlashRoutine());
-        StartCoroutine(CO_PlayHit());
-    }
 
-    System.Collections.IEnumerator FlashRoutine()
-    {
-        mat.SetFloat("_FlashAmount", 1f);
-        yield return new WaitForSeconds(duration);
-        mat.SetFloat("_FlashAmount", 0f);
-    }
+        // Final cleanup to make sure no red sticks around
+        flashModel.SetActive(false);
+        flashLight.SetActive(false);
 
-    private IEnumerator CO_PlayHit()
-    {
-        _hitObject.SetActive(true);
-        yield return new WaitForSeconds(duration);
-        _hitObject.SetActive(true);
+        // Since your other script handles Destroy/Deactivation, 
+        // we just stop the visuals here.
     }
-
 }
