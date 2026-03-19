@@ -31,14 +31,14 @@ public class Health : MonoBehaviour
         currentHealth -= amount;
         currentHealth = Mathf.Max(currentHealth, 0);
 
-        if (_damageClip != null && AudioManager.Instance != null )
-        {
-            AudioManager.Instance.PlaySFXOnce(_damageClip);
-        }
-
         if (_hitFlash != null)
         {
             _hitFlash.PlayHitEffect();
+        }
+
+        else if (_damageClip != null && AudioManager.Instance != null )
+        {
+            AudioManager.Instance.PlaySFXOnce(_damageClip);
         }
 
         // Trigger damage event

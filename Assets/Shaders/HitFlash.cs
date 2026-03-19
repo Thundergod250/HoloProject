@@ -20,10 +20,15 @@ public class HitFlash : MonoBehaviour
     public void PlayHitEffect()
     {
         // Safety check to ensure we don't error if object is already being destroyed
-        if (!gameObject.activeInHierarchy) return;
+        //if (!gameObject.activeInHierarchy) return;
 
-        else if (hitCoroutine != null) StopCoroutine(hitCoroutine);
-        hitCoroutine = StartCoroutine(HitRoutine());
+        // else if (hitCoroutine != null) StopCoroutine(hitCoroutine);
+
+        if (flashModel != null && flashLight != null)
+        {
+            Debug.Log("Hit STARTED");
+            hitCoroutine = StartCoroutine(HitRoutine());
+        }
     }
 
     private IEnumerator HitRoutine()
@@ -31,12 +36,16 @@ public class HitFlash : MonoBehaviour
         // Turn BOTH on
         flashModel.SetActive(true);
         flashLight.SetActive(true);
+        Debug.Log("RED UP");
+
 
         yield return new WaitForSeconds(flashDuration);
 
         // Turn BOTH off
         flashModel.SetActive(false);
         flashLight.SetActive(false);
+        Debug.Log("RED OFF");
+
     }
 
     // --- CALL THIS ON DEATH ---
