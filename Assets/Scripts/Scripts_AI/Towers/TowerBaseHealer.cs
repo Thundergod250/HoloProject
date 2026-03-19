@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class TowerBaseHealer : MonoBehaviour
 {
@@ -18,9 +19,13 @@ public class TowerBaseHealer : MonoBehaviour
     [SerializeField] protected int _ironHealNeed = 5;
     [SerializeField] protected int _goldHealNeed = 2;
 
+    [SerializeField] private List<ParticleSystem> _smokeVFXObjects;
+
     private void Start()
     {
         _dropResourceReference = GameManager.Instance.DropManager;
+
+        StopAllVFXSmoke();
     }
 
     private void Update()
@@ -33,10 +38,24 @@ public class TowerBaseHealer : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.F))
             {
                 ChoiceHealing();
-                
             }
         }
+
+        if (_smokeVFXObjects != null)
+        {
+            CheckHPForSmokeVFX();
+        }
+
     }
+
+    private void StopAllVFXSmoke()
+    {
+        for (int i = 0; i< _smokeVFXObjects.Count; i++)
+        {
+            _smokeVFXObjects[i].Stop();
+        }
+    }
+
 
     // --- COMPUTATION BLOCK (For UI) ---
     private float GetHealthRatio()
@@ -45,6 +64,38 @@ public class TowerBaseHealer : MonoBehaviour
         float missing = _baseHealth.GetMaxHealth() - _baseHealth.GetCurrentHealth();
         return Mathf.Clamp01(missing / _baseHealth.GetMaxHealth());
     }
+
+    private void CheckHPForSmokeVFX()
+    {
+        if (_baseHealth != null)
+        {
+            float currentHP = _baseHealth.GetCurrentHealth();
+            float maxHP = _baseHealth.GetMaxHealth(); // Assuming this exists
+
+            // 1. Calculate health percentage (0.0 to 1.0)
+            float healthPercent = currentHP / maxHP;
+
+            // 2. Calculate how many smoke objects should be active
+            // As health goes DOWN, activeCount goes UP.
+            // Example: 50% health (0.5) with 10 objects -> (1 - 0.5) * 10 = 5 objects.
+            int activeCount = Mathf.FloorToInt((1f - healthPercent) * _smokeVFXObjects.Count);
+
+            // 3. Update the VFX states
+            for (int i = 0; i < _smokeVFXObjects.Count; i++)
+            {
+                if (i < activeCount)
+                {
+                    // If it's already playing, VFX Graph handles that gracefully
+                    _smokeVFXObjects[i].Play();
+                }
+                else
+                {
+                    _smokeVFXObjects[i].Stop();
+                }
+            }
+        }
+    }
+
 
     private void UpdateUI()
     {
