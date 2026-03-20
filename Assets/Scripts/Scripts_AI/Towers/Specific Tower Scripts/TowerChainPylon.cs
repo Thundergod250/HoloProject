@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Threading.Tasks;
 using System.Linq;
 
-public class TowerChainPylon : MonoBehaviour
+public class TowerChainPylon : TowerOffensiveBase
 {
     [Header("Tower Settings")]
     public float attackRange = 10f;

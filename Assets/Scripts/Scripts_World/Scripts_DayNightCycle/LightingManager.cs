@@ -17,7 +17,7 @@ public class LightingManager : MonoBehaviour
     // Changed to 240 secs == 4 Mins per day 
     [SerializeField] private float _timeOfDay;
     [SerializeField] public bool _isNight = false;
-    [SerializeField] float _maxTimeOfDay = 240;
+    [SerializeField] public float _maxTimeOfDay = 240;
 
     [SerializeField] protected Volume _hdriCubeSkyDay;
     [SerializeField] protected Volume _hdriCubeSkyNight;

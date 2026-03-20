@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tower_Defense_SlowFieldTower : TowerDefensiveBase
+public class Tower_Defense_SlowFieldTower : TowerOffensiveBase
 {
     [SerializeField] protected int slowMultiplier = 4;
     public float detectionRadius = 15f;

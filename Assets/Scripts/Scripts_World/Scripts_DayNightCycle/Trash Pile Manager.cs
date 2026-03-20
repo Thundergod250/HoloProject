@@ -29,7 +29,7 @@ public class TrashPileManager : MonoBehaviour
 
     private void CheckTime()
     {
-        if (_lightingManager?.GetTimeOfDay() >= 240 && _lightingManager?.GetTimeOfDay() <= 241)
+        if (_lightingManager?.GetTimeOfDay() >= _lightingManager._maxTimeOfDay - 1)
         {
             ResetEnableAllHeaps();
         }

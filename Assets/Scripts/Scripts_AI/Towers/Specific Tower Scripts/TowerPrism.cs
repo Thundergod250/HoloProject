@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TowerPrism : MonoBehaviour
+public class TowerPrism : TowerOffensiveBase
 {
     public float connectionRange = 10f;
     public LayerMask towerLayer;

@@ -17,12 +17,19 @@ public class UI_TowerShop : MonoBehaviour
     [Header("Shop Buttons")]
     [SerializeField] private GameObject towerUpgradesButton;
     [SerializeField] private GameObject offensiveButton;
+    [SerializeField] private GameObject statusButton;
     [SerializeField] private GameObject defensiveButton;
     [SerializeField] private GameObject utilityButton;
 
     [Header("Towers To Lock At Start (String)")]
     [SerializeField] private List<string> offensiveStartLocked;
 
+    [Header("Status Panel References")]
+    [SerializeField] private GameObject _statusPanelUI; // The specific Status UI
+    [SerializeField] private TMPro.TextMeshProUGUI healthText;
+    [SerializeField] private TMPro.TextMeshProUGUI costText;
+    [SerializeField] private TMPro.TextMeshProUGUI nameText;
+    private TowerOffensiveBase _lastSelectedTowerOffsensiveBase;
 
     private TowerCategoryData_SO towerUpgradesData;
     private Dictionary<string, GameObject> shopButtons;
@@ -35,6 +42,7 @@ public class UI_TowerShop : MonoBehaviour
         {
             { "Upgrades", towerUpgradesButton },
             { "Offensive", offensiveButton },
+            { "Status", statusButton },
             { "Defensive", defensiveButton },
             { "Utility", utilityButton }
         };
@@ -72,6 +80,51 @@ public class UI_TowerShop : MonoBehaviour
         SpawnCards(data.cards);
     }
 
+    public void OpenStatusPanel(TowerController controller)
+    {
+        if (controller == null) return;
+
+        // 1. Enable the UI Panels and the Status Tab
+        _LeftPanel.SetActive(true);
+        _RightPanel.SetActive(true);
+        _statusPanelUI.SetActive(true);
+
+        // 2. Save the base reference for Refunding later
+        _lastSelectedTowerOffsensiveBase = controller.GetComponent<TowerOffensiveBase>();
+
+        // 3. Insert TowerHealth.currentHealth to string
+        // Accessing TowerHealth directly from the controller
+        if (controller.TowerHealth != null)
+        {
+            healthText.text = controller.TowerHealth.GetCurrentHealth().ToString();
+        }
+        else
+        {
+            healthText.text = "0";
+        }
+    }
+
+    public void OnClickRefund()
+    {
+        if (_lastSelectedTowerOffsensiveBase == null) return;
+
+        // Use the base to find the NodeManager sitting on the same object (or parent)
+        TowerNodeManager node = _lastSelectedTowerOffsensiveBase.GetComponentInParent<TowerNodeManager>();
+
+        if (node != null)
+        {
+            // 1. Trigger the despawn (This calls GameManager.Instance.DespawnTower)
+            node.DespawnTower();
+
+            // 2. Clear the UI
+            _LeftPanel.SetActive(false);
+            _RightPanel.SetActive(false);
+            _statusPanelUI.SetActive(false);
+
+            // 3. Clear the reference so we don't refund a dead tower twice
+            _lastSelectedTowerOffsensiveBase = null;
+        }
+    }
 
     // === Card spawning ===
     private void SpawnCards(List<CardInfo> cards)
@@ -142,8 +195,9 @@ public class UI_TowerShop : MonoBehaviour
     // === Button visibility ===
     public void ShowShopButtons(bool showUpgrades)
     {
-        shopButtons["Upgrades"].SetActive(showUpgrades);
+        // shopButtons["Upgrades"].SetActive(showUpgrades);
         shopButtons["Offensive"].SetActive(true);
+        shopButtons["Status"].SetActive(true);
         //shopButtons["Defensive"].SetActive(true);
         //shopButtons["Utility"].SetActive(true);
     }

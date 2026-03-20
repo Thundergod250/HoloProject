@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Threading.Tasks;
 
-public class TowerFreeze : MonoBehaviour
+public class TowerFreeze : TowerOffensiveBase
 {
     [Header("Tower Stats")]
     public float range = 10f;
