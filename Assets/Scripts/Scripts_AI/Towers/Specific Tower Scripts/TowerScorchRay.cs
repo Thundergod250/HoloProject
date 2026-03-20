@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class TowerScorchRay : MonoBehaviour
 {
@@ -15,7 +16,8 @@ public class TowerScorchRay : MonoBehaviour
     public float attackInterval = 0.5f;
     public float rotationSpeed = 5f;
 
-    [SerializeField] protected ParticleSystem _fireParticles;
+    
+    [SerializeField] protected VisualEffect _fireParticles;
 
     // List handles "No Limit" enemies for the Scorch Damage
     private List<EnemyBase> _enemiesInDamageZone = new List<EnemyBase>();
@@ -26,6 +28,8 @@ public class TowerScorchRay : MonoBehaviour
         {
             sensorObject.rayController = this;
         }
+
+        _fireParticles.Stop();
 
         _ = DamageLoop();
     }
@@ -129,17 +133,12 @@ public class TowerScorchRay : MonoBehaviour
 
         if (_enemiesInDamageZone.Count > 0)
         {
-            if (!_fireParticles.isPlaying)
-            {
-                _fireParticles.Play();
-            }
+            _fireParticles.Play();
+            
         }
         else
         {
-            if (_fireParticles.isPlaying)
-            {
-                _fireParticles.Stop();
-            }
+            _fireParticles.Stop();
         }
     }
 

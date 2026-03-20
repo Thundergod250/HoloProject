@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Threading.Tasks;
+using System.Linq;
 
 public class TowerChainPylon : MonoBehaviour
 {
@@ -16,7 +17,14 @@ public class TowerChainPylon : MonoBehaviour
     public Transform firePoint;
 
     private float _nextFireTime;
-    private GameObject[] _hitHistory = new GameObject[3];
+    [SerializeField] private GameObject[] _hitHistory;
+    [SerializeField] private int _totalChainHits = 3;
+
+    private void Start()
+    {
+        _hitHistory = new GameObject[_totalChainHits];
+    }
+
 
     void Update()
     {
@@ -30,7 +38,7 @@ public class TowerChainPylon : MonoBehaviour
     {
         Collider[] enemiesInRange = Physics.OverlapSphere(transform.position, attackRange, enemyLayer);
 
-        if (enemiesInRange.Length > 0)
+        if (enemiesInRange.Length > 0 && enemiesInRange != null)
         {
             _nextFireTime = Time.time + fireRate;
             _ = ExecuteDominoChainAsync(enemiesInRange[0].gameObject);
@@ -52,7 +60,7 @@ public class TowerChainPylon : MonoBehaviour
 
             GameObject currentTarget = startEnemy;
 
-            for (int hitCount = 0; hitCount < 3; hitCount++)
+            for (int hitCount = 0; hitCount < _totalChainHits; hitCount++)
             {
                 if (currentTarget == null) break;
 

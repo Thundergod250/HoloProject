@@ -18,7 +18,10 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
     [SerializeField] public bool _randomized = false;
 
     [SerializeField] public Health _health;
-    [SerializeField] private Slider _healthSlider;
+    [SerializeField] private GameObject _canvasUI;
+    [SerializeField] private GameObject _toRotateOnPlayer;
+    [SerializeField] private Slider healthSlider;
+
     private PlayerController _playerController;
 
     [SerializeField] bool ForTesting = false;
@@ -42,10 +45,10 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
 
     private void Start()
     {
-        if (_healthSlider != null)
+        if (_canvasUI != null)
         {
-            _healthSlider.maxValue = _health.GetMaxHealth();
-            _healthSlider.gameObject.SetActive(false);
+            healthSlider.maxValue = _health.GetMaxHealth();
+            _canvasUI.gameObject.SetActive(false);
         }
 
         SetHeapHighLight();
@@ -58,7 +61,7 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
         {
             _playerController = other.GetComponent<PlayerController>();
            // SetRandomized(); // Fixed logic inside this function
-            _healthSlider.gameObject.SetActive(true);
+            _canvasUI.gameObject.SetActive(true);
 
             _howManyToSpawn = Random.Range(1, 5);
 
@@ -74,7 +77,7 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
         if (other.GetComponent<PlayerController>())
         {
             _playerController = null;
-            _healthSlider.gameObject.SetActive(false);
+            _canvasUI.gameObject.SetActive(false);
         }
     }
 
@@ -126,16 +129,17 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
 
     private void Update()
     {
-        _healthSlider.value = _health.GetCurrentHealth();
+        healthSlider.value = _health.GetCurrentHealth();
 
         if (_health.GetCurrentHealth() <= 0 && !hasSpawned)
         {
             StartCoroutine(SpawnSequence());
         }
 
-        if (_playerController != null && _healthSlider.gameObject.activeSelf)
+        if (_playerController != null && _canvasUI.gameObject.activeSelf)
         {
-            _healthSlider.transform.LookAt(_playerController.transform.position);
+            //_toRotateOnPlayer.transform.LookAt(_playerController.transform.position);
+            _toRotateOnPlayer.transform.Rotate(Vector3.up);
         }
     }
 

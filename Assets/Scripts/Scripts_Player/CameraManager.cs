@@ -6,7 +6,7 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private GameObject rtsCamera;
     [SerializeField] private RTSMouseSelector rtsMouseSelector;
     [SerializeField] public PlayerMovement movement;
-    bool playerCamActive = true;
+    private bool playerCamActive = true;
 
     private void Start()
     {

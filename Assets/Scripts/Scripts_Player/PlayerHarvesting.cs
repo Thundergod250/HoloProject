@@ -43,6 +43,9 @@ public class PlayerHarvesting : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             AudioManager.Instance?.StopSFXSound();
+
+            playerAnimation.ForceIdleState();
+            _isAttacking = false;
             ResetActions();
         }
 
@@ -54,6 +57,8 @@ public class PlayerHarvesting : MonoBehaviour
         {
             targetHeap = null;
             _isAttacking = false;
+
+            playerAnimation.ForceIdleState();
             ResetActions(); // Stop animations if we walk away while clicking
         }
     }
@@ -62,9 +67,9 @@ public class PlayerHarvesting : MonoBehaviour
     {
         _isAttacking = true;
 
-        // While the button is held and we have a target
-        while (Input.GetKey(KeyCode.Mouse0) && targetHeap != null)
+        while(_isAttacking) 
         {
+            // While the button is held and we have a target
             // Wait for the interval before the next hit
             await Task.Delay(attackIntervalMs);
             //playerAnimation.TriggerMiningLoop(false);
@@ -76,10 +81,12 @@ public class PlayerHarvesting : MonoBehaviour
                 targetHeap._health?.TakeDamage(attackDamage);
             }
         }
+        
+        //targetHeap.StopTriggerAnimation();
+        //_isAttacking = false;
 
-        targetHeap.StopTriggerAnimation();
-        _isAttacking = false;
-        playerAnimation.ResetAnimations();
+        //playerAnimation.ForceIdleState();
+        //playerAnimation.ResetAnimations();
     }
 
 
@@ -99,7 +106,7 @@ public class PlayerHarvesting : MonoBehaviour
         else if (_garbageGroupType == GarbageObject.GarbageGroup.CopperOre|| _garbageGroupType == GarbageObject.GarbageGroup.IronOre|| _garbageGroupType == GarbageObject.GarbageGroup.GoldOre) { _miningAction.SetActive(true); }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         // if (other.TryGetComponent<TrashHeap_ResourceSpawner>(out var heap))
         if (other.GetComponent<TrashHeap_ResourceSpawner>())
@@ -111,11 +118,13 @@ public class PlayerHarvesting : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        /* if (other.GetComponent<TrashHeap_ResourceSpawner>())
-         {
-             targetHeap = null;
-             _isAttacking = false;
-             ResetActions(); // Stop animations if we walk away while clicking
-         }*/
+        if (other.GetComponent<TrashHeap_ResourceSpawner>())
+        {
+            targetHeap = null;
+            _isAttacking = false;
+            ResetActions(); // Stop animations if we walk away while clicking
+
+            playerAnimation.ForceIdleState();
+        }
     }
 }

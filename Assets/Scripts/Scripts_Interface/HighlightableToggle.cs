@@ -10,6 +10,8 @@ public class HighlightableToggle : MonoBehaviour
     void Start()
     {
         if (objectToToggle != null) objectToToggle.SetActive(false);
+
+        if (playerCamMan == null) { playerCamMan = FindAnyObjectByType<PlayerCamManager>(); }
     }
 
     // This works for the Collider method

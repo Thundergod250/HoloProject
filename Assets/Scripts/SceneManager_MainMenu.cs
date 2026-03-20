@@ -10,7 +10,21 @@ public class SceneManager_MainMenu : MonoBehaviour
     [SerializeField] private float moveDuration = 3f;    // Seconds
     [SerializeField] private string mainGameSceneName = "MainGame"; // Scene to load
 
+    [SerializeField] private AudioClip _titleMenuClip;
+
     private Coroutine cinematicRoutine;
+
+    private void Start()
+    {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayMusic(_titleMenuClip);
+        }
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
 
     public void _StartCinematic()
     {
