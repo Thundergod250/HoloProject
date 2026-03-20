@@ -136,7 +136,7 @@ public class TowerScorchRay : MonoBehaviour
             _fireParticles.Play();
             
         }
-        else
+        else if(_enemiesInDamageZone.Count<= 0)
         {
             _fireParticles.Stop();
         }
