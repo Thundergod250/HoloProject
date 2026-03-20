@@ -59,8 +59,6 @@ public class Spawner : MonoBehaviour
                 cautionUI.hasWaveStart = false;
                 Debug.Log("Night ended: Caution image turned off");
             }
-
-            KillAllEnemies(); 
         }
 
         wasNightLastFrame = isNight;
@@ -73,6 +71,7 @@ public class Spawner : MonoBehaviour
 
             newEnemy.GetComponent<Navigation_Enemy>().wayPoints = wayPoints;
             newEnemy.GetComponent<Drops_Enemy>().parentSpawner = this;
+            newEnemy.GetComponent<Navigation_Enemy>().lightingManager = lightingManager;
 
             enemyCounterUI.totalEnemies++;
             enemyCounterUI.UpdateEnemyCounter();
@@ -144,7 +143,6 @@ public class Spawner : MonoBehaviour
 
     void KillAllEnemies()
     {
-        // Stop spawning if still running
         if (spawnRoutine != null)
         {
             StopCoroutine(spawnRoutine);
@@ -153,8 +151,7 @@ public class Spawner : MonoBehaviour
 
         foreach (GameObject enemy in activeEnemies)
         {
-            if (enemy != null)
-                Destroy(enemy);
+            enemy.GetComponent<Navigation_Enemy>().MorningDOTEFfect();
         }
 
         activeEnemies.Clear();
@@ -172,4 +169,6 @@ public class Spawner : MonoBehaviour
         enemyCounterUI.totalEnemies--;
         enemyCounterUI.UpdateEnemyCounter();
     }
+
+
 }
