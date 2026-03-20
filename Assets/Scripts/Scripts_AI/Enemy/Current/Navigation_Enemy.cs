@@ -2,6 +2,7 @@ using NUnit.Framework;
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.AI;
+using System.Collections;
 
 public class Navigation_Enemy : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Navigation_Enemy : MonoBehaviour
     [SerializeField] private Attack_Enemy attack_Enemy;
     [SerializeField] private TowerAndEnemy_Archetype target_Arch;
     [SerializeField] private Health helth;
+    public LightingManager lightingManager;
 
     [Header("Colliders")]
     [SerializeField] private SphereCollider sphereCollider;
@@ -29,11 +31,13 @@ public class Navigation_Enemy : MonoBehaviour
     public NavMeshAgent navigation;
     public float defaultMovementSpeed;
     public bool isMoving;
+    private bool dotActive;
 
     public Attack_Enemy AttackEnemyRef => attack_Enemy;
 
     private void Start()
     {
+        dotActive = false;
         navigation.speed = defaultMovementSpeed;
 
         if(meleeStopDistance != 0)
@@ -62,6 +66,17 @@ public class Navigation_Enemy : MonoBehaviour
             Debug.Log("Moving to Waypoint");
         }
 
+        if (!lightingManager._isNight && dotActive == false)
+        {
+            MorningDOTEFfect();
+            dotActive = true;
+        }
+        else if (lightingManager._isNight && dotActive == true)
+        {
+            StopCoroutine(DOTEffect());
+            dotActive = false;
+        }
+        
     }
 
     #region Collisions
@@ -251,7 +266,7 @@ public class Navigation_Enemy : MonoBehaviour
     }
     #endregion
 
-    #region 
+    #region MovementSpeed
     public void SlowDownAgent(int slowValueTarget)
     {
         navigation.speed = moveSpeed / slowValueTarget;
@@ -272,4 +287,24 @@ public class Navigation_Enemy : MonoBehaviour
         return navigation.speed;
     }
     #endregion
+
+    #region DayDOT
+    public void MorningDOTEFfect()
+    {
+        StartCoroutine(DOTEffect());
+    }
+
+    private IEnumerator DOTEffect()
+    {
+        Debug.Log(this + " taking Damg");
+
+        while (helth.GetCurrentHealth() > 0)
+        {
+            helth.TakeDamage(10);
+
+            yield return new WaitForSeconds(1);
+        }
+    }
+    #endregion
+
 }
