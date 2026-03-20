@@ -53,12 +53,14 @@ public class PlayerHarvesting : MonoBehaviour
         //{
         //    targetHeap = null;
         //}
-        if(targetHeap != null && targetHeap.GetComponent<Health>().GetCurrentHealth() <= 0)
+        else if(targetHeap != null && targetHeap.GetComponent<Health>().GetCurrentHealth() <= 0)
         {
             targetHeap = null;
             _isAttacking = false;
 
             playerAnimation.ForceIdleState();
+            
+
             ResetActions(); // Stop animations if we walk away while clicking
         }
     }
@@ -124,7 +126,8 @@ public class PlayerHarvesting : MonoBehaviour
             _isAttacking = false;
             ResetActions(); // Stop animations if we walk away while clicking
 
-            playerAnimation.ForceIdleState();
+            // playerAnimation.ForceIdleState();
+            // playerAnimation.UpdateMovementAnimation(1, false);
         }
     }
 }

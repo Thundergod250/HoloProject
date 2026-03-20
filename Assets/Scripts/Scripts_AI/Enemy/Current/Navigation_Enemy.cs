@@ -40,6 +40,11 @@ public class Navigation_Enemy : MonoBehaviour
         dotActive = false;
         navigation.speed = defaultMovementSpeed;
 
+        if (lightingManager == null)
+        {
+            lightingManager = FindAnyObjectByType<LightingManager>();
+        }
+
         if(meleeStopDistance != 0)
         {
             navigation.stoppingDistance = meleeStopDistance;
