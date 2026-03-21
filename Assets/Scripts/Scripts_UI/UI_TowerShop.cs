@@ -82,43 +82,49 @@ public class UI_TowerShop : MonoBehaviour
 
     public void OpenStatusPanel(TowerController controller)
     {
-        if (controller == null) return;
+        if (controller == null)
+        {
+            Debug.LogError("Received a null TowerController!");
+            return;
+        }
 
-        // 1. Enable the UI Panels and the Status Tab
+        // Enable the panels
         _LeftPanel.SetActive(true);
         _RightPanel.SetActive(true);
         _statusPanelUI.SetActive(true);
 
-        // 2. Save the base reference for Refunding later
+        // Save the base reference for the Refund button
         _lastSelectedTowerOffsensiveBase = controller.GetComponent<TowerOffensiveBase>();
 
-        // 3. Insert TowerHealth.currentHealth to string
-        // Accessing TowerHealth directly from the controller
+        // Update Health Text
         if (controller.TowerHealth != null)
         {
             healthText.text = controller.TowerHealth.GetCurrentHealth().ToString();
         }
         else
         {
-            healthText.text = "0";
+            healthText.text = "Health Script Missing";
+            Debug.LogWarning($"Controller {controller.name} has no TowerHealth reference!");
         }
     }
 
-    public void OnClickRefund()
+    public void OnClickRefund() // Must be public!
     {
         if (_lastSelectedTowerOffsensiveBase == null) return;
 
-        // Get the node to call Despawn
+        // Grab the node from the tower we saved when we clicked it
         TowerNodeManager node = _lastSelectedTowerOffsensiveBase.GetComponentInParent<TowerNodeManager>();
 
         if (node != null)
         {
-            node.DespawnTower(); // This triggers your existing logic
+            node.DespawnTower(); // Runs your existing despawn logic
 
-            // Close UI
+            // Close the UI panels
             _LeftPanel.SetActive(false);
             _RightPanel.SetActive(false);
             _statusPanelUI.SetActive(false);
+
+            // Clear the reference for safety
             _lastSelectedTowerOffsensiveBase = null;
         }
     }

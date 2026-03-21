@@ -6,25 +6,38 @@ public class HighlightableToggle : MonoBehaviour
 
     public LightingManager lightingManager;
     public PlayerCamManager playerCamMan;
+    public RTSCamera _rtsCamera;
 
     void Start()
     {
         if (objectToToggle != null) objectToToggle.SetActive(false);
 
-        if (playerCamMan == null) { playerCamMan = FindAnyObjectByType<PlayerCamManager>(); }
+        // if (playerCamMan == null) { playerCamMan = FindAnyObjectByType<PlayerCamManager>(); }
+
+        else if(_rtsCamera == null) { _rtsCamera = FindAnyObjectByType<RTSCamera>(); }
     }
 
     // This works for the Collider method
     void OnMouseEnter()
     {
-        if (playerCamMan._freeCam)
+        if (_rtsCamera != null)
         {
-            ToggleObject(true);
+            if (_rtsCamera.isActiveAndEnabled)
+            {
+                ToggleObject(true);
+            }
+
+            else if (!_rtsCamera.isActiveAndEnabled)
+            {
+                ToggleObject(false);
+            }
+
+            Debug.Log("Found RTS Camera");
         }
 
-        else if (!playerCamMan._freeCam)
+        else
         {
-            ToggleObject(false);
+            Debug.Log("No RTS Camera");
         }
 
         //if (lightingManager._isNight)

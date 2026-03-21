@@ -1107,7 +1107,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1048576
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -1252,7 +1252,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1048576
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -1383,6 +1383,7 @@ MonoBehaviour:
   startSetHealth: 100
   _toBeDeleted: 1
   _damageClip: {fileID: 0}
+  _hitFlash: {fileID: 0}
 --- !u!65 &7090967949583467492
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1461,6 +1462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 251e103df882a2c44b1e44ed5eb71036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tower_Offensive_SingleTarget
+  towerShop: {fileID: 0}
   projectilePrefab: {fileID: 3886554215781179537, guid: 202b2e5002b10b04c8010ec378402ff3, type: 3}
   firePoint: {fileID: 1932060655702197655}
   projectileSpeed: 15
@@ -1538,6 +1540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a35235af1eb1f44a14d70e65f4a31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerPrism
+  towerShop: {fileID: 0}
   connectionRange: 50
   towerLayer:
     serializedVersion: 2

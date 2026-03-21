@@ -634,7 +634,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1048576
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -966,7 +966,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1048576
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -1085,6 +1085,7 @@ MonoBehaviour:
   startSetHealth: 100
   _toBeDeleted: 1
   _damageClip: {fileID: 0}
+  _hitFlash: {fileID: 0}
 --- !u!65 &7090967949583467492
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1184,6 +1185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1b44e111d7b324cb699836ba48f9f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tower_Defense_SlowFieldTower
+  towerShop: {fileID: 0}
   slowMultiplier: 5
   detectionRadius: 15
   enemiesMovement: []
