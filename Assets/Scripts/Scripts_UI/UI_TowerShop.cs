@@ -32,6 +32,7 @@ public class UI_TowerShop : MonoBehaviour
     [SerializeField] private Image towerIcon;
     [SerializeField] private Image oreIcon;
     private TowerOffensiveBase _lastSelectedTowerOffsensiveBase;
+    private TowerCategoryData_SO _lastSelectedTowerData;
 
     private TowerCategoryData_SO towerUpgradesData;
     private Dictionary<string, GameObject> shopButtons;
@@ -99,15 +100,15 @@ public class UI_TowerShop : MonoBehaviour
         }
 
         // 3. The Checker Logic
-        TowerCategoryData_SO dataSO = controller.GetTowerData();
+        _lastSelectedTowerData = controller.GetTowerData();
         string targetName = controller.GetTowerNameID();
 
-        if (dataSO != null)
+        if (_lastSelectedTowerData != null)
         {
             CardInfo matchingCard = null;
 
             // Loop through the cards in the SO to find the right one
-            foreach (var card in dataSO.cards)
+            foreach (var card in _lastSelectedTowerData.cards)
             {
                 if (card.towerName == targetName)
                 {
@@ -127,29 +128,63 @@ public class UI_TowerShop : MonoBehaviour
             }
             else
             {
-                Debug.LogError($"Tower ID '{targetName}' not found in {dataSO.name}!");
+                Debug.LogError($"Tower ID '{targetName}' not found in {_lastSelectedTowerData.name}!");
             }
         }
     }
 
-    public void OnClickRefund() // Must be public!
+    public void OnClickRefund()
     {
-        if (_lastSelectedTowerOffsensiveBase == null) return;
+        if (_lastSelectedTowerOffsensiveBase == null || _lastSelectedTowerData == null) return;
 
-        // Grab the node from the tower we saved when we clicked it
+        // 1. Get the controller to find the ID
+        TowerController controller = _lastSelectedTowerOffsensiveBase.GetComponent<TowerController>();
+        if (controller == null) return;
+
+        string targetName = controller.GetTowerNameID();
+
+        // 2. Search the SO for the matching Resource Type and Cost
+        CardInfo matchingCard = null;
+        foreach (var card in _lastSelectedTowerData.cards)
+        {
+            if (card.towerName == targetName)
+            {
+                matchingCard = card;
+                break;
+            }
+        }
+
+        // 3. Process the Refund via DropManager
         TowerNodeManager node = _lastSelectedTowerOffsensiveBase.GetComponentInParent<TowerNodeManager>();
-
         if (node != null)
         {
-            node.DespawnTower(); // Runs your existing despawn logic
+            if (matchingCard != null)
+            {
+                GameManager.Instance.DropManager.AddingToResourceType(
+                    matchingCard.neededUpgradeResourceType,
+                    matchingCard.oreCost
+                );
 
-            // Close the UI panels
+                Debug.Log($"Refunding {matchingCard.oreCost} {matchingCard.neededUpgradeResourceType} for {targetName}");
+            }
+            else
+            {
+                Debug.LogError("Refund failed: Card data not found for " + targetName);
+            }
+
+            // 4. Despawn and Cleanup
+            node.DespawnTower();
+
             _LeftPanel.SetActive(false);
             _RightPanel.SetActive(false);
             _statusPanelUI.SetActive(false);
 
-            // Clear the reference for safety
             _lastSelectedTowerOffsensiveBase = null;
+            _lastSelectedTowerData = null;
+        }
+        else
+        {
+            Debug.LogWarning("Could not find TowerNodeManager for refund.");
         }
     }
 
