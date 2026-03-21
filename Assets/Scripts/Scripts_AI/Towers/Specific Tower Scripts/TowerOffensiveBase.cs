@@ -7,30 +7,21 @@ public class TowerOffensiveBase : TowerBase
     private void Start()
     {
         towerShop = Object.FindAnyObjectByType<UI_TowerShop>();
-
-        if (towerShop != null)
-        {
-            TowerNodeManagerManipulator manipulator = GetComponent<TowerNodeManagerManipulator>();
-            // Add the listener via code so it works even for spawned prefabs
-            manipulator.EvtOnInteractWithTowerController.AddListener(towerShop.OpenStatusPanel);
-        }
     }
-
 
     private void OnMouseDown()
     {
         if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()) return;
 
-        TowerNodeManagerManipulator manipulator = GetComponent<TowerNodeManagerManipulator>();
-        if (manipulator != null)
+        if (towerShop != null)
         {
-            // Find the UI_TowerShop in the scene dynamically
+            // 2. Get the controller from the node manager
+            TowerNodeManager node = GetComponentInParent<TowerNodeManager>();
 
-            if (towerShop != null)
+            if (node != null && node.towerController != null)
             {
-                // Manually trigger the logic or ensure the manipulator's 
-                // UnityEvent is pointing to this shopUI instance.
-                manipulator._SendTowerController();
+                // 3. Directly call the UI function and pass the controller
+                towerShop.OpenStatusPanel(node.towerController);
             }
         }
     }

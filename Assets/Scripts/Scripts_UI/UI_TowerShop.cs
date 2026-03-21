@@ -108,20 +108,17 @@ public class UI_TowerShop : MonoBehaviour
     {
         if (_lastSelectedTowerOffsensiveBase == null) return;
 
-        // Use the base to find the NodeManager sitting on the same object (or parent)
+        // Get the node to call Despawn
         TowerNodeManager node = _lastSelectedTowerOffsensiveBase.GetComponentInParent<TowerNodeManager>();
 
         if (node != null)
         {
-            // 1. Trigger the despawn (This calls GameManager.Instance.DespawnTower)
-            node.DespawnTower();
+            node.DespawnTower(); // This triggers your existing logic
 
-            // 2. Clear the UI
+            // Close UI
             _LeftPanel.SetActive(false);
             _RightPanel.SetActive(false);
             _statusPanelUI.SetActive(false);
-
-            // 3. Clear the reference so we don't refund a dead tower twice
             _lastSelectedTowerOffsensiveBase = null;
         }
     }
