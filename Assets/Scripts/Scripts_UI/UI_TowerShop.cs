@@ -28,7 +28,9 @@ public class UI_TowerShop : MonoBehaviour
     [SerializeField] private GameObject _statusPanelUI; // The specific Status UI
     [SerializeField] private TMPro.TextMeshProUGUI healthText;
     [SerializeField] private TMPro.TextMeshProUGUI costText;
-    [SerializeField] private TMPro.TextMeshProUGUI nameText;
+    [SerializeField] private TMPro.TextMeshProUGUI nameText; 
+    [SerializeField] private Image towerIcon;
+    [SerializeField] private Image oreIcon;
     private TowerOffensiveBase _lastSelectedTowerOffsensiveBase;
 
     private TowerCategoryData_SO towerUpgradesData;
@@ -82,29 +84,51 @@ public class UI_TowerShop : MonoBehaviour
 
     public void OpenStatusPanel(TowerController controller)
     {
-        if (controller == null)
-        {
-            Debug.LogError("Received a null TowerController!");
-            return;
-        }
+        if (controller == null) return;
 
-        // Enable the panels
+        // 1. Setup UI & References
         _LeftPanel.SetActive(true);
         _RightPanel.SetActive(true);
         _statusPanelUI.SetActive(true);
-
-        // Save the base reference for the Refund button
         _lastSelectedTowerOffsensiveBase = controller.GetComponent<TowerOffensiveBase>();
 
-        // Update Health Text
+        // 2. Health (Direct)
         if (controller.TowerHealth != null)
         {
             healthText.text = controller.TowerHealth.GetCurrentHealth().ToString();
         }
-        else
+
+        // 3. The Checker Logic
+        TowerCategoryData_SO dataSO = controller.GetTowerData();
+        string targetName = controller.GetTowerNameID();
+
+        if (dataSO != null)
         {
-            healthText.text = "Health Script Missing";
-            Debug.LogWarning($"Controller {controller.name} has no TowerHealth reference!");
+            CardInfo matchingCard = null;
+
+            // Loop through the cards in the SO to find the right one
+            foreach (var card in dataSO.cards)
+            {
+                if (card.towerName == targetName)
+                {
+                    matchingCard = card;
+                    break;
+                }
+            }
+
+            // 4. Populate UI if found
+            if (matchingCard != null)
+            {
+                nameText.text = matchingCard.towerName;
+                costText.text = matchingCard.oreCost.ToString();
+
+                if (matchingCard.towerIcon != null) towerIcon.sprite = matchingCard.towerIcon;
+                if (matchingCard.oreIcon != null) oreIcon.sprite = matchingCard.oreIcon;
+            }
+            else
+            {
+                Debug.LogError($"Tower ID '{targetName}' not found in {dataSO.name}!");
+            }
         }
     }
 
