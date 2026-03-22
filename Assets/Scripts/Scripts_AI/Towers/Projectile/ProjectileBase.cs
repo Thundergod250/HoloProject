@@ -66,7 +66,7 @@ public class ProjectileBase : MonoBehaviour
     private void ApplyDamageToEnemy(EnemyBase enemy)
     {
         if (enemy != null) 
-            enemy.Health.TakeDamage(damage);
+            enemy._healthReference.TakeDamage(damage);
     }
     
     private void ApplyDamageToTower(TowerController tower)

@@ -90,7 +90,7 @@ public class TowerScorchRay : TowerOffensiveBase
 
                 if (enemy != null)
                 {
-                    enemy.Health.TakeDamage(damagePerTick);
+                    enemy._healthReference.TakeDamage(damagePerTick);
                 }
                 else if (enemy == null)
                 {

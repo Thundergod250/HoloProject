@@ -7,7 +7,7 @@ public class GeneralRemnant : Effects_Enemy
 
     public void ApplyRally(EnemyBase enemy)
     {
-        enemy.Health.Heal(20);
+        enemy._healthReference.Heal(20);
     }
 
     public void RemoveRally(EnemyBase enemy)

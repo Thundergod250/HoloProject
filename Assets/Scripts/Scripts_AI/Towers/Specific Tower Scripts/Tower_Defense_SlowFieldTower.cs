@@ -8,7 +8,6 @@ public class Tower_Defense_SlowFieldTower : TowerOffensiveBase
 
     [SerializeField] protected List<Navigation_Enemy> enemiesMovement;
 
-
     private void Update()
     {
         SlowDownNearEnemies();
@@ -47,27 +46,9 @@ public class Tower_Defense_SlowFieldTower : TowerOffensiveBase
 
         enemiesMovement = currentEnemies;
     }
-
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.GetComponent<EnemyMovement>() )
-    //    {
-    //        EnemyMovement enemyTarget = other.GetComponent<EnemyMovement>();
-    //        enemiesMovement.Add(enemyTarget);
-
-    //        enemyTarget.SlowDownAgent(slowMultiplier);
-    //    }
-    //}
-
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.GetComponent<EnemyMovement>())
-    //    {
-    //        EnemyMovement enemyTarget = other.GetComponent<EnemyMovement>();
-    //        enemiesMovement.Add(enemyTarget);
-
-    //        enemyTarget.SpeedUpAgent(slowMultiplier);
-    //    }
-    //}
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, detectionRadius);
+    }
 }

@@ -15109,9 +15109,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f581272cbb6874a43a371a34e94dcfbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBase
-  Health: {fileID: 1856135663}
+  _healthReference: {fileID: 0}
   Movement: {fileID: 1856135662}
   EnemyAttack: {fileID: 0}
+  _healthSlider: {fileID: 0}
 --- !u!195 &1856135665
 NavMeshAgent:
   m_ObjectHideFlags: 0

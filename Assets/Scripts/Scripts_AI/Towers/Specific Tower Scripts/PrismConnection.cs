@@ -65,9 +65,9 @@ public class PrismConnection : MonoBehaviour
         {
             EnemyBase enemyTarget = other.GetComponent<EnemyBase>();
 
-            enemyTarget.Health.TakeDamage(instantDamage);
+            enemyTarget._healthReference.TakeDamage(instantDamage);
 
-            Debug.Log("Enemy target Prismed : " + enemyTarget.Health.GetCurrentHealth());
+            Debug.Log("Enemy target Prismed : " + enemyTarget._healthReference.GetCurrentHealth());
         }
     }
 }

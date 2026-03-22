@@ -72,9 +72,9 @@ public class TowerChainPylon : TowerOffensiveBase
                     lineRenderer.SetPosition(hitCount + 1, currentTarget.transform.position);
                 }
 
-                if (currentTarget.GetComponent<EnemyBase>().Health)
+                if (currentTarget.GetComponent<EnemyBase>()._healthReference)
                 {
-                    currentTarget.GetComponent<EnemyBase>().Health.TakeDamage(_damage);
+                    currentTarget.GetComponent<EnemyBase>()._healthReference.TakeDamage(_damage);
                 }
 
                 GameObject nextTarget = null;

@@ -11,6 +11,8 @@ public class TowerFreeze : TowerOffensiveBase
 
     private bool canAttack = true;
 
+    [SerializeField] ParticleSystem _attackFreezeParticle;
+
     void Update()
     {
         if (canAttack)
@@ -33,6 +35,12 @@ public class TowerFreeze : TowerOffensiveBase
                 EnemyMovement movement = col.GetComponent<EnemyMovement>();
                 if (movement != null)
                 {
+
+                    if (_attackFreezeParticle != null)
+                    {
+                        _attackFreezeParticle.Play();
+                    }
+
                     movement.ApplyFreeze(freezeDuration);
                 }
             }
