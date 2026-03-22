@@ -526,6 +526,7 @@ MonoBehaviour:
   startSetHealth: 4
   _toBeDeleted: 0
   _damageClip: {fileID: 0}
+  _hitFlash: {fileID: 0}
 --- !u!114 &7857921181583767866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -563,9 +564,15 @@ MonoBehaviour:
   CopperPropName: CopperColor
   IronPropName: IronColor
   GoldPropName: GoldColor
+  CopperPropHLName: CopperHLColor
+  IronPropHLName: IronHLColor
+  GoldPropHLName: GoldHLColor
   CopperColor: {r: 0.4641509, g: 0.27220768, b: 0.072687745, a: 1}
-  IronColor: {r: 0.5018867, g: 0.5018867, b: 0.5018867, a: 1}
+  IronColor: {r: 0.43465284, g: 0.6112864, b: 0.7132075, a: 1}
   GoldColor: {r: 0.78867924, g: 0.6301696, b: 0.20088992, a: 1}
+  CopperHLColor: {r: 0.8, g: 0.5, b: 0.2, a: 1}
+  IronHLColor: {r: 0.2977927, g: 0.46773663, b: 0.90188676, a: 1}
+  GoldHLColor: {r: 0.7509433, g: 0.639038, b: 0, a: 1}
   _oreMaterials:
   - {fileID: 2100000, guid: 3d6311a5be71a254b9eb0d260134b630, type: 2}
   - {fileID: 2100000, guid: 2896197302ff52f44b1c73be4de78c89, type: 2}

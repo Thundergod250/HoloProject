@@ -33,12 +33,19 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
     [SerializeField] private Animator _animAttackLOreLode;
 
     private static readonly int GlowColorID = Shader.PropertyToID("Glow Color");
+    private static readonly int GlowHLColorID = Shader.PropertyToID("Particle Color");
     [SerializeField] private string CopperPropName = "CopperColor";
     [SerializeField] private string IronPropName = "IronColor";
     [SerializeField] private string GoldPropName = "GoldColor"; 
+    [SerializeField] private string CopperPropHLName = "CopperHLColor";
+    [SerializeField] private string IronPropHLName = "IronHLColor";
+    [SerializeField] private string GoldPropHLName = "GoldHLColor"; 
     public Color CopperColor = new Color(0.8f, 0.5f, 0.200f);
     public Color IronColor = new Color(0.6f, 0.6f, 0.65f);
     public Color GoldColor = new Color(1.0f, 0.85f, 0.0f);
+    public Color CopperHLColor = new Color(0.8f, 0.5f, 0.200f);
+    public Color IronHLColor = new Color(0.6f, 0.6f, 0.65f);
+    public Color GoldHLColor = new Color(1.0f, 0.85f, 0.0f);
 
     [SerializeField] private Material[] _oreMaterials;
     [SerializeField] private GameObject _oreObjReference;
@@ -87,26 +94,31 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
 
         // Pick the color based on the ore type
         Color targetColor = Color.white;
+        Color targetHLColor = Color.white;
 
         if (_garbageGroupType == GarbageObject.GarbageGroup.CopperOre)
         {
             targetColor = CopperColor;
+            targetHLColor = CopperHLColor;
             _oreObjReference.GetComponent<MeshRenderer>().material = _oreMaterials[0];
         }
         else if (_garbageGroupType == GarbageObject.GarbageGroup.IronOre)
         {
             targetColor = IronColor;
+            targetHLColor = IronHLColor;
             _oreObjReference.GetComponent<MeshRenderer>().material = _oreMaterials[1];
         }
         else if (_garbageGroupType == GarbageObject.GarbageGroup.GoldOre)
         {
             targetColor = GoldColor;
+            targetHLColor = GoldHLColor;
             _oreObjReference.GetComponent<MeshRenderer>().material = _oreMaterials[2];
         }
 
         // 2. Apply it to the VFX
         float intensity = 5.0f; // Increase for more glow
         _highlightColor.SetVector4(GlowColorID, targetColor * intensity);
+        _highlightColor.SetVector4(GlowHLColorID, targetColor * intensity);
     }
 
     private void SetRandomized()
