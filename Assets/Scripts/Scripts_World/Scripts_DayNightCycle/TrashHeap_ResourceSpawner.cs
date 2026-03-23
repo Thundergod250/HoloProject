@@ -178,6 +178,8 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
 
     private void DisableThisHeap()
     {
+        _playerController = null;
+        _canvasUI.gameObject.SetActive(false);
         this.gameObject.SetActive(false);
     }
 
