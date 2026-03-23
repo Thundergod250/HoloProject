@@ -13,7 +13,18 @@ public class GameManager : MonoBehaviour
     public ObjectPooling ObjectPooling;
     public DebugCheats DebugCheats;
 
+    public AudioManager AudioManager;
+
     [HideInInspector] public TowerNodeManager CurrentTowerNode;
+
+    private void Start()
+    {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager = AudioManager.Instance;
+        }
+    }
+
 
     private void Awake()
     {

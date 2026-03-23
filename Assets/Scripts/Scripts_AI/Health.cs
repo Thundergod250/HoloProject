@@ -16,6 +16,8 @@ public class Health : MonoBehaviour
     [SerializeField] public int startSetHealth; //[FOR TESTING] 
     [SerializeField] protected bool _toBeDeleted = false;
 
+    [SerializeField] private AudioClip _damageClip;
+    [SerializeField] private HitFlash _hitFlash; 
     private void Awake()
     {
         currentHealth = maxHealth;
@@ -28,6 +30,16 @@ public class Health : MonoBehaviour
 
         currentHealth -= amount;
         currentHealth = Mathf.Max(currentHealth, 0);
+
+        if (_hitFlash != null)
+        {
+            _hitFlash.PlayHitEffect();
+        }
+
+        else if (_damageClip != null && AudioManager.Instance != null )
+        {
+            AudioManager.Instance.PlaySFXOnce(_damageClip);
+        }
 
         // Trigger damage event
         OnDamaged?.Invoke(currentHealth);
@@ -48,7 +60,9 @@ public class Health : MonoBehaviour
             return;
         }
 
+        // _hitFlash.DieVFXEffect();
             isDead = true;
+
         OnDeath?.Invoke();
 
         Debug.Log($"{gameObject.name} has died.");

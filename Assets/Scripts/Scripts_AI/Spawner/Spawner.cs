@@ -10,13 +10,14 @@ public class Spawner : MonoBehaviour
     [SerializeField] private UI_EnemyCounter enemyCounterUI;
 
     [Header("Spawner")]
-    [SerializeField] private WaveData[] wave;
+    public List<WaveData> wave = new List<WaveData>();
 
     [Header("Variables DO NOT TOUCH")]
     [SerializeField] private int waveVar;
     [SerializeField] private bool spawningWave = true;
     [SerializeField] private bool isNighttime;
     [SerializeField] private WaveData activeWave;
+    [SerializeField] private List<GameObject> activeEnemies = new List<GameObject>();
     private bool waveInProgress;
 
     [Header("Var Safe to Adjust")]
@@ -36,7 +37,7 @@ public class Spawner : MonoBehaviour
 
         if (testingMode)
         {
-            spawnRoutine = StartCoroutine(spawnEnemy(activeWave.timeBetweenSpawn));
+            StartCoroutine(spawnEnemy(activeWave.timeBetweenSpawn));
         }
     }
 
@@ -50,12 +51,12 @@ public class Spawner : MonoBehaviour
             TryStartWave();
         }
 
-        // Night just ended → turn off caution UI
+        // Night just ended → cleanup
         if (!isNight && wasNightLastFrame)
         {
             if (cautionUI.hasWaveStart)
             {
-                cautionUI.hasWaveStart = false; // hide UI
+                cautionUI.hasWaveStart = false;
                 Debug.Log("Night ended: Caution image turned off");
             }
         }
@@ -70,16 +71,19 @@ public class Spawner : MonoBehaviour
 
             newEnemy.GetComponent<Navigation_Enemy>().wayPoints = wayPoints;
             newEnemy.GetComponent<Drops_Enemy>().parentSpawner = this;
+            newEnemy.GetComponent<Navigation_Enemy>().lightingManager = lightingManager;
 
             enemyCounterUI.totalEnemies++;
             enemyCounterUI.UpdateEnemyCounter();
+
+            activeEnemies.Add(newEnemy);
 
             yield return new WaitForSeconds(interval);
         }
 
         yield return new WaitForSeconds(timeAfterWave);
 
-        OnWaveFinishedSpawning();
+       if(!testingMode) OnWaveFinishedSpawning();
     }
 
     void OnWaveFinishedSpawning()
@@ -94,7 +98,7 @@ public class Spawner : MonoBehaviour
 
     private void GoToNextWave()
     {
-        if (waveVar == wave.Length - 1) // last wave
+        if (waveVar == wave.Count - 1) // last wave
         {
             spawningWave = false;
             return;
@@ -125,6 +129,11 @@ public class Spawner : MonoBehaviour
         StartCoroutine(spawnEnemy(activeWave.timeBetweenSpawn));
     }
 
+    public int GetWaveNumber()
+    {
+        return waveVar;
+    }
+
     public void SpawnEnemy(GameObject DebugEnemies)
     {
         GameObject newEnemy = Instantiate(DebugEnemies, transform.position, Quaternion.identity);
@@ -132,10 +141,34 @@ public class Spawner : MonoBehaviour
         newEnemy.GetComponent<Navigation_Enemy>().wayPoints = wayPoints;
     }
 
+    void KillAllEnemies()
+    {
+        if (spawnRoutine != null)
+        {
+            StopCoroutine(spawnRoutine);
+            spawnRoutine = null;
+        }
+
+        foreach (GameObject enemy in activeEnemies)
+        {
+            enemy.GetComponent<Navigation_Enemy>().MorningDOTEFfect();
+        }
+
+        activeEnemies.Clear();
+
+        enemyCounterUI.totalEnemies = 0;
+        enemyCounterUI.UpdateEnemyCounter();
+
+        waveInProgress = false;
+
+        Debug.Log("All enemies cleared (Daytime)");
+    }
 
     public void UpdateEnemyCounterText()
     {
         enemyCounterUI.totalEnemies--;
         enemyCounterUI.UpdateEnemyCounter();
     }
+
+
 }

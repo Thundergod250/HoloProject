@@ -1,10 +1,23 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseGame : MonoBehaviour
 {
     public GameObject pauseMenuPanel;
     private bool isPaused = false;
+    [SerializeField] AudioManager _audioManager;
+    [SerializeField] Slider _audioMusicSlider;
+    [SerializeField] Slider _audioSFXSlider;
+
+    private void Start()
+    {
+        _audioManager = AudioManager.Instance;
+
+        _audioManager.sfxSlider = _audioSFXSlider;
+        _audioManager.musicSlider = _audioMusicSlider;
+    }
+
 
     void Update()
     {

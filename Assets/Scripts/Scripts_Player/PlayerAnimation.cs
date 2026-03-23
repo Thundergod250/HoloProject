@@ -16,6 +16,7 @@ public class PlayerAnimation : MonoBehaviour
     [Header("Action States")]
     [SerializeField] private string shovelDigState = "Shovel and Dig";
     [SerializeField] private string miningState = "Mining Start";
+    [SerializeField] private string miningLoopState = "Mining Loop";
     [SerializeField] private string drillState = "Drill";
 
     private PlayerGrab playerGrab;
@@ -50,15 +51,35 @@ public class PlayerAnimation : MonoBehaviour
         }
     }
 
+    public void ForceIdleState()
+    {
+        PlayState(false ? grabIdleState : idleState); ;
+    }
+
     public void TriggerJump()
     {
         bool isCarrying = playerGrab != null && playerGrab.IsPlayerCarryingObject;
         PlayState(isCarrying ? grabJumpState : jumpState, 0.05f);
     }
 
-    public void TriggerMining()
+    public void TriggerMiningStart()
     {
+        animator.SetBool("Mining", false);
         PlayState(miningState);
+    }
+
+    public void TriggerMiningLoop(bool playingLoop)
+    {
+        if (playingLoop)
+        {
+            return;
+        }
+
+        else if (!playingLoop)
+        {
+            animator.SetBool("Mining", true);
+            PlayState(miningLoopState);
+        }
     }
 
     public void ResetAnimations()

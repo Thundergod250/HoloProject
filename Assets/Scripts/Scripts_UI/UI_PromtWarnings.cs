@@ -11,6 +11,8 @@ public class UI_PromtWarnings : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textFade;
     private bool _hasTriggeredFade = false;
 
+    [SerializeField] AudioClip _fadeInClip;
+
     private void OnEnable()
     {
         // Subscribe: When BuyTower broadcasts, run SetPromptTextDisplay
@@ -41,6 +43,22 @@ public class UI_PromtWarnings : MonoBehaviour
             _fadeImage.gameObject.SetActive(true);
         }
 
+        else if (Mathf.FloorToInt(currentTime) == 120 && !_hasTriggeredFade)
+        {
+            StartCoroutine(FadeImageSequence());
+            _hasTriggeredFade = true;
+            textFade.text = "It is almost Night time";
+            _fadeImage.gameObject.SetActive(true);
+        }
+
+        else if (Mathf.FloorToInt(currentTime) == 200 && !_hasTriggeredFade)
+        {
+            StartCoroutine(FadeImageSequence());
+            _hasTriggeredFade = true;
+            textFade.text = "The Night is ending, almost there";
+            _fadeImage.gameObject.SetActive(true);
+        }
+
         else if (Mathf.FloorToInt(currentTime) == 0 && !_hasTriggeredFade)
         {
             StartCoroutine(FadeImageSequence());
@@ -48,7 +66,7 @@ public class UI_PromtWarnings : MonoBehaviour
             textFade.text = "The Day of gathering resources";
             _fadeImage.gameObject.SetActive(true);
         }
-
+        
         // Reset the flag for the next cycle (assuming day length is > 150)
         if ((((currentTime <= 153) && (currentTime >= 151)) || (currentTime >= 2) && (currentTime <= 4)) && _hasTriggeredFade)
         {
@@ -71,6 +89,11 @@ public class UI_PromtWarnings : MonoBehaviour
     {
         // 1. Fade In over 1 second
         yield return StartCoroutine(FadeAlpha(0, 1, 1f));
+
+        if (AudioManager.Instance != null && _fadeInClip != null)
+        {
+            AudioManager.Instance.PlaySFXOnce(_fadeInClip);
+        }
 
         // 2. Wait for 2 seconds
         yield return new WaitForSeconds(2f);

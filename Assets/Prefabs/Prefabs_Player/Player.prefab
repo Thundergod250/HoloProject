@@ -579,6 +579,7 @@ MonoBehaviour:
   grabJumpState: Grab and Jump
   shovelDigState: Shovel and Dig
   miningState: Mining Start
+  miningLoopState: Mining Loop
   drillState: Drill
 --- !u!114 &8430264172108288562
 MonoBehaviour:
@@ -689,7 +690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d53b2cfba28059468682628db0d42e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHarvesting
-  playerAnimation: {fileID: 0}
+  playerAnimation: {fileID: 3778112114396300799}
   _generalPlayerActions: {fileID: 8430694864698018182}
   _shovelingAction: {fileID: 7751857528735341437}
   _drillingAction: {fileID: 1885148647064198069}
@@ -699,6 +700,7 @@ MonoBehaviour:
   targetHeap: {fileID: 0}
   _garbageGroupType: 0
   _resourceManagerRefererce: {fileID: 0}
+  _miningAudioClip: {fileID: 8300000, guid: 5f5315e56f75def40b5d796907a060a6, type: 3}
 --- !u!114 &2415299671023885601
 MonoBehaviour:
   m_ObjectHideFlags: 0

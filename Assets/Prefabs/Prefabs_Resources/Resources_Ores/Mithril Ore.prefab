@@ -232,11 +232,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 01ad49ac28ac5654d8aa40e0d899628b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 01ad49ac28ac5654d8aa40e0d899628b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 01ad49ac28ac5654d8aa40e0d899628b, type: 3}
       propertyPath: m_LocalRotation.y
@@ -244,7 +244,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 01ad49ac28ac5654d8aa40e0d899628b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 01ad49ac28ac5654d8aa40e0d899628b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -311,7 +311,7 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 3146880
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -385,6 +385,7 @@ MonoBehaviour:
   isPickedUp: 0
   hasBeenCollected: 0
   amountToAddInResource: 1
+  _pickupSoundClip: {fileID: 8300000, guid: c6a28bcc3eb04a24b82307cdb1a792e2, type: 3}
   addedOreTextEffect: {fileID: 0}
 --- !u!114 &7033558094952988992
 MonoBehaviour:

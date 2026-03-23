@@ -11,7 +11,7 @@ public class EnemyMovement : MonoBehaviour
         GoToPoint,
         FollowTarget
     }
-
+    private bool isFrozen = false;
     private NavMeshAgent agent;
 
     [Header("General Settings")]
@@ -38,6 +38,8 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
+        if (isFrozen) return;
+
         switch (currentMode)
         {
             case MovementMode.Idle:
@@ -157,9 +159,26 @@ public class EnemyMovement : MonoBehaviour
     {
         agent.speed = baseSpeed;
     }
-}
 
-//enemyMovement.SetMode(EnemyMovement.MovementMode.Idle);          // stop moving
-//enemyMovement.SetMode(EnemyMovement.MovementMode.Roaming);       // wander randomly
-//enemyMovement.GoToPoint(new Vector3(5, 0, 10));                  // move to a point
-//enemyMovement.FollowTarget(playerTransform);                     // chase the player
+    public async void ApplyFreeze(float duration)
+    {
+        if (isFrozen) return; // Don't freeze if already frozen
+
+        isFrozen = true;
+        agent.isStopped = true;
+
+        // Optional: If you have an animator, pause it here:
+        // GetComponent<Animator>().speed = 0;
+
+        await System.Threading.Tasks.Task.Delay((int)(duration * 1000));
+
+        // Safety check in case the enemy was destroyed while frozen
+        if (this != null && agent != null)
+        {
+            isFrozen = false;
+            agent.isStopped = false;
+            // if (GetComponent<Animator>()) GetComponent<Animator>().speed = 1;
+        }
+    }
+
+}

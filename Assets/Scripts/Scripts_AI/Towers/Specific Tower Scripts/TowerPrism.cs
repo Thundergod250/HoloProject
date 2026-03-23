@@ -1,40 +1,45 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TowerPrism : MonoBehaviour
+public class TowerPrism : TowerOffensiveBase
 {
-    [Header("Settings")]
-    public float connectionRange = 50f;
-    public Transform firePoint;
-    public LayerMask towerLayer; // Set this to the layer your towers are on
+    public float connectionRange = 10f;
+    public LayerMask towerLayer;
     public GameObject connectionPrefab;
+    public Transform firePoint;
 
-    // Keeps track of who we are already linked to
     private List<TowerPrism> connectedTowers = new List<TowerPrism>();
 
     void Start()
     {
-        EstablishConnections();
+        // Start the repeating scan instead of using Update
+        StartCoroutine(ScanForTowers());
     }
 
-    void EstablishConnections()
+    System.Collections.IEnumerator ScanForTowers()
     {
-        // Physics.OverlapSphere only detects colliders within 'connectionRange'
+        while (true)
+        {
+            EstablishConnections();
+            // Wait for 0.2 seconds (5 scans per second)
+            yield return new WaitForSeconds(0.2f);
+        }
+    }
+
+    private void EstablishConnections()
+    {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, connectionRange, towerLayer);
 
         foreach (var hit in hitColliders)
         {
-            // 1. If the collider we hit is our own, skip it immediately
             if (hit.gameObject == this.gameObject) continue;
 
-            // 2. Now we check if what we hit actually has the script
             TowerPrism otherTower = hit.GetComponent<TowerPrism>();
 
-            // 3. Check for the script and existing connections
+            // The list check here ensures we only spawn ONE beam per neighbor
             if (otherTower != null && !connectedTowers.Contains(otherTower))
             {
                 CreateBeam(otherTower);
-
                 connectedTowers.Add(otherTower);
                 otherTower.RegisterExistingConnection(this);
             }
@@ -43,25 +48,18 @@ public class TowerPrism : MonoBehaviour
 
     void CreateBeam(TowerPrism target)
     {
-        GameObject beam = Instantiate(connectionPrefab, firePoint.position, Quaternion.identity);
-        PrismConnection connection = beam.GetComponent<PrismConnection>();
-
-        // Pass the firePoints, not the base of the towers
-        connection.Setup(this.firePoint, target.firePoint);
+        GameObject beamObj = Instantiate(connectionPrefab, firePoint.position, Quaternion.identity);
+        PrismConnection connection = beamObj.GetComponent<PrismConnection>();
+        connection.Setup(this.firePoint, target.firePoint, this, target, connectionRange);
     }
 
     public void RegisterExistingConnection(TowerPrism tower)
     {
-        if (!connectedTowers.Contains(tower))
-        {
-            connectedTowers.Add(tower);
-        }
+        if (!connectedTowers.Contains(tower)) connectedTowers.Add(tower);
     }
 
-    // Visual aid in the editor to see the connection range
-    private void OnDrawGizmosSelected()
+    public void RemoveConnection(TowerPrism tower)
     {
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(transform.position, connectionRange);
+        if (connectedTowers.Contains(tower)) connectedTowers.Remove(tower);
     }
 }

@@ -6,7 +6,7 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private GameObject rtsCamera;
     [SerializeField] private RTSMouseSelector rtsMouseSelector;
     [SerializeField] public PlayerMovement movement;
-    bool playerCamActive = true;
+    private bool playerCamActive = true;
 
     private void Start()
     {
@@ -44,17 +44,17 @@ public class CameraManager : MonoBehaviour
     {
         if (movement != null)
         {
-            if (playerCamActive)
-            {
-                DisableRTSCamera();
-                playerCamActive = false;
-                movement.SetCanMove(true);
-            }
-            else if (!playerCamActive)
+            if (!playerCamActive)
             {
                 EnableRTSCamera();
                 playerCamActive = true;
                 movement.SetCanMove(false);
+            }
+            else if (playerCamActive)
+            {
+                DisableRTSCamera();
+                playerCamActive = false;
+                movement.SetCanMove(true);
             }
         }
     }

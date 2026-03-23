@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.HighDefinition;
 
-[ExecuteAlways]
+//[ExecuteAlways]
 public class LightingManager : MonoBehaviour
 {
     [Header("References")]
@@ -16,7 +17,7 @@ public class LightingManager : MonoBehaviour
     // Changed to 240 secs == 4 Mins per day 
     [SerializeField] private float _timeOfDay;
     [SerializeField] public bool _isNight = false;
-    [SerializeField] float _maxTimeOfDay = 240;
+    [SerializeField] public float _maxTimeOfDay = 240;
 
     [SerializeField] protected Volume _hdriCubeSkyDay;
     [SerializeField] protected Volume _hdriCubeSkyNight;
@@ -26,6 +27,9 @@ public class LightingManager : MonoBehaviour
     [SerializeField] public bool _isSnow = false;
 
     [SerializeField] float _transitionSpeed = 0.5f;
+
+    [SerializeField] private AudioClip[] _dayThemeClip;
+    [SerializeField] private AudioClip[] _nightThemeClip;
 
     public SaveGameManager saveGameManager;
 
@@ -78,12 +82,17 @@ public class LightingManager : MonoBehaviour
             {
                 saveGameManager.SaveGame(_timeOfDay,GameManager.Instance.DropManager); // Trigger your SaveData logic
                 hasSavedToday = true;
+
                 Debug.Log("Sun is up! Progress saved.");
             }
 
             if (_lastAssignedIndex != targetIndex)
             {
                 StartHDRIFade(targetIndex);
+
+                int randomClip = Random.Range( 0,_dayThemeClip.Count());
+
+                AudioManager.Instance.PlayMusic(_dayThemeClip[randomClip]);
             }
 
             _isNight = false;
@@ -94,11 +103,15 @@ public class LightingManager : MonoBehaviour
             int targetIndex = 1; // Your Moonless/Night HDRI
 
             hasSavedToday = true;
-            Debug.Log("Night is up! Waiting for Day Save9.");
+
+            Debug.Log("Night is up!");
 
             if (_lastAssignedIndex != targetIndex)
             {
                 StartHDRIFade(targetIndex);
+
+                int randomClip = Random.Range(0, _nightThemeClip.Count());
+                AudioManager.Instance.PlayMusic(_nightThemeClip[randomClip]);
             }
 
             _isNight = true;

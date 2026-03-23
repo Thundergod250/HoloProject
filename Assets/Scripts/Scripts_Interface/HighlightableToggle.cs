@@ -6,29 +6,56 @@ public class HighlightableToggle : MonoBehaviour
 
     public LightingManager lightingManager;
     public PlayerCamManager playerCamMan;
+    public RTSCamera _rtsCamera;
 
     void Start()
     {
         if (objectToToggle != null) objectToToggle.SetActive(false);
+
+        // if (playerCamMan == null) { playerCamMan = FindAnyObjectByType<PlayerCamManager>(); }
+
+        else if(_rtsCamera == null) { _rtsCamera = FindAnyObjectByType<RTSCamera>(); }
     }
 
     // This works for the Collider method
-    void OnMouseEnter() 
+    void OnMouseEnter()
     {
-        if (lightingManager._isNight)
+        if (_rtsCamera != null)
         {
-            Debug.Log("Night");
-            ToggleObject(true);
+            if (_rtsCamera.isActiveAndEnabled)
+            {
+                ToggleObject(true);
+            }
+
+            else if (!_rtsCamera.isActiveAndEnabled)
+            {
+                ToggleObject(false);
+            }
+
+            Debug.Log("Found RTS Camera");
         }
-        else return;
+
+        else
+        {
+            Debug.Log("No RTS Camera");
+        }
+
+        //if (lightingManager._isNight)
+        //{
+        //    Debug.Log("Night");
+        //    ToggleObject(true);
+        //}
+        //else return;
     }
     void OnMouseExit() 
     {
-        if (lightingManager._isNight)
-        {
-            ToggleObject(false);
-        }
-        else return;
+        ToggleObject(false);
+
+        //if (lightingManager._isNight)
+        //{
+        //    ToggleObject(false);
+        //}
+        //else return;
     }
 
     // This is called by the Raycast method

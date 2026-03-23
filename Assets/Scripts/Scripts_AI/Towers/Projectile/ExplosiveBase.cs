@@ -12,7 +12,7 @@ public class ExplosiveBase : MonoBehaviour
 
         if (enemy)
         {
-            enemy.Health.TakeDamage((int)_damage);
+            enemy._healthReference.TakeDamage((int)_damage);
 
             Destroy(this?.gameObject);
         }

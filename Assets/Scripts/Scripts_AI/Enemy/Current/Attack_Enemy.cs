@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Attack_Enemy : MonoBehaviour
@@ -29,16 +31,22 @@ public class Attack_Enemy : MonoBehaviour
     [SerializeField] private int damage;
     private bool isAttacking = false;
 
+    [Header("Attack Limit")]
+    [SerializeField] private int maxHits = 3;
+    public List<GameObject> attackedTowers = new List<GameObject>();
+
+    private int hitCounter = 0;
 
     public Animator animator;
     public Transform target;
+
     public Targeting archetype => targeting;
 
     private float timer;
 
     void Update()
     {
-        if(target != null) // if has target
+        if (target != null) // if has target
         {
             timer += Time.deltaTime;
 
@@ -56,7 +64,7 @@ public class Attack_Enemy : MonoBehaviour
                 AttackType();
             }
 
-            if (target.GetComponent<Health>().GetCurrentHealth() == 0)
+            else if (target.GetComponent<Health>().GetCurrentHealth() <= 0)
             {
                 Debug.Log("changing target");
                 navigation_Enemy.TargetHasDied();
@@ -66,20 +74,30 @@ public class Attack_Enemy : MonoBehaviour
 
     void AttackType()
     {
-        if(targeting == Targeting.Ranged)
+        if (hitCounter >= maxHits)
+        {
+            Debug.Log("Hit limit reached");
+            ResetAttack();
+            return;
+        }
+
+        if (targeting == Targeting.Ranged)
         {
             transform.LookAt(target.transform);
-            Vector3 direction = (target.position - transform.position).normalized;
-            GameObject proj = Instantiate(bullet, gunBarrel.transform.position, Quaternion.identity);
-            Rigidbody rb = proj.GetComponent<Rigidbody>();
-            proj.GetComponent<Projectile_Enemy>().bulletDamage = bulletDamage;
 
+            Vector3 direction = (target.position - transform.position).normalized;
+
+            GameObject proj = Instantiate(bullet, gunBarrel.transform.position, Quaternion.identity);
+
+            Rigidbody rb = proj.GetComponent<Rigidbody>();
+
+            proj.GetComponent<Projectile_Enemy>().bulletDamage = bulletDamage;
 
             rb.linearVelocity = direction * 40f;
 
             Destroy(proj, 2f);
         }
-        else if(targeting == Targeting.Melee)
+        else if (targeting == Targeting.Melee)
         {
             if (!isAttacking)
             {
@@ -89,21 +107,36 @@ public class Attack_Enemy : MonoBehaviour
         }
         else if (targeting == Targeting.Neutral)
         {
-            //*insert attack scipt
+            //*insert attack script
         }
     }
 
     public IEnumerator MeleeAttackSpeed()
     {
-        isAttacking = true; // prevent multiple coroutines
+        isAttacking = true;
+
         Debug.Log("DANEG");
 
-        // Wait for attack cooldown
         yield return new WaitForSeconds(attackSpeed);
 
-        // Deal damage
-        target.GetComponent<Health>().TakeDamage(damage);
+        if (target != null)
+        {
+            target.GetComponent<Health>().TakeDamage(damage);
+            hitCounter++;
+        }
 
-        isAttacking = false; // allow next attack
+        isAttacking = false;
+    }
+
+    void ResetAttack()
+    {
+        attackedTowers.Add(target.gameObject);
+        hitCounter = 0;
+        target = null;
+
+        if (animator != null)
+            animator.SetBool("isAttacking", false);
+
+        navigation_Enemy.ChangeTarget();
     }
 }

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tower_Defense_SlowFieldTower : TowerDefensiveBase
+public class Tower_Defense_SlowFieldTower : TowerOffensiveBase
 {
     [SerializeField] protected int slowMultiplier = 4;
     public float detectionRadius = 15f;
@@ -21,12 +21,15 @@ public class Tower_Defense_SlowFieldTower : TowerDefensiveBase
         // 1. Slow down new enemies
         foreach (Collider hit in hits)
         {
-            if (hit.TryGetComponent<Navigation_Enemy>(out Navigation_Enemy enemy))
+            //if (hit.TryGetComponent<Navigation_Enemy>(out Navigation_Enemy enemy))
+            if (hit.GetComponent<Navigation_Enemy>())
             {
-                currentEnemies.Add(enemy);
-                if (!enemiesMovement.Contains(enemy))
+                Navigation_Enemy navEnemy = hit.GetComponent<Navigation_Enemy>();
+                currentEnemies.Add(navEnemy);
+
+                if (!enemiesMovement.Contains(navEnemy))
                 {
-                    enemy.SlowDownAgent(slowMultiplier);
+                    navEnemy.SlowDownAgent(slowMultiplier);
                 }
             }
         }
@@ -36,33 +39,16 @@ public class Tower_Defense_SlowFieldTower : TowerDefensiveBase
         {
             if (!currentEnemies.Contains(enemy))
             {
-                enemy.SpeedUpAgent(slowMultiplier);
+                //enemy.SpeedUpAgent(slowMultiplier);
+                enemy.SetSpeedAgent(enemy.defaultMovementSpeed);
             }
         }
 
         enemiesMovement = currentEnemies;
     }
-
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.GetComponent<EnemyMovement>() )
-    //    {
-    //        EnemyMovement enemyTarget = other.GetComponent<EnemyMovement>();
-    //        enemiesMovement.Add(enemyTarget);
-
-    //        enemyTarget.SlowDownAgent(slowMultiplier);
-    //    }
-    //}
-
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.GetComponent<EnemyMovement>())
-    //    {
-    //        EnemyMovement enemyTarget = other.GetComponent<EnemyMovement>();
-    //        enemiesMovement.Add(enemyTarget);
-
-    //        enemyTarget.SpeedUpAgent(slowMultiplier);
-    //    }
-    //}
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, detectionRadius);
+    }
 }

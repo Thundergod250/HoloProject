@@ -25,6 +25,8 @@ public class RTSCamera : MonoBehaviour
     public float fovMinSize = 35f;
     public float fovMaxSize = 60f;
 
+    [SerializeField] private bool _enableZoom = false;
+
     private void OnEnable()
     {
         // Safety check: Ensure the player exists before trying to access position
@@ -69,20 +71,28 @@ public class RTSCamera : MonoBehaviour
         transform.position = new Vector3(clampedX, transform.position.y, clampedZ);
     }
 
+    public void EnableZoom()
+    {
+        _enableZoom = true;
+    }
+
     private void HandleZoom()
     {
-        float scroll = Input.GetAxis("Mouse ScrollWheel");
-        if (scroll == 0) return;
+        if (_enableZoom)
+        {
+            float scroll = Input.GetAxis("Mouse ScrollWheel");
+            if (scroll == 0) return;
 
-        if (cmCamera.Lens.ModeOverride == LensSettings.OverrideModes.Orthographic)
-        {
-            float newSize = cmCamera.Lens.OrthographicSize - (scroll * scrollSpeed);
-            cmCamera.Lens.OrthographicSize = Mathf.Clamp(newSize, minSize, maxSize);
-        }
-        else
-        {
-            float newPOV = cmCamera.Lens.FieldOfView - (scroll * scrollSpeed);
-            cmCamera.Lens.FieldOfView = Mathf.Clamp(newPOV, fovMinSize, fovMaxSize);
+            if (cmCamera.Lens.ModeOverride == LensSettings.OverrideModes.Orthographic)
+            {
+                float newSize = cmCamera.Lens.OrthographicSize - (scroll * scrollSpeed);
+                cmCamera.Lens.OrthographicSize = Mathf.Clamp(newSize, minSize, maxSize);
+            }
+            else
+            {
+                float newPOV = cmCamera.Lens.FieldOfView - (scroll * scrollSpeed);
+                cmCamera.Lens.FieldOfView = Mathf.Clamp(newPOV, fovMinSize, fovMaxSize);
+            }
         }
     }
 

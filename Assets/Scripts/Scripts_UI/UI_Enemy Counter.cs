@@ -20,7 +20,7 @@ public class UI_EnemyCounter : MonoBehaviour
     public void UpdateEnemyCounter()
     {
         Debug.Log(totalEnemies);
-        enemyCounterUI.text = "Enemies Remaining: " + totalEnemies.ToString();
+        enemyCounterUI.text = "Enemies Left: " + totalEnemies.ToString();
     }
 
     public void Update()
@@ -28,9 +28,8 @@ public class UI_EnemyCounter : MonoBehaviour
         if(ligthingManager._isNight)
         {
             enemyCounterUI.enabled = true;
-            //UpdateEnemyCounter();
         }
-        else if(!ligthingManager._isNight)
+        else if(!ligthingManager._isNight) // if morning
         {
             enemyCounterUI.enabled = false;
         }

@@ -8,41 +8,48 @@ public enum upgradeResourceType
     Mithril,
     Gold
 };
+
+[System.Serializable]
+public class ResourceData // This is just the "Values"
+{
+    public int copperResources = 0;
+    public int ironResources = 0;
+    public int mithrilResources = 0;
+    public int goldResources = 0;
+}
+
 public class DropResourceManager : MonoBehaviour
 {
-    [SerializeField] int copperResources = 0;
-    [SerializeField] int ironResources = 0;
-    [SerializeField] int mithrilResources = 0;
-    [SerializeField] int goldResources = 0;
+    public ResourceData resourceData;
 
     [Header("Text")]
     [SerializeField] GameObject[] addedTextFX; // 0 for Copper, 1 for Iron, 2 for Gold, 3 for Mithril
 
-    public int CopperHold => copperResources;
-    public int IronHold => ironResources;
-    public int MythrilHold => mithrilResources;
-    public int GoldHold => goldResources;
+    public int CopperHold => resourceData.copperResources;
+    public int IronHold => resourceData.ironResources;
+    public int MythrilHold => resourceData.mithrilResources;
+    public int GoldHold => resourceData.goldResources;
 
     public void AddingToResourceType(upgradeResourceType resourceTarget, int amount)
     {
         if (resourceTarget == upgradeResourceType.Copper)
         {
-            copperResources += Mathf.Max(0, amount);
+            resourceData.copperResources += Mathf.Max(0, amount);
             StartCoroutine(ShowAddedTextFX(0));
         }
         else if (resourceTarget == upgradeResourceType.Iron)
         {
-            ironResources += Mathf.Max(0, amount);
+            resourceData.ironResources += Mathf.Max(0, amount);
             StartCoroutine(ShowAddedTextFX(1));
         }
         else if (resourceTarget == upgradeResourceType.Gold)
         {
-            goldResources += Mathf.Max(0, amount);
+            resourceData.goldResources += Mathf.Max(0, amount);
             StartCoroutine(ShowAddedTextFX(2));
         }
         else if (resourceTarget == upgradeResourceType.Mithril)
         {
-            mithrilResources += Mathf.Max(0, amount);
+            resourceData.mithrilResources += Mathf.Max(0, amount);
             StartCoroutine(ShowAddedTextFX(3));
         }
 
@@ -50,21 +57,21 @@ public class DropResourceManager : MonoBehaviour
     }
     public void SpendingToResourceType(upgradeResourceType resourceTarget, int amount)
     {
-        if (resourceTarget == upgradeResourceType.Copper && copperResources > 0)
+        if (resourceTarget == upgradeResourceType.Copper && resourceData.copperResources > 0)
         {
-            copperResources -= Mathf.Max(0, amount);
+            resourceData.copperResources -= Mathf.Max(0, amount);
         }
-        else if (resourceTarget == upgradeResourceType.Iron && ironResources > 0)
+        else if (resourceTarget == upgradeResourceType.Iron && resourceData.ironResources > 0)
         {
-            ironResources -= Mathf.Max(0, amount);  
+            resourceData.ironResources -= Mathf.Max(0, amount);  
         }
-        else if (resourceTarget == upgradeResourceType.Mithril && mithrilResources > 0)
+        else if (resourceTarget == upgradeResourceType.Mithril && resourceData.mithrilResources > 0)
         {
-            mithrilResources -= Mathf.Max(0, amount);
+            resourceData.mithrilResources -= Mathf.Max(0, amount);
         }
-        else if (resourceTarget == upgradeResourceType.Gold && goldResources > 0)
+        else if (resourceTarget == upgradeResourceType.Gold && resourceData.goldResources > 0)
         {
-            goldResources -= Mathf.Max(0, amount);
+            resourceData.goldResources -= Mathf.Max(0, amount);
         }
     }
 
@@ -72,19 +79,19 @@ public class DropResourceManager : MonoBehaviour
     {
         if (resourceTarget == upgradeResourceType.Copper)
         {
-            return copperResources;
+            return resourceData.copperResources;
         }
         else if (resourceTarget == upgradeResourceType.Iron)
         {
-            return ironResources;
+            return resourceData.ironResources;
         }
         else if (resourceTarget == upgradeResourceType.Mithril)
         {
-            return mithrilResources;
+            return resourceData.mithrilResources;
         }
         else if (resourceTarget == upgradeResourceType.Gold)
         {
-            return goldResources;
+            return resourceData.goldResources;
         }
 
         else return 0;

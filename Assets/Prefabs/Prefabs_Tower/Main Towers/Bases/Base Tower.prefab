@@ -1690,6 +1690,7 @@ MonoBehaviour:
       m_Calls: []
   startSetHealth: 250
   _toBeDeleted: 0
+  _damageClip: {fileID: 0}
 --- !u!114 &8084346873536321803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1782,6 +1783,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HighlightableToggle
   objectToToggle: {fileID: 0}
+  lightingManager: {fileID: 0}
+  playerCamMan: {fileID: 0}
 --- !u!1 &6398123556134159625
 GameObject:
   m_ObjectHideFlags: 0
@@ -2472,7 +2475,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1804664527151289016
 Transform:
   m_ObjectHideFlags: 0
@@ -3144,7 +3147,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &962679542136301851
 Transform:
   m_ObjectHideFlags: 0
@@ -3503,6 +3506,10 @@ PrefabInstance:
     - target: {fileID: 7795377701471874775, guid: 7be3eec6cc38101409091004e9f4076c, type: 3}
       propertyPath: m_Name
       value: Resource Collector
+      objectReference: {fileID: 0}
+    - target: {fileID: 7795377701471874775, guid: 7be3eec6cc38101409091004e9f4076c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8574923633557309200, guid: 7be3eec6cc38101409091004e9f4076c, type: 3}
       propertyPath: m_LocalScale.x

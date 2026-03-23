@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 145057414281186329}
   - component: {fileID: 4865692534420341025}
+  - component: {fileID: 8219580047294328411}
   m_Layer: 0
   m_Name: SaveGameManager
   m_TagString: Untagged
@@ -44,3 +45,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87adb97bb932e1f4c80d6166a6ec5427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SaveGameManager
+--- !u!114 &8219580047294328411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7814231643032949913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00e4baa7c20cc2547b85a5f509287258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameOverChecker
+  _baseHealthReference: {fileID: 0}
+  _saveGameManager: {fileID: 4865692534420341025}
+  _gameOverUI: {fileID: 0}

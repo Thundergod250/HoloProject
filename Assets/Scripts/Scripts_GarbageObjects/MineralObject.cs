@@ -9,6 +9,8 @@ public class MineralObject : MonoBehaviour
     [SerializeField] private bool hasBeenCollected = false;
     [SerializeField] public int amountToAddInResource = 0;
 
+    [SerializeField] private AudioClip _pickupSoundClip;
+
     public TextMeshProUGUI addedOreTextEffect;
 
 
@@ -17,11 +19,18 @@ public class MineralObject : MonoBehaviour
         if (hasBeenCollected)
             return;
 
-        if (other.TryGetComponent(out PlayerHarvesting targetPlayer) && !isPickedUp)
+        //if (other.TryGetComponent(out PlayerHarvesting targetPlayer) && !isPickedUp)
+        if (other.GetComponent<PlayerHarvesting>() && !isPickedUp)
         {
+            PlayerHarvesting playerHarvest = other.GetComponent<PlayerHarvesting>();
             hasBeenCollected = true;
 
-            _resourceManager = targetPlayer._resourceManagerRefererce;
+            if (_pickupSoundClip!= null && AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlaySFXOnce(_pickupSoundClip);
+            }
+
+            _resourceManager = playerHarvest._resourceManagerRefererce;
             _resourceManager.AddingToResourceType(_resourceType, amountToAddInResource);
             Debug.Log("Adding To Ores");
 

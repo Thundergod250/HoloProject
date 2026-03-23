@@ -7,7 +7,11 @@ public class VFX_ForceUpward : MonoBehaviour
     {
         if (_vfxForcedTarget != null)
         {
-            transform.position = _vfxForcedTarget.transform.up;
+            Vector3 targetDirection = transform.forward; // Or your target vector
+            Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
+
+            // Adjust 5f to change how fast it "rights" itself
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
         }
     }
 }

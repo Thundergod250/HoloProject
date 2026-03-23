@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Workbench_PickaxeUpgrade : MonoBehaviour
@@ -8,7 +10,7 @@ public class Workbench_PickaxeUpgrade : MonoBehaviour
     [SerializeField] private Renderer pickaxeRend;
     [SerializeField] private Renderer pickaxeRendTable;
     [SerializeField] private DropResourceManager gold;
-    [SerializeField] private PlayerInteraction playerInteract; //NOT USED
+    [SerializeField] private PickaxeLevel picklevel;
 
     [Header("Vars")]
     [SerializeField] private Texture2D copperPick;
@@ -19,6 +21,9 @@ public class Workbench_PickaxeUpgrade : MonoBehaviour
     private Texture2D initialTexture;
     private bool playerInside = false;
 
+    [Header("Enemies To Add")]
+    [SerializeField] private List<Spawner> spawners = new List<Spawner>();
+    [SerializeField] private WaveData ectoplasmWave;
 
     private DropResourceManager DropResourceManager;
     public static event Action<string> OnResourceShortage;
@@ -60,18 +65,33 @@ public class Workbench_PickaxeUpgrade : MonoBehaviour
 
     public void ChangePickTexture()
     {
-        if(currentTexture == copperPick)
+        if(currentTexture == copperPick && picklevel.copperPick)
         {
             currentTexture = ironPick;
+            picklevel.copperPick = false;
+            picklevel.ironPick = true;
+            picklevel.goldPick = false;
+            addEnemies();
         }
-        else if (currentTexture == ironPick)
+        else if (currentTexture == ironPick && picklevel.ironPick)
         {
             currentTexture = goldPick;
+            picklevel.copperPick = false;
+            picklevel.ironPick = false;
+            picklevel.goldPick = true;
         }
         else return;
 
         pickaxeRend.material.mainTexture = currentTexture;
         Debug.Log(pickaxeRend.material.mainTexture);
+    }
+
+    public void addEnemies()
+    {
+        foreach(Spawner spawnRef in spawners)
+        {
+            spawnRef.wave.Add(ectoplasmWave);
+        }
     }
 
     private void OnTriggerEnter(Collider other)

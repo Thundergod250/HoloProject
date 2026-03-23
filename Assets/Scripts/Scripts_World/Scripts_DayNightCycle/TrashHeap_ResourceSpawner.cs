@@ -18,7 +18,10 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
     [SerializeField] public bool _randomized = false;
 
     [SerializeField] public Health _health;
-    [SerializeField] private Slider _healthSlider;
+    [SerializeField] private GameObject _canvasUI;
+    [SerializeField] private GameObject _toRotateOnPlayer;
+    [SerializeField] private Slider healthSlider;
+
     private PlayerController _playerController;
 
     [SerializeField] bool ForTesting = false;
@@ -27,20 +30,32 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
 
     [SerializeField] private VisualEffect _highlightColor;
 
+    [SerializeField] private Animator _animAttackLOreLode;
+
     private static readonly int GlowColorID = Shader.PropertyToID("Glow Color");
+    private static readonly int GlowHLColorID = Shader.PropertyToID("Particle Color");
     [SerializeField] private string CopperPropName = "CopperColor";
     [SerializeField] private string IronPropName = "IronColor";
     [SerializeField] private string GoldPropName = "GoldColor"; 
+    [SerializeField] private string CopperPropHLName = "CopperHLColor";
+    [SerializeField] private string IronPropHLName = "IronHLColor";
+    [SerializeField] private string GoldPropHLName = "GoldHLColor"; 
     public Color CopperColor = new Color(0.8f, 0.5f, 0.200f);
     public Color IronColor = new Color(0.6f, 0.6f, 0.65f);
     public Color GoldColor = new Color(1.0f, 0.85f, 0.0f);
+    public Color CopperHLColor = new Color(0.8f, 0.5f, 0.200f);
+    public Color IronHLColor = new Color(0.6f, 0.6f, 0.65f);
+    public Color GoldHLColor = new Color(1.0f, 0.85f, 0.0f);
+
+    [SerializeField] private Material[] _oreMaterials;
+    [SerializeField] private GameObject _oreObjReference;
 
     private void Start()
     {
-        if (_healthSlider != null)
+        if (_canvasUI != null)
         {
-            _healthSlider.maxValue = _health.GetMaxHealth();
-            _healthSlider.gameObject.SetActive(false);
+            healthSlider.maxValue = _health.GetMaxHealth();
+            _canvasUI.gameObject.SetActive(false);
         }
 
         SetHeapHighLight();
@@ -48,11 +63,12 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<PlayerController>(out var player))
+        //if (other.TryGetComponent<PlayerController>(out var player))
+        if (other.GetComponent<PlayerController>())
         {
-            _playerController = player;
+            _playerController = other.GetComponent<PlayerController>();
            // SetRandomized(); // Fixed logic inside this function
-            _healthSlider.gameObject.SetActive(true);
+            _canvasUI.gameObject.SetActive(true);
 
             _howManyToSpawn = Random.Range(1, 5);
 
@@ -68,7 +84,7 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
         if (other.GetComponent<PlayerController>())
         {
             _playerController = null;
-            _healthSlider.gameObject.SetActive(false);
+            _canvasUI.gameObject.SetActive(false);
         }
     }
 
@@ -78,17 +94,31 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
 
         // Pick the color based on the ore type
         Color targetColor = Color.white;
+        Color targetHLColor = Color.white;
 
         if (_garbageGroupType == GarbageObject.GarbageGroup.CopperOre)
+        {
             targetColor = CopperColor;
+            targetHLColor = CopperHLColor;
+            _oreObjReference.GetComponent<MeshRenderer>().material = _oreMaterials[0];
+        }
         else if (_garbageGroupType == GarbageObject.GarbageGroup.IronOre)
+        {
             targetColor = IronColor;
+            targetHLColor = IronHLColor;
+            _oreObjReference.GetComponent<MeshRenderer>().material = _oreMaterials[1];
+        }
         else if (_garbageGroupType == GarbageObject.GarbageGroup.GoldOre)
+        {
             targetColor = GoldColor;
+            targetHLColor = GoldHLColor;
+            _oreObjReference.GetComponent<MeshRenderer>().material = _oreMaterials[2];
+        }
 
         // 2. Apply it to the VFX
         float intensity = 5.0f; // Increase for more glow
         _highlightColor.SetVector4(GlowColorID, targetColor * intensity);
+        _highlightColor.SetVector4(GlowHLColorID, targetColor * intensity);
     }
 
     private void SetRandomized()
@@ -99,18 +129,29 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
         _randomized = (testRandom == 1);
     }
 
+    public void AttackTriggerAnimation()
+    {
+        _animAttackLOreLode.Play("Wiggle");
+    }
+    public void StopTriggerAnimation()
+    {
+        _animAttackLOreLode.Play("Idle");
+    }
+
+
     private void Update()
     {
-        _healthSlider.value = _health.GetCurrentHealth();
+        healthSlider.value = _health.GetCurrentHealth();
 
         if (_health.GetCurrentHealth() <= 0 && !hasSpawned)
         {
             StartCoroutine(SpawnSequence());
         }
 
-        if (_playerController != null && _healthSlider.gameObject.activeSelf)
+        if (_playerController != null && _canvasUI.gameObject.activeSelf)
         {
-            _healthSlider.transform.LookAt(_playerController.transform.position);
+            //_toRotateOnPlayer.transform.LookAt(_playerController.transform.position);
+            _toRotateOnPlayer.transform.Rotate(Vector3.up);
         }
     }
 
@@ -137,6 +178,8 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
 
     private void DisableThisHeap()
     {
+        _playerController = null;
+        _canvasUI.gameObject.SetActive(false);
         this.gameObject.SetActive(false);
     }
 

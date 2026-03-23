@@ -8,7 +8,7 @@ public class SaveData
 {
     public float timeOfDay; // If you want to save the exact minute
 
-    public DropResourceManager dropResourceManager;
+    public ResourceData resourceDataSaved;
 }
 
 public class SaveGameManager : MonoBehaviour
@@ -21,19 +21,51 @@ public class SaveGameManager : MonoBehaviour
         savePath = Application.persistentDataPath + "/save.json";
     }
 
-    public void SaveGame(float currentTime, DropResourceManager resourceManagerReference)
+
+    private void Start()
     {
-        SaveData data = new SaveData();
-        data.timeOfDay = currentTime;
-        data.dropResourceManager = resourceManagerReference;
+        // Every time the scene starts/restarts, this runs automatically
+        if (File.Exists(savePath))
+        {
+            LoadGame();
+        }
+        else
+        {
+            Debug.Log("No save found, starting fresh New Game.");
+        }
+    }
 
-        // Convert the "data" object into a string of text (JSON)
-        string json = JsonUtility.ToJson(data);
+    
+    public void OnRestartButtonClick()
+    {
+        Time.timeScale = 1f; // Essential!
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 
-        // Write that text to the file
+
+    public void LoadGame()
+    {
+        string json = File.ReadAllText(savePath);
+        SaveData data = JsonUtility.FromJson<SaveData>(json);
+
+        GameManager.Instance.DropManager.resourceData = data.resourceDataSaved;
+
+        Debug.Log("Scene successfully rebuilt from Daybreak save.");
+    }
+
+
+    public void SaveGame(float currentTime, DropResourceManager resourceManager)
+    {
+        SaveData save = new SaveData();
+        save.timeOfDay = currentTime;
+
+        // This copies the entire set of numbers at once!
+        save.resourceDataSaved = resourceManager.resourceData;
+
+        string json = JsonUtility.ToJson(save, true);
         File.WriteAllText(savePath, json);
 
-        Debug.Log("Game Auto-Saved at Day: ");
+        Debug.Log("Saved resources and time!");
     }
 
     public void ResetGameData()

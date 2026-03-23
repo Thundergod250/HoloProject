@@ -17,6 +17,9 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Movement Settings")]
     [SerializeField] private float speed = 5f;
+    [SerializeField] private float currentSpeedMultiplier = 1.0f;
+    [SerializeField] private float defaultSpeed = 1.0f;
+    [SerializeField] private float SetSpeedMultiplier= 2f;
     [SerializeField] private float jumpHeight = 2f;
     [SerializeField] private float gravity = -9.8f;
 
@@ -37,6 +40,16 @@ public class PlayerMovement : MonoBehaviour
         
         else if (canMove)
             HandleNormalMovement();
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            currentSpeedMultiplier = SetSpeedMultiplier;
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            currentSpeedMultiplier = defaultSpeed;
+        }
+
 
         if (noclip)
             HandleNoclip();
@@ -63,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
         camRight.Normalize();
 
         Vector3 move = camForward * moveInput.y + camRight * moveInput.x;
-        controller.Move(move * (speed * Time.deltaTime));
+        controller.Move(move * (currentSpeedMultiplier * speed * Time.deltaTime));
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);

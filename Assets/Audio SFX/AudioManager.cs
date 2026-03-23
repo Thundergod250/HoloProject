@@ -12,7 +12,20 @@ public class AudioManager : MonoBehaviour
     public Slider sfxSlider;
 
     [Header("Audio Source")]
-    public AudioSource audioSource;
+    public AudioSource audioMusicSource;
+    public AudioSource audioSFXSource;
+
+
+    private void Start()
+    {
+        // Apply the loaded slider values to the actual Mixer groups
+        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 1f);
+        sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 1f);
+
+        SetMusicVolume(musicSlider.value);
+        SetSFXVolume(sfxSlider.value);
+    }
+
 
     private void Awake()
     {
@@ -20,37 +33,61 @@ public class AudioManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
+            audioMusicSource.Play();
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(this.gameObject);
             return;
         }
-
-        // Load saved volumes
-        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.75f);
-        sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0.75f);
     }
 
     // This is the "Play Once" function
-    public void PlaySFX(AudioClip clip)
+    public void PlaySFXOnce(AudioClip clip)
     {
         if (clip != null)
         {
-            audioSource.PlayOneShot(clip);
+            audioSFXSource.PlayOneShot(clip);
+        }
+    }
+
+    public void PlaySFXLoop(AudioClip clip)
+    {
+        if (clip != null)
+        {
+            audioSFXSource.clip = clip;
+            audioSFXSource.Play();
+        }
+    }
+
+    public void StopSFXSound()
+    {
+        audioSFXSource.Stop();
+        audioSFXSource.clip = null;
+    }
+
+    public void PlayMusic(AudioClip clip)
+    {
+        if (clip != null)
+        {
+            //audioMusicSource.PlayOneShot(clip);
+
+            audioMusicSource.clip = clip;
+            audioMusicSource.Play();
         }
     }
     public void SetMusicVolume(float value)
     {
         float dB = Mathf.Log10(Mathf.Max(0.0001f, value)) * 20;
-        mainMixer.SetFloat("MusicVol", dB);
+        mainMixer.SetFloat("MusicVolume", dB);
         PlayerPrefs.SetFloat("MusicVolume", value);
     }
 
     public void SetSFXVolume(float value)
     {
         float dB = Mathf.Log10(Mathf.Max(0.0001f, value)) * 20;
-        mainMixer.SetFloat("SFXVol", dB);
+        mainMixer.SetFloat("SFXVolume", dB);
         PlayerPrefs.SetFloat("SFXVolume", value);
     }
 }
