@@ -11,6 +11,9 @@ public class Spawner : MonoBehaviour
 
     [Header("Spawner")]
     public List<WaveData> wave = new List<WaveData>();
+    public List<WaveData> waveSet2 = new List<WaveData>();
+    public List<WaveData> waveSet3 = new List<WaveData>();
+    public List<WaveData> waveSet4 = new List<WaveData>();
 
     [Header("Variables DO NOT TOUCH")]
     [SerializeField] private int waveVar;
@@ -95,13 +98,12 @@ public class Spawner : MonoBehaviour
 
     private void SetupNextWave()
     {
-        if (waveVar == wave.Count - 1) // last wave
+        if (waveVar < wave.Count - 1)
         {
-            spawningWave = false;
-            return;
+            waveVar++;
         }
 
-        waveVar++;
+        // Always set active wave (even if last)
         activeWave = wave[waveVar];
     }
 
@@ -140,5 +142,20 @@ public class Spawner : MonoBehaviour
         enemyCounterUI.UpdateEnemyCounter();
     }
 
-
+    public void GetNewSetOfWaves(int waveSet)
+    {
+        wave.Clear();
+        if (waveSet == 1)
+        {
+            wave.AddRange(waveSet2);
+        }
+        else if (waveSet == 2)
+        {
+            wave.AddRange(waveSet3);
+        }
+        else if (waveSet == 3)
+        {
+            wave.AddRange(waveSet4);
+        }
+    }
 }
