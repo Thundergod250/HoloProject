@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 public class PlayerHarvesting : MonoBehaviour
 {
     [SerializeField] private PlayerAnimation playerAnimation;
+    [SerializeField] private PlayerMovement playerMovement;
 
     [SerializeField] private GameObject _generalPlayerActions;
     [SerializeField] private GameObject _shovelingAction;
@@ -28,7 +29,7 @@ public class PlayerHarvesting : MonoBehaviour
     private void Update()
     {
         // Check for Mouse0 being HELD DOWN
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !_isAttacking && targetHeap != null)
+        if (Input.GetKey(KeyCode.Mouse0) && !_isAttacking && targetHeap != null)
         {
             if (AudioManager.Instance != null)
             {
@@ -39,29 +40,17 @@ public class PlayerHarvesting : MonoBehaviour
             _ = StartHarvestingLoop();
         }
 
-        // Reset when the button is released
-        else if (Input.GetKeyUp(KeyCode.Mouse0))
+        else if ( (Input.GetKeyUp(KeyCode.Mouse0)) || targetHeap != null && targetHeap.GetComponent<Health>().GetCurrentHealth() <= 0)
         {
             AudioManager.Instance?.StopSFXSound();
 
-            playerAnimation.ForceIdleState();
-            _isAttacking = false;
-            ResetActions();
-        }
-
-        //else if (!targetHeap.isActiveAndEnabled)
-        //{
-        //    targetHeap = null;
-        //}
-        else if(targetHeap != null && targetHeap.GetComponent<Health>().GetCurrentHealth() <= 0)
-        {
             targetHeap = null;
             _isAttacking = false;
 
             playerAnimation.ForceIdleState();
-            
+            playerMovement.SetCanMove(true);
 
-            ResetActions(); // Stop animations if we walk away while clicking
+            // ResetActions(); // Stop animations if we walk away while clicking
         }
     }
 
@@ -71,6 +60,8 @@ public class PlayerHarvesting : MonoBehaviour
 
         while(_isAttacking) 
         {
+            playerMovement.SetCanMove(false);
+
             // While the button is held and we have a target
             // Wait for the interval before the next hit
             await Task.Delay(attackIntervalMs);
@@ -124,7 +115,7 @@ public class PlayerHarvesting : MonoBehaviour
         {
             targetHeap = null;
             _isAttacking = false;
-            ResetActions(); // Stop animations if we walk away while clicking
+            //ResetActions(); // Stop animations if we walk away while clicking
 
             // playerAnimation.ForceIdleState();
             // playerAnimation.UpdateMovementAnimation(1, false);

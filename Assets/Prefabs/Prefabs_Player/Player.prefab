@@ -555,6 +555,9 @@ MonoBehaviour:
   cameraTransform: {fileID: 3986986069622755096}
   playerAnimation: {fileID: 3778112114396300799}
   speed: 5
+  currentSpeedMultiplier: 1
+  defaultSpeed: 1
+  SetSpeedMultiplier: 2
   jumpHeight: 2
   gravity: -19.6
   noclipSpeed: 30
@@ -691,6 +694,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHarvesting
   playerAnimation: {fileID: 3778112114396300799}
+  playerMovement: {fileID: 1127985473742766121}
   _generalPlayerActions: {fileID: 8430694864698018182}
   _shovelingAction: {fileID: 7751857528735341437}
   _drillingAction: {fileID: 1885148647064198069}
@@ -718,6 +722,7 @@ MonoBehaviour:
   _playerUITarget: {fileID: 0}
   _canSwitchCameras: 1
   _freeCam: 1
+  _buildMenu: 0
 --- !u!1 &1885148647064198069
 GameObject:
   m_ObjectHideFlags: 0
