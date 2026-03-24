@@ -80,17 +80,32 @@ public class LightingManager : MonoBehaviour
 
             if (!hasSavedToday)
             {
-                saveGameManager.SaveGame(_timeOfDay,GameManager.Instance.DropManager); // Trigger your SaveData logic
-                hasSavedToday = true;
+                if (saveGameManager != null)
+                {
+                    // saveGameManager.SaveGame(_timeOfDay,GameManager.Instance.DropManager); // Trigger your SaveData logic
 
-                Debug.Log("Sun is up! Progress saved.");
+                    Debug.Log("Progress saved.");
+                    hasSavedToday = true;
+                }
+                else
+                {
+                    Debug.Log("Cannot Save! No Save Game Manager");
+
+                    hasSavedToday = true;
+                }
             }
+            else
+            {
+                hasSavedToday = true;
+                Debug.Log("Sun is up!");
+            }
+
 
             if (_lastAssignedIndex != targetIndex)
             {
                 StartHDRIFade(targetIndex);
 
-                int randomClip = Random.Range( 0,_dayThemeClip.Count());
+                int randomClip = Random.Range(0, _dayThemeClip.Count());
 
                 AudioManager.Instance.PlayMusic(_dayThemeClip[randomClip]);
             }

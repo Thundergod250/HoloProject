@@ -57,6 +57,7 @@ public class UI_TowerShop : MonoBehaviour
 
     public void EnableTowerShopUI()
     {
+        this.gameObject.SetActive(true);
         _LeftPanel.SetActive(true); 
         _RightPanel.SetActive(true);
 
