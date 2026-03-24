@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using System.Collections;
 using System.Resources;
 using TMPro;
@@ -16,6 +18,9 @@ public class Workbench_Towers : MonoBehaviour
 
     [Header("Unlock Tower Vars")]
     [SerializeField] private upgradeResourceType oreToSpendTower;
+    [SerializeField] private List<Sprite> oreToSpendTowerImageList = new List<Sprite>();
+    [SerializeField] private int oreImageNum;
+    [SerializeField] private Image oreToSpendTowerImage;
     [SerializeField] private int towerUnlockCost;
     [SerializeField] private string towerUnlock;
 
@@ -124,13 +129,37 @@ public class Workbench_Towers : MonoBehaviour
         insufficientOreUI.SetActive(false);
     }
 
+    public void OreUIImage()
+    {
+        int i = oreImageNum;
+
+        if (i == 0)
+        {
+            oreToSpendTowerImage.sprite = oreToSpendTowerImageList[0];
+        }
+        else if (i == 1)
+        {
+            oreToSpendTowerImage.sprite = oreToSpendTowerImageList[1];
+        }
+        else if (i == 2)
+        {
+            oreToSpendTowerImage.sprite = oreToSpendTowerImageList[2];
+        }
+        else if (i == 3)
+        {
+            oreToSpendTowerImage.sprite = oreToSpendTowerImageList[3];
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<PlayerController>() != null && !isReclaimed)
         {
             playerInside = true;
 
+            OreUIImage();
             upgradeText.SetActive(true);
+
         }
     }
 
