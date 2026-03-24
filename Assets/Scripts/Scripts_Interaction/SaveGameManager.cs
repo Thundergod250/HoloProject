@@ -9,7 +9,7 @@ public class SaveData
     public float timeOfDay; // If you want to save the exact minute
 
     public ResourceData resourceDataSaved;
-    public GameManager gameManager;
+    // public GameManager gameManager;
 
     public Spawner spawner1,spawner2,spawner3;
     public int waveNumber1 = 1, waveNumber2 = 1, waveNumber3 = 1;
@@ -53,7 +53,7 @@ public class SaveGameManager : MonoBehaviour
         string json = File.ReadAllText(savePath);
         SaveData data = JsonUtility.FromJson<SaveData>(json);
 
-        GameManager.Instance = data.gameManager; // make sure this works
+        // GameManager.Instance = data.gameManager; // make sure this works
         GameManager.Instance.DropManager.resourceData = data.resourceDataSaved;
 
         Debug.Log("Scene successfully rebuilt from Daybreak save.");
@@ -67,7 +67,7 @@ public class SaveGameManager : MonoBehaviour
 
         // This copies the entire set of numbers at once!
         save.resourceDataSaved = resourceManager.resourceData;
-        save.gameManager = GameManager.Instance;
+        // save.gameManager = GameManager.Instance;
 
         string json = JsonUtility.ToJson(save, true);
         File.WriteAllText(savePath, json);

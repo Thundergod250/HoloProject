@@ -39,27 +39,13 @@ public class Interactable : MonoBehaviour
     {
         if (!isInteractable) return;
 
-        // 1. Check if the shop was actually found in Awake
-        if (_towerShop != null)
-        {
-            Debug.Log("Interactable: Opening Shop...");
-            _towerShop.EnableTowerShopUI();
-            _towerShop.OpenOffensiveTowers();
-        }
-        else
-        {
-            // If this hits, FindFirstObjectByType failed in Awake
-            Debug.LogError("Interactable: _towerShop is NULL! Is the Shop UI active in the hierarchy?");
-        }
-
-        // 2. Temporarily commented out to isolate the Shop
-        // _DisableInteraction(); 
-        // EvtOnInteract?.Invoke();
+        EvtOnInteract?.Invoke();
+        EvtOnInteractWithObj?.Invoke(gameObject);
     }
 
     public void ForceOpenShop()
     {
-        if (_towerShop != null)
+        if (_towerShop)
         {
             _towerShop.OpenOffensiveTowers();
         }
