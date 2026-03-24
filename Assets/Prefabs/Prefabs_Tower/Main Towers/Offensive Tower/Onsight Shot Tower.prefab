@@ -1036,7 +1036,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1048576
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -1271,7 +1271,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1048576
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -1344,6 +1344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TowerController
   towerPrefab: {fileID: 0}
   towerInstance: {fileID: 0}
+  towerNameID: Onsight Shot Tower
   EvtOnIncreaseTowerMainDamage:
     m_PersistentCalls:
       m_Calls:
@@ -1363,6 +1364,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   thisTowerUpgradeCards_SO: {fileID: 11400000, guid: f89237371cb494948815dd4448584183, type: 2}
+  thisTowerDataCards_SO: {fileID: 11400000, guid: c2e8f1e7f4a4c66419aa5108af78b6c1, type: 2}
   attackLocation: {fileID: 6117590976910574203}
   TowerHealth: {fileID: 9209285657085303806}
   _smokeVFX: {fileID: 7240272188746694944}
@@ -1402,6 +1404,7 @@ MonoBehaviour:
   startSetHealth: 100
   _toBeDeleted: 1
   _damageClip: {fileID: 0}
+  _hitFlash: {fileID: 0}
 --- !u!65 &7090967949583467492
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1480,6 +1483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 251e103df882a2c44b1e44ed5eb71036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tower_Offensive_SingleTarget
+  towerShop: {fileID: 0}
   projectilePrefab: {fileID: 3886554215781179537, guid: 202b2e5002b10b04c8010ec378402ff3, type: 3}
   firePoint: {fileID: 1932060655702197655}
   projectileSpeed: 15
@@ -1532,6 +1536,7 @@ MonoBehaviour:
   objectToToggle: {fileID: 0}
   lightingManager: {fileID: 0}
   playerCamMan: {fileID: 0}
+  _rtsCamera: {fileID: 0}
 --- !u!114 &427577870210762952
 MonoBehaviour:
   m_ObjectHideFlags: 0

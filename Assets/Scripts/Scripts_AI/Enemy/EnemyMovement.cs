@@ -182,8 +182,3 @@ public class EnemyMovement : MonoBehaviour
     }
 
 }
-
-//enemyMovement.SetMode(EnemyMovement.MovementMode.Idle);          // stop moving
-//enemyMovement.SetMode(EnemyMovement.MovementMode.Roaming);       // wander randomly
-//enemyMovement.GoToPoint(new Vector3(5, 0, 10));                  // move to a point
-//enemyMovement.FollowTarget(playerTransform);                     // chase the player

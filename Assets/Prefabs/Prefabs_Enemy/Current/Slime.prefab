@@ -107,6 +107,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4331329839823721017, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
+      propertyPath: _healthReference
+      value: 
+      objectReference: {fileID: 7702538352602374737}
     - target: {fileID: 141335097550303949, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -287,6 +291,10 @@ PrefabInstance:
       propertyPath: defaultMovementSpeed
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7516762956413830622, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 7538640261713532623, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       propertyPath: TargetOrFoundation
       value: 3
@@ -386,6 +394,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2627a6c15788ed445bc6efbfb686f996, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tower_Archetype
+--- !u!114 &7702538352602374737 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6094847423617437406, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
+  m_PrefabInstance: {fileID: 4499613498208414863}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5843898326549417221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14859af3159dfdd448013f3c76001a3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
 --- !u!1001 &6570518517206642455
 PrefabInstance:
   m_ObjectHideFlags: 0

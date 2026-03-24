@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class GameManager : MonoBehaviour
     public DebugCheats DebugCheats;
 
     public AudioManager AudioManager;
+
+    [SerializeField] public List<GameObject> towersObjects;
 
     [HideInInspector] public TowerNodeManager CurrentTowerNode;
 
@@ -48,6 +51,7 @@ public class GameManager : MonoBehaviour
 
         return obj;
     }
+
 
     public void SpawnTower(GameObject towerPrefab)
     {

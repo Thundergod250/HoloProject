@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Threading.Tasks;
 using System.Linq;
 
-public class TowerChainPylon : MonoBehaviour
+public class TowerChainPylon : TowerOffensiveBase
 {
     [Header("Tower Settings")]
     public float attackRange = 10f;
@@ -72,9 +72,9 @@ public class TowerChainPylon : MonoBehaviour
                     lineRenderer.SetPosition(hitCount + 1, currentTarget.transform.position);
                 }
 
-                if (currentTarget.GetComponent<EnemyBase>().Health)
+                if (currentTarget.GetComponent<EnemyBase>()._healthReference)
                 {
-                    currentTarget.GetComponent<EnemyBase>().Health.TakeDamage(_damage);
+                    currentTarget.GetComponent<EnemyBase>()._healthReference.TakeDamage(_damage);
                 }
 
                 GameObject nextTarget = null;

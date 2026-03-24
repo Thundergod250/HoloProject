@@ -1,13 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tower_Defense_SlowFieldTower : TowerDefensiveBase
+public class Tower_Defense_SlowFieldTower : TowerOffensiveBase
 {
     [SerializeField] protected int slowMultiplier = 4;
     public float detectionRadius = 15f;
 
     [SerializeField] protected List<Navigation_Enemy> enemiesMovement;
-
 
     private void Update()
     {
@@ -47,27 +46,9 @@ public class Tower_Defense_SlowFieldTower : TowerDefensiveBase
 
         enemiesMovement = currentEnemies;
     }
-
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.GetComponent<EnemyMovement>() )
-    //    {
-    //        EnemyMovement enemyTarget = other.GetComponent<EnemyMovement>();
-    //        enemiesMovement.Add(enemyTarget);
-
-    //        enemyTarget.SlowDownAgent(slowMultiplier);
-    //    }
-    //}
-
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.GetComponent<EnemyMovement>())
-    //    {
-    //        EnemyMovement enemyTarget = other.GetComponent<EnemyMovement>();
-    //        enemiesMovement.Add(enemyTarget);
-
-    //        enemyTarget.SpeedUpAgent(slowMultiplier);
-    //    }
-    //}
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, detectionRadius);
+    }
 }

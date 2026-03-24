@@ -7,5 +7,6 @@ public class SetTowerSpawn : MonoBehaviour
     public void SpawnTower(GameObject obj) 
     {
         GameManager.Instance.SpawnTower(obj); 
+        GameManager.Instance.towersObjects.Add(obj);
     }
 }

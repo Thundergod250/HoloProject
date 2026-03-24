@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Threading.Tasks;
 
-public class TowerFreeze : MonoBehaviour
+public class TowerFreeze : TowerOffensiveBase
 {
     [Header("Tower Stats")]
     public float range = 10f;
@@ -10,6 +10,8 @@ public class TowerFreeze : MonoBehaviour
     public LayerMask enemyLayer; // Set this to your Enemy layer in the Inspector
 
     private bool canAttack = true;
+
+    [SerializeField] ParticleSystem _attackFreezeParticle;
 
     void Update()
     {
@@ -33,6 +35,12 @@ public class TowerFreeze : MonoBehaviour
                 EnemyMovement movement = col.GetComponent<EnemyMovement>();
                 if (movement != null)
                 {
+
+                    if (_attackFreezeParticle != null)
+                    {
+                        _attackFreezeParticle.Play();
+                    }
+
                     movement.ApplyFreeze(freezeDuration);
                 }
             }

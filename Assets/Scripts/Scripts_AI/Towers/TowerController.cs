@@ -5,11 +5,15 @@ public class TowerController : MonoBehaviour
 {
     [HideInInspector] public GameObject towerPrefab;   // prefab used to spawn this tower
     [HideInInspector] public GameObject towerInstance; // actual GameObject (this one)
-    
+
+    [Header("Identity")]
+    [SerializeField] private string towerNameID;
+
     public UnityEvent EvtOnIncreaseTowerMainDamage;
     public UnityEvent EvtOnIncreaseTowerAtkRate; 
 
     [SerializeField] private TowerCategoryData_SO thisTowerUpgradeCards_SO; 
+    [SerializeField] private TowerCategoryData_SO thisTowerDataCards_SO;
     [SerializeField] private Transform attackLocation; 
     public Health TowerHealth;
 
@@ -40,6 +44,8 @@ public class TowerController : MonoBehaviour
 
     private void Awake() => towerInstance = gameObject;
 
+    public string GetTowerNameID() => towerNameID;
+
     public void IncreaseTowerMainDamage() => EvtOnIncreaseTowerMainDamage?.Invoke();
 
     public void DespawnCurrentTower()
@@ -54,6 +60,7 @@ public class TowerController : MonoBehaviour
 
 
     public TowerCategoryData_SO GetUpgradeData() => thisTowerUpgradeCards_SO;
+    public TowerCategoryData_SO GetTowerData() => thisTowerDataCards_SO;
 
     public Transform GetAttackLocation() => attackLocation;
 }

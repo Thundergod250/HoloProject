@@ -184,18 +184,6 @@ MonoBehaviour:
   EvtOnInteract:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8160217979248254876}
-        m_TargetAssemblyTypeName: MovementAndCameraManipulator, Assembly-CSharp
-        m_MethodName: _DisableAllMovement
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 2607173195040463432}
         m_TargetAssemblyTypeName: SetTowerSpawn, Assembly-CSharp
         m_MethodName: SetTowerSpawnTransform
@@ -203,18 +191,6 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 8431248934247577699}
           m_ObjectArgumentAssemblyTypeName: TowerNodeManager, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 7945611311937052698}
-        m_TargetAssemblyTypeName: InteractionManipulator, Assembly-CSharp
-        m_MethodName: _DisableInteraction
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -235,18 +211,6 @@ MonoBehaviour:
       - m_Target: {fileID: 4443341128362266729, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
         m_TargetAssemblyTypeName: UI_TowerShop, Assembly-CSharp
         m_MethodName: OpenOffensiveTowers
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 4443341128362266729, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
-        m_TargetAssemblyTypeName: UI_TowerShop, Assembly-CSharp
-        m_MethodName: EnableTowerShopUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -308,7 +272,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9abefabb17d3e0147a1078847c4d67fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SetTowerSpawn
-  _buyTowerClip: {fileID: 8300000, guid: 1cc85d2fc46e88e42a3244b7b1271ba0, type: 3}
 --- !u!114 &7945611311937052698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,6 +341,7 @@ MonoBehaviour:
   objectToToggle: {fileID: 3635888915932420505}
   lightingManager: {fileID: 0}
   playerCamMan: {fileID: 0}
+  _rtsCamera: {fileID: 0}
 --- !u!114 &1179628948789693300
 MonoBehaviour:
   m_ObjectHideFlags: 0

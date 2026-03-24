@@ -10,6 +10,7 @@ public class GridManager : MonoBehaviour
     [Header("Refs")]
     [SerializeField] private LightingManager lightingManager;
     [SerializeField] private PlayerCamManager playerCamManager; // just so this can feed it into tower nodes
+    [SerializeField] private RTSCamera _rtsCameraReference;
 
     [Header("Grid Status")]
     [SerializeField] public bool _enableThisGrid;
@@ -25,6 +26,8 @@ public class GridManager : MonoBehaviour
 
     private void Start()
     {
+        if (_rtsCameraReference == null) { _rtsCameraReference = FindAnyObjectByType<RTSCamera>(); }
+
         GenerateGrid();
     }
 
@@ -41,6 +44,7 @@ public class GridManager : MonoBehaviour
 
                 newNode.GetComponent<HighlightableToggle>().lightingManager = lightingManager;
                 newNode.GetComponent<HighlightableToggle>().playerCamMan = playerCamManager;
+                newNode.GetComponent<HighlightableToggle>()._rtsCamera = _rtsCameraReference;
 
                 // Since you have your own Tower Node script, you can initialize it here:
                 // var nodeScript = newNode.GetComponent<TowerNode>();

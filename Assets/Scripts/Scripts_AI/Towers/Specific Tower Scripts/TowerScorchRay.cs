@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.VFX;
 
-public class TowerScorchRay : MonoBehaviour
+public class TowerScorchRay : TowerOffensiveBase
 {
     [Header("References")]
     public Transform turretHead;
@@ -90,7 +90,7 @@ public class TowerScorchRay : MonoBehaviour
 
                 if (enemy != null)
                 {
-                    enemy.Health.TakeDamage(damagePerTick);
+                    enemy._healthReference.TakeDamage(damagePerTick);
                 }
                 else if (enemy == null)
                 {

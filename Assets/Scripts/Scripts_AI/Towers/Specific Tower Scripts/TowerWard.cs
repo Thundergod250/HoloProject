@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Threading.Tasks;
 
-public class TowerWard : MonoBehaviour
+public class TowerWard : TowerOffensiveBase
 {
     [Header("Tower Stats")]
     public float range = 10f;
