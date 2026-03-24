@@ -207,6 +207,11 @@ public class Navigation_Enemy : MonoBehaviour
 
         FindNearestWaypoint(); // Optional" May feel better or worse
     }
+
+    public void ResetCurrentTarget()
+    {
+        currentTarget = null;
+    }
     #endregion
 
     #region WaypointMovement

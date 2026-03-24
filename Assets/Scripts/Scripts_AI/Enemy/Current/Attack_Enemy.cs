@@ -14,7 +14,6 @@ public class Attack_Enemy : MonoBehaviour
 
     [Header("Refs")]
     [SerializeField] private Navigation_Enemy navigation_Enemy;
-    [SerializeField] private Effects_Enemy effects_Enemy;
 
     [Header("Targeting Style")]
     [SerializeField] private Targeting targeting;

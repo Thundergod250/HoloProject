@@ -17,11 +17,10 @@ public class Spawner : MonoBehaviour
     [SerializeField] private bool spawningWave = true;
     [SerializeField] private bool isNighttime;
     [SerializeField] private WaveData activeWave;
-    [SerializeField] private List<GameObject> activeEnemies = new List<GameObject>();
+    public List<GameObject> activeEnemies = new List<GameObject>();
     private bool waveInProgress;
 
     [Header("Var Safe to Adjust")]
-    [SerializeField] private float timeAfterWave = 10f;
     [SerializeField] private bool testingMode;
 
     [Header("Waypoints")]
@@ -81,8 +80,6 @@ public class Spawner : MonoBehaviour
             yield return new WaitForSeconds(interval);
         }
 
-        yield return new WaitForSeconds(timeAfterWave);
-
        if(!testingMode) OnWaveFinishedSpawning();
     }
 
@@ -93,10 +90,10 @@ public class Spawner : MonoBehaviour
         if (cautionUI.hasWaveStart)
             cautionUI.hasWaveStart = false; // turn off UI when wave finishes
 
-        GoToNextWave();
+        SetupNextWave();
     }
 
-    private void GoToNextWave()
+    private void SetupNextWave()
     {
         if (waveVar == wave.Count - 1) // last wave
         {
@@ -106,10 +103,6 @@ public class Spawner : MonoBehaviour
 
         waveVar++;
         activeWave = wave[waveVar];
-
-        // Only start next wave if it's night
-        if (lightingManager._isNight)
-            TryStartWave();
     }
 
     public void TryStartWave()
@@ -139,29 +132,6 @@ public class Spawner : MonoBehaviour
         GameObject newEnemy = Instantiate(DebugEnemies, transform.position, Quaternion.identity);
 
         newEnemy.GetComponent<Navigation_Enemy>().wayPoints = wayPoints;
-    }
-
-    void KillAllEnemies()
-    {
-        if (spawnRoutine != null)
-        {
-            StopCoroutine(spawnRoutine);
-            spawnRoutine = null;
-        }
-
-        foreach (GameObject enemy in activeEnemies)
-        {
-            enemy.GetComponent<Navigation_Enemy>().MorningDOTEFfect();
-        }
-
-        activeEnemies.Clear();
-
-        enemyCounterUI.totalEnemies = 0;
-        enemyCounterUI.UpdateEnemyCounter();
-
-        waveInProgress = false;
-
-        Debug.Log("All enemies cleared (Daytime)");
     }
 
     public void UpdateEnemyCounterText()
