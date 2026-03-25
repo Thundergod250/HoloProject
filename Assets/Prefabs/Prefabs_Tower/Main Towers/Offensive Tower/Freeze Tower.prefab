@@ -2048,6 +2048,7 @@ GameObject:
   - component: {fileID: 5818345394654817171}
   - component: {fileID: 427577870210762952}
   - component: {fileID: 8049907280991672423}
+  - component: {fileID: -2137968876210664105}
   m_Layer: 6
   m_Name: Freeze Tower
   m_TagString: Untagged
@@ -2298,6 +2299,20 @@ MonoBehaviour:
   freezeDuration: 2
   attackInterval: 2
   _attackFreezeParticle: {fileID: 3467290137393212351}
+--- !u!114 &-2137968876210664105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7795377701471874775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06573271ba376664db1cbfb0b0d60960, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerDeathNotifier
+  spawners: []
+  health: {fileID: 9209285657085303806}
 --- !u!1 &7849389352835609314
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ public class Attack_Enemy : MonoBehaviour
 
     [Header("Refs")]
     [SerializeField] private Navigation_Enemy navigation_Enemy;
+    [SerializeField] private Drops_Enemy drops_Enemy;
 
     [Header("Targeting Style")]
     [SerializeField] private Targeting targeting;
@@ -37,6 +38,7 @@ public class Attack_Enemy : MonoBehaviour
     private int hitCounter = 0;
 
     public Animator animator;
+    public Transform potentialTarget;
     public Transform target;
 
     public Targeting archetype => targeting;
@@ -63,10 +65,10 @@ public class Attack_Enemy : MonoBehaviour
                 AttackType();
             }
 
-            else if (target.GetComponent<Health>().GetCurrentHealth() <= 0)
+            if (target.GetComponent<Health>().GetCurrentHealth() <= 0)
             {
                 Debug.Log("changing target");
-                navigation_Enemy.TargetHasDied();
+               // navigation_Enemy.TargetHasDied();
             }
         }
     }

@@ -1014,6 +1014,7 @@ GameObject:
   - component: {fileID: 5818345394654817171}
   - component: {fileID: 427577870210762952}
   - component: {fileID: 7461467991367902750}
+  - component: {fileID: -5441766619979074610}
   m_Layer: 6
   m_Name: Refraction Core Tower
   m_TagString: Untagged
@@ -1283,6 +1284,20 @@ MonoBehaviour:
     m_Bits: 64
   connectionPrefab: {fileID: 2034366257171201412, guid: ce1dace8619e97b4ca1861166fa87b2f, type: 3}
   firePoint: {fileID: 1932060655702197655}
+--- !u!114 &-5441766619979074610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7795377701471874775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06573271ba376664db1cbfb0b0d60960, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerDeathNotifier
+  spawners: []
+  health: {fileID: 9209285657085303806, guid: eb206a7bbf6ea17439fd835da3163c35, type: 3}
 --- !u!1 &7849389352835609314
 GameObject:
   m_ObjectHideFlags: 0

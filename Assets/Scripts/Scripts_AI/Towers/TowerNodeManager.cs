@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class TowerNodeManager : MonoBehaviour
@@ -10,6 +11,7 @@ public class TowerNodeManager : MonoBehaviour
         if (towerController != null)
         {
             GameManager.Instance.DespawnTower(towerController);
+
             towerController = null;
         }
         

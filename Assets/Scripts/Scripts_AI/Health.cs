@@ -26,6 +26,9 @@ public class Health : MonoBehaviour
     
     public void TakeDamage(int amount)
     {
+        Debug.Log(GetCurrentHealth() + " Tower Health");
+
+
         if (isDead) return;
 
         currentHealth -= amount;
@@ -64,6 +67,7 @@ public class Health : MonoBehaviour
             isDead = true;
 
         OnDeath?.Invoke();
+
 
         Debug.Log($"{gameObject.name} has died.");
         // Optional: Destroy(gameObject); or disable
