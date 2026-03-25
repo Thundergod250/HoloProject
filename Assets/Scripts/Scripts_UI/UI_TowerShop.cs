@@ -57,7 +57,6 @@ public class UI_TowerShop : MonoBehaviour
 
     public void EnableTowerShopUI()
     {
-        this.gameObject.SetActive(true);
         _LeftPanel.SetActive(true); 
         _RightPanel.SetActive(true);
 
@@ -192,7 +191,7 @@ public class UI_TowerShop : MonoBehaviour
     // === Card spawning ===
     private void SpawnCards(List<CardInfo> cards)
     {
-        foreach (var cardInfo in cards)
+        foreach (CardInfo cardInfo in cards)
         {
             if (cardInfo.towerCardPrefab == null)
             {
