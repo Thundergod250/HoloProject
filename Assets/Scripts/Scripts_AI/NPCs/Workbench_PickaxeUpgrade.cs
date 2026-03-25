@@ -17,6 +17,7 @@ public class Workbench_PickaxeUpgrade : MonoBehaviour
     [SerializeField] private Texture2D ironPick;
     [SerializeField] private Texture2D goldPick;
     [SerializeField] private TextMeshProUGUI upgradeText;
+    [SerializeField] private UI_PromtWarnings _promptWarnings;
     private Texture2D currentTexture;
     private Texture2D initialTexture;
     private bool playerInside = false;
@@ -58,6 +59,8 @@ public class Workbench_PickaxeUpgrade : MonoBehaviour
         {
             string message = "Not Enough ores:   Mithril";
             OnResourceShortage?.Invoke(message);
+            
+            _promptWarnings.SetPromptTextDisplay(message);
 
             Debug.Log("Missing Mithril");
         }

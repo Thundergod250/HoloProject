@@ -119,17 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &2461192 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 52962085420262557, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
-  m_PrefabInstance: {fileID: 3688964133521184811}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c940b9b1370126249aff8e2172c8df85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
 --- !u!114 &27831248 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4024851282459884479, guid: 163a3c34bfefc7446837e2f9ddbbce79, type: 3}
@@ -905,6 +894,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c40c7e9a57a2374aa7d770fa27d3b61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerTeleporter
+--- !u!114 &319355292 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8304438371472003070, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+  m_PrefabInstance: {fileID: 3688964133521184811}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8bc5bf6ba1265b44b999997cda05cca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PickaxeLevel
 --- !u!4 &361823361 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1765563656749876005, guid: f754e1f36df3d2642bca472b580e1b36, type: 3}
@@ -2644,50 +2644,18 @@ PrefabInstance:
     - target: {fileID: 1047080081499528055, guid: 73a276b79f378d640929729f19036332, type: 3}
       propertyPath: picklevel
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 319355292}
     - target: {fileID: 1047080081499528055, guid: 73a276b79f378d640929729f19036332, type: 3}
       propertyPath: pickaxeRend
       value: 
       objectReference: {fileID: 474020621}
     - target: {fileID: 1047080081499528055, guid: 73a276b79f378d640929729f19036332, type: 3}
-      propertyPath: ectoplasmWave
+      propertyPath: _promptWarnings
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1047080081499528055, guid: 73a276b79f378d640929729f19036332, type: 3}
-      propertyPath: playerInteract
-      value: 
-      objectReference: {fileID: 2461192}
-    - target: {fileID: 1047080081499528055, guid: 73a276b79f378d640929729f19036332, type: 3}
-      propertyPath: spawners.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1047080081499528055, guid: 73a276b79f378d640929729f19036332, type: 3}
-      propertyPath: 'spawners.Array.data[0]'
-      value: 
-      objectReference: {fileID: 1671940033}
-    - target: {fileID: 1047080081499528055, guid: 73a276b79f378d640929729f19036332, type: 3}
-      propertyPath: 'spawners.Array.data[1]'
-      value: 
-      objectReference: {fileID: 1075615591}
+      objectReference: {fileID: 1789957138}
     - target: {fileID: 1479904091271619900, guid: 73a276b79f378d640929729f19036332, type: 3}
       propertyPath: m_Name
       value: Workbench
-      objectReference: {fileID: 0}
-    - target: {fileID: 3308733247625947199, guid: 73a276b79f378d640929729f19036332, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 7169601ef14aa8640b32f1e523636ac9, type: 2}
-    - target: {fileID: 4500699981842584928, guid: 73a276b79f378d640929729f19036332, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4500699981842584928, guid: 73a276b79f378d640929729f19036332, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4500699981842584928, guid: 73a276b79f378d640929729f19036332, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4500699981842584928, guid: 73a276b79f378d640929729f19036332, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2728,10 +2696,6 @@ PrefabInstance:
     - target: {fileID: 4500699981842584928, guid: 73a276b79f378d640929729f19036332, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 184.466
-      objectReference: {fileID: 0}
-    - target: {fileID: 7094566155073998971, guid: 73a276b79f378d640929729f19036332, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7789,6 +7753,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b17c6eb266138f646a65dc4e96a0d5cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RTSMouseSelector
+--- !u!114 &2136279766 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2078925173775003760, guid: 2768831ef1ca0cb46bdb587e9b9a6560, type: 3}
+  m_PrefabInstance: {fileID: 5680016574357958394}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136279764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a1b1083762389c49b4ee04e5ce004ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RTSCamera
 --- !u!1001 &19353728697877362
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7813,6 +7788,10 @@ PrefabInstance:
       propertyPath: playerCamManager
       value: 
       objectReference: {fileID: 1811346360}
+    - target: {fileID: 138160353956846449, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 245239865519752322, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: lightingManager
       value: 
@@ -7821,6 +7800,14 @@ PrefabInstance:
       propertyPath: playerCamManager
       value: 
       objectReference: {fileID: 1811346360}
+    - target: {fileID: 245239865519752322, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: _rtsCameraReference
+      value: 
+      objectReference: {fileID: 2136279766}
+    - target: {fileID: 417222887162661247, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 456432710733998851, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: lightingManager
       value: 
@@ -7829,6 +7816,10 @@ PrefabInstance:
       propertyPath: playerCamManager
       value: 
       objectReference: {fileID: 1811346360}
+    - target: {fileID: 456432710733998851, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: _rtsCameraReference
+      value: 
+      objectReference: {fileID: 2136279766}
     - target: {fileID: 581053376694541405, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: lightingManager
       value: 
@@ -7837,6 +7828,10 @@ PrefabInstance:
       propertyPath: playerCamManager
       value: 
       objectReference: {fileID: 1811346360}
+    - target: {fileID: 581053376694541405, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: _rtsCameraReference
+      value: 
+      objectReference: {fileID: 2136279766}
     - target: {fileID: 617991400858678884, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: lightingManager
       value: 
@@ -7849,6 +7844,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grid Tower Placements
       objectReference: {fileID: 0}
+    - target: {fileID: 804023337722837257, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 870341974631373032, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: lightingManager
       value: 
@@ -7857,6 +7856,10 @@ PrefabInstance:
       propertyPath: playerCamManager
       value: 
       objectReference: {fileID: 1811346360}
+    - target: {fileID: 1082859520242065121, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1301356923421196849, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: lightingManager
       value: 
@@ -7865,6 +7868,10 @@ PrefabInstance:
       propertyPath: playerCamManager
       value: 
       objectReference: {fileID: 1811346360}
+    - target: {fileID: 1322519277572771876, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1503566752513330350, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: '_gridPlacements.Array.data[22]'
       value: 
@@ -7885,6 +7892,14 @@ PrefabInstance:
       propertyPath: playerCamManager
       value: 
       objectReference: {fileID: 1811346360}
+    - target: {fileID: 1518919058887177302, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: _rtsCameraReference
+      value: 
+      objectReference: {fileID: 2136279766}
+    - target: {fileID: 1728007440012822225, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1759648691897475454, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: lightingManager
       value: 
@@ -7901,6 +7916,10 @@ PrefabInstance:
       propertyPath: playerCamManager
       value: 
       objectReference: {fileID: 1811346360}
+    - target: {fileID: 1827278543633125989, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: _rtsCameraReference
+      value: 
+      objectReference: {fileID: 2136279766}
     - target: {fileID: 1881901129595835271, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: lightingManager
       value: 
@@ -7925,6 +7944,10 @@ PrefabInstance:
       propertyPath: playerCamManager
       value: 
       objectReference: {fileID: 1811346360}
+    - target: {fileID: 1886364878262575119, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: _rtsCameraReference
+      value: 
+      objectReference: {fileID: 2136279766}
     - target: {fileID: 1908661707262376049, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: lightingManager
       value: 
@@ -7941,6 +7964,10 @@ PrefabInstance:
       propertyPath: playerCamManager
       value: 
       objectReference: {fileID: 1811346360}
+    - target: {fileID: 1956023701233237271, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2084749317992359031, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: lightingManager
       value: 
@@ -7949,6 +7976,10 @@ PrefabInstance:
       propertyPath: playerCamManager
       value: 
       objectReference: {fileID: 1811346360}
+    - target: {fileID: 2084749317992359031, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: _rtsCameraReference
+      value: 
+      objectReference: {fileID: 2136279766}
     - target: {fileID: 2087598118739418392, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: lightingManager
       value: 
@@ -7957,6 +7988,10 @@ PrefabInstance:
       propertyPath: playerCamManager
       value: 
       objectReference: {fileID: 1811346360}
+    - target: {fileID: 2171722359221143521, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2203608260806483835, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: lightingManager
       value: 
@@ -8005,6 +8040,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2393251374779703155, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2405863446272101734, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: lightingManager
       value: 
@@ -8029,6 +8068,10 @@ PrefabInstance:
       propertyPath: playerCamManager
       value: 
       objectReference: {fileID: 1811346360}
+    - target: {fileID: 2701152012194204131, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: _rtsCameraReference
+      value: 
+      objectReference: {fileID: 2136279766}
     - target: {fileID: 2890432971833204821, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: lightingManager
       value: 
@@ -8037,6 +8080,22 @@ PrefabInstance:
       propertyPath: playerCamManager
       value: 
       objectReference: {fileID: 1811346360}
+    - target: {fileID: 2960347914247774839, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2964506907211386565, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2973851289151218995, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3014920960657234583, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3059806376046375406, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: lightingManager
       value: 
@@ -8045,6 +8104,14 @@ PrefabInstance:
       propertyPath: playerCamManager
       value: 
       objectReference: {fileID: 1811346360}
+    - target: {fileID: 3059806376046375406, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: _rtsCameraReference
+      value: 
+      objectReference: {fileID: 2136279766}
+    - target: {fileID: 3121653568318618684, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3249999908821260963, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: lightingManager
       value: 
@@ -8061,6 +8128,26 @@ PrefabInstance:
       propertyPath: playerCamManager
       value: 
       objectReference: {fileID: 1811346360}
+    - target: {fileID: 3275757557455145901, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: _rtsCameraReference
+      value: 
+      objectReference: {fileID: 2136279766}
+    - target: {fileID: 3291315771838104121, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3441158196063699034, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3485385973714409920, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3633047716291046214, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3662280079839479347, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: lightingManager
       value: 
@@ -8069,6 +8156,10 @@ PrefabInstance:
       propertyPath: playerCamManager
       value: 
       objectReference: {fileID: 1811346360}
+    - target: {fileID: 3699282640158724038, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3725855335852600797, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: lightingManager
       value: 
@@ -8077,6 +8168,10 @@ PrefabInstance:
       propertyPath: playerCamManager
       value: 
       objectReference: {fileID: 1811346360}
+    - target: {fileID: 3725855335852600797, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: _rtsCameraReference
+      value: 
+      objectReference: {fileID: 2136279766}
     - target: {fileID: 3959673738807465021, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: lightingManager
       value: 
@@ -8101,6 +8196,14 @@ PrefabInstance:
       propertyPath: playerCamManager
       value: 
       objectReference: {fileID: 1811346360}
+    - target: {fileID: 4115274669910132459, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: _rtsCameraReference
+      value: 
+      objectReference: {fileID: 2136279766}
+    - target: {fileID: 4299349604595198758, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4341125580328797091, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: lightingManager
       value: 
@@ -8117,6 +8220,10 @@ PrefabInstance:
       propertyPath: playerCamManager
       value: 
       objectReference: {fileID: 1811346360}
+    - target: {fileID: 4378086169395957219, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: _rtsCameraReference
+      value: 
+      objectReference: {fileID: 2136279766}
     - target: {fileID: 4515297570123094063, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: lightingManager
       value: 
@@ -8125,6 +8232,14 @@ PrefabInstance:
       propertyPath: playerCamManager
       value: 
       objectReference: {fileID: 1811346360}
+    - target: {fileID: 4515297570123094063, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: _rtsCameraReference
+      value: 
+      objectReference: {fileID: 2136279766}
+    - target: {fileID: 4552509350185420202, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4650783660467618717, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: lightingManager
       value: 
@@ -8141,6 +8256,10 @@ PrefabInstance:
       propertyPath: playerCamManager
       value: 
       objectReference: {fileID: 1811346360}
+    - target: {fileID: 4743148547676741097, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: _rtsCameraReference
+      value: 
+      objectReference: {fileID: 2136279766}
     - target: {fileID: 4755777231176276544, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: lightingManager
       value: 
@@ -8149,6 +8268,10 @@ PrefabInstance:
       propertyPath: playerCamManager
       value: 
       objectReference: {fileID: 1811346360}
+    - target: {fileID: 4755777231176276544, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: _rtsCameraReference
+      value: 
+      objectReference: {fileID: 2136279766}
     - target: {fileID: 4760488000497319682, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: lightingManager
       value: 
@@ -8185,6 +8308,26 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 307.82
       objectReference: {fileID: 0}
+    - target: {fileID: 4981429589411841218, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4992976829827443376, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5297921117379025695, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5444066140808258413, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5533482253143186123, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5639685288840678693, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: lightingManager
       value: 
@@ -8193,6 +8336,10 @@ PrefabInstance:
       propertyPath: playerCamManager
       value: 
       objectReference: {fileID: 1811346360}
+    - target: {fileID: 5639685288840678693, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: _rtsCameraReference
+      value: 
+      objectReference: {fileID: 2136279766}
     - target: {fileID: 5764881956343431170, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: lightingManager
       value: 
@@ -8209,6 +8356,10 @@ PrefabInstance:
       propertyPath: playerCamManager
       value: 
       objectReference: {fileID: 1811346360}
+    - target: {fileID: 6211621819292216420, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: _rtsCameraReference
+      value: 
+      objectReference: {fileID: 2136279766}
     - target: {fileID: 6214934252944976386, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: lightingManager
       value: 
@@ -8217,6 +8368,14 @@ PrefabInstance:
       propertyPath: playerCamManager
       value: 
       objectReference: {fileID: 1811346360}
+    - target: {fileID: 6214934252944976386, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: _rtsCameraReference
+      value: 
+      objectReference: {fileID: 2136279766}
+    - target: {fileID: 6455078919845235060, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6474151392547311302, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: lightingManager
       value: 
@@ -8233,6 +8392,14 @@ PrefabInstance:
       propertyPath: playerCamManager
       value: 
       objectReference: {fileID: 1811346360}
+    - target: {fileID: 6663918572456271737, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6762889048243965520, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6912898805665453759, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: lightingManager
       value: 
@@ -8241,6 +8408,26 @@ PrefabInstance:
       propertyPath: playerCamManager
       value: 
       objectReference: {fileID: 1811346360}
+    - target: {fileID: 6912898805665453759, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: _rtsCameraReference
+      value: 
+      objectReference: {fileID: 2136279766}
+    - target: {fileID: 7101142842410264694, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 31.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149791858411527488, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7475558326203385847, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 32.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7475558326203385847, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 186
+      objectReference: {fileID: 0}
     - target: {fileID: 7686760950217397302, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: lightingManager
       value: 
@@ -8249,6 +8436,10 @@ PrefabInstance:
       propertyPath: playerCamManager
       value: 
       objectReference: {fileID: 1811346360}
+    - target: {fileID: 7701470011295241092, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7990313220340945682, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: lightingManager
       value: 
@@ -8265,6 +8456,30 @@ PrefabInstance:
       propertyPath: playerCamManager
       value: 
       objectReference: {fileID: 1811346360}
+    - target: {fileID: 8032381281881995524, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8109336597486729095, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8134821923637150109, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8154179259046781504, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8211511338181329442, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8337068157033029343, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8498295579291786602, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: lightingManager
       value: 
@@ -8273,6 +8488,10 @@ PrefabInstance:
       propertyPath: playerCamManager
       value: 
       objectReference: {fileID: 1811346360}
+    - target: {fileID: 8498295579291786602, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: _rtsCameraReference
+      value: 
+      objectReference: {fileID: 2136279766}
     - target: {fileID: 8509630220652960128, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: lightingManager
       value: 
@@ -8305,6 +8524,10 @@ PrefabInstance:
       propertyPath: playerCamManager
       value: 
       objectReference: {fileID: 1811346360}
+    - target: {fileID: 8696843350352368207, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
+      propertyPath: _rtsCameraReference
+      value: 
+      objectReference: {fileID: 2136279766}
     - target: {fileID: 8697828601571720751, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: lightingManager
       value: 
