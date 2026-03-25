@@ -1478,10 +1478,13 @@ MonoBehaviour:
   currentHealth: 100
   OnDamaged:
     m_PersistentCalls:
+      m_Calls: []
+  OnDeath:
+    m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2503725807906332918}
-        m_TargetAssemblyTypeName: TowerDeathNotifier, Assembly-CSharp
-        m_MethodName: RelayDeath
+      - m_Target: {fileID: 4655473061654607957}
+        m_TargetAssemblyTypeName: TowerController, Assembly-CSharp
+        m_MethodName: DespawnCurrentTower
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1491,12 +1494,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnDeath:
+  BeforeDeath:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4655473061654607957}
-        m_TargetAssemblyTypeName: TowerController, Assembly-CSharp
-        m_MethodName: DespawnCurrentTower
+      - m_Target: {fileID: 2503725807906332918}
+        m_TargetAssemblyTypeName: TowerDeathNotifier, Assembly-CSharp
+        m_MethodName: RelayDeath
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

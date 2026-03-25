@@ -10,6 +10,7 @@ public class Health : MonoBehaviour
     [Header("Events")]
     public UnityEvent<int> OnDamaged;   // passes remaining health
     public UnityEvent OnDeath;          // triggered when health <= 0
+    public UnityEvent BeforeDeath;          // triggered when health <= 0
     
     private bool isDead = false;
 
@@ -26,7 +27,7 @@ public class Health : MonoBehaviour
     
     public void TakeDamage(int amount)
     {
-        Debug.Log(GetCurrentHealth() + " Tower Health");
+        Debug.Log(GetCurrentHealth() + " " + this.name + " Tower Health");
 
 
         if (isDead) return;
@@ -55,6 +56,8 @@ public class Health : MonoBehaviour
     
     public void Die()
     {
+        BeforeDeath?.Invoke();
+
         if (isDead) return;
 
         else if (_toBeDeleted)

@@ -16,7 +16,6 @@ public class TowerDeathNotifier : MonoBehaviour
 
     public void RelayDeath()
     {
-        Debug.Log(health.GetCurrentHealth() + "Tower Health");
         if(health.GetComponent<Health>().GetCurrentHealth() <= 0)
         {
             Debug.Log("tower Died notified enemes");
