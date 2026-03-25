@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.VFX;
@@ -150,8 +151,9 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
 
         if (_playerController != null && _canvasUI.gameObject.activeSelf)
         {
-            //_toRotateOnPlayer.transform.LookAt(_playerController.transform.position);
-            _toRotateOnPlayer.transform.Rotate(Vector3.up);
+            // _toRotateOnPlayer.transform.LookAt(_playerController.transform.position);
+            // _toRotateOnPlayer.transform.Rotate(Vector3.up);
+            _canvasUI.transform.LookAt(_playerController.GetComponentInChildren<CinemachineCamera>().transform.position);
         }
     }
 
