@@ -208,6 +208,22 @@ MonoBehaviour:
     max: Infinity
     enumValues: []
     descendantCount: 0
+  - name: Lifetime
+    path: Lifetime
+    tooltip: 
+    space: -1
+    spaceable: 0
+    sheetType: m_Float
+    realType: Single
+    defaultValue:
+      m_Type:
+        m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089
+      m_SerializableObject: 0.3
+    min: -Infinity
+    max: Infinity
+    enumValues: []
+    descendantCount: 0
   - name: Hit_SizeA
     path: Hit_SizeA
     tooltip: 
@@ -316,22 +332,6 @@ MonoBehaviour:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
       m_SerializableObject: 4
-    min: -Infinity
-    max: Infinity
-    enumValues: []
-    descendantCount: 0
-  - name: Lifetime
-    path: Lifetime
-    tooltip: 
-    space: -1
-    spaceable: 0
-    sheetType: m_Float
-    realType: Single
-    defaultValue:
-      m_Type:
-        m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
-          PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.3
     min: -Infinity
     max: Infinity
     enumValues: []
@@ -4402,7 +4402,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614924}
   m_ExposedName: Lifetime
   m_Exposed: 1
-  m_Order: 12
+  m_Order: 5
   m_Category: 
   m_Min:
     m_Type:
@@ -4848,7 +4848,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614965}
   m_ExposedName: Hit_SizeA
   m_Exposed: 1
-  m_Order: 5
+  m_Order: 6
   m_Category: 
   m_Min:
     m_Type:
@@ -5062,7 +5062,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614971}
   m_ExposedName: Hit_SizeB
   m_Exposed: 1
-  m_Order: 6
+  m_Order: 7
   m_Category: 
   m_Min:
     m_Type:
@@ -7022,7 +7022,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615036}
   m_ExposedName: Particle_SizeA
   m_Exposed: 1
-  m_Order: 7
+  m_Order: 8
   m_Category: 
   m_Min:
     m_Type:
@@ -7103,7 +7103,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615038}
   m_ExposedName: Particle_Color
   m_Exposed: 1
-  m_Order: 8
+  m_Order: 9
   m_Category: 
   m_Min:
     m_Type:
@@ -7320,7 +7320,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615044}
   m_ExposedName: Particle Texture
   m_Exposed: 1
-  m_Order: 9
+  m_Order: 10
   m_Category: 
   m_Min:
     m_Type:
@@ -7401,7 +7401,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615046}
   m_ExposedName: Particle_SizeB
   m_Exposed: 1
-  m_Order: 10
+  m_Order: 11
   m_Category: 
   m_Min:
     m_Type:
@@ -7817,7 +7817,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615060}
   m_ExposedName: Particle_Count
   m_Exposed: 1
-  m_Order: 11
+  m_Order: 12
   m_Category: 
   m_Min:
     m_Type:
