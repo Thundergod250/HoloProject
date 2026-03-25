@@ -1605,6 +1605,7 @@ MonoBehaviour:
   ObjectPooling: {fileID: 123910042}
   DebugCheats: {fileID: 1065750941}
   AudioManager: {fileID: 0}
+  towersObjects: []
   CurrentTowerNode: {fileID: 0}
 --- !u!4 &698444993
 Transform:
@@ -6534,15 +6535,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4443341128362266729, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
       propertyPath: offensiveStartLocked.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4443341128362266729, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
       propertyPath: 'offensiveStartLocked.Array.data[0]'
-      value: TEST TOWER 1
+      value: Scorching Ray Tower
       objectReference: {fileID: 0}
     - target: {fileID: 4443341128362266729, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
       propertyPath: 'offensiveStartLocked.Array.data[1]'
-      value: TEST TOWER 2
+      value: Chain Pylon Tower
+      objectReference: {fileID: 0}
+    - target: {fileID: 4443341128362266729, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
+      propertyPath: 'offensiveStartLocked.Array.data[2]'
+      value: Freeze Tower
+      objectReference: {fileID: 0}
+    - target: {fileID: 4443341128362266729, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
+      propertyPath: 'offensiveStartLocked.Array.data[3]'
+      value: Chain Pylon Tower
       objectReference: {fileID: 0}
     - target: {fileID: 4640362773679857177, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
       propertyPath: m_Interactable

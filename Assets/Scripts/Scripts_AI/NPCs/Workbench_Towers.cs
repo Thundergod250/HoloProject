@@ -27,10 +27,8 @@ public class Workbench_Towers : MonoBehaviour
     [Header("Reclaim Tower")]
     [SerializeField] private GameObject destroyedState;
     [SerializeField] private GameObject fixedState;
-
-
-    private bool isReclaimed = false;
-    private bool playerInside = false;
+    [SerializeField] private bool isReclaimed = false;
+    [SerializeField] private bool playerInside = false;
 
     private void Start()
     {
