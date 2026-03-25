@@ -4,6 +4,7 @@ public class PlayerHarvesting : MonoBehaviour
 {
     [SerializeField] private PlayerAnimation playerAnimation;
     [SerializeField] private PlayerMovement playerMovement;
+    [SerializeField] private PickaxeLevel pickaxeLevel;
 
     [SerializeField] private GameObject _generalPlayerActions;
     [SerializeField] private GameObject _shovelingAction;
@@ -97,6 +98,11 @@ public class PlayerHarvesting : MonoBehaviour
         else if (_garbageGroupType == GarbageObject.GarbageGroup.Organic) { _shovelingAction.SetActive(true); }
         else if (_garbageGroupType == GarbageObject.GarbageGroup.Metal) { _drillingAction.SetActive(true); }
         else if (_garbageGroupType == GarbageObject.GarbageGroup.CopperOre|| _garbageGroupType == GarbageObject.GarbageGroup.IronOre|| _garbageGroupType == GarbageObject.GarbageGroup.GoldOre) { _miningAction.SetActive(true); }
+    }
+
+    public void CheckPickaxeTier()
+    {
+
     }
 
     private void OnTriggerStay(Collider other)
