@@ -81,7 +81,6 @@ public class Navigation_Enemy : MonoBehaviour
             StopCoroutine(DOTEffect());
             dotActive = false;
         }
-        
     }
 
     #region Collisions
@@ -135,12 +134,10 @@ public class Navigation_Enemy : MonoBehaviour
         }
 
         currentTarget = targetsAcquired[0];
-        distance = Vector3.Distance(transform.position, currentTarget.transform.position);
-
-        navigation.destination = currentTarget.transform.position;
 
         if (currentTarget != null)
         {
+            distance = Vector3.Distance(transform.position, currentTarget.transform.position);
             navigation.destination = currentTarget.transform.position;
         }
     }
@@ -169,13 +166,16 @@ public class Navigation_Enemy : MonoBehaviour
         }
     }
 
-    public void TargetHasDied()
+    public void TargetHasDied(GameObject tower)
     {
+        Debug.Log("Removing Tower from list");
+
         StopCoroutine(attack_Enemy.MeleeAttackSpeed());
         attack_Enemy.animator.SetBool("isAttacking", false);
-        targetsAcquired.Remove(currentTarget);
+
+        targetsAcquired.Remove(tower);
         currentTarget.GetComponent<Health>().Die();
-        attack_Enemy.attackedTowers.Remove(currentTarget);
+        attack_Enemy.attackedTowers.Remove(tower);
 
         currentTarget = null;
         attack_Enemy.target = null;

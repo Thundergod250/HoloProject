@@ -158,4 +158,12 @@ public class Spawner : MonoBehaviour
             wave.AddRange(waveSet4);
         }
     }
+
+    public void RemoveTowerFromList(GameObject tower)
+    {
+        foreach(GameObject e in activeEnemies)
+        {
+            e.GetComponent<Navigation_Enemy>().TargetHasDied(tower);
+        }
+    }
 }

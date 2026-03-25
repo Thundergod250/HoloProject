@@ -901,6 +901,7 @@ GameObject:
   - component: {fileID: 958089396946679993}
   - component: {fileID: 7833161949718217152}
   - component: {fileID: 1233140931781432943}
+  - component: {fileID: 813370673715592409}
   m_Layer: 6
   m_Name: Chain Pylon Tower
   m_TagString: Untagged
@@ -1361,6 +1362,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &813370673715592409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7795377701471874775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06573271ba376664db1cbfb0b0d60960, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerDeathNotifier
+  spawners: []
+  health: {fileID: 9209285657085303806, guid: eb206a7bbf6ea17439fd835da3163c35, type: 3}
 --- !u!1 &7849389352835609314
 GameObject:
   m_ObjectHideFlags: 0

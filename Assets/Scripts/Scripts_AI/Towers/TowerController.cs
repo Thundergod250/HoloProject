@@ -56,6 +56,7 @@ public class TowerController : MonoBehaviour
             nodeManager.DespawnTower();
         else
             Debug.LogWarning($"{name} could not find TowerNodeManager in parent hierarchy.");
+
     }
 
 
