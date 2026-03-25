@@ -174,7 +174,7 @@ public class Navigation_Enemy : MonoBehaviour
         attack_Enemy.animator.SetBool("isAttacking", false);
 
         targetsAcquired.Remove(tower);
-        currentTarget.GetComponent<Health>().Die();
+        //currentTarget.GetComponent<Health>().Die();
         attack_Enemy.attackedTowers.Remove(tower);
 
         currentTarget = null;
