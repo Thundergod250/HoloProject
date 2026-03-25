@@ -15,6 +15,7 @@ public class Workbench_Towers : MonoBehaviour
     [SerializeField] private DropResourceManager gold;
 
     [SerializeField] private UI_PromtWarnings _promptWarnings;
+    [SerializeField] private ParticleSystem _reclaimParticles;
 
     [Header("Unlock Tower Vars")]
     [SerializeField] private upgradeResourceType oreToSpendTower;
@@ -110,6 +111,8 @@ public class Workbench_Towers : MonoBehaviour
 
     private void ReclaimTower()
     {
+        _reclaimParticles.Play();
+
         ChangeTexture();
 
         if (_promptWarnings != null)

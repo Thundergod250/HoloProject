@@ -104,7 +104,11 @@ public class Workbench_PickaxeUpgrade : MonoBehaviour
             pickaxeRendTable.enabled = true;
 
           //  pickaxeRendTable.material.mainTexture = pickaxeRend.material.mainTexture;
-        }    
+        }
+        else if (other.GetComponentInChildren<PickaxeLevel>() != null)
+        {
+            picklevel = other.GetComponent<PickaxeLevel>();
+        }
     }
 
     private void OnTriggerExit(Collider other)
