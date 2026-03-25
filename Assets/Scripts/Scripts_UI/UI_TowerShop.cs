@@ -175,8 +175,10 @@ public class UI_TowerShop : MonoBehaviour
             // 4. Despawn and Cleanup
             node.DespawnTower();
 
-            _LeftPanel.SetActive(false);
-            _RightPanel.SetActive(false);
+            this.gameObject.SetActive(true);
+
+            _LeftPanel.SetActive(true);
+            _RightPanel.SetActive(true);
             _statusPanelUI.SetActive(false);
 
             _lastSelectedTowerOffsensiveBase = null;
