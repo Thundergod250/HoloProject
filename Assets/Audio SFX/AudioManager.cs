@@ -15,7 +15,6 @@ public class AudioManager : MonoBehaviour
     public AudioSource audioMusicSource;
     public AudioSource audioSFXSource;
 
-
     private void Start()
     {
         // Apply the loaded slider values to the actual Mixer groups
@@ -24,6 +23,35 @@ public class AudioManager : MonoBehaviour
 
         SetMusicVolume(musicSlider.value);
         SetSFXVolume(sfxSlider.value);
+    }
+
+    private void LateUpdate()
+    {
+        if (musicSlider != null && sfxSlider != null)
+        {
+            SetMusicVolume(musicSlider.value);
+            SetSFXVolume(sfxSlider.value);
+        }
+        else if (musicSlider == null)
+        {
+            GameObject musicSliderFound = GameObject.Find("Music Slider");
+            if (musicSliderFound != null)
+            {
+                musicSlider = musicSliderFound.GetComponent<Slider>();
+                // Apply saved value once found so it doesn't jump to default
+                musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 1f);
+            }
+        }
+        // 3. If SFX is missing, try to find it
+        else if (sfxSlider == null)
+        {
+            GameObject sfxSliderFound = GameObject.Find("SFX Slider");
+            if (sfxSliderFound != null)
+            {
+                sfxSlider = sfxSliderFound.GetComponent<Slider>();
+                sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 1f);
+            }
+        }
     }
 
 

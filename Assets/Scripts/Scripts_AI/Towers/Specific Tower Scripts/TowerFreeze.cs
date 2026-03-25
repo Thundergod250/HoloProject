@@ -26,6 +26,7 @@ public class TowerFreeze : TowerOffensiveBase
         {
             _ = ExecuteFreezeAttack();
         }
+        else if (_currentTargets[0] == null) { _currentTargets.Remove(_currentTargets[0]); }
     }
 
     private void PerformScan()
