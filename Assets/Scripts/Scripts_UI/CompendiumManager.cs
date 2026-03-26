@@ -7,6 +7,8 @@ public class CompendiumManager : MonoBehaviour
 {
     [Header("UI References")]
     public TextMeshProUGUI titleText;
+    public TextMeshProUGUI healthText;
+    public TextMeshProUGUI damageText;
     public TextMeshProUGUI descriptionText;
     public Image displayImage;
 
@@ -21,20 +23,23 @@ public class CompendiumManager : MonoBehaviour
 
     public void NextPage()
     {
-        if (_currentIndex < allPages.Count - 1)
+        _currentIndex++;
+        if (_currentIndex >= allPages.Count)
         {
-            _currentIndex++;
-            DisplayPage();
+            _currentIndex = 0;
         }
+        DisplayPage();
     }
 
     public void PreviousPage()
     {
-        if (_currentIndex > 0)
+        // Replace your old PreviousPage with this:
+        _currentIndex--;
+        if (_currentIndex < 0)
         {
-            _currentIndex--;
-            DisplayPage();
+            _currentIndex = allPages.Count - 1;
         }
+        DisplayPage();
     }
 
     void DisplayPage()
@@ -44,6 +49,8 @@ public class CompendiumManager : MonoBehaviour
         PageData currentPage = allPages[_currentIndex];
 
         titleText.text = currentPage.pageTitle;
+        healthText.text = currentPage.pageHealth.ToString();
+        titleText.text = currentPage.pageDamage.ToString();
         descriptionText.text = currentPage.pageDescription;
         displayImage.sprite = currentPage.pageImage;
     }
