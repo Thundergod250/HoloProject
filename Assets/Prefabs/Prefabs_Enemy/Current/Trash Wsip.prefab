@@ -312,7 +312,7 @@ PrefabInstance:
     - target: {fileID: 6094847423617437406, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       propertyPath: _hitFlash
       value: 
-      objectReference: {fileID: 9203666310660939710}
+      objectReference: {fileID: 0}
     - target: {fileID: 6094847423617437406, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       propertyPath: maxHealth
       value: 10
@@ -329,9 +329,13 @@ PrefabInstance:
       propertyPath: gunBarrel
       value: 
       objectReference: {fileID: 4751695394523389277}
+    - target: {fileID: 6149120422715163426, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
+      propertyPath: bulletDamage
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7279398973919942167, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       propertyPath: moveSpeed
-      value: 3.5
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 7279398973919942167, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       propertyPath: aggroRange
@@ -343,7 +347,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7279398973919942167, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       propertyPath: defaultMovementSpeed
-      value: 3.5
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 7538640261713532623, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       propertyPath: TargetOrFoundation
@@ -381,28 +385,34 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8027776502407471498, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 9203666310660939710}
+      addedObject: {fileID: -6317876402831040035}
   m_SourcePrefab: {fileID: 100100000, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
 --- !u!1 &1410694212164237892 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8027776502407471498, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
   m_PrefabInstance: {fileID: 9005984136561040334}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &9203666310660939710
-MonoBehaviour:
+--- !u!65 &-6317876402831040035
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1410694212164237892}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffe9a2f5594bdbe41acbd28436914a54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HitFlash
-  flashModel: {fileID: 0}
-  flashLight: {fileID: 0}
-  flashDuration: 0.5
+  serializedVersion: 3
+  m_Size: {x: 1, y: 0.9827725, z: 1}
+  m_Center: {x: 0, y: 0.9970025, z: 0}
 --- !u!4 &6738866681875411432 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2413627379401370150, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}

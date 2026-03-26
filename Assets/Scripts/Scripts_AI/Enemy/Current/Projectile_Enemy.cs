@@ -9,9 +9,10 @@ public class Projectile_Enemy : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<TowerBase>() != null)
         {
+            Debug.Log("Bullet Hit");
             collision.gameObject.GetComponent<Health>().TakeDamage(bulletDamage);
         }
 
-        Destroy(this.gameObject);
+       // Destroy(this.gameObject);
     }
 }

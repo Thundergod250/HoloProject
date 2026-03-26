@@ -123,6 +123,8 @@ public class Workbench_Towers : MonoBehaviour
                 node.SetActive(true);
             }
 
+            ReclaimTower();
+
             Debug.Log("Unlocked tower nodes! Using " + customCost + " of " + oreTypeToSpend);
 
             upgradeText.SetActive(false);
