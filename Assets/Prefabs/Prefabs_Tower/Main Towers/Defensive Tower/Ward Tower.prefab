@@ -1412,7 +1412,9 @@ MonoBehaviour:
   thisTowerUpgradeCards_SO: {fileID: 11400000, guid: f89237371cb494948815dd4448584183, type: 2}
   thisTowerDataCards_SO: {fileID: 11400000, guid: c2e8f1e7f4a4c66419aa5108af78b6c1, type: 2}
   attackLocation: {fileID: 0}
+  radiusGuide: {fileID: 515220849520236758}
   TowerHealth: {fileID: 9209285657085303806}
+  _showRadiusGuide: 1
   _smokeVFX: {fileID: 228480090998792708}
   _smokeVFXActive: 0
 --- !u!114 &9209285657085303806
@@ -1433,6 +1435,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  BeforeDeath:
     m_PersistentCalls:
       m_Calls: []
   startSetHealth: 100

@@ -21,6 +21,7 @@ public class TowerOffensiveBase : TowerBase
             if (towerShop != null)
             {
                 // 3. Directly pass the controller to the UI
+                node.towerController.ShowRadiusGuide();
                 towerShop.OpenStatusPanel(node.towerController);
             }
         }
