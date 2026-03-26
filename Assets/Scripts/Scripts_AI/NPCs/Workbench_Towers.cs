@@ -22,8 +22,10 @@ public class Workbench_Towers : MonoBehaviour
     [SerializeField] private List<Sprite> oreToSpendTowerImageList = new List<Sprite>();
     [SerializeField] private int oreImageNum;
     [SerializeField] private Image oreToSpendTowerImage;
-    [SerializeField] private int towerUnlockCost;
+    [SerializeField] private TextMeshProUGUI oreCostText;
+    [SerializeField] private int UnlockCost;
     [SerializeField] private string towerUnlock;
+    [SerializeField] private List<GameObject> towerNodes = new List<GameObject>();
 
     [Header("Reclaim Tower")]
     [SerializeField] private GameObject destroyedState;
@@ -39,16 +41,21 @@ public class Workbench_Towers : MonoBehaviour
         // Reset to Destroyed
         destroyedState.SetActive(true);
         fixedState.SetActive(false);
+
+        LockNodes();
     }
 
     private void Update()
     {
         if (playerInside && Input.GetKeyDown(KeyCode.F) && !isReclaimed)
         {
-            UnlockTowers(towerUnlock, oreToSpendTower, towerUnlockCost);
+            // UnlockTowers(towerUnlock, oreToSpendTower, towerUnlockCost);
+
+            UnlockTowerSlots(oreToSpendTower, UnlockCost);
         }
     }
 
+    #region UnlockThings
     public void UnlockTowers(string towerName, upgradeResourceType oreTypeToSpend, int customCost)
     {
         foreach (CardInfo card in offensiveTowerData.cards)
@@ -103,6 +110,43 @@ public class Workbench_Towers : MonoBehaviour
         }
     }
 
+    public void UnlockTowerSlots(upgradeResourceType oreTypeToSpend, int customCost)
+    {
+        int playerAmount = gold.GetResourceType(oreTypeToSpend);
+
+        if (playerAmount >= customCost)
+        {
+            gold.SpendingToResourceType(oreTypeToSpend, customCost);
+
+            foreach (GameObject node in towerNodes)
+            {
+                node.SetActive(true);
+            }
+
+            Debug.Log("Unlocked tower nodes! Using " + customCost + " of " + oreTypeToSpend);
+
+            upgradeText.SetActive(false);
+        }
+        else
+        {
+            StartCoroutine(ShowError());
+
+            if (_promptWarnings != null)
+            {
+                _promptWarnings.SetPromptTextDisplay("Not enough " + oreTypeToSpend + " to unlock tower nodes!");
+            }
+        }
+    }
+
+    public void LockNodes()
+    {
+        foreach(GameObject node in towerNodes)
+        {
+            node.SetActive(false);
+        }
+    }
+
+    #endregion
     private void ChangeTexture()
     {
         destroyedState.SetActive(false);
@@ -150,6 +194,8 @@ public class Workbench_Towers : MonoBehaviour
         {
             oreToSpendTowerImage.sprite = oreToSpendTowerImageList[3];
         }
+
+        oreCostText.text = "x " + UnlockCost.ToString();
     }
 
     private void OnTriggerEnter(Collider other)
