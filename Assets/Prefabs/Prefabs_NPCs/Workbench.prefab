@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6836996728019326053}
@@ -74,11 +74,14 @@ MonoBehaviour:
   pickaxeRend: {fileID: 0}
   pickaxeRendTable: {fileID: 2916829952143526746}
   gold: {fileID: 0}
-  playerInteract: {fileID: 0}
+  picklevel: {fileID: 0}
   copperPick: {fileID: 2800000, guid: ce1aa40482f017348a28af297d452432, type: 3}
   ironPick: {fileID: 2800000, guid: 667123c13daff954f927403f69163098, type: 3}
   goldPick: {fileID: 2800000, guid: 5bf7c7027642f5b4ba2b55139e6276dd, type: 3}
   upgradeText: {fileID: 6570632643242779192}
+  _promptWarnings: {fileID: 0}
+  spawners: []
+  ectoplasmWave: {fileID: 0}
 --- !u!114 &6312560625190636974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,6 +120,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _towerShop: {fileID: 0}
 --- !u!135 &2676937828821234790
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -624,7 +628,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -7133308330322150510, guid: b313ebe72eb70874793bad518465a19f, type: 3}
+  - {fileID: 2100000, guid: 7169601ef14aa8640b32f1e523636ac9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -11,9 +11,6 @@ public class Navigation_Enemy : MonoBehaviour
     [SerializeField] private TowerAndEnemy_Archetype target_Arch;
     [SerializeField] private Health helth;
     public LightingManager lightingManager;
-
-    [Header("Colliders")]
-    [SerializeField] private SphereCollider sphereCollider;
     private bool meleeTrigger = false;
 
     [Header("Navigation Target")]
@@ -81,7 +78,6 @@ public class Navigation_Enemy : MonoBehaviour
             StopCoroutine(DOTEffect());
             dotActive = false;
         }
-        
     }
 
     #region Collisions
@@ -135,12 +131,10 @@ public class Navigation_Enemy : MonoBehaviour
         }
 
         currentTarget = targetsAcquired[0];
-        distance = Vector3.Distance(transform.position, currentTarget.transform.position);
-
-        navigation.destination = currentTarget.transform.position;
 
         if (currentTarget != null)
         {
+            distance = Vector3.Distance(transform.position, currentTarget.transform.position);
             navigation.destination = currentTarget.transform.position;
         }
     }
@@ -169,13 +163,18 @@ public class Navigation_Enemy : MonoBehaviour
         }
     }
 
-    public void TargetHasDied()
+    public void TargetHasDied(GameObject tower)
     {
+        Debug.Log("Removing Tower from list");
+
         StopCoroutine(attack_Enemy.MeleeAttackSpeed());
-        attack_Enemy.animator.SetBool("isAttacking", false);
-        targetsAcquired.Remove(currentTarget);
-        currentTarget.GetComponent<Health>().Die();
-        attack_Enemy.attackedTowers.Remove(currentTarget);
+
+        if (attack_Enemy.animator != null)
+            attack_Enemy.animator.SetBool("isAttacking", false);
+
+        targetsAcquired.Remove(tower);
+        //currentTarget.GetComponent<Health>().Die();
+        attack_Enemy.attackedTowers.Remove(tower);
 
         currentTarget = null;
         attack_Enemy.target = null;
@@ -193,7 +192,10 @@ public class Navigation_Enemy : MonoBehaviour
     public void ChangeTarget()
     {
         StopCoroutine(attack_Enemy.MeleeAttackSpeed());
-        attack_Enemy.animator.SetBool("isAttacking", false);
+
+        if (attack_Enemy.animator != null)
+            attack_Enemy.animator.SetBool("isAttacking", false);
+
         targetsAcquired.Remove(currentTarget);
 
         currentTarget = null;
@@ -206,6 +208,11 @@ public class Navigation_Enemy : MonoBehaviour
         if (meleeTrigger) meleeTrigger = false;
 
         FindNearestWaypoint(); // Optional" May feel better or worse
+    }
+
+    public void ResetCurrentTarget()
+    {
+        currentTarget = null;
     }
     #endregion
 

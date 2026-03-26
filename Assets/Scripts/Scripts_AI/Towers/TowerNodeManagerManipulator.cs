@@ -6,7 +6,7 @@ public class TowerNodeManagerManipulator : MonoBehaviour
     public UnityEvent<TowerController> EvtOnInteractWithTowerController;
     public UnityEvent<TowerCategoryData_SO> EvtOnInteractWithTowerControllerPassSO;
     
-    private TowerNodeManager towerNodeManager;
+    [SerializeField] private TowerNodeManager towerNodeManager;
 
 
     private void OnEnable()

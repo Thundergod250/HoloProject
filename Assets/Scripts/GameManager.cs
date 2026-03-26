@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class GameManager : MonoBehaviour
     public DebugCheats DebugCheats;
 
     public AudioManager AudioManager;
+
+    [SerializeField] public List<GameObject> towersObjects;
+    [SerializeField] public List<GameObject> spawnerObjects;
 
     [HideInInspector] public TowerNodeManager CurrentTowerNode;
 
@@ -48,6 +52,7 @@ public class GameManager : MonoBehaviour
 
         return obj;
     }
+
 
     public void SpawnTower(GameObject towerPrefab)
     {
@@ -93,6 +98,8 @@ public class GameManager : MonoBehaviour
         if (controller == null || controller.towerPrefab == null) return;
 
         ObjectPooling.Instance.Return(controller.towerPrefab, controller.towerInstance);
+
         Debug.Log($"Tower {controller.name} returned to pool.");
+
     }
 }

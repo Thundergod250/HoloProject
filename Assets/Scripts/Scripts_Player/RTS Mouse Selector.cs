@@ -28,7 +28,8 @@ public class RTSMouseSelector : MonoBehaviour
             // Added the interactableLayer here to make your raycast more efficient
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, interactableLayer))
             {
-                if (hit.collider.TryGetComponent<Interactable>(out Interactable interactable))
+                Interactable interactable = hit.collider.GetComponent<Interactable>();
+                if (interactable != null)
                 {
                     interactable.InteractWithTarget();
                 }

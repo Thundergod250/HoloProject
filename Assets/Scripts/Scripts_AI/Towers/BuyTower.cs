@@ -105,6 +105,10 @@ public class BuyTower : MonoBehaviour
                 CurrentTowerNode.towerController.TowerHealth.GetMaxHealth()
             );
         }
+
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void _IncreaseDamageButtonClicked()

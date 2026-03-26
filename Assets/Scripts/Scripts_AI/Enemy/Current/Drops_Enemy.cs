@@ -27,9 +27,10 @@ public class Drops_Enemy : MonoBehaviour
 
     public void RemoveFromList()
     {
-        if (parentSpawner != null)
+        if (parentSpawner!= null)
         {
             parentSpawner.UpdateEnemyCounterText();
+            parentSpawner.activeEnemies.Remove(this.gameObject);
         }
     }
 }

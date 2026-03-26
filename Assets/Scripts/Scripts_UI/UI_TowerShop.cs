@@ -175,8 +175,10 @@ public class UI_TowerShop : MonoBehaviour
             // 4. Despawn and Cleanup
             node.DespawnTower();
 
-            _LeftPanel.SetActive(false);
-            _RightPanel.SetActive(false);
+            this.gameObject.SetActive(true);
+
+            _LeftPanel.SetActive(true);
+            _RightPanel.SetActive(true);
             _statusPanelUI.SetActive(false);
 
             _lastSelectedTowerOffsensiveBase = null;
@@ -191,7 +193,7 @@ public class UI_TowerShop : MonoBehaviour
     // === Card spawning ===
     private void SpawnCards(List<CardInfo> cards)
     {
-        foreach (var cardInfo in cards)
+        foreach (CardInfo cardInfo in cards)
         {
             if (cardInfo.towerCardPrefab == null)
             {

@@ -8,6 +8,7 @@ public class RTSCamera : MonoBehaviour
     public float moveSpeed = 20f;
     public float scrollSpeed = 10f;
     public Vector2 screenEdgeBuffer = new Vector2(10, 10);
+    [SerializeField] private bool _allowPanning = false;
 
     [Header("Boundary Settings")]
     // Defines the rectangle (Min X, Min Z) to (Max X, Max Z)
@@ -39,28 +40,41 @@ public class RTSCamera : MonoBehaviour
     private void Update()
     {
         Move();
+        BruteForceShowMouse();
         HandleZoom();
         UpdateUI();
     }
 
+    private void BruteForceShowMouse()
+    {
+        if (this.gameObject.activeSelf)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+    }
+
     private void Move()
     {
-        // Get standard Input
-        float xInput = Input.GetAxis("Horizontal");
-        float zInput = Input.GetAxis("Vertical");
+        if (_allowPanning)
+        {
+            // Get standard Input
+            float xInput = Input.GetAxis("Horizontal");
+            float zInput = Input.GetAxis("Vertical");
 
-        // Add Edge Panning
-        if (Input.mousePosition.x >= Screen.width - screenEdgeBuffer.x) xInput += 1;
-        if (Input.mousePosition.x <= screenEdgeBuffer.x) xInput -= 1;
-        if (Input.mousePosition.y >= Screen.height - screenEdgeBuffer.y) zInput += 1;
-        if (Input.mousePosition.y <= screenEdgeBuffer.y) zInput -= 1;
+            // Add Edge Panning
+            if (Input.mousePosition.x >= Screen.width - screenEdgeBuffer.x) xInput += 1;
+            if (Input.mousePosition.x <= screenEdgeBuffer.x) xInput -= 1;
+            if (Input.mousePosition.y >= Screen.height - screenEdgeBuffer.y) zInput += 1;
+            if (Input.mousePosition.y <= screenEdgeBuffer.y) zInput -= 1;
 
-        // Calculate movement
-        Vector3 moveDir = new Vector3(xInput, 0, zInput).normalized;
-        transform.Translate(moveDir * moveSpeed * Time.deltaTime, Space.World);
+            // Calculate movement
+            Vector3 moveDir = new Vector3(xInput, 0, zInput).normalized;
+            transform.Translate(moveDir * moveSpeed * Time.deltaTime, Space.World);
 
-        // STAY IN THE BOX
-        ClampPosition();
+            // STAY IN THE BOX
+            ClampPosition();
+        }
     }
 
     private void ClampPosition()
@@ -71,10 +85,12 @@ public class RTSCamera : MonoBehaviour
         transform.position = new Vector3(clampedX, transform.position.y, clampedZ);
     }
 
-    public void EnableZoom()
+    public void EnablePanAndZoom()
     {
         _enableZoom = true;
+        _allowPanning = true;
     }
+
 
     private void HandleZoom()
     {

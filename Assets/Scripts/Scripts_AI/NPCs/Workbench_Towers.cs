@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using System.Collections;
 using System.Resources;
 using TMPro;
@@ -13,19 +15,23 @@ public class Workbench_Towers : MonoBehaviour
     [SerializeField] private DropResourceManager gold;
 
     [SerializeField] private UI_PromtWarnings _promptWarnings;
+    [SerializeField] private ParticleSystem _reclaimParticles;
 
     [Header("Unlock Tower Vars")]
     [SerializeField] private upgradeResourceType oreToSpendTower;
-    [SerializeField] private int towerUnlockCost;
+    [SerializeField] private List<Sprite> oreToSpendTowerImageList = new List<Sprite>();
+    [SerializeField] private int oreImageNum;
+    [SerializeField] private Image oreToSpendTowerImage;
+    [SerializeField] private TextMeshProUGUI oreCostText;
+    [SerializeField] private int UnlockCost;
     [SerializeField] private string towerUnlock;
+    [SerializeField] private List<GameObject> towerNodes = new List<GameObject>();
 
     [Header("Reclaim Tower")]
     [SerializeField] private GameObject destroyedState;
     [SerializeField] private GameObject fixedState;
-
-
-    private bool isReclaimed = false;
-    private bool playerInside = false;
+    [SerializeField] private bool isReclaimed = false;
+    [SerializeField] private bool playerInside = false;
 
     private void Start()
     {
@@ -35,16 +41,21 @@ public class Workbench_Towers : MonoBehaviour
         // Reset to Destroyed
         destroyedState.SetActive(true);
         fixedState.SetActive(false);
+
+        LockNodes();
     }
 
     private void Update()
     {
         if (playerInside && Input.GetKeyDown(KeyCode.F) && !isReclaimed)
         {
-            UnlockTowers(towerUnlock, oreToSpendTower, towerUnlockCost);
+            // UnlockTowers(towerUnlock, oreToSpendTower, towerUnlockCost);
+
+            UnlockTowerSlots(oreToSpendTower, UnlockCost);
         }
     }
 
+    #region UnlockThings
     public void UnlockTowers(string towerName, upgradeResourceType oreTypeToSpend, int customCost)
     {
         foreach (CardInfo card in offensiveTowerData.cards)
@@ -99,6 +110,43 @@ public class Workbench_Towers : MonoBehaviour
         }
     }
 
+    public void UnlockTowerSlots(upgradeResourceType oreTypeToSpend, int customCost)
+    {
+        int playerAmount = gold.GetResourceType(oreTypeToSpend);
+
+        if (playerAmount >= customCost)
+        {
+            gold.SpendingToResourceType(oreTypeToSpend, customCost);
+
+            foreach (GameObject node in towerNodes)
+            {
+                node.SetActive(true);
+            }
+
+            Debug.Log("Unlocked tower nodes! Using " + customCost + " of " + oreTypeToSpend);
+
+            upgradeText.SetActive(false);
+        }
+        else
+        {
+            StartCoroutine(ShowError());
+
+            if (_promptWarnings != null)
+            {
+                _promptWarnings.SetPromptTextDisplay("Not enough " + oreTypeToSpend + " to unlock tower nodes!");
+            }
+        }
+    }
+
+    public void LockNodes()
+    {
+        foreach(GameObject node in towerNodes)
+        {
+            node.SetActive(false);
+        }
+    }
+
+    #endregion
     private void ChangeTexture()
     {
         destroyedState.SetActive(false);
@@ -107,6 +155,8 @@ public class Workbench_Towers : MonoBehaviour
 
     private void ReclaimTower()
     {
+        _reclaimParticles.Play();
+
         ChangeTexture();
 
         if (_promptWarnings != null)
@@ -124,13 +174,39 @@ public class Workbench_Towers : MonoBehaviour
         insufficientOreUI.SetActive(false);
     }
 
+    public void OreUIImage()
+    {
+        int i = oreImageNum;
+
+        if (i == 0)
+        {
+            oreToSpendTowerImage.sprite = oreToSpendTowerImageList[0];
+        }
+        else if (i == 1)
+        {
+            oreToSpendTowerImage.sprite = oreToSpendTowerImageList[1];
+        }
+        else if (i == 2)
+        {
+            oreToSpendTowerImage.sprite = oreToSpendTowerImageList[2];
+        }
+        else if (i == 3)
+        {
+            oreToSpendTowerImage.sprite = oreToSpendTowerImageList[3];
+        }
+
+        oreCostText.text = "x " + UnlockCost.ToString();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<PlayerController>() != null && !isReclaimed)
         {
             playerInside = true;
 
+            OreUIImage();
             upgradeText.SetActive(true);
+
         }
     }
 

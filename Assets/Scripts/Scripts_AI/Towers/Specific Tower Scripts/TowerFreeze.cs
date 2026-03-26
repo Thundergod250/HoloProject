@@ -1,57 +1,73 @@
-using UnityEngine;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using UnityEngine;
 
 public class TowerFreeze : TowerOffensiveBase
 {
-    [Header("Tower Stats")]
+    [Header("Detection")]
     public float range = 10f;
+    public LayerMask enemyLayer;
+    [SerializeField] private List<Navigation_Enemy> _currentTargets = new List<Navigation_Enemy>();
+
+    [Header("Attack Settings")]
     public float freezeDuration = 2f;
     public float attackInterval = 5f;
-    public LayerMask enemyLayer; // Set this to your Enemy layer in the Inspector
+    private bool _onCooldown = false;
 
-    private bool canAttack = true;
-
-    [SerializeField] ParticleSystem _attackFreezeParticle;
+    [SerializeField] private ParticleSystem _attackFreezeParticle;
 
     void Update()
     {
-        if (canAttack)
+        // 1. Always Scan
+        PerformScan();
+
+        // 2. Try to Attack if we have targets and are not on cooldown
+        if (!_onCooldown && _currentTargets.Count > 0)
         {
-            ScanAndFreeze();
+            _ = ExecuteFreezeAttack();
         }
+        else if (_currentTargets[0] == null) { _currentTargets.Remove(_currentTargets[0]); }
     }
 
-    private async void ScanAndFreeze()
+    private void PerformScan()
     {
-        // Find all colliders within range on the Enemy layer
-        Collider[] enemiesInRange = Physics.OverlapSphere(transform.position, range, enemyLayer);
+        // _currentTargets.Clear();
+        Collider[] hits = Physics.OverlapSphere(transform.position, range, enemyLayer);
 
-        if (enemiesInRange.Length > 0)
+        foreach (var hit in hits)
         {
-            canAttack = false;
-
-            foreach (Collider col in enemiesInRange)
+            // Use GetComponentInParent in case the collider is on a child object
+            Navigation_Enemy em = hit.GetComponentInChildren<Navigation_Enemy>();
+            if (em != null && !_currentTargets.Contains(em))
             {
-                EnemyMovement movement = col.GetComponent<EnemyMovement>();
-                if (movement != null)
-                {
-
-                    if (_attackFreezeParticle != null)
-                    {
-                        _attackFreezeParticle.Play();
-                    }
-
-                    movement.ApplyFreeze(freezeDuration);
-                }
+                _currentTargets.Add(em);
             }
-
-            // Tower Cooldown
-            await Task.Delay((int)(attackInterval * 1000));
-            canAttack = true;
         }
     }
 
-    // Visualizes the range in the Editor
+    private async Task ExecuteFreezeAttack()
+    {
+        _onCooldown = true;
+
+        Debug.Log($"[Tower] Freezing {_currentTargets.Count} targets!");
+
+        _attackFreezeParticle.Play();
+
+        // Apply freeze to everyone currently in the list
+        foreach (var enemy in _currentTargets)
+        {
+            // if (enemy != null) enemy.ApplyFreeze(freezeDuration);
+            // if (enemy != null) enemy.isMoving = false;
+
+            // SET Freez Here
+
+        }
+
+        // Wait for the 5-second reload
+        await Task.Delay((int)(attackInterval * 1000));
+        _onCooldown = false;
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.cyan;

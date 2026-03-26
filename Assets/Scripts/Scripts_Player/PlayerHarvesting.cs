@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 public class PlayerHarvesting : MonoBehaviour
 {
     [SerializeField] private PlayerAnimation playerAnimation;
+    [SerializeField] private PlayerMovement playerMovement;
+    [SerializeField] private PickaxeLevel pickaxeLevel;
 
     [SerializeField] private GameObject _generalPlayerActions;
     [SerializeField] private GameObject _shovelingAction;
@@ -11,6 +13,8 @@ public class PlayerHarvesting : MonoBehaviour
 
     [SerializeField] private int attackDamage = 1;
     [SerializeField] private int attackIntervalMs = 500; // Time between "hits"
+    [SerializeField] private UI_PromtWarnings _promptWarnings;
+
 
     [SerializeField] TrashHeap_ResourceSpawner targetHeap;
     [SerializeField] GarbageObject.GarbageGroup _garbageGroupType;
@@ -28,40 +32,34 @@ public class PlayerHarvesting : MonoBehaviour
     private void Update()
     {
         // Check for Mouse0 being HELD DOWN
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !_isAttacking && targetHeap != null)
+        if (CheckPickaxeTier()) // Checks if can Mine
         {
-            if (AudioManager.Instance != null)
+            if (Input.GetKey(KeyCode.Mouse0) && !_isAttacking && targetHeap != null)
             {
-                AudioManager.Instance?.PlaySFXLoop(_miningAudioClip);
+                if (AudioManager.Instance != null)
+                {
+                    AudioManager.Instance?.PlaySFXLoop(_miningAudioClip);
+                }
+
+                playerAnimation.TriggerMiningStart();
+
+                _ = StartHarvestingLoop();
             }
 
-            playerAnimation.TriggerMiningStart();
-            _ = StartHarvestingLoop();
-        }
+            else if ((Input.GetKeyUp(KeyCode.Mouse0)) || targetHeap != null && targetHeap.GetComponent<Health>().GetCurrentHealth() <= 0)
+            {
+                AudioManager.Instance?.StopSFXSound();
 
-        // Reset when the button is released
-        else if (Input.GetKeyUp(KeyCode.Mouse0))
-        {
-            AudioManager.Instance?.StopSFXSound();
+                targetHeap.StopParticlesDamage();
+                playerAnimation.ForceIdleState();
+                playerMovement.SetCanMove(true);
 
-            playerAnimation.ForceIdleState();
-            _isAttacking = false;
-            ResetActions();
-        }
 
-        //else if (!targetHeap.isActiveAndEnabled)
-        //{
-        //    targetHeap = null;
-        //}
-        else if(targetHeap != null && targetHeap.GetComponent<Health>().GetCurrentHealth() <= 0)
-        {
-            targetHeap = null;
-            _isAttacking = false;
+                targetHeap = null;
+                _isAttacking = false;
 
-            playerAnimation.ForceIdleState();
-            
-
-            ResetActions(); // Stop animations if we walk away while clicking
+                // ResetActions(); // Stop animations if we walk away while clicking
+            }
         }
     }
 
@@ -71,6 +69,8 @@ public class PlayerHarvesting : MonoBehaviour
 
         while(_isAttacking) 
         {
+            playerMovement.SetCanMove(false);
+
             // While the button is held and we have a target
             // Wait for the interval before the next hit
             await Task.Delay(attackIntervalMs);
@@ -80,6 +80,7 @@ public class PlayerHarvesting : MonoBehaviour
             if (targetHeap._health != null)
             {
                 targetHeap.AttackTriggerAnimation();
+                targetHeap.PlayParticlesDamage();
                 targetHeap._health?.TakeDamage(attackDamage);
             }
         }
@@ -108,6 +109,36 @@ public class PlayerHarvesting : MonoBehaviour
         else if (_garbageGroupType == GarbageObject.GarbageGroup.CopperOre|| _garbageGroupType == GarbageObject.GarbageGroup.IronOre|| _garbageGroupType == GarbageObject.GarbageGroup.GoldOre) { _miningAction.SetActive(true); }
     }
 
+    public bool CheckPickaxeTier()
+    {
+        if (targetHeap._garbageGroupType == GarbageObject.GarbageGroup.IronOre && pickaxeLevel.copperPick)
+        {
+            //_promptWarnings.SetPromptTextDisplay("You need the Iron Pickaxe for this");
+            Debug.Log("Iron Pick needed");
+            return false;
+        }
+        else if (targetHeap._garbageGroupType == GarbageObject.GarbageGroup.GoldOre && (pickaxeLevel.ironPick || pickaxeLevel.copperPick))
+        {
+            //_promptWarnings.SetPromptTextDisplay("You need the Gold Pickaxe for this");
+            Debug.Log("Gold Pick needed");
+            return false;
+        }
+
+        Debug.Log("Mine able for you");
+        return true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<TrashHeap_ResourceSpawner>())
+        {
+            if (!CheckPickaxeTier())
+            {
+                _promptWarnings.SetPromptTextDisplay("You need the Stronger Pickaxe for this");
+            }
+        }
+    }
+
     private void OnTriggerStay(Collider other)
     {
         // if (other.TryGetComponent<TrashHeap_ResourceSpawner>(out var heap))
@@ -124,7 +155,7 @@ public class PlayerHarvesting : MonoBehaviour
         {
             targetHeap = null;
             _isAttacking = false;
-            ResetActions(); // Stop animations if we walk away while clicking
+            //ResetActions(); // Stop animations if we walk away while clicking
 
             // playerAnimation.ForceIdleState();
             // playerAnimation.UpdateMovementAnimation(1, false);

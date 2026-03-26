@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -14,11 +15,18 @@ public class TowerController : MonoBehaviour
 
     [SerializeField] private TowerCategoryData_SO thisTowerUpgradeCards_SO; 
     [SerializeField] private TowerCategoryData_SO thisTowerDataCards_SO;
-    [SerializeField] private Transform attackLocation; 
+    [SerializeField] private Transform attackLocation;
+    [SerializeField] private GameObject radiusGuide;
     public Health TowerHealth;
+    public bool _showRadiusGuide = false;
 
     [SerializeField] private ParticleSystem _smokeVFX;
     [SerializeField] private bool _smokeVFXActive = false;
+
+    private void Start()
+    {
+        radiusGuide.SetActive(_showRadiusGuide);
+    }
 
     private void LateUpdate()
     {
@@ -48,6 +56,14 @@ public class TowerController : MonoBehaviour
 
     public void IncreaseTowerMainDamage() => EvtOnIncreaseTowerMainDamage?.Invoke();
 
+    public void ShowRadiusGuide()
+    {
+        radiusGuide.SetActive(true);
+
+        StartCoroutine(CO_HideRadiusGuide());
+    }
+
+
     public void DespawnCurrentTower()
     {
         // Search parent for TowerNodeManager
@@ -56,6 +72,7 @@ public class TowerController : MonoBehaviour
             nodeManager.DespawnTower();
         else
             Debug.LogWarning($"{name} could not find TowerNodeManager in parent hierarchy.");
+
     }
 
 
@@ -63,4 +80,15 @@ public class TowerController : MonoBehaviour
     public TowerCategoryData_SO GetTowerData() => thisTowerDataCards_SO;
 
     public Transform GetAttackLocation() => attackLocation;
+
+
+    IEnumerator CO_HideRadiusGuide()
+    {
+        yield return new WaitForSeconds(2f);
+        if (!_showRadiusGuide)
+        {
+            radiusGuide.SetActive(false);
+        }
+    }
+
 }

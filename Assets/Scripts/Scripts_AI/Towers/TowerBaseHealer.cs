@@ -139,19 +139,21 @@ public class TowerBaseHealer : MonoBehaviour
         if (_dropResourceReference.CopperHold >= currentCopperCost)
         {
             ApplyHeal(currentCopperCost, upgradeResourceType.Copper); // "Copper");
+            _promtWarnings.SetPromptTextDisplay("Base Fully Repaired Copper -" + currentCopperCost);
         }
         else if (_dropResourceReference.IronHold >= currentIronCost)
         {
             ApplyHeal(currentIronCost, upgradeResourceType.Iron);//"Iron");
+            _promtWarnings.SetPromptTextDisplay("Base Fully Repaired Iron -" + currentIronCost);
         }
         else if (_dropResourceReference.GoldHold >= currentGoldCost)
         {
             ApplyHeal(currentGoldCost, upgradeResourceType.Gold);//"Gold");
+            _promtWarnings.SetPromptTextDisplay("Base Fully Repaired Gold -" + currentGoldCost);
         }
-
-        if (_promtWarnings != null)
+        else
         {
-            _promtWarnings.SetPromptTextDisplay("Base Fully Repaired");
+            _promtWarnings.SetPromptTextDisplay("Cannot repair Base not enough resources ");
         }
     }
 

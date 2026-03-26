@@ -122,7 +122,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1288891533921860037}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.06289165, y: -0.807728, z: 0.21089046, w: -0.54694194}
+  m_LocalRotation: {x: -0.06289168, y: -0.807728, z: 0.21089056, w: -0.5469418}
   m_LocalPosition: {x: -3.3946078, y: 1.6219027, z: 1.2388034}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -360,6 +360,7 @@ GameObject:
   - component: {fileID: 5351168559459856149}
   - component: {fileID: 4211341926152261865}
   - component: {fileID: 2415299671023885601}
+  - component: {fileID: 8304438371472003070}
   m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
@@ -555,6 +556,9 @@ MonoBehaviour:
   cameraTransform: {fileID: 3986986069622755096}
   playerAnimation: {fileID: 3778112114396300799}
   speed: 5
+  currentSpeedMultiplier: 1
+  defaultSpeed: 1
+  SetSpeedMultiplier: 2
   jumpHeight: 2
   gravity: -19.6
   noclipSpeed: 30
@@ -588,17 +592,29 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1367724001468933626}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4d8130fcb20f6f42b042b9d98d70ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerGrab
   PlayerGrabPoint: {fileID: 2506867188676803050}
   IsPlayerCarryingObject: 0
-  PlayerAnimation: {fileID: 0}
+  PlayerAnimation: {fileID: 3778112114396300799}
   EvtOnGrab:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 4549943407503985007}
+        m_TargetAssemblyTypeName: InteractionManipulator, Assembly-CSharp
+        m_MethodName: _DisableInteraction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 4549943407503985007}
         m_TargetAssemblyTypeName: InteractionManipulator, Assembly-CSharp
         m_MethodName: _DisableInteraction
@@ -691,12 +707,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHarvesting
   playerAnimation: {fileID: 3778112114396300799}
+  playerMovement: {fileID: 1127985473742766121}
+  pickaxeLevel: {fileID: 8304438371472003070}
   _generalPlayerActions: {fileID: 8430694864698018182}
   _shovelingAction: {fileID: 7751857528735341437}
   _drillingAction: {fileID: 1885148647064198069}
   _miningAction: {fileID: 5241981013125544581}
   attackDamage: 1
   attackIntervalMs: 500
+  _promptWarnings: {fileID: 0}
   targetHeap: {fileID: 0}
   _garbageGroupType: 0
   _resourceManagerRefererce: {fileID: 0}
@@ -717,7 +736,23 @@ MonoBehaviour:
   _playerMovement: {fileID: 1127985473742766121}
   _playerUITarget: {fileID: 0}
   _canSwitchCameras: 1
-  _freeCam: 1
+  _freeCam: 0
+  _buildMenu: 0
+--- !u!114 &8304438371472003070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367724001468933626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8bc5bf6ba1265b44b999997cda05cca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PickaxeLevel
+  copperPick: 1
+  ironPick: 0
+  goldPick: 0
 --- !u!1 &1885148647064198069
 GameObject:
   m_ObjectHideFlags: 0
@@ -733,7 +768,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4565136075238660253
 Transform:
   m_ObjectHideFlags: 0
@@ -743,8 +778,8 @@ Transform:
   m_GameObject: {fileID: 1885148647064198069}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4860534815369591994}
@@ -837,7 +872,7 @@ Transform:
   m_GameObject: {fileID: 5241981013125544581}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1076,7 +1111,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2834524260260310997
 Transform:
   m_ObjectHideFlags: 0
@@ -1086,8 +1121,8 @@ Transform:
   m_GameObject: {fileID: 7751857528735341437}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3548901343108421386}
@@ -1618,15 +1653,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 2057e76430cf2ca4a8f732e698dcc627, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2057e76430cf2ca4a8f732e698dcc627, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2057e76430cf2ca4a8f732e698dcc627, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2057e76430cf2ca4a8f732e698dcc627, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1756,6 +1791,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 5491168190632769349, guid: 2057e76430cf2ca4a8f732e698dcc627, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a63e2c5cc1d798c4d838144ee38709ec, type: 2}
     - target: {fileID: 5866666021909216657, guid: 2057e76430cf2ca4a8f732e698dcc627, type: 3}
       propertyPath: m_Enabled
       value: 0

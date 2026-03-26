@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.VFX;
@@ -21,6 +22,7 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
     [SerializeField] private GameObject _canvasUI;
     [SerializeField] private GameObject _toRotateOnPlayer;
     [SerializeField] private Slider healthSlider;
+    [SerializeField] private ParticleSystem _oreDamageParticle;
 
     private PlayerController _playerController;
 
@@ -121,6 +123,15 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
         _highlightColor.SetVector4(GlowHLColorID, targetColor * intensity);
     }
 
+    public void PlayParticlesDamage()
+    {
+        _oreDamageParticle.Play();
+    }
+
+    public void StopParticlesDamage()
+    {
+        _oreDamageParticle.Stop();
+    }
     private void SetRandomized()
     {
         // Random.Range(int, int) max is EXCLUSIVE. 
@@ -150,8 +161,9 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
 
         if (_playerController != null && _canvasUI.gameObject.activeSelf)
         {
-            //_toRotateOnPlayer.transform.LookAt(_playerController.transform.position);
-            _toRotateOnPlayer.transform.Rotate(Vector3.up);
+            // _toRotateOnPlayer.transform.LookAt(_playerController.transform.position);
+            // _toRotateOnPlayer.transform.Rotate(Vector3.up);
+            _canvasUI.transform.LookAt(_playerController.GetComponentInChildren<CinemachineCamera>().transform.position);
         }
     }
 

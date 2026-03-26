@@ -64,8 +64,8 @@ Transform:
   m_GameObject: {fileID: 753219546813250907}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
+  m_LocalScale: {x: 4.5, y: 4.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 241686688540476198}
@@ -120,7 +120,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 6de7f585aa583ed44b9b0725e079d5ef, type: 3}
-  m_Color: {r: 0.57254905, g: 0.89411765, b: 0.87058824, a: 0.08627451}
+  m_Color: {r: 0.57254905, g: 0.89411765, b: 0.87058824, a: 0.05882353}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1343,7 +1343,7 @@ Transform:
   m_GameObject: {fileID: 5238072118473393652}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7025614, y: -0.080046766, z: 0.080046766, w: 0.7025614}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 15, y: 15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1399,7 +1399,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 0e1a6a9f47773b7478bea4aee1a1b64e, type: 3}
-  m_Color: {r: 0.57203984, g: 0.89433956, b: 0.8695296, a: 0.23529412}
+  m_Color: {r: 0.57203984, g: 0.89433956, b: 0.8695296, a: 0.05882353}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2048,6 +2048,7 @@ GameObject:
   - component: {fileID: 5818345394654817171}
   - component: {fileID: 427577870210762952}
   - component: {fileID: 8049907280991672423}
+  - component: {fileID: -2137968876210664105}
   m_Layer: 6
   m_Name: Freeze Tower
   m_TagString: Untagged
@@ -2115,7 +2116,9 @@ MonoBehaviour:
   thisTowerUpgradeCards_SO: {fileID: 11400000, guid: f89237371cb494948815dd4448584183, type: 2}
   thisTowerDataCards_SO: {fileID: 11400000, guid: c2e8f1e7f4a4c66419aa5108af78b6c1, type: 2}
   attackLocation: {fileID: 6117590976910574203}
+  radiusGuide: {fileID: 5238072118473393652}
   TowerHealth: {fileID: 9209285657085303806}
+  _showRadiusGuide: 1
   _smokeVFX: {fileID: 4315599059240833170}
   _smokeVFXActive: 0
 --- !u!114 &9209285657085303806
@@ -2150,6 +2153,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  BeforeDeath:
+    m_PersistentCalls:
+      m_Calls: []
   startSetHealth: 100
   _toBeDeleted: 1
   _damageClip: {fileID: 0}
@@ -2291,12 +2297,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TowerFreeze
   towerShop: {fileID: 0}
   range: 10
-  freezeDuration: 2
-  attackInterval: 5
   enemyLayer:
     serializedVersion: 2
     m_Bits: 1024
+  _currentTargets: []
+  freezeDuration: 2
+  attackInterval: 2
   _attackFreezeParticle: {fileID: 3467290137393212351}
+--- !u!114 &-2137968876210664105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7795377701471874775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06573271ba376664db1cbfb0b0d60960, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerDeathNotifier
+  spawners: []
+  health: {fileID: 9209285657085303806}
 --- !u!1 &7849389352835609314
 GameObject:
   m_ObjectHideFlags: 0
@@ -2598,7 +2619,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2003628781529242846, guid: f9d9793366789ae48a7e1b0692763acc, type: 3}
       propertyPath: lengthInSec
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2003628781529242846, guid: f9d9793366789ae48a7e1b0692763acc, type: 3}
       propertyPath: playOnAwake
@@ -2902,7 +2923,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4568399483955367455, guid: f9d9793366789ae48a7e1b0692763acc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4568399483955367455, guid: f9d9793366789ae48a7e1b0692763acc, type: 3}
       propertyPath: m_LocalPosition.z

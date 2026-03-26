@@ -17,6 +17,7 @@ public class Workbench_PickaxeUpgrade : MonoBehaviour
     [SerializeField] private Texture2D ironPick;
     [SerializeField] private Texture2D goldPick;
     [SerializeField] private TextMeshProUGUI upgradeText;
+    [SerializeField] private UI_PromtWarnings _promptWarnings;
     private Texture2D currentTexture;
     private Texture2D initialTexture;
     private bool playerInside = false;
@@ -58,6 +59,8 @@ public class Workbench_PickaxeUpgrade : MonoBehaviour
         {
             string message = "Not Enough ores:   Mithril";
             OnResourceShortage?.Invoke(message);
+            
+            _promptWarnings.SetPromptTextDisplay(message);
 
             Debug.Log("Missing Mithril");
         }
@@ -71,7 +74,7 @@ public class Workbench_PickaxeUpgrade : MonoBehaviour
             picklevel.copperPick = false;
             picklevel.ironPick = true;
             picklevel.goldPick = false;
-            addEnemies();
+            ChangeWaveSet(1);
         }
         else if (currentTexture == ironPick && picklevel.ironPick)
         {
@@ -79,6 +82,8 @@ public class Workbench_PickaxeUpgrade : MonoBehaviour
             picklevel.copperPick = false;
             picklevel.ironPick = false;
             picklevel.goldPick = true;
+            ChangeWaveSet(2);
+
         }
         else return;
 
@@ -86,11 +91,11 @@ public class Workbench_PickaxeUpgrade : MonoBehaviour
         Debug.Log(pickaxeRend.material.mainTexture);
     }
 
-    public void addEnemies()
+    public void ChangeWaveSet(int i)
     {
         foreach(Spawner spawnRef in spawners)
         {
-            spawnRef.wave.Add(ectoplasmWave);
+            spawnRef.GetNewSetOfWaves(i);
         }
     }
 
@@ -104,7 +109,11 @@ public class Workbench_PickaxeUpgrade : MonoBehaviour
             pickaxeRendTable.enabled = true;
 
           //  pickaxeRendTable.material.mainTexture = pickaxeRend.material.mainTexture;
-        }    
+        }
+        else if (other.GetComponentInChildren<PickaxeLevel>() != null)
+        {
+            picklevel = other.GetComponent<PickaxeLevel>();
+        }
     }
 
     private void OnTriggerExit(Collider other)
