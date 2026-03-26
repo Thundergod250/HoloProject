@@ -50,7 +50,8 @@ public class CompendiumManager : MonoBehaviour
 
         titleText.text = currentPage.pageTitle;
         healthText.text = currentPage.pageHealth.ToString();
-        titleText.text = currentPage.pageDamage.ToString();
+        damageText.text = currentPage.pageDamage.ToString();
+
         descriptionText.text = currentPage.pageDescription;
         displayImage.sprite = currentPage.pageImage;
     }
