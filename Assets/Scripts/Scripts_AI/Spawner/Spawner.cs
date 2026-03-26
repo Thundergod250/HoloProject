@@ -124,11 +124,6 @@ public class Spawner : MonoBehaviour
         StartCoroutine(spawnEnemy(activeWave.timeBetweenSpawn));
     }
 
-    public int GetWaveNumber()
-    {
-        return waveVar;
-    }
-
     public void SpawnEnemy(GameObject DebugEnemies)
     {
         GameObject newEnemy = Instantiate(DebugEnemies, transform.position, Quaternion.identity);
@@ -157,6 +152,8 @@ public class Spawner : MonoBehaviour
         {
             wave.AddRange(waveSet4);
         }
+
+        waveVar = 0;
     }
 
     public void RemoveTowerFromList(GameObject tower)

@@ -71,7 +71,7 @@ public class Workbench_PickaxeUpgrade : MonoBehaviour
             picklevel.copperPick = false;
             picklevel.ironPick = true;
             picklevel.goldPick = false;
-            addEnemies();
+            ChangeWaveSet(1);
         }
         else if (currentTexture == ironPick && picklevel.ironPick)
         {
@@ -79,6 +79,8 @@ public class Workbench_PickaxeUpgrade : MonoBehaviour
             picklevel.copperPick = false;
             picklevel.ironPick = false;
             picklevel.goldPick = true;
+            ChangeWaveSet(2);
+
         }
         else return;
 
@@ -86,11 +88,11 @@ public class Workbench_PickaxeUpgrade : MonoBehaviour
         Debug.Log(pickaxeRend.material.mainTexture);
     }
 
-    public void addEnemies()
+    public void ChangeWaveSet(int i)
     {
         foreach(Spawner spawnRef in spawners)
         {
-            spawnRef.wave.Add(ectoplasmWave);
+            spawnRef.GetNewSetOfWaves(i);
         }
     }
 
