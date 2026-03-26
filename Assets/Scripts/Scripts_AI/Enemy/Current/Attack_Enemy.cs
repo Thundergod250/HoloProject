@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class Attack_Enemy : MonoBehaviour
@@ -29,6 +30,7 @@ public class Attack_Enemy : MonoBehaviour
     [Header("Melee")]
     [SerializeField] private float attackSpeed;
     [SerializeField] private int damage;
+    [SerializeField] private bool onHitFX = false;
     private bool isAttacking = false;
 
     [Header("Attack Limit")]
@@ -64,12 +66,6 @@ public class Attack_Enemy : MonoBehaviour
             {
                 AttackType();
             }
-
-            if (target.GetComponent<Health>().GetCurrentHealth() <= 0)
-            {
-                Debug.Log("changing target");
-               // navigation_Enemy.TargetHasDied();
-            }
         }
     }
 
@@ -102,7 +98,8 @@ public class Attack_Enemy : MonoBehaviour
         {
             if (!isAttacking)
             {
-                animator.SetBool("isAttacking", true);
+                if (animator != null)
+                    animator.SetBool("isAttacking", true);
                 StartCoroutine(MeleeAttackSpeed());
             }
         }
@@ -123,6 +120,7 @@ public class Attack_Enemy : MonoBehaviour
         if (target != null)
         {
             target.GetComponent<Health>().TakeDamage(damage);
+            OnHitFX();
             hitCounter++;
         }
 
@@ -139,5 +137,32 @@ public class Attack_Enemy : MonoBehaviour
             animator.SetBool("isAttacking", false);
 
         navigation_Enemy.ChangeTarget();
+    }
+
+    public void OnHitFX()
+    {
+        if (!onHitFX) return;
+
+        StartCoroutine(DOTTower(target, 2f, 1f, 5));
+    }
+
+    public void EnableOnHit()
+    {
+        onHitFX = true;
+    }
+
+    public IEnumerator DOTTower(Transform dotTarget, float duration, float tickInterval, int dotDamage)
+    {
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            if (dotTarget == null) yield break;
+
+            dotTarget.GetComponent<Health>().TakeDamage(dotDamage);
+
+            yield return new WaitForSeconds(tickInterval);
+            elapsed += tickInterval;
+        }
     }
 }

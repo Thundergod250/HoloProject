@@ -11,9 +11,6 @@ public class Navigation_Enemy : MonoBehaviour
     [SerializeField] private TowerAndEnemy_Archetype target_Arch;
     [SerializeField] private Health helth;
     public LightingManager lightingManager;
-
-    [Header("Colliders")]
-    [SerializeField] private SphereCollider sphereCollider;
     private bool meleeTrigger = false;
 
     [Header("Navigation Target")]
@@ -171,7 +168,9 @@ public class Navigation_Enemy : MonoBehaviour
         Debug.Log("Removing Tower from list");
 
         StopCoroutine(attack_Enemy.MeleeAttackSpeed());
-        attack_Enemy.animator.SetBool("isAttacking", false);
+
+        if (attack_Enemy.animator != null)
+            attack_Enemy.animator.SetBool("isAttacking", false);
 
         targetsAcquired.Remove(tower);
         //currentTarget.GetComponent<Health>().Die();
@@ -193,7 +192,10 @@ public class Navigation_Enemy : MonoBehaviour
     public void ChangeTarget()
     {
         StopCoroutine(attack_Enemy.MeleeAttackSpeed());
-        attack_Enemy.animator.SetBool("isAttacking", false);
+
+        if (attack_Enemy.animator != null)
+            attack_Enemy.animator.SetBool("isAttacking", false);
+
         targetsAcquired.Remove(currentTarget);
 
         currentTarget = null;

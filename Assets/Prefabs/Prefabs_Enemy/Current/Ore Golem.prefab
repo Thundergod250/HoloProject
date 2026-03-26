@@ -241,6 +241,10 @@ PrefabInstance:
       value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 6149120422715163426, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
+      propertyPath: damage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6149120422715163426, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       propertyPath: gunBarrel
       value: 
       objectReference: {fileID: 0}
@@ -248,9 +252,13 @@ PrefabInstance:
       propertyPath: targeting
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6149120422715163426, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
+      propertyPath: attackSpeed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7279398973919942167, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       propertyPath: moveSpeed
-      value: 2.75
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 7279398973919942167, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       propertyPath: aggroRange
@@ -258,15 +266,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7279398973919942167, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       propertyPath: navMinDistance
-      value: 3
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 7279398973919942167, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       propertyPath: nearestDistance
       value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 7279398973919942167, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
+      propertyPath: meleeStopDistance
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7279398973919942167, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       propertyPath: defaultMovementSpeed
-      value: 2.75
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 7279398973919942167, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       propertyPath: wayPoints.Array.size
@@ -299,7 +311,7 @@ PrefabInstance:
     - target: {fileID: 8230038487409561773, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       propertyPath: _spawnPoint
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 6151864313662650379}
     - target: {fileID: 8230038487409561773, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       propertyPath: DropTable.Array.size
       value: 3
@@ -311,11 +323,11 @@ PrefabInstance:
     - target: {fileID: 8230038487409561773, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       propertyPath: 'DropTable.Array.data[1]'
       value: 
-      objectReference: {fileID: 7615055876997054336, guid: cfd64d205f17f3d4ea9a1022ce8482cc, type: 3}
+      objectReference: {fileID: 8078221279830555554, guid: 37f75c63c805463418410a6061440575, type: 3}
     - target: {fileID: 8230038487409561773, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       propertyPath: 'DropTable.Array.data[2]'
       value: 
-      objectReference: {fileID: 7615055876997054336, guid: cfd64d205f17f3d4ea9a1022ce8482cc, type: 3}
+      objectReference: {fileID: 8078221279830555554, guid: 31f66a7afc7ba384ca2fe87968ce8fc7, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 890133652181797668, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
@@ -328,9 +340,6 @@ PrefabInstance:
       addedObject: {fileID: 515886849150544785}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8027776502407471498, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
-      insertIndex: 4
-      addedObject: {fileID: 5466380721454438332}
-    - targetCorrespondingSourceObject: {fileID: 8027776502407471498, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       insertIndex: -1
       addedObject: {fileID: 517163809889145903}
   m_SourcePrefab: {fileID: 100100000, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
@@ -339,18 +348,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8027776502407471498, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
   m_PrefabInstance: {fileID: 5605373874809975901}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5466380721454438332
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2495607605548029399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d3596f0a5d41cc40851d3abc227e4db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Melee_Enemy
 --- !u!65 &517163809889145903
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -370,8 +367,13 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.6109257, y: 1.5, z: 1.9969044}
-  m_Center: {x: -0.3373356, y: 0.3197801, z: 0.0022745132}
+  m_Size: {x: 1.5254456, y: 1.4451102, z: 1.2474531}
+  m_Center: {x: 0.77148384, y: 0.5809229, z: 0.036676466}
+--- !u!4 &6151864313662650379 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1771469538606320726, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
+  m_PrefabInstance: {fileID: 5605373874809975901}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7833066553647931003 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2413627379401370150, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
