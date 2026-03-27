@@ -44,13 +44,16 @@ public class PlayerDayNightUI : MonoBehaviour
 
         // 3. Map to your vertical half-circle (-90 to 90 or 90 to 270)
         // For a "downward" arc starting from the side:
-        float startAngle = -90f; // Starting point (e.g., 9 o'clock)
-        float endAngle = 90f;    // Ending point (e.g., 3 o'clock)
+        //float startAngle = -90f; // Starting point (e.g., 9 o'clock)
+        //float endAngle = 90f;
+        
+        float startAngle = -180f; // Starting point (e.g., 12 o'clock)
+        float endAngle = 180f;    // Ending point (e.g., 12 o'clock)
 
         float targetZ = Mathf.Lerp(startAngle, endAngle, timePercent);
 
         // 4. Apply rotation
-        clockHandUIImage.transform.localRotation = Quaternion.Euler(0, 0, targetZ);
+        clockHandUIImage.transform.localRotation = Quaternion.Euler(0, 0, -targetZ);
     }
 
     private void DebugSliders(bool targetTime)
