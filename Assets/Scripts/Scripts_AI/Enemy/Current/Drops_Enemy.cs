@@ -22,6 +22,8 @@ public class Drops_Enemy : MonoBehaviour
             Destroy(tempLoot);
         }
 
+        Destroy(gameObject);
+
     }
 
     public void RemoveFromList()
