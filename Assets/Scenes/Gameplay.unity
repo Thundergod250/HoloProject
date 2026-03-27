@@ -1683,7 +1683,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 32
+  field of view: 60.000004
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1709,8 +1709,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 493890560}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 314, y: 200, z: 168}
+  m_LocalRotation: {x: 0.1547436, y: 0.53016174, z: -0.099111736, w: 0.8277439}
+  m_LocalPosition: {x: 285.96515, y: 34.900932, z: 236.13539}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14333,6 +14333,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 2415299671023885601, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: _freeCam
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2415299671023885601, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
       propertyPath: _camSwitcher
       value: 
       objectReference: {fileID: 780384743}
@@ -14340,6 +14344,10 @@ PrefabInstance:
       propertyPath: _playerUITarget
       value: 
       objectReference: {fileID: 1986892048}
+    - target: {fileID: 2415299671023885601, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+      propertyPath: _canSwitchCameras
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2878381358046898893, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 289.32
@@ -14408,31 +14416,31 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4797289088119219, guid: d243a37e12ba1eb47a5ba13f193d4765, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 314
+      value: 285.96515
       objectReference: {fileID: 0}
     - target: {fileID: 4797289088119219, guid: d243a37e12ba1eb47a5ba13f193d4765, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 200
+      value: 34.900932
       objectReference: {fileID: 0}
     - target: {fileID: 4797289088119219, guid: d243a37e12ba1eb47a5ba13f193d4765, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 168
+      value: 236.13539
       objectReference: {fileID: 0}
     - target: {fileID: 4797289088119219, guid: d243a37e12ba1eb47a5ba13f193d4765, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 0.8277439
       objectReference: {fileID: 0}
     - target: {fileID: 4797289088119219, guid: d243a37e12ba1eb47a5ba13f193d4765, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.7071068
+      value: 0.1547436
       objectReference: {fileID: 0}
     - target: {fileID: 4797289088119219, guid: d243a37e12ba1eb47a5ba13f193d4765, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.53016174
       objectReference: {fileID: 0}
     - target: {fileID: 4797289088119219, guid: d243a37e12ba1eb47a5ba13f193d4765, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.099111736
       objectReference: {fileID: 0}
     - target: {fileID: 4797289088119219, guid: d243a37e12ba1eb47a5ba13f193d4765, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -15326,23 +15334,23 @@ PrefabInstance:
     - target: {fileID: 8892429567609284227, guid: f754e1f36df3d2642bca472b580e1b36, type: 3}
       propertyPath: 'waveSet2.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: 011407d656a8d7c4db53689964e9f89d, type: 2}
+      objectReference: {fileID: 11400000, guid: 837de80441122904d8eab0963cdcbbff, type: 2}
     - target: {fileID: 8892429567609284227, guid: f754e1f36df3d2642bca472b580e1b36, type: 3}
       propertyPath: 'waveSet2.Array.data[1]'
       value: 
-      objectReference: {fileID: 11400000, guid: 011407d656a8d7c4db53689964e9f89d, type: 2}
+      objectReference: {fileID: 11400000, guid: c0b133a0efbf7654a9bcfde0f651b02e, type: 2}
     - target: {fileID: 8892429567609284227, guid: f754e1f36df3d2642bca472b580e1b36, type: 3}
       propertyPath: 'waveSet2.Array.data[2]'
       value: 
-      objectReference: {fileID: 11400000, guid: 011407d656a8d7c4db53689964e9f89d, type: 2}
+      objectReference: {fileID: 11400000, guid: d0e9de24c07872643b620b3b1056eaad, type: 2}
     - target: {fileID: 8892429567609284227, guid: f754e1f36df3d2642bca472b580e1b36, type: 3}
       propertyPath: 'waveSet2.Array.data[3]'
       value: 
-      objectReference: {fileID: 11400000, guid: 011407d656a8d7c4db53689964e9f89d, type: 2}
+      objectReference: {fileID: 11400000, guid: 142a8497b069f5040893a51ea72cd431, type: 2}
     - target: {fileID: 8892429567609284227, guid: f754e1f36df3d2642bca472b580e1b36, type: 3}
       propertyPath: 'waveSet2.Array.data[4]'
       value: 
-      objectReference: {fileID: 11400000, guid: 011407d656a8d7c4db53689964e9f89d, type: 2}
+      objectReference: {fileID: 11400000, guid: 93902f5bda59b364a8d23533819cba67, type: 2}
     - target: {fileID: 8892429567609284227, guid: f754e1f36df3d2642bca472b580e1b36, type: 3}
       propertyPath: 'wayPoints.Array.data[4]'
       value: 
@@ -15406,23 +15414,23 @@ PrefabInstance:
     - target: {fileID: 8992801533120583285, guid: f754e1f36df3d2642bca472b580e1b36, type: 3}
       propertyPath: 'waveSet2.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: 011407d656a8d7c4db53689964e9f89d, type: 2}
+      objectReference: {fileID: 11400000, guid: 837de80441122904d8eab0963cdcbbff, type: 2}
     - target: {fileID: 8992801533120583285, guid: f754e1f36df3d2642bca472b580e1b36, type: 3}
       propertyPath: 'waveSet2.Array.data[1]'
       value: 
-      objectReference: {fileID: 11400000, guid: 011407d656a8d7c4db53689964e9f89d, type: 2}
+      objectReference: {fileID: 11400000, guid: c0b133a0efbf7654a9bcfde0f651b02e, type: 2}
     - target: {fileID: 8992801533120583285, guid: f754e1f36df3d2642bca472b580e1b36, type: 3}
       propertyPath: 'waveSet2.Array.data[2]'
       value: 
-      objectReference: {fileID: 11400000, guid: 011407d656a8d7c4db53689964e9f89d, type: 2}
+      objectReference: {fileID: 11400000, guid: d0e9de24c07872643b620b3b1056eaad, type: 2}
     - target: {fileID: 8992801533120583285, guid: f754e1f36df3d2642bca472b580e1b36, type: 3}
       propertyPath: 'waveSet2.Array.data[3]'
       value: 
-      objectReference: {fileID: 11400000, guid: 011407d656a8d7c4db53689964e9f89d, type: 2}
+      objectReference: {fileID: 11400000, guid: 142a8497b069f5040893a51ea72cd431, type: 2}
     - target: {fileID: 8992801533120583285, guid: f754e1f36df3d2642bca472b580e1b36, type: 3}
       propertyPath: 'waveSet2.Array.data[4]'
       value: 
-      objectReference: {fileID: 11400000, guid: 011407d656a8d7c4db53689964e9f89d, type: 2}
+      objectReference: {fileID: 11400000, guid: 93902f5bda59b364a8d23533819cba67, type: 2}
     - target: {fileID: 8992801533120583285, guid: f754e1f36df3d2642bca472b580e1b36, type: 3}
       propertyPath: 'wayPoints.Array.data[5]'
       value: 
