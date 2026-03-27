@@ -8,6 +8,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private LightingManager lightingManager;
     [SerializeField] private UI_Caution cautionUI;
     [SerializeField] private UI_EnemyCounter enemyCounterUI;
+    [SerializeField] private DropResourceManager dropResourceManager;
 
     [Header("Spawner")]
     public List<WaveData> wave = new List<WaveData>();
@@ -74,6 +75,7 @@ public class Spawner : MonoBehaviour
             newEnemy.GetComponent<Navigation_Enemy>().wayPoints = wayPoints;
             newEnemy.GetComponent<Drops_Enemy>().parentSpawner = this;
             newEnemy.GetComponent<Navigation_Enemy>().lightingManager = lightingManager;
+            newEnemy.GetComponent<Drops_Enemy>()._dropResourceManager = dropResourceManager;
 
             enemyCounterUI.totalEnemies++;
             enemyCounterUI.UpdateEnemyCounter();
