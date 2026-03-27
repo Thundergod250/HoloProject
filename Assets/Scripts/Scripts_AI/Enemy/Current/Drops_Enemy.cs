@@ -1,5 +1,3 @@
-using Mono.Cecil;
-using System.Resources;
 using UnityEngine;
 
 public class Drops_Enemy : MonoBehaviour
