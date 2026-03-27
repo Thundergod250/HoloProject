@@ -47,8 +47,11 @@ public class PlayerDayNightUI : MonoBehaviour
         //float startAngle = -90f; // Starting point (e.g., 9 o'clock)
         //float endAngle = 90f;
         
-        float startAngle = -180f; // Starting point (e.g., 12 o'clock)
-        float endAngle = 180f;    // Ending point (e.g., 12 o'clock)
+        //float startAngle = -180f; // Starting point (e.g., 12 o'clock)
+        //float endAngle = 180f;    // Ending point (e.g., 12 o'clock)
+
+        float startAngle = 180f; // Starting point (e.g., 12 o'clock)
+        float endAngle = 540f;    // Ending point (e.g., 12 o'clock)
 
         float targetZ = Mathf.Lerp(startAngle, endAngle, timePercent);
 
