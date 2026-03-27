@@ -7,5 +7,6 @@ public class PageData : ScriptableObject
     public string pageDescription;
     public int pageHealth;
     public int pageDamage;
+    public string pageSpeedRange;
     public Sprite pageImage;
 }
