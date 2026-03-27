@@ -245,8 +245,7 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
         {
             rb.AddForce(Vector3.up * _upwardForce, ForceMode.Impulse);
         }
-        */
-       
+        */     
     }
 
     private IEnumerator DisableCollision(float timer, GameObject ore)

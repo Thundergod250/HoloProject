@@ -24,6 +24,7 @@ public class MineralObject : MonoBehaviour
         {
             PlayerHarvesting playerHarvest = other.GetComponent<PlayerHarvesting>();
             hasBeenCollected = true;
+            PickedUp();
 
             if (_pickupSoundClip!= null && AudioManager.Instance != null)
             {
