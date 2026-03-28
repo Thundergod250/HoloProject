@@ -2743,6 +2743,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NPC_HealthBarUI
   slider: {fileID: 72094346}
   helth: {fileID: 813815095}
+  _forceLookPlayer: 1
 --- !u!1001 &845403079
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14836,6 +14837,14 @@ PrefabInstance:
     - target: {fileID: 2786277418222463458, guid: 36b3fe317c2d49c46878917bd4cb3945, type: 3}
       propertyPath: m_Name
       value: Base Healing Trigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 5551959395255753938, guid: 36b3fe317c2d49c46878917bd4cb3945, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5551959395255753938, guid: 36b3fe317c2d49c46878917bd4cb3945, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7254254352515038838, guid: 36b3fe317c2d49c46878917bd4cb3945, type: 3}
       propertyPath: _baseHealth

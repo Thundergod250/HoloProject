@@ -1,9 +1,11 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TowerPrism : TowerOffensiveBase
 {
     public float connectionRange = 10f;
+    public int maxConnections = 3;
     public LayerMask towerLayer;
     public GameObject connectionPrefab;
     public Transform firePoint;
@@ -12,7 +14,6 @@ public class TowerPrism : TowerOffensiveBase
 
     void Start()
     {
-        // Start the repeating scan instead of using Update
         StartCoroutine(ScanForTowers());
     }
 
@@ -20,28 +21,41 @@ public class TowerPrism : TowerOffensiveBase
     {
         while (true)
         {
-            EstablishConnections();
-            // Wait for 0.2 seconds (5 scans per second)
+            if (connectedTowers.Count < maxConnections)
+            {
+                EstablishConnections();
+            }
             yield return new WaitForSeconds(0.2f);
         }
     }
 
     private void EstablishConnections()
     {
+        // 1. Get all nearby colliders
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, connectionRange, towerLayer);
 
-        foreach (var hit in hitColliders)
+        // 2. Sort them by distance (Nearest to Furthest)
+        var sortedTowers = hitColliders
+            .Where(hit => hit.gameObject != this.gameObject) // Skip self
+            .OrderBy(hit => Vector3.Distance(transform.position, hit.transform.position)) // Sort by distance
+            .ToList();
+
+        foreach (var hit in sortedTowers)
         {
-            if (hit.gameObject == this.gameObject) continue;
+            // If we filled our 3 slots during this loop, stop looking
+            if (connectedTowers.Count >= maxConnections) break;
 
             TowerPrism otherTower = hit.GetComponent<TowerPrism>();
 
-            // The list check here ensures we only spawn ONE beam per neighbor
+            // Check if we aren't already linked and if they have room
             if (otherTower != null && !connectedTowers.Contains(otherTower))
             {
-                CreateBeam(otherTower);
-                connectedTowers.Add(otherTower);
-                otherTower.RegisterExistingConnection(this);
+                if (otherTower.connectedTowers.Count < otherTower.maxConnections)
+                {
+                    CreateBeam(otherTower);
+                    connectedTowers.Add(otherTower);
+                    otherTower.RegisterExistingConnection(this);
+                }
             }
         }
     }
