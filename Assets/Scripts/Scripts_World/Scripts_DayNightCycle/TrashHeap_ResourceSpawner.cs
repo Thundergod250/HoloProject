@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,6 +22,7 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
     [SerializeField] private GameObject _toRotateOnPlayer;
     [SerializeField] private Slider healthSlider;
     [SerializeField] private ParticleSystem _oreDamageParticle;
+    [SerializeField] private ParticleSystem _oreDeathParticle;
 
     private PlayerController _playerController;
 
@@ -220,6 +220,8 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
                 //i = Random.Range(3, 6);
                 SpawnResource(5);
             }
+
+            _oreDeathParticle.Play();
         }
         else
         {

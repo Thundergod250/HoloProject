@@ -136,7 +136,7 @@ public class PlayerHarvesting : MonoBehaviour
         {
             if (!CheckPickaxeTier())
             {
-                _promptWarnings.SetPromptTextDisplay("You need the Stronger Pickaxe for this");
+                _promptWarnings.SetPromptTextDisplay("You need a better Pickaxe for this");
             }
         }
     }

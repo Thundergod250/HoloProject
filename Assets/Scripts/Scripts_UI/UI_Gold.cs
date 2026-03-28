@@ -35,13 +35,13 @@ public class UI_Gold : MonoBehaviour
         if (goldManager != null)
         {
             goldText.text = goldManager.PlayerGold.ToString();
-            copperResourceText.text = ": " + resourceManager.GetResourceType(upgradeResourceType.Copper).ToString();
+            copperResourceText.text = "C: " + resourceManager.GetResourceType(upgradeResourceType.Copper).ToString();
             UIOreChecker(upgradeResourceType.Copper);
-            ironResourceText.text = ": " + resourceManager.GetResourceType(upgradeResourceType.Iron).ToString();
+            ironResourceText.text = "I: " + resourceManager.GetResourceType(upgradeResourceType.Iron).ToString();
             UIOreChecker(upgradeResourceType.Iron);
-            mithrilResourceText.text = ": " + resourceManager.GetResourceType(upgradeResourceType.Mithril).ToString();
+            mithrilResourceText.text = "M: " + resourceManager.GetResourceType(upgradeResourceType.Mithril).ToString();
             UIOreChecker(upgradeResourceType.Mithril);
-            goldResourceText.text = ": " + resourceManager.GetResourceType(upgradeResourceType.Gold).ToString();
+            goldResourceText.text = "G: " + resourceManager.GetResourceType(upgradeResourceType.Gold).ToString();
             UIOreChecker(upgradeResourceType.Gold);
         }
         

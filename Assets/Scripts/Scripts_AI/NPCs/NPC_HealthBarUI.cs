@@ -6,6 +6,7 @@ public class NPC_HealthBarUI : MonoBehaviour
     public Slider slider;
     public Health helth;
     private Camera mainCamera;
+    [SerializeField] private bool _forceLookPlayer = true;
 
     private void Start()
     {
@@ -17,7 +18,10 @@ public class NPC_HealthBarUI : MonoBehaviour
     {
         if (mainCamera == null) return;
 
-        transform.LookAt(transform.position + mainCamera.transform.forward);
+        if (_forceLookPlayer)
+        {
+            transform.LookAt(transform.position + mainCamera.transform.forward);
+        }
     }
 
     public void SetMaxHealth(int maxHealth)
