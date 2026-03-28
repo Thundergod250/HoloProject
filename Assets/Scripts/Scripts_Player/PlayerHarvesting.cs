@@ -77,13 +77,15 @@ public class PlayerHarvesting : MonoBehaviour
             //playerAnimation.TriggerMiningLoop(false);
 
             // Damage Logic
-            if (targetHeap._health != null)
+            if (targetHeap._health != null && targetHeap != null)
             {
                 targetHeap.AttackTriggerAnimation();
                 targetHeap.PlayParticlesDamage();
                 targetHeap._health?.TakeDamage(attackDamage);
             }
+            
         }
+
         
         //targetHeap.StopTriggerAnimation();
         //_isAttacking = false;
@@ -134,7 +136,7 @@ public class PlayerHarvesting : MonoBehaviour
         {
             if (!CheckPickaxeTier())
             {
-                _promptWarnings.SetPromptTextDisplay("You need the Stronger Pickaxe for this");
+                _promptWarnings.SetPromptTextDisplay("You need a better Pickaxe for this");
             }
         }
     }
@@ -146,6 +148,13 @@ public class PlayerHarvesting : MonoBehaviour
         {
             targetHeap = other.GetComponent<TrashHeap_ResourceSpawner>();
             _garbageGroupType = targetHeap._garbageGroupType;
+        }
+
+        else if (targetHeap == null || !targetHeap.gameObject.activeSelf || targetHeap._health.GetCurrentHealth() <= 0)
+        {
+            _isAttacking = false;
+            playerMovement.SetCanMove(true);
+            targetHeap.StopParticlesDamage();
         }
     }
 

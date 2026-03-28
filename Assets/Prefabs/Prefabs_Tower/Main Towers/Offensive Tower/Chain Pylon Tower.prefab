@@ -985,8 +985,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14859af3159dfdd448013f3c76001a3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  maxHealth: 100
-  currentHealth: 100
+  maxHealth: 80
+  currentHealth: 80
   OnDamaged:
     m_PersistentCalls:
       m_Calls: []
@@ -1008,7 +1008,7 @@ MonoBehaviour:
   BeforeDeath:
     m_PersistentCalls:
       m_Calls: []
-  startSetHealth: 100
+  startSetHealth: 80
   _toBeDeleted: 1
   _damageClip: {fileID: 0}
   _hitFlash: {fileID: 0}
@@ -1152,7 +1152,7 @@ MonoBehaviour:
   dominoRadius: 5
   fireRate: 1
   shotDelay: 0.2
-  _damage: 5
+  _damage: 10
   enemyLayer:
     serializedVersion: 2
     m_Bits: 1024

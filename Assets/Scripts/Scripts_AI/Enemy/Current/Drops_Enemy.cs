@@ -5,6 +5,7 @@ public class Drops_Enemy : MonoBehaviour
     [Header("Refs")]
     public Spawner parentSpawner;
     [SerializeField] Transform _spawnPoint;
+    public DropResourceManager  _dropResourceManager;
 
     [Header("Drop Table")]
     [SerializeField] private GameObject[] DropTable;
@@ -16,13 +17,13 @@ public class Drops_Enemy : MonoBehaviour
         {
             GameObject tempLoot = Instantiate(DropTable[i], _spawnPoint.position, Quaternion.identity, null);
 
-            // Instantiate(DropTable[i], _spawnPoint.position, Quaternion.identity, null);
+            _dropResourceManager.AddingToResourceType(tempLoot.GetComponent<MineralObject>()._resourceType, tempLoot.GetComponent<MineralObject>().amountToAddInResource);
 
-            // _spawnPoint.SetParent(null); // Spawn it first then reject spawn point
-            // tempLoot.transform.position = this.transform.position;
+            Destroy(tempLoot);
         }
 
         Destroy(gameObject);
+
     }
 
     public void RemoveFromList()

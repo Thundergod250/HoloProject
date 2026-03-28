@@ -876,6 +876,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6094847423617437406, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
+      propertyPath: startSetHealth
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 6149120422715163426, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       propertyPath: bullet
       value: 
@@ -926,11 +930,6 @@ SphereCollider:
   m_CorrespondingSourceObject: {fileID: 141335097550303949, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
   m_PrefabInstance: {fileID: 141544844430608831}
   m_PrefabAsset: {fileID: 0}
---- !u!135 &1291566645158818000 stripped
-SphereCollider:
-  m_CorrespondingSourceObject: {fileID: 1160327043657513327, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
-  m_PrefabInstance: {fileID: 141544844430608831}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2344179790484022169 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2413627379401370150, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
@@ -969,7 +968,7 @@ MonoBehaviour:
   invisEffect: {fileID: 5338340435628429161}
   navigation_Enemy: {fileID: 7274228766308851624}
   aggroRangeCollider: {fileID: 213084196371314}
-  enemyBaseCollider: {fileID: 1291566645158818000}
+  enemyBaseCollider: {fileID: 0}
 --- !u!1001 &1084560600193848177
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class TowerFreeze : TowerOffensiveBase
 {
+    [Header("Tower Mode")]
+    [Tooltip("Check this to freeze everyone in range. Uncheck for single target.")]
+    public bool isAOE = false;
+
     [Header("Detection")]
     public float range = 10f;
     public LayerMask enemyLayer;
@@ -18,59 +22,69 @@ public class TowerFreeze : TowerOffensiveBase
 
     void Update()
     {
-        // 1. Always Scan
-        PerformScan();
+        // 1. Maintain the list of enemies currently in range
+        UpdateTargetList();
 
-        // 2. Try to Attack if we have targets and are not on cooldown
+        // 2. Fire if targets exist and we aren't reloading
         if (!_onCooldown && _currentTargets.Count > 0)
         {
-            _ = ExecuteFreezeAttack();
+            _ = ExecuteAttack();
         }
-        else if (_currentTargets[0] == null) { _currentTargets.Remove(_currentTargets[0]); }
     }
 
-    private void PerformScan()
+    private void UpdateTargetList()
     {
-        // _currentTargets.Clear();
         Collider[] hits = Physics.OverlapSphere(transform.position, range, enemyLayer);
+        List<Navigation_Enemy> enemiesThisFrame = new List<Navigation_Enemy>();
 
         foreach (var hit in hits)
         {
-            // Use GetComponentInParent in case the collider is on a child object
-            Navigation_Enemy em = hit.GetComponentInChildren<Navigation_Enemy>();
-            if (em != null && !_currentTargets.Contains(em))
+            // Use InParent if the script is on the root but collider is on a child
+            Navigation_Enemy navEnemy = hit.GetComponentInParent<Navigation_Enemy>();
+            if (navEnemy != null)
             {
-                _currentTargets.Add(em);
+                enemiesThisFrame.Add(navEnemy);
+                if (!_currentTargets.Contains(navEnemy))
+                {
+                    _currentTargets.Add(navEnemy);
+                }
             }
         }
+
+        _currentTargets.RemoveAll(enemy => enemy == null || !enemiesThisFrame.Contains(enemy));
     }
 
-    private async Task ExecuteFreezeAttack()
+    private async Task ExecuteAttack()
     {
         _onCooldown = true;
 
-        Debug.Log($"[Tower] Freezing {_currentTargets.Count} targets!");
+        if (_attackFreezeParticle != null) _attackFreezeParticle.Play();
 
-        _attackFreezeParticle.Play();
-
-        // Apply freeze to everyone currently in the list
-        foreach (var enemy in _currentTargets)
+        if (isAOE)
         {
-            // if (enemy != null) enemy.ApplyFreeze(freezeDuration);
-            // if (enemy != null) enemy.isMoving = false;
-
-            // SET Freez Here
-
+            // Freeze EVERYONE in the list
+            Debug.Log($"[Tower] AOE Freeze on {_currentTargets.Count} targets.");
+            foreach (var enemy in _currentTargets)
+            {
+                if (enemy != null) enemy.EnemyFrozen(freezeDuration);
+            }
+        }
+        else
+        {
+            if (_currentTargets.Count > 0 && _currentTargets[0] != null)
+            {
+                Debug.Log($"[Tower] Single Target Freeze on: {_currentTargets[0].name}");
+                _currentTargets[0].EnemyFrozen(freezeDuration);
+            }
         }
 
-        // Wait for the 5-second reload
         await Task.Delay((int)(attackInterval * 1000));
         _onCooldown = false;
     }
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.cyan;
+        Gizmos.color = isAOE ? Color.cyan : Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
     }
 }

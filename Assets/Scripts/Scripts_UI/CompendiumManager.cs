@@ -9,6 +9,7 @@ public class CompendiumManager : MonoBehaviour
     public TextMeshProUGUI titleText;
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI damageText;
+    public TextMeshProUGUI speedRangeText;
     public TextMeshProUGUI descriptionText;
     public Image displayImage;
 
@@ -51,6 +52,7 @@ public class CompendiumManager : MonoBehaviour
         titleText.text = currentPage.pageTitle;
         healthText.text = currentPage.pageHealth.ToString();
         damageText.text = currentPage.pageDamage.ToString();
+        speedRangeText.text = currentPage.pageSpeedRange;
 
         descriptionText.text = currentPage.pageDescription;
         displayImage.sprite = currentPage.pageImage;

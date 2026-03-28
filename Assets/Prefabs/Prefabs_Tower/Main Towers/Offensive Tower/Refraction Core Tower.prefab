@@ -1008,7 +1008,6 @@ GameObject:
   - component: {fileID: 7090967949583467492}
   - component: {fileID: 3676215705264287566}
   - component: {fileID: 1911738574720167987}
-  - component: {fileID: 6471933164807088856}
   - component: {fileID: 721818880151090668}
   - component: {fileID: 5012143656289452167}
   - component: {fileID: 5818345394654817171}
@@ -1063,7 +1062,7 @@ MonoBehaviour:
   EvtOnIncreaseTowerMainDamage:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6471933164807088856}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TowerPlasticCollector, Assembly-CSharp
         m_MethodName: 
         m_Mode: 1
@@ -1081,7 +1080,9 @@ MonoBehaviour:
   thisTowerUpgradeCards_SO: {fileID: 11400000, guid: f89237371cb494948815dd4448584183, type: 2}
   thisTowerDataCards_SO: {fileID: 11400000, guid: c2e8f1e7f4a4c66419aa5108af78b6c1, type: 2}
   attackLocation: {fileID: 6117590976910574203}
+  radiusGuide: {fileID: 1223686429063974335}
   TowerHealth: {fileID: 9209285657085303806}
+  _showRadiusGuide: 0
   _smokeVFX: {fileID: 3061887526519148753}
   _smokeVFXActive: 0
 --- !u!114 &9209285657085303806
@@ -1096,8 +1097,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14859af3159dfdd448013f3c76001a3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  maxHealth: 100
-  currentHealth: 100
+  maxHealth: 120
+  currentHealth: 120
   OnDamaged:
     m_PersistentCalls:
       m_Calls: []
@@ -1116,7 +1117,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  startSetHealth: 100
+  BeforeDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  startSetHealth: 120
   _toBeDeleted: 1
   _damageClip: {fileID: 0}
   _hitFlash: {fileID: 0}
@@ -1186,28 +1190,6 @@ MonoBehaviour:
   DoesNotHaveEnoughMoney:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &6471933164807088856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7795377701471874775}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 251e103df882a2c44b1e44ed5eb71036, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Tower_Offensive_SingleTarget
-  towerShop: {fileID: 0}
-  projectilePrefab: {fileID: 3886554215781179537, guid: 202b2e5002b10b04c8010ec378402ff3, type: 3}
-  firePoint: {fileID: 1932060655702197655}
-  projectileSpeed: 15
-  towerDamageLevel: 1
-  towerDamage: 20
-  towerFireRateLevel: 1
-  towerFireRate: 3
-  detectionRadius: 20
-  _onsightTowerAudioSource: {fileID: 0}
 --- !u!114 &721818880151090668
 MonoBehaviour:
   m_ObjectHideFlags: 0

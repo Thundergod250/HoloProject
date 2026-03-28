@@ -22,9 +22,9 @@ public class PlayerTeleporter : MonoBehaviour
         }
     }
 
-public void TeleportPlayerHere()
+    public void TeleportPlayerHere()
     {
-        _playercamManager.SwapCameraToRTSCamera(true);
+       // _playercamManager.SwapCameraToRTSCamera(true);
         _playerController.gameObject.transform.position = _spawnPoint.transform.position;
     }
 }

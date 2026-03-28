@@ -319,4 +319,18 @@ public class Navigation_Enemy : MonoBehaviour
     }
     #endregion
 
+    #region Freezer Resetter
+    public void EnemyFrozen(float targetTime)
+    {
+        StartCoroutine(CO_ResetSpeed(targetTime));
+    }
+
+    IEnumerator CO_ResetSpeed(float targetTime)
+    {
+        yield return new WaitForSeconds(targetTime);
+        navigation.speed = defaultMovementSpeed;
+    }
+
+
+    #endregion
 }

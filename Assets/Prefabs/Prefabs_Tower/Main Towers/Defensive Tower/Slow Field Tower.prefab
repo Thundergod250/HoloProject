@@ -786,7 +786,7 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
-      - m_Value: 35
+      - m_Value: 25
         m_Name: Size
         m_Overridden: 1
     m_Vector2f:
@@ -1079,8 +1079,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14859af3159dfdd448013f3c76001a3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  maxHealth: 100
-  currentHealth: 100
+  maxHealth: 50
+  currentHealth: 50
   OnDamaged:
     m_PersistentCalls:
       m_Calls: []
@@ -1090,7 +1090,7 @@ MonoBehaviour:
   BeforeDeath:
     m_PersistentCalls:
       m_Calls: []
-  startSetHealth: 100
+  startSetHealth: 50
   _toBeDeleted: 1
   _damageClip: {fileID: 0}
   _hitFlash: {fileID: 0}
