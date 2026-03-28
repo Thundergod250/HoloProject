@@ -610,7 +610,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -1261,9 +1261,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TowerPrism
   towerShop: {fileID: 0}
   connectionRange: 50
+  maxConnections: 3
   towerLayer:
     serializedVersion: 2
     m_Bits: 64
+  obstructionMask:
+    serializedVersion: 2
+    m_Bits: 0
   connectionPrefab: {fileID: 2034366257171201412, guid: ce1dace8619e97b4ca1861166fa87b2f, type: 3}
   firePoint: {fileID: 1932060655702197655}
 --- !u!114 &-5441766619979074610

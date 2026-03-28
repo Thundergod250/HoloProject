@@ -13,7 +13,6 @@ public class UI_TowerShop : MonoBehaviour
     [SerializeField] private GameObject _LeftPanel;
     [SerializeField] private GameObject _RightPanel;
 
-
     [Header("Shop Buttons")]
     [SerializeField] private GameObject towerUpgradesButton;
     [SerializeField] private GameObject offensiveButton;
@@ -55,15 +54,6 @@ public class UI_TowerShop : MonoBehaviour
         OpenOffensiveTowers();
     }
 
-    public void EnableTowerShopUI()
-    {
-        _LeftPanel.SetActive(true); 
-        _RightPanel.SetActive(true);
-
-        TrySpawnCategory(offensiveTowersData);
-    }
-
-
     public void SetUpgradeCategoryData(TowerCategoryData_SO data) => towerUpgradesData = data;
 
     // === Category entry points ===
@@ -81,6 +71,15 @@ public class UI_TowerShop : MonoBehaviour
         ClearCards();
         currentCategory = data;
         SpawnCards(data.cards);
+    }
+
+    public void EnableTowerShopUI()
+    {
+        _LeftPanel.SetActive(true);
+        _RightPanel.SetActive(true);
+
+        _statusPanelUI.SetActive(true);
+        TrySpawnCategory(offensiveTowersData);
     }
 
     public void OpenStatusPanel(TowerController controller)

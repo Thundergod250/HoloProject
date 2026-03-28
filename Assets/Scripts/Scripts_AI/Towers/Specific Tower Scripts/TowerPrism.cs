@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class TowerPrism : TowerOffensiveBase
 {
+    [Header("Settings")]
     public float connectionRange = 10f;
+    public bool useMaxLimit = true; // Toggle this for the behavior you want
     public int maxConnections = 3;
     public LayerMask towerLayer;
+    public LayerMask obstructionMask;
     public GameObject connectionPrefab;
     public Transform firePoint;
 
-    // This list tracks who WE have initiated a beam to
     private List<TowerPrism> connectedTowers = new List<TowerPrism>();
 
     void Start()
@@ -22,8 +24,8 @@ public class TowerPrism : TowerOffensiveBase
     {
         while (true)
         {
-            // Only search if WE have room for more beams
-            if (connectedTowers.Count < maxConnections)
+            // If limit is OFF, we always scan. If ON, only scan if we have room.
+            if (!useMaxLimit || connectedTowers.Count < maxConnections)
             {
                 EstablishConnections();
             }
@@ -35,7 +37,6 @@ public class TowerPrism : TowerOffensiveBase
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, connectionRange, towerLayer);
 
-        // Sort by distance so we grab the 3 closest neighbors first
         var sortedTowers = hitColliders
             .Select(hit => hit.GetComponent<TowerPrism>())
             .Where(t => t != null && t != this)
@@ -43,20 +44,44 @@ public class TowerPrism : TowerOffensiveBase
 
         foreach (var otherTower in sortedTowers)
         {
-            // STOP if this tower has reached its personal limit of 3
-            if (connectedTowers.Count >= maxConnections) break;
+            // The Logic Split:
+            if (useMaxLimit)
+            {
+                // If we are using the limit and we hit it, stop looking for more neighbors.
+                if (connectedTowers.Count >= maxConnections) break;
+            }
 
-            // Only connect if we haven't already sent a beam to this specific neighbor
             if (!connectedTowers.Contains(otherTower))
             {
-                CreateBeam(otherTower);
-                connectedTowers.Add(otherTower);
-
-                // We still notify them so they know we are linked, 
-                // but we don't check THEIR limit anymore.
-                otherTower.RegisterExistingConnection(this);
+                if (HasLineOfSight(otherTower))
+                {
+                    CreateBeam(otherTower);
+                    connectedTowers.Add(otherTower);
+                    otherTower.RegisterExistingConnection(this);
+                }
             }
         }
+    }
+
+    private bool HasLineOfSight(TowerPrism target)
+    {
+        Vector3 start = firePoint.position;
+        Vector3 end = target.firePoint.position;
+        Vector3 direction = end - start;
+        float distance = Vector3.Distance(start, end);
+
+        // Raycast logic that allows the "target" tower to be hit, 
+        // but blocks if a different tower or wall is in between.
+        if (Physics.Raycast(start, direction, out RaycastHit hit, distance, obstructionMask))
+        {
+            if (hit.collider.gameObject == target.gameObject)
+            {
+                return true; // Path is clear to the target
+            }
+            return false; // Path is blocked by something else
+        }
+
+        return true; // No obstructions hit at all
     }
 
     void CreateBeam(TowerPrism target)
