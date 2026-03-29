@@ -5,13 +5,15 @@ using System.Collections.Generic;
 public class TowerBaseHealer : MonoBehaviour
 {
     [SerializeField] private DropResourceManager _dropResourceReference;
-    [SerializeField] private GameObject _gameUIObject;
+    [SerializeField] private GameObject _gameTouchUIObject;
+    [SerializeField] private GameObject _gameHUDUIObject;
+    [SerializeField] public bool _enableTouchUI = false;
 
     [SerializeField] UI_PromtWarnings _promtWarnings;
 
-    [SerializeField] private TextMeshProUGUI _costDisplayTextCop;
-    [SerializeField] private TextMeshProUGUI _costDisplayTextIron;
-    [SerializeField] private TextMeshProUGUI _costDisplayTextGold;
+    [SerializeField] private TextMeshProUGUI[] _costDisplayTextCop;
+    [SerializeField] private TextMeshProUGUI[] _costDisplayTextIron;
+    [SerializeField] private TextMeshProUGUI[] _costDisplayTextGold;
 
     [SerializeField] private Health _baseHealth;
 
@@ -31,7 +33,7 @@ public class TowerBaseHealer : MonoBehaviour
     private void Update()
     {
         // If the UI is open, keep the text updated and check for input
-        if (_gameUIObject.activeSelf)
+        if (_gameTouchUIObject.activeSelf)
         {
             UpdateUI();
 
@@ -101,26 +103,19 @@ public class TowerBaseHealer : MonoBehaviour
     {
         float ratio = GetHealthRatio();
 
-        //if (ratio <= 0)
-        //{
-        //    //_costDisplayText.text = "Health is Full";
-        //    return;
-        //}
-
         // Calculate costs for display
         int copper = Mathf.CeilToInt(ratio * _copperHealNeed);
         int iron = Mathf.CeilToInt(ratio * _ironHealNeed);
         int gold = Mathf.CeilToInt(ratio * _goldHealNeed);
 
-        // Show the player what the current "Best Option" is
-        //if (_dropResourceReference.CopperHold >= copper)
-            _costDisplayTextCop.text = $"Repair Cost: {copper} Copper";
-        //else if (_dropResourceReference.IronHold >= iron)
-            _costDisplayTextIron.text = $"Repair Cost: {iron} Iron";
-        //else if (_dropResourceReference.GoldHold >= gold)
-            _costDisplayTextGold.text = $"Repair Cost: {gold} Gold";
-        //else
-            //_costDisplayText.text = "<color=red>Not Enough Resources</color>";
+        for (int i = 0; i < 4; i++)
+        {
+            _costDisplayTextCop[i].text = $"{copper}" + "\n" + " Copper";
+
+            _costDisplayTextIron[i].text = $"{iron}" + "\n" + " Iron";
+
+            _costDisplayTextGold[i].text = $"{gold}" + "\n" + " Gold";
+        }
     }
 
     // --- LOGIC BLOCK (For Action) ---
@@ -169,11 +164,27 @@ public class TowerBaseHealer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<PlayerController>()) _gameUIObject.SetActive(true);
+        if (other.GetComponent<PlayerController>()) 
+        {
+            if (_enableTouchUI)
+            {
+                _gameTouchUIObject.SetActive(true);
+                _gameHUDUIObject.SetActive(false);
+            }
+            else if (!_enableTouchUI)
+            {
+                _gameHUDUIObject.SetActive(true);
+                _gameTouchUIObject.SetActive(false);
+            }
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<PlayerController>()) _gameUIObject.SetActive(false);
+        if (other.GetComponent<PlayerController>())
+        {
+            _gameTouchUIObject.SetActive(false);
+            _gameHUDUIObject.SetActive(false);
+        }
     }
 }
