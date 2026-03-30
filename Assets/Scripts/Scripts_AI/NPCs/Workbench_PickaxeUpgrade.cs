@@ -136,6 +136,7 @@ public class Workbench_PickaxeUpgrade : MonoBehaviour
     {
         playerInside = false;
 
+        upgradeUI.SetActive(false);
         upgradeText.enabled = false;
         pickaxeRendTable.enabled = false;
     }
