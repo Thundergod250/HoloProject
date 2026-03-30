@@ -1,0 +1,58 @@
+using NUnit.Framework;
+using UnityEngine;
+using System.Collections.Generic;
+
+
+public class ReclamationManager : MonoBehaviour
+{
+    [Header("Refs")]
+    [SerializeField] private List<GameObject> unreclaimedBuildings = new List<GameObject>();
+    [SerializeField] private int reclaimedBuildings;
+
+    [Header("Boss")]
+    [SerializeField] private GameObject bOSS;
+
+    public static ReclamationManager Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+    }
+
+    private void Start()
+    {
+        bOSS.SetActive(false);
+    }
+
+    public void CheckIfAllReclaimed()
+    {
+        reclaimedBuildings = 0;
+
+        foreach (GameObject building in unreclaimedBuildings)
+        {
+            if(building.GetComponent<Workbench_Towers>().isReclaimed)
+            {
+                reclaimedBuildings += 1;
+                Debug.Log(reclaimedBuildings + " building/s are reclaimed!");
+            }
+        }
+
+        if(reclaimedBuildings == 7)
+        {
+            ActivateBoss();
+        }
+    }
+
+    public void ActivateBoss()
+    {
+        bOSS.SetActive(true);
+    }
+
+
+}

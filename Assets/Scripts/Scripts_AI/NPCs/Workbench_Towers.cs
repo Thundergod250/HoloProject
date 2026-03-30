@@ -30,7 +30,7 @@ public class Workbench_Towers : MonoBehaviour
     [Header("Reclaim Tower")]
     [SerializeField] private GameObject destroyedState;
     [SerializeField] private GameObject fixedState;
-    [SerializeField] private bool isReclaimed = false;
+    public bool isReclaimed = false;
     [SerializeField] private bool playerInside = false;
 
     private void Start()
@@ -52,6 +52,7 @@ public class Workbench_Towers : MonoBehaviour
             // UnlockTowers(towerUnlock, oreToSpendTower, towerUnlockCost);
 
             UnlockTowerSlots(oreToSpendTower, UnlockCost);
+            ReclamationManager.Instance.CheckIfAllReclaimed();
         }
     }
 
