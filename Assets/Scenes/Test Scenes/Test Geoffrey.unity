@@ -659,7 +659,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1084487385
 Transform:
   m_ObjectHideFlags: 0
@@ -10788,7 +10788,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2885107874707088861, guid: 0a8166670d920e042a45fd0336b3ce3d, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6294044080256880453, guid: 0a8166670d920e042a45fd0336b3ce3d, type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.0001
+      objectReference: {fileID: 0}
+    - target: {fileID: 6294044080256880453, guid: 0a8166670d920e042a45fd0336b3ce3d, type: 3}
+      propertyPath: ShapeModule.radiusThickness
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6294044080256880453, guid: 0a8166670d920e042a45fd0336b3ce3d, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6294044080256880453, guid: 0a8166670d920e042a45fd0336b3ce3d, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6294044080256880453, guid: 0a8166670d920e042a45fd0336b3ce3d, type: 3}
+      propertyPath: InheritVelocityModule.m_Curve.scalar
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7864802613404118163, guid: 0a8166670d920e042a45fd0336b3ce3d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11012,6 +11032,10 @@ PrefabInstance:
     - target: {fileID: 3918352811057232873, guid: 44d9beb6056a11b429a315823d2b8c9e, type: 3}
       propertyPath: m_Name
       value: Electrified (Particle System)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3918352811057232873, guid: 44d9beb6056a11b429a315823d2b8c9e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
