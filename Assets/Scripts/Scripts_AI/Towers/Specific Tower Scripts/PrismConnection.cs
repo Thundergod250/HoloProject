@@ -10,8 +10,6 @@ public class PrismConnection : MonoBehaviour
     private TowerPrism targetTower;
     private float rangeLimit;
 
-    public int instantDamage = 10;
-
     public void Setup(Transform start, Transform end, TowerPrism source, TowerPrism target, float range)
     {
         line = GetComponent<LineRenderer>();
@@ -21,10 +19,10 @@ public class PrismConnection : MonoBehaviour
         endPoint = end;
         sourceTower = source;
         targetTower = target;
-        rangeLimit = range; // Received from the Tower
+        rangeLimit = range;
 
-        line.useWorldSpace = true;
         line.positionCount = 2;
+        line.useWorldSpace = true;
         col.isTrigger = true;
         col.direction = 2; // Z-Axis
     }
@@ -39,7 +37,7 @@ public class PrismConnection : MonoBehaviour
 
         float currentDistance = Vector3.Distance(startPoint.position, endPoint.position);
 
-        // Break if we exceed the range passed from the Tower
+        // The beam only snaps if the player moves the tower out of range
         if (currentDistance > rangeLimit)
         {
             sourceTower.RemoveConnection(targetTower);
@@ -48,26 +46,16 @@ public class PrismConnection : MonoBehaviour
             return;
         }
 
-        // Visual Stretch
         line.SetPosition(0, startPoint.position);
         line.SetPosition(1, endPoint.position);
 
-        // Physical Stretch
         transform.position = (startPoint.position + endPoint.position) / 2f;
         transform.LookAt(endPoint);
         col.height = currentDistance;
     }
 
-    // Triggered only once when the enemy touches the beam
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<EnemyBase>())
-        {
-            EnemyBase enemyTarget = other.GetComponent<EnemyBase>();
-
-            enemyTarget._healthReference.TakeDamage(instantDamage);
-
-            Debug.Log("Enemy target Prismed : " + enemyTarget._healthReference.GetCurrentHealth());
-        }
+        Debug.Log("Prism Beam hit: " + other.name);
     }
 }
