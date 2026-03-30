@@ -88,6 +88,30 @@ public class Spawner : MonoBehaviour
        if(!testingMode) OnWaveFinishedSpawning();
     }
 
+    public void ForceOverrideWave(List<WaveData> newWave)
+    {
+        if (spawnRoutine != null)
+        {
+            StopCoroutine(spawnRoutine);
+        }
+
+        // Replace wave data
+        wave.Clear();
+        wave.AddRange(newWave);
+
+        waveVar = 0;
+        activeWave = wave[waveVar];
+
+        // Reset state properly
+        waveInProgress = true;
+
+        if (!cautionUI.hasWaveStart)
+            cautionUI.hasWaveStart = true;
+
+        // Start new spawning and TRACK it
+        spawnRoutine = StartCoroutine(spawnEnemy(activeWave.timeBetweenSpawn));
+    }
+
     void OnWaveFinishedSpawning()
     {
         waveInProgress = false;
@@ -126,7 +150,7 @@ public class Spawner : MonoBehaviour
         StartCoroutine(spawnEnemy(activeWave.timeBetweenSpawn));
     }
 
-    public void SpawnEnemy(GameObject DebugEnemies)
+    public void SpawnEnemy(GameObject DebugEnemies) //DebugMode Probably Buggy
     {
         GameObject newEnemy = Instantiate(DebugEnemies, transform.position, Quaternion.identity);
 

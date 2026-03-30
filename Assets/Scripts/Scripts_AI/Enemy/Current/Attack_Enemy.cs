@@ -34,7 +34,7 @@ public class Attack_Enemy : MonoBehaviour
     private bool isAttacking = false;
 
     [Header("Attack Limit")]
-    [SerializeField] private int maxHits = 3;
+    public int maxHits = 3;
     public List<GameObject> attackedTowers = new List<GameObject>();
 
     private int hitCounter = 0;

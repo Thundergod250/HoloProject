@@ -920,15 +920,13 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8027776502407471498, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       insertIndex: 7
       addedObject: {fileID: -5742557651117254683}
+    - targetCorrespondingSourceObject: {fileID: 8027776502407471498, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1090466965384095921}
   m_SourcePrefab: {fileID: 100100000, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
 --- !u!135 &213084196371314 stripped
 SphereCollider:
   m_CorrespondingSourceObject: {fileID: 141335097550303949, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
-  m_PrefabInstance: {fileID: 141544844430608831}
-  m_PrefabAsset: {fileID: 0}
---- !u!135 &1291566645158818000 stripped
-SphereCollider:
-  m_CorrespondingSourceObject: {fileID: 1160327043657513327, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
   m_PrefabInstance: {fileID: 141544844430608831}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &2344179790484022169 stripped
@@ -969,7 +967,28 @@ MonoBehaviour:
   invisEffect: {fileID: 5338340435628429161}
   navigation_Enemy: {fileID: 7274228766308851624}
   aggroRangeCollider: {fileID: 213084196371314}
-  enemyBaseCollider: {fileID: 1291566645158818000}
+  enemyBaseCollider: {fileID: 0}
+--- !u!65 &-1090466965384095921
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7971013428307994677}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1.0041583, z: 1}
+  m_Center: {x: 0, y: 1.0021297, z: 0}
 --- !u!1001 &1084560600193848177
 PrefabInstance:
   m_ObjectHideFlags: 0
