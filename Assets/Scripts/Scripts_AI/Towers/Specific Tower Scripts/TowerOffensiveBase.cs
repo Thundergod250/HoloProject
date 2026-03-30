@@ -25,8 +25,9 @@ public class TowerOffensiveBase : TowerBase
                 towerShop.OpenStatusPanel(node.towerController);
             }
         }
-        else
+        else if(node.towerController == null)
         {
+            towerShop.OpenOffensiveTowers();
             Debug.LogError("TowerNodeManager or TowerController is missing on this prefab!");
         }
     }

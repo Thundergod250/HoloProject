@@ -132,6 +132,12 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
     {
         _oreDamageParticle.Stop();
     }
+
+    public void PlayDeathParticles()
+    {
+        _oreDeathParticle.Play();
+    }
+
     private void SetRandomized()
     {
         // Random.Range(int, int) max is EXCLUSIVE. 
@@ -221,7 +227,7 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
                 SpawnResource(5);
             }
 
-            _oreDeathParticle.Play();
+            PlayDeathParticles();
         }
         else
         {

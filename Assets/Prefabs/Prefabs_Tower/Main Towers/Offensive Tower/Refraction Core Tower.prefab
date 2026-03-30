@@ -1007,12 +1007,12 @@ GameObject:
   - component: {fileID: 9209285657085303806}
   - component: {fileID: 7090967949583467492}
   - component: {fileID: 3676215705264287566}
+  - component: {fileID: 7461467991367902750}
   - component: {fileID: 1911738574720167987}
   - component: {fileID: 721818880151090668}
   - component: {fileID: 5012143656289452167}
   - component: {fileID: 5818345394654817171}
   - component: {fileID: 427577870210762952}
-  - component: {fileID: 7461467991367902750}
   - component: {fileID: -5441766619979074610}
   m_Layer: 6
   m_Name: Refraction Core Tower
@@ -1172,6 +1172,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &7461467991367902750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7795377701471874775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1a35235af1eb1f44a14d70e65f4a31d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerPrism
+  towerShop: {fileID: 0}
+  connectionRange: 50
+  useMaxLimit: 1
+  maxConnections: 3
+  towerLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  obstructionMask:
+    serializedVersion: 2
+    m_Bits: 0
+  connectionPrefab: {fileID: 2034366257171201412, guid: ce1dace8619e97b4ca1861166fa87b2f, type: 3}
+  firePoint: {fileID: 1932060655702197655}
 --- !u!114 &1911738574720167987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1247,29 +1271,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerAndEnemy_Archetype
   TargetOrFoundation: 0
---- !u!114 &7461467991367902750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7795377701471874775}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1a35235af1eb1f44a14d70e65f4a31d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TowerPrism
-  towerShop: {fileID: 0}
-  connectionRange: 50
-  maxConnections: 3
-  towerLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  obstructionMask:
-    serializedVersion: 2
-    m_Bits: 0
-  connectionPrefab: {fileID: 2034366257171201412, guid: ce1dace8619e97b4ca1861166fa87b2f, type: 3}
-  firePoint: {fileID: 1932060655702197655}
 --- !u!114 &-5441766619979074610
 MonoBehaviour:
   m_ObjectHideFlags: 0
