@@ -13,10 +13,17 @@ public class TowerOffensiveBase : TowerBase
     {
         if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()) return;
 
-        // 1. Get the Node Manager sitting on this tower's parent or self
-        TowerNodeManager node = GetComponentInParent<TowerNodeManager>();
+        if (towerShop == null)
+        {
+            Debug.Log("Did not find tower, tried again");
+            towerShop = Object.FindAnyObjectByType<UI_TowerShop>();
 
-        if (node != null && node.towerController != null)
+            Debug.Log("Found Tower " + towerShop);
+        }
+            // 1. Get the Node Manager sitting on this tower's parent or self
+            TowerNodeManager node = GetComponentInParent<TowerNodeManager>();
+
+        if (node.towerController != null)
         {
             if (towerShop != null)
             {
