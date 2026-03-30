@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Workbench_PickaxeUpgrade : MonoBehaviour
@@ -11,13 +10,17 @@ public class Workbench_PickaxeUpgrade : MonoBehaviour
     [SerializeField] private Renderer pickaxeRendTable;
     [SerializeField] private DropResourceManager gold;
     [SerializeField] private PickaxeLevel picklevel;
+    [SerializeField] private ParticleSystem _pickPoofUpgrade;
 
     [Header("Vars")]
     [SerializeField] private Texture2D copperPick;
     [SerializeField] private Texture2D ironPick;
     [SerializeField] private Texture2D goldPick;
     [SerializeField] private TextMeshProUGUI upgradeText;
+    [SerializeField] private GameObject upgradeUI;
     [SerializeField] private UI_PromtWarnings _promptWarnings;
+    [SerializeField] private int mithrilTargetUpgrade = 5;
+
     private Texture2D currentTexture;
     private Texture2D initialTexture;
     private bool playerInside = false;
@@ -32,6 +35,7 @@ public class Workbench_PickaxeUpgrade : MonoBehaviour
     private void Start()
     {
         upgradeText.enabled = false;
+        upgradeUI.SetActive(false);
         initialTexture = copperPick;
         pickaxeRend.material.mainTexture = initialTexture;
         currentTexture = copperPick;
@@ -50,9 +54,13 @@ public class Workbench_PickaxeUpgrade : MonoBehaviour
 
     public void UpgradePick()
     {
-        if (gold.MythrilHold >= 1)
+        if (gold.MythrilHold >= mithrilTargetUpgrade)
         {
-            gold.SpendingToResourceType(upgradeResourceType.Mithril, 1);
+            gold.SpendingToResourceType(upgradeResourceType.Mithril, mithrilTargetUpgrade);
+
+            NextTargetPickUpgrade(3); // so 15 Mithril from 5
+
+            _pickPoofUpgrade.Play();
             ChangePickTexture();
         }
         else
@@ -64,6 +72,11 @@ public class Workbench_PickaxeUpgrade : MonoBehaviour
 
             Debug.Log("Missing Mithril");
         }
+    }
+
+    public void NextTargetPickUpgrade(int targetMultiplier)
+    {
+        mithrilTargetUpgrade = targetMultiplier * mithrilTargetUpgrade;
     }
 
     public void ChangePickTexture()
@@ -105,6 +118,9 @@ public class Workbench_PickaxeUpgrade : MonoBehaviour
         {
             playerInside = true;
 
+            upgradeText.text = mithrilTargetUpgrade.ToString();
+
+            upgradeUI.SetActive(true);
             upgradeText.enabled = true;
             pickaxeRendTable.enabled = true;
 
