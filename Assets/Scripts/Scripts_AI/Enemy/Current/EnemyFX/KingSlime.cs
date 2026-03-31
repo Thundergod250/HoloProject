@@ -16,6 +16,7 @@ public class KingSlime : Effects_Enemy
     [SerializeField] private List<Transform> secondPath = new List<Transform>();
     [SerializeField] private List<Transform> thirdPath = new List<Transform>();
     [SerializeField] private List<Spawner> spawners = new List<Spawner>();
+    [SerializeField] private int dsiableTowerDuration;
 
     [Header("WaveData Override")]
     [SerializeField] public List<WaveData> waveOveridde = new List<WaveData>();
@@ -29,7 +30,7 @@ public class KingSlime : Effects_Enemy
         switchToSecond = false;
         switchToThird = false;
 
-        StartCoroutine(DisableTowerInRange(10));
+        StartCoroutine(DisableTowerInRange(10, dsiableTowerDuration));
     }
 
     public void HealthThresholdChangeLane()
@@ -75,7 +76,7 @@ public class KingSlime : Effects_Enemy
         }
     }
 
-    private IEnumerator DisableTowerInRange(int duration)
+    private IEnumerator DisableTowerInRange(int duration, int disablePower)
     {
         while (true)
         {
@@ -90,7 +91,7 @@ public class KingSlime : Effects_Enemy
 
             if (towerToDisable != null)
             {
-                towerToDisable.GetComponent<Tower_Offensive_SingleTarget>().DisableForSeconds(3);
+                towerToDisable.GetComponent<Tower_Offensive_SingleTarget>().DisableForSeconds(disablePower);
                 Debug.Log("Disabled tower: " + towerToDisable.name);
             }
         }
