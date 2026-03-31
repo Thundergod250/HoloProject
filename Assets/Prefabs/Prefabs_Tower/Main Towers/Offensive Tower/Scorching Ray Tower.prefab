@@ -1528,6 +1528,7 @@ GameObject:
   - component: {fileID: 157886178921894249}
   - component: {fileID: 9182693712244483474}
   - component: {fileID: -997636119922434644}
+  - component: {fileID: -7957125828379491826}
   m_Layer: 6
   m_Name: Scorching Ray Tower
   m_TagString: Untagged
@@ -1785,6 +1786,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TowerDeathNotifier
   spawners: []
   health: {fileID: 9209285657085303806, guid: eb206a7bbf6ea17439fd835da3163c35, type: 3}
+  bOSS: {fileID: 0}
+--- !u!114 &-7957125828379491826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7795377701471874775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2627a6c15788ed445bc6efbfb686f996, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerAndEnemy_Archetype
+  TargetOrFoundation: 3
 --- !u!1 &7849389352835609314
 GameObject:
   m_ObjectHideFlags: 0

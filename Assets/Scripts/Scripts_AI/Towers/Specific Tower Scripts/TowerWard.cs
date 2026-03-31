@@ -32,7 +32,10 @@ public class TowerWard : TowerOffensiveBase
 
             foreach (Collider col in enemiesInRange)
             {
-                EnemyMovement movement = col.GetComponent<EnemyMovement>();
+                Debug.Log(col.name + " entered ward");
+
+
+                Navigation_Enemy movement = col.GetComponentInParent<Navigation_Enemy>();
 
                 if (movement != null)
                 {
@@ -42,6 +45,11 @@ public class TowerWard : TowerOffensiveBase
                     if (_wardTowerAudioSource != null)
                     {
                         _wardTowerAudioSource.Play();
+                    }
+
+                    if(col.GetComponentInParent<Fairy>() != null)
+                    {
+                        col.GetComponentInParent<Fairy>().isInvis = false;
                     }
                 }
             }

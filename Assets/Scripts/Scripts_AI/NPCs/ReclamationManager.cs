@@ -14,6 +14,8 @@ public class ReclamationManager : MonoBehaviour
     [SerializeField] private GameObject bOSS;
     private bool bossSpawnReady;
 
+    public GameObject bossRef => bOSS;
+
     public static ReclamationManager Instance { get; private set; }
 
     private void Awake()
@@ -36,7 +38,7 @@ public class ReclamationManager : MonoBehaviour
 
     private void Update()
     {
-        if(lightManager._isNight && reclaimedBuildings == 7)
+        if(lightManager._isNight && reclaimedBuildings == 7 && bossSpawnReady)
         {
             if(bOSS != null)
             bOSS.SetActive(true);
@@ -61,7 +63,6 @@ public class ReclamationManager : MonoBehaviour
             ActivateBoss();
         }
     }
-
 
     public void ActivateBoss()
     {
