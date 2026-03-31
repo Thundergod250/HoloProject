@@ -25,6 +25,9 @@ public class Navigation_Enemy : MonoBehaviour
     [SerializeField] private float navMinDistance;
     [SerializeField] private float meleeStopDistance;
 
+    [SerializeField] private ParticleSystem _freezeParticles;
+    [SerializeField] private ParticleSystem _slowParticles;
+
     public NavMeshAgent navigation;
     public float defaultMovementSpeed;
     public bool isMoving;
@@ -328,8 +331,19 @@ public class Navigation_Enemy : MonoBehaviour
 
     IEnumerator CO_ResetSpeed(float targetTime)
     {
+        _freezeParticles.Play();
         yield return new WaitForSeconds(targetTime);
+        _freezeParticles.Stop();
         navigation.speed = defaultMovementSpeed;
+    }
+
+    public void PlaySlowVFX()
+    {
+        _slowParticles.Play();
+    }
+    public void StopSlowVFX()
+    {
+        _slowParticles.Stop();
     }
 
 
