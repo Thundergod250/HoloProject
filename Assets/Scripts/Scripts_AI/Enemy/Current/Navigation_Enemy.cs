@@ -28,6 +28,7 @@ public class Navigation_Enemy : MonoBehaviour
     public NavMeshAgent navigation;
     public float defaultMovementSpeed;
     public bool isMoving;
+    public bool isBoss;
     private bool dotActive;
 
     public Attack_Enemy AttackEnemyRef => attack_Enemy;
@@ -68,12 +69,12 @@ public class Navigation_Enemy : MonoBehaviour
             Debug.Log("Moving to Waypoint");
         }
 
-        if (!lightingManager._isNight && dotActive == false)
+        if (!lightingManager._isNight && dotActive == false && !isBoss)
         {
             MorningDOTEFfect();
             dotActive = true;
         }
-        else if (lightingManager._isNight && dotActive == true)
+        else if (lightingManager._isNight && dotActive == true && !isBoss)
         {
             StopCoroutine(DOTEffect());
             dotActive = false;

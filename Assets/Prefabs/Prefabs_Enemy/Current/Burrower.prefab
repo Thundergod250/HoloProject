@@ -82,7 +82,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6094847423617437406, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6094847423617437406, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -91,18 +91,26 @@ PrefabInstance:
     - target: {fileID: 6094847423617437406, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8511679627157090938}
+    - target: {fileID: 6094847423617437406, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 5817604605854067721}
     - target: {fileID: 6094847423617437406, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6094847423617437406, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: 
+      value: Die
+      objectReference: {fileID: 0}
+    - target: {fileID: 6094847423617437406, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: RemoveFromList
       objectReference: {fileID: 0}
     - target: {fileID: 6094847423617437406, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: Drops_Enemy, Assembly-CSharp
+      value: Health, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6094847423617437406, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -250,6 +258,28 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.5767761, z: 2.3011029}
   m_Center: {x: 0, y: 0.28838807, z: 1.5975429}
+--- !u!114 &5817604605854067721 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8230038487409561773, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
+  m_PrefabInstance: {fileID: 2488996317742546084}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5612282026560658734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1bb46619bac4494196d912ab3aafc93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Drops_Enemy
+--- !u!114 &8511679627157090938 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6094847423617437406, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
+  m_PrefabInstance: {fileID: 2488996317742546084}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5612282026560658734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14859af3159dfdd448013f3c76001a3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
 --- !u!1001 &5119749311156757427
 PrefabInstance:
   m_ObjectHideFlags: 0
