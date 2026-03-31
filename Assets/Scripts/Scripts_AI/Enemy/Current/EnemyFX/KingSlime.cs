@@ -32,13 +32,13 @@ public class KingSlime : Effects_Enemy
     {
         float currentHP = health.GetCurrentHealth();
 
-        if (currentHP <= 65 && !switchToSecond) // if at below 66, so 65
+        if (currentHP <= 350 && !switchToSecond) // if at or below 350
         {
             SetWaypoints(secondPath);
             switchToSecond = true;
         }
 
-        if (currentHP <= 33 && switchToSecond && !switchToThird) // if at below 31, so 30
+        if (currentHP <= 175 && switchToSecond && !switchToThird) // if at or below 175
         {
             SetWaypoints(thirdPath);
             switchToThird = true;
@@ -62,7 +62,7 @@ public class KingSlime : Effects_Enemy
     { 
         float currentHP = health.GetCurrentHealth();
 
-        if (currentHP <= 50)
+        if (currentHP <= 250)
         {
             foreach(Spawner p in spawners)
             {

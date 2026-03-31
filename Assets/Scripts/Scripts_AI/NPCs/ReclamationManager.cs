@@ -8,9 +8,11 @@ public class ReclamationManager : MonoBehaviour
     [Header("Refs")]
     [SerializeField] private List<GameObject> unreclaimedBuildings = new List<GameObject>();
     [SerializeField] private int reclaimedBuildings;
+    [SerializeField] private LightingManager lightManager;
 
     [Header("Boss")]
     [SerializeField] private GameObject bOSS;
+    private bool bossSpawnReady;
 
     public static ReclamationManager Instance { get; private set; }
 
@@ -28,6 +30,17 @@ public class ReclamationManager : MonoBehaviour
     private void Start()
     {
         bOSS.SetActive(false);
+        bossSpawnReady = false;
+        lightManager = FindAnyObjectByType<LightingManager>();
+    }
+
+    private void Update()
+    {
+        if(lightManager._isNight && reclaimedBuildings == 7)
+        {
+            if(bOSS != null)
+            bOSS.SetActive(true);
+        }
     }
 
     public void CheckIfAllReclaimed()
@@ -49,9 +62,10 @@ public class ReclamationManager : MonoBehaviour
         }
     }
 
+
     public void ActivateBoss()
     {
-        bOSS.SetActive(true);
+        bossSpawnReady = true;
     }
 
 
