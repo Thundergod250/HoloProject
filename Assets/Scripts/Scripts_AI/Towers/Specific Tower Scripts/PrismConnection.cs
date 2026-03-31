@@ -25,8 +25,12 @@ public class PrismConnection : MonoBehaviour
 
         line.positionCount = 2;
         line.useWorldSpace = true;
+
+        // Ensure collider is a trigger
         col.isTrigger = true;
-        col.direction = 2; // Z-Axis
+
+        // Reset the center of the box to 0 to ensure it scales outward from the middle
+        col.center = Vector3.zero;
     }
 
     void Update()
@@ -39,7 +43,6 @@ public class PrismConnection : MonoBehaviour
 
         float currentDistance = Vector3.Distance(startPoint.position, endPoint.position);
 
-        // The beam only snaps if the player moves the tower out of range
         if (currentDistance > rangeLimit)
         {
             sourceTower.RemoveConnection(targetTower);
@@ -48,23 +51,34 @@ public class PrismConnection : MonoBehaviour
             return;
         }
 
+        // 1. Update Line Visuals
         line.SetPosition(0, startPoint.position);
         line.SetPosition(1, endPoint.position);
 
+        // 2. Position the object in the exact center of the two towers
         transform.position = (startPoint.position + endPoint.position) / 2f;
+
+        // 3. Rotate to look at the target tower (Z-axis points forward)
         transform.LookAt(endPoint);
-        col.height = currentDistance;
+
+        // 4. Update the Box Collider Size
+        // We keep X and Y small (the thickness of the beam) and scale Z to the distance
+        col.size = new Vector3(0.5f, 0.5f, currentDistance);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponentInChildren<EnemyBase>())
+        // Try to find the Enemy component
+        EnemyBase enemy = other.GetComponentInChildren<EnemyBase>();
+
+        if (enemy != null)
         {
-            Health healthTarget = other.GetComponentInChildren<EnemyBase>()._healthReference;
-
-            healthTarget.TakeDamage(damageBeam);
+            Health healthTarget = enemy._healthReference;
+            if (healthTarget != null)
+            {
+                healthTarget.TakeDamage(damageBeam);
+                Debug.Log($"Prism Beam hit {other.name} for {damageBeam} damage!");
+            }
         }
-
-        Debug.Log("Prism Beam hit: " + other.name);
     }
 }
