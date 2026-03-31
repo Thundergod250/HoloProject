@@ -1188,6 +1188,7 @@ MonoBehaviour:
   connectionRange: 50
   useMaxLimit: 1
   maxConnections: 3
+  damageOnTouch: 15
   towerLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -1270,7 +1271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2627a6c15788ed445bc6efbfb686f996, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerAndEnemy_Archetype
-  TargetOrFoundation: 0
+  TargetOrFoundation: 3
 --- !u!114 &-5441766619979074610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1285,6 +1286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TowerDeathNotifier
   spawners: []
   health: {fileID: 9209285657085303806, guid: eb206a7bbf6ea17439fd835da3163c35, type: 3}
+  bOSS: {fileID: 0}
 --- !u!1 &7849389352835609314
 GameObject:
   m_ObjectHideFlags: 0

@@ -52,7 +52,7 @@ public class Navigation_Enemy : MonoBehaviour
         }
         else
         {
-            navigation.stoppingDistance = navMinDistance;
+           // navigation.stoppingDistance = navMinDistance;
         }
     }
 
@@ -239,7 +239,7 @@ public class Navigation_Enemy : MonoBehaviour
         // Near current waypoint go NEXT
         if (!navigation.pathPending && navigation.remainingDistance <= navigation.stoppingDistance)
         {
-            AdvanceWaypoint();
+            AdvanceWaypoint(); 
         }
     }
 

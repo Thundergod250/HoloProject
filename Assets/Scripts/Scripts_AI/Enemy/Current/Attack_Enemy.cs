@@ -93,6 +93,8 @@ public class Attack_Enemy : MonoBehaviour
             rb.linearVelocity = direction * 40f;
 
             Destroy(proj, 2f);
+
+            hitCounter++;
         }
         else if (targeting == Targeting.Melee)
         {

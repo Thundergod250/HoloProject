@@ -26,6 +26,7 @@ public class Spawner : MonoBehaviour
 
     [Header("Var Safe to Adjust")]
     [SerializeField] private bool testingMode;
+    [SerializeField] private Transform spawnpoint;
 
     [Header("Waypoints")]
     [SerializeField] private List<Transform> wayPoints = new List<Transform>();
@@ -70,7 +71,7 @@ public class Spawner : MonoBehaviour
     {
         for (int i = 0; i < activeWave.EnemiesInWaves.Length; i++)
         {
-            GameObject newEnemy = Instantiate(activeWave.EnemiesInWaves[i], transform.position, Quaternion.identity);
+            GameObject newEnemy = Instantiate(activeWave.EnemiesInWaves[i], spawnpoint.transform.position, Quaternion.identity);
 
             newEnemy.GetComponent<Navigation_Enemy>().wayPoints = wayPoints;
             newEnemy.GetComponent<Drops_Enemy>().parentSpawner = this;
@@ -152,7 +153,7 @@ public class Spawner : MonoBehaviour
 
     public void SpawnEnemy(GameObject DebugEnemies) //DebugMode Probably Buggy
     {
-        GameObject newEnemy = Instantiate(DebugEnemies, transform.position, Quaternion.identity);
+        GameObject newEnemy = Instantiate(DebugEnemies, spawnpoint.transform.position, Quaternion.identity);
 
         newEnemy.GetComponent<Navigation_Enemy>().wayPoints = wayPoints;
     }
