@@ -7,12 +7,13 @@ using UnityEngine;
 public class KingSlimeAggroRange : MonoBehaviour
 {
     public int debuffTimer;
-    private List<GameObject> towersInRange = new List<GameObject>();
+    [SerializeField] private List<GameObject> towersInRange = new List<GameObject>();
 
 
     private void Start()
     {
         StartCoroutine(DisableTowerInRange(10, debuffTimer));
+        towersInRange.Clear();
     }
     private IEnumerator DisableTowerInRange(int duration, int disablePower)
     {
