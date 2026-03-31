@@ -19,6 +19,8 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
 
     [SerializeField] public Health _health;
     [SerializeField] private GameObject _canvasUI;
+    [SerializeField] private GameObject _notAbleToMineUI;
+
     [SerializeField] private GameObject _toRotateOnPlayer;
     [SerializeField] private Slider healthSlider;
     [SerializeField] private ParticleSystem _oreDamageParticle;
@@ -136,6 +138,11 @@ public class TrashHeap_ResourceSpawner : MonoBehaviour
     public void PlayDeathParticles()
     {
         _oreDeathParticle.Play();
+    }
+
+    public void EnableDisableNotAbleMineUI(bool setBoolean)
+    {
+        _notAbleToMineUI.SetActive(!setBoolean);
     }
 
     private void SetRandomized()

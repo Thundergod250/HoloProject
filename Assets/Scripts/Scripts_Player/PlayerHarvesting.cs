@@ -134,7 +134,7 @@ public class PlayerHarvesting : MonoBehaviour
     {
         if (other.GetComponent<TrashHeap_ResourceSpawner>())
         {
-            if (!CheckPickaxeTier())
+            if (CheckPickaxeTier() == false)
             {
                 _promptWarnings.SetPromptTextDisplay("You need a better Pickaxe for this");
             }
@@ -148,6 +148,8 @@ public class PlayerHarvesting : MonoBehaviour
         {
             targetHeap = other.GetComponent<TrashHeap_ResourceSpawner>();
             _garbageGroupType = targetHeap._garbageGroupType;
+
+            targetHeap.EnableDisableNotAbleMineUI(CheckPickaxeTier());
         }
 
         else if (targetHeap == null || !targetHeap.gameObject.activeSelf || targetHeap._health.GetCurrentHealth() <= 0)
