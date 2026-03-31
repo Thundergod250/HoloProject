@@ -1,6 +1,8 @@
 using NUnit.Framework;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class KingSlime : Effects_Enemy
@@ -18,7 +20,7 @@ public class KingSlime : Effects_Enemy
     [Header("WaveData Override")]
     [SerializeField] public List<WaveData> waveOveridde = new List<WaveData>();
 
-
+    private List<GameObject> towersInRange = new List<GameObject>();
     private bool switchToSecond;
     private bool switchToThird;
 
@@ -26,6 +28,8 @@ public class KingSlime : Effects_Enemy
     {
         switchToSecond = false;
         switchToThird = false;
+
+        StartCoroutine(DisableTowerInRange(10));
     }
 
     public void HealthThresholdChangeLane()
@@ -68,6 +72,49 @@ public class KingSlime : Effects_Enemy
             {
                 p.ForceOverrideWave(waveOveridde);
             }
+        }
+    }
+
+    private IEnumerator DisableTowerInRange(int duration)
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(duration);
+
+            if (towersInRange.Count == 0)
+                continue; 
+
+            int randomIndex = Random.Range(0, towersInRange.Count);
+
+            GameObject towerToDisable = towersInRange[randomIndex];
+
+            if (towerToDisable != null)
+            {
+                towerToDisable.GetComponent<Tower_Offensive_SingleTarget>().DisableForSeconds(3);
+                Debug.Log("Disabled tower: " + towerToDisable.name);
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.GetComponent<Tower_Offensive_SingleTarget>() != null)
+        {
+            if (!towersInRange.Contains(other.gameObject))
+            {
+                towersInRange.Add(other.gameObject);
+                Debug.Log("Tower added: " + other.gameObject.name);
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        // Remove tower if it leaves the trigger
+        if (other.GetComponent<Tower_Offensive_SingleTarget>() != null)
+        {
+            towersInRange.Remove(other.gameObject);
+            Debug.Log("Tower removed: " + other.gameObject.name);
         }
     }
 }
