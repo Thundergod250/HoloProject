@@ -156,7 +156,7 @@ public class PlayerHarvesting : MonoBehaviour
         {
             _isAttacking = false;
             playerMovement.SetCanMove(true);
-            targetHeap.StopParticlesDamage();
+            targetHeap?.StopParticlesDamage();
         }
     }
 

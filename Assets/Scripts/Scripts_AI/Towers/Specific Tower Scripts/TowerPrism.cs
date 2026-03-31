@@ -8,6 +8,7 @@ public class TowerPrism : TowerOffensiveBase
     public float connectionRange = 10f;
     public bool useMaxLimit = true; // Toggle this for the behavior you want
     public int maxConnections = 3;
+    public int damageOnTouch = 15;
     public LayerMask towerLayer;
     public LayerMask obstructionMask;
     public GameObject connectionPrefab;
@@ -88,7 +89,7 @@ public class TowerPrism : TowerOffensiveBase
     {
         GameObject beamObj = Instantiate(connectionPrefab, firePoint.position, Quaternion.identity);
         PrismConnection connection = beamObj.GetComponent<PrismConnection>();
-        connection.Setup(this.firePoint, target.firePoint, this, target, connectionRange);
+        connection.Setup(this.firePoint, target.firePoint, this, target, connectionRange, damageOnTouch);
     }
 
     public void RegisterExistingConnection(TowerPrism tower)

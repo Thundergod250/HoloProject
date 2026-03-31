@@ -2194,7 +2194,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8927348945784087462}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.027552499, y: 0.7065699, z: 0.7065697, w: -0.0275525}
+  m_LocalRotation: {x: 0.027551278, y: 0.70656985, z: 0.70656985, w: -0.027551278}
   m_LocalPosition: {x: 297.43, y: 32.007866, z: 248.35}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
@@ -2254,9 +2254,11 @@ MonoBehaviour:
   oreImageNum: 0
   oreToSpendTowerImage: {fileID: 3534251594946142890}
   oreCostText: {fileID: 8397325470600219408}
-  UnlockCost: 0
+  UnlockCost: 5
   towerUnlock: all
-  towerNodes: []
+  towerNodes:
+  - {fileID: 0}
+  - {fileID: 0}
   destroyedState: {fileID: 6012565928813580404}
   fixedState: {fileID: 1609325795203700293}
   isReclaimed: 0

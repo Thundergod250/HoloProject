@@ -57,8 +57,8 @@ public class Workbench_PickaxeUpgrade : MonoBehaviour
         if (gold.MythrilHold >= mithrilTargetUpgrade)
         {
             gold.SpendingToResourceType(upgradeResourceType.Mithril, mithrilTargetUpgrade);
-
-            NextTargetPickUpgrade(3); // so 15 Mithril from 5
+            upgradeText.text = mithrilTargetUpgrade.ToString();
+            NextTargetPickUpgrade(3); // so 20 Mithril from 5
 
             _pickPoofUpgrade.Play();
             ChangePickTexture();
@@ -117,8 +117,6 @@ public class Workbench_PickaxeUpgrade : MonoBehaviour
         if (other.GetComponent<PlayerController>() != null)
         {
             playerInside = true;
-
-            upgradeText.text = mithrilTargetUpgrade.ToString();
 
             upgradeUI.SetActive(true);
             upgradeText.enabled = true;
