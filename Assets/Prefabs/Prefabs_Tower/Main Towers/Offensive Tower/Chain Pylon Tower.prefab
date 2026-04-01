@@ -1153,13 +1153,13 @@ MonoBehaviour:
   fireRate: 1
   shotDelay: 0.2
   _damage: 10
+  _totalChainHits: 5
   enemyLayer:
     serializedVersion: 2
     m_Bits: 1024
   lineRenderer: {fileID: 7833161949718217152}
   firePoint: {fileID: 1932060655702197655}
-  _hitHistory: []
-  _totalChainHits: 5
+  _chainTowerAudioSource: {fileID: 1233140931781432943}
 --- !u!120 &7833161949718217152
 LineRenderer:
   serializedVersion: 3
@@ -1281,7 +1281,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -8816322064180875079, guid: bc5124350760381448a927c2f524b811, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: fe973b114ff09bb4c9893659874db89a, type: 3}
+  m_Resource: {fileID: 8300000, guid: 85efd3a0846b84a4a8251284f136fe08, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 2

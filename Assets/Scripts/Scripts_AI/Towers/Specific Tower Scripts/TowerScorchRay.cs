@@ -18,6 +18,7 @@ public class TowerScorchRay : TowerOffensiveBase
 
     
     [SerializeField] protected VisualEffect _fireParticles;
+    [SerializeField] protected AudioSource _scorchRaySource;
 
     // List handles "No Limit" enemies for the Scorch Damage
     private List<EnemyBase> _enemiesInDamageZone = new List<EnemyBase>();
@@ -30,7 +31,7 @@ public class TowerScorchRay : TowerOffensiveBase
         }
 
         _fireParticles.Stop();
-
+        _scorchRaySource.Stop();
         _ = DamageLoop();
     }
 
@@ -134,11 +135,12 @@ public class TowerScorchRay : TowerOffensiveBase
         if (_enemiesInDamageZone.Count > 0)
         {
             _fireParticles.Play();
-            
+            _scorchRaySource.Play();
         }
         else if(_enemiesInDamageZone.Count<= 0)
         {
             _fireParticles.Stop();
+            _scorchRaySource.Stop();
         }
     }
 

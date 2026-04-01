@@ -20,6 +20,8 @@ public class TowerChainPylon : TowerOffensiveBase
     private GameObject[] _hitHistory = new GameObject[3];
     private bool _isDrawing;
 
+    [SerializeField] private AudioSource _chainTowerAudioSource;
+
     void Update()
     {
         if (Time.time >= _nextFireTime)
@@ -72,6 +74,12 @@ public class TowerChainPylon : TowerOffensiveBase
             for (int i = 0; i < _hitHistory.Length; i++) _hitHistory[i] = null;
 
             GameObject currentTarget = startEnemy;
+
+            if (_chainTowerAudioSource != null)
+            {
+                _chainTowerAudioSource.Play();
+            }
+
 
             for (int hitCount = 0; hitCount < _totalChainHits; hitCount++)
             {
