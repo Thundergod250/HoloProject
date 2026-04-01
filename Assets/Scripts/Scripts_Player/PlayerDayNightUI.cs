@@ -19,6 +19,8 @@ public class PlayerDayNightUI : MonoBehaviour
     [SerializeField] private GameObject clockHandUIImage;
     float targetZ = 0;
 
+    [SerializeField] private bool _useCountdown = true;
+
     private void Start()
     {
         dayStatusTextUGUI.gameObject.SetActive(false);
@@ -46,9 +48,6 @@ public class PlayerDayNightUI : MonoBehaviour
         // For a "downward" arc starting from the side:
         //float startAngle = -90f; // Starting point (e.g., 9 o'clock)
         //float endAngle = 90f;
-        
-        //float startAngle = -180f; // Starting point (e.g., 12 o'clock)
-        //float endAngle = 180f;    // Ending point (e.g., 12 o'clock)
 
         float startAngle = 180f; // Starting point (e.g., 12 o'clock)
         float endAngle = 540f;    // Ending point (e.g., 12 o'clock)
@@ -82,6 +81,11 @@ public class PlayerDayNightUI : MonoBehaviour
         }
     }
 
+
+    public void SetClockDisplayAsCountdown(bool targetClock)
+    {
+        _useCountdown = targetClock;
+    }
 
     private void ChangeDayNightUI()
     {
@@ -117,9 +121,36 @@ public class PlayerDayNightUI : MonoBehaviour
         if (lightingManager != null)
         {
             dayNightSlider.value = lightingManager.GetTimeOfDay();
-            // timeTextUGUI.text = lightingManager.GetTimeOfDay().ToString();
-            timeTextUGUI.text = lightingManager.GetFormattedTime();
+
+            if (_useCountdown)
+            {
+                timeTextUGUI.text = GetCountdownTime();
+            }
+            else
+            {
+                // Use your existing logic from LightingManager
+                timeTextUGUI.text = lightingManager.GetFormattedTime();
+            }
         }
+    }
+
+    private string GetCountdownTime()
+    {
+        float currentTime = lightingManager.GetTimeOfDay();
+        float maxTime = 240f;
+
+        // Calculate how much time is left in the day
+        float timeRemaining = Mathf.Max(0, maxTime - currentTime);
+
+        // Calculate minutes and seconds
+        // Mathf.FloorToInt(65 / 60) = 1 minute
+        int minutes = Mathf.FloorToInt(timeRemaining / 60f);
+
+        // 65 % 60 = 5 seconds
+        int seconds = Mathf.FloorToInt(timeRemaining % 60f);
+
+        // Formats it to "0:00" style
+        return string.Format("{0}:{1:00}", minutes, seconds);
     }
 
 }
