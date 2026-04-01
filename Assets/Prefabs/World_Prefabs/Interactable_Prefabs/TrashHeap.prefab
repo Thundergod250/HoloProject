@@ -575,12 +575,12 @@ MonoBehaviour:
   CopperPropHLName: CopperHLColor
   IronPropHLName: IronHLColor
   GoldPropHLName: GoldHLColor
-  CopperColor: {r: 0.7490196, g: 0.13609204, b: 0.031372566, a: 1}
+  CopperColor: {r: 0.645283, g: 0.09520569, b: 0, a: 1}
   IronColor: {r: 0.4039216, g: 0.65882355, b: 0.80392164, a: 1}
   GoldColor: {r: 0.78867924, g: 0.6301696, b: 0.20088992, a: 1}
-  CopperHLColor: {r: 0.7490196, g: 0.1585667, b: 0.031372566, a: 1}
-  IronHLColor: {r: 0.40491986, g: 0.6577145, b: 0.8037735, a: 1}
-  GoldHLColor: {r: 0.78823537, g: 0.6313726, b: 0.20000002, a: 1}
+  CopperHLColor: {r: 0.4113207, g: 0.071924925, b: 0, a: 1}
+  IronHLColor: {r: 0.26160905, g: 0.5301544, b: 0.6830188, a: 1}
+  GoldHLColor: {r: 0.6377357, g: 0.5097073, b: 0.15762901, a: 1}
   _oreMaterials:
   - {fileID: 2100000, guid: 3d6311a5be71a254b9eb0d260134b630, type: 2}
   - {fileID: 2100000, guid: 2896197302ff52f44b1c73be4de78c89, type: 2}
@@ -1296,8 +1296,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2896848728865413610}
-  - {fileID: 7613110499938274780}
   - {fileID: 3807503771783527709}
+  - {fileID: 7613110499938274780}
   - {fileID: 8905129215255904066}
   - {fileID: 8913566827713724831}
   - {fileID: 4152682907438864671}
@@ -1599,7 +1599,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7613110499938274780
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1616,7 +1616,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.105, y: 2.8749}
+  m_AnchoredPosition: {x: 0.108, y: 2.846}
   m_SizeDelta: {x: 0.28, y: 0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4920738181110803570
@@ -1640,15 +1640,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4037736, g: 0.29090896, b: 0, a: 1}
+  m_Color: {r: 0.7254902, g: 0.5529412, b: 0.3254902, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

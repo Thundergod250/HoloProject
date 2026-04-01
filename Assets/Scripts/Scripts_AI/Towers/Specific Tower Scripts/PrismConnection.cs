@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PrismConnection : MonoBehaviour
@@ -8,8 +9,14 @@ public class PrismConnection : MonoBehaviour
     private Transform endPoint;
     private TowerPrism sourceTower;
     private TowerPrism targetTower;
+
+    [Header("Combat Settings")]
+    public float damageInterval = 1f; // Time between damage ticks
     private int damageBeam;
     private float rangeLimit;
+
+    // Initialize the dictionary here so it is never null
+    private Dictionary<Health, float> enemyCooldowns = new Dictionary<Health, float>();
 
     public void Setup(Transform start, Transform end, TowerPrism source, TowerPrism target, float range, int damage)
     {
@@ -25,11 +32,7 @@ public class PrismConnection : MonoBehaviour
 
         line.positionCount = 2;
         line.useWorldSpace = true;
-
-        // Ensure collider is a trigger
         col.isTrigger = true;
-
-        // Reset the center of the box to 0 to ensure it scales outward from the middle
         col.center = Vector3.zero;
     }
 
@@ -51,34 +54,47 @@ public class PrismConnection : MonoBehaviour
             return;
         }
 
-        // 1. Update Line Visuals
         line.SetPosition(0, startPoint.position);
         line.SetPosition(1, endPoint.position);
 
-        // 2. Position the object in the exact center of the two towers
         transform.position = (startPoint.position + endPoint.position) / 2f;
-
-        // 3. Rotate to look at the target tower (Z-axis points forward)
         transform.LookAt(endPoint);
 
-        // 4. Update the Box Collider Size
-        // We keep X and Y small (the thickness of the beam) and scale Z to the distance
+        // Size the BoxCollider (X and Y are the width/height of the beam)
         col.size = new Vector3(0.5f, 0.5f, currentDistance);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        // Try to find the Enemy component
+        // Find the enemy component
         EnemyBase enemy = other.GetComponentInChildren<EnemyBase>();
 
-        if (enemy != null)
+        if (enemy != null && enemy._healthReference != null)
         {
-            Health healthTarget = enemy._healthReference;
-            if (healthTarget != null)
+            Health targetHealth = enemy._healthReference;
+
+            // CHECK COOLDOWN: 
+            // If the enemy isn't in the dictionary, OR the current time has passed their next tick...
+            if (!enemyCooldowns.ContainsKey(targetHealth) || Time.time >= enemyCooldowns[targetHealth])
             {
-                healthTarget.TakeDamage(damageBeam);
-                Debug.Log($"Prism Beam hit {other.name} for {damageBeam} damage!");
+                // 1. Deal the damage
+                targetHealth.TakeDamage(damageBeam);
+
+                // 2. Set the next allowed time for THIS specific enemy
+                enemyCooldowns[targetHealth] = Time.time + damageInterval;
+
+                Debug.Log($"{other.name} hit! Next tick in {damageInterval}s");
             }
         }
     }
+
+    private void OnDestroy()
+    {
+        // Clean up the dictionary when the beam is destroyed
+        if (enemyCooldowns != null)
+        {
+            enemyCooldowns.Clear();
+        }
+    }
+
 }
