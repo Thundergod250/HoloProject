@@ -44,16 +44,16 @@ public class CameraManager : MonoBehaviour
     {
         if (movement != null)
         {
-            if (!playerCamActive)
+            if (playerCamActive)
             {
                 EnableRTSCamera();
-                playerCamActive = true;
+                playerCamActive = false;
                 movement.SetCanMove(false);
             }
-            else if (playerCamActive)
+            else if(!playerCamActive)
             {
                 DisableRTSCamera();
-                playerCamActive = false;
+                playerCamActive = true;
                 movement.SetCanMove(true);
             }
         }
