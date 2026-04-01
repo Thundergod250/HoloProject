@@ -18,6 +18,7 @@ public class KingSlime : Effects_Enemy
     [SerializeField] private List<Transform> thirdPath = new List<Transform>();
     [SerializeField] private List<Spawner> spawners = new List<Spawner>();
     [SerializeField] private int dsiableTowerDuration;
+    [SerializeField] private GameObject invisSmoke;
 
     [Header("WaveData Override")]
     [SerializeField] public List<WaveData> waveOveridde = new List<WaveData>();
@@ -27,6 +28,8 @@ public class KingSlime : Effects_Enemy
 
     private void Start()
     {
+        invisSmoke.SetActive(false);
+
         switchToSecond = false;
         switchToThird = false;
 
@@ -47,6 +50,16 @@ public class KingSlime : Effects_Enemy
         {
             SetWaypoints(thirdPath);
             switchToThird = true;
+        }
+    }
+
+    public void InvisHpThreshold()
+    {
+        float currentHP = health.GetCurrentHealth();
+
+        if (currentHP <= 350 && !switchToSecond) // if at or below 350
+        {
+            invisSmoke.SetActive(true);
         }
     }
 
