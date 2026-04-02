@@ -5,13 +5,12 @@ public class Burrower : Effects_Enemy
     [Header("InField FX")]
     public bool burrowed;
     public GameObject aboveGround;
-    public GameObject underGround;
     private bool lastBurrowState;
 
     [Header("Refs")]
     [SerializeField] private Navigation_Enemy navigation_Enemy;
     [SerializeField] private SphereCollider aggroRangeCollider;
-    [SerializeField] private SphereCollider enemyBaseCollider;
+    [SerializeField] private BoxCollider enemyBaseCollider;
     private int lastHealth;
 
     private void Start()
@@ -41,8 +40,7 @@ public class Burrower : Effects_Enemy
             aggroRangeCollider.enabled = false;
             enemyBaseCollider.enabled = false;
 
-            aboveGround.SetActive(false);
-            underGround.SetActive(true);
+            aboveGround.transform.position = new Vector3(aboveGround.transform.position.x, -0.5f, aboveGround.transform.position.z);
 
             backToBurrowed(); 
         }
@@ -51,8 +49,9 @@ public class Burrower : Effects_Enemy
             aggroRangeCollider.enabled = true;
             enemyBaseCollider.enabled = true;
 
+            aboveGround.transform.position = new Vector3(aboveGround.transform.position.x, 0f, aboveGround.transform.position.z);
+
             aboveGround.SetActive(true);
-            underGround.SetActive(false);
         }
     }
 

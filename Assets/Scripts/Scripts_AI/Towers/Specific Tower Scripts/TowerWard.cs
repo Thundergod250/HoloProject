@@ -1,5 +1,6 @@
-using UnityEngine;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
+using UnityEngine;
 
 public class TowerWard : TowerOffensiveBase
 {
@@ -47,9 +48,16 @@ public class TowerWard : TowerOffensiveBase
                         _wardTowerAudioSource.Play();
                     }
 
-                    if(col.GetComponentInParent<Fairy>() != null)
+                    if(col.GetComponentInParent<Fairy>() != null || col.GetComponentInParent<KingSlime>() != null)
                     {
+                        if (col.GetComponentInParent<Fairy>() != null)
                         col.GetComponentInParent<Fairy>().isInvis = false;
+
+                        if(col.GetComponentInParent<KingSlime>() != null)
+                        {
+                            col.GetComponentInParent<KingSlime>().isWarded = true;
+
+                        }
                     }
                 }
             }

@@ -20,6 +20,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 509385576791314846, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 597537550238519837, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -245,10 +249,9 @@ MonoBehaviour:
   enemyFX: 1
   burrowed: 0
   aboveGround: {fileID: 3373428262182483840}
-  underGround: {fileID: 5461855959401996002}
   navigation_Enemy: {fileID: 5156390925888121523}
   aggroRangeCollider: {fileID: 2557111597122932329}
-  enemyBaseCollider: {fileID: 0}
+  enemyBaseCollider: {fileID: 7000987383660261577}
 --- !u!65 &7000987383660261577
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -350,7 +353,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8729c863e02ab6d4583b769d161e56c8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -363,11 +366,6 @@ PrefabInstance:
 --- !u!4 &4649889245856646232 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8729c863e02ab6d4583b769d161e56c8, type: 3}
-  m_PrefabInstance: {fileID: 5119749311156757427}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5461855959401996002 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8729c863e02ab6d4583b769d161e56c8, type: 3}
   m_PrefabInstance: {fileID: 5119749311156757427}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6449243695387811723
