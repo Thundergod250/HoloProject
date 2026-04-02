@@ -50,7 +50,7 @@ public class TowerCardManager : MonoBehaviour, IPoolable
     
     public void OnDescriptionButtonClicked()
     {
-        if (!_enableDescription) // true
+        if (!_enableDescription)
         {
             _descriptionHolderObj.SetActive(true);
             _hideUnHideImages[1].gameObject.SetActive(true);
