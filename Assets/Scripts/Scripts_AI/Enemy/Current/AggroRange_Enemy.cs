@@ -8,6 +8,9 @@ public class AggroRange_Enemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!enabled)
+            return;
+
         if (other.GetComponent<TowerBase>() != null && other.GetComponent<TowerBase>() != other.GetComponent<TowerBigBase>())
         {
             if (other.GetComponent<Health>().GetCurrentHealth() != 0)
@@ -19,7 +22,7 @@ public class AggroRange_Enemy : MonoBehaviour
                         return;
                     }
 
-                    Debug.Log("Add Tower to List");
+                    Debug.Log(this.name + " Add Tower to List");
                     navigation_enemy.targetsAcquired.Add(other.gameObject);
                 }
             }
