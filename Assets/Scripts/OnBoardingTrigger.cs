@@ -43,12 +43,13 @@ public class OnBoardingTrigger : MonoBehaviour
 
             if (!_hasBeenTriggered || _retriggerable)
             {
-                TriggerTutorialGuide();
-            }
+                if (_lightingManager != null && _setSpecificGuide == tutorialGuides.DayNight)
+                {
+                    _lightingManager.StartDayNightTimer();
+                    Debug.Log("Tutorial Triggered Light Timer");
+                }
 
-            else if (_lightingManager != null)
-            {
-                _lightingManager.StartDayNightTimer();
+                TriggerTutorialGuide();
             }
         }
     }
