@@ -36,6 +36,7 @@ public class LightingManager : MonoBehaviour
     private int _lastAssignedIndex = -1; // Tracks the last HDRI we triggered
     private bool hasSavedToday = false;
 
+    [SerializeField] protected bool _timerStarted = true;
     public int GetTimeOfDay()
     {
         return (int)_timeOfDay;
@@ -56,7 +57,7 @@ public class LightingManager : MonoBehaviour
         if (_lightPreset == null) return;
 
         // Time logic
-        if (Application.isPlaying)
+        if (Application.isPlaying && _timerStarted)
         {
             _timeOfDay += Time.deltaTime;
             _timeOfDay %= _maxTimeOfDay;
@@ -132,6 +133,8 @@ public class LightingManager : MonoBehaviour
             _isNight = true;
         }
     }
+
+    public void StartDayNightTimer() {_timerStarted = true;}
 
     public string GetFormattedTime()
     {
