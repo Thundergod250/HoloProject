@@ -1932,9 +1932,9 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.1
   far clip plane: 1000
-  field of view: 60.000004
+  field of view: 32
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1960,8 +1960,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 493890560}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1547436, y: 0.53016174, z: -0.099111736, w: 0.8277439}
-  m_LocalPosition: {x: 245.04512, y: 8.230932, z: 68.95539}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 314, y: 200, z: 168}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5369,6 +5369,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 388694a40e50ff84799de0badd5337a3, type: 3}
   m_PrefabInstance: {fileID: 1271458302}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1276200811 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 493567666392378721, guid: b7abbefe10bc8544e8703ddb1282f6bd, type: 3}
+  m_PrefabInstance: {fileID: 8241545293349589851}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eb4d6bc9b7644f48986156df0fb0212, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ReclamationManager
 --- !u!114 &1280921023 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7678866184720998170, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
@@ -11963,6 +11974,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1288891533921860037, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
   m_PrefabInstance: {fileID: 3688964133521184811}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3688964133521184817 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7105097894132256999, guid: 52a526849c15e264aa57058b2e10504a, type: 3}
+  m_PrefabInstance: {fileID: 3688964133521184811}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3688964133521184812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b5d7c088409d9a40b7b09aa707777f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineOrbitalFollow
 --- !u!1001 &3908992148010667853
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11973,31 +11995,31 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4797289088119219, guid: d243a37e12ba1eb47a5ba13f193d4765, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 245.04512
+      value: 314
       objectReference: {fileID: 0}
     - target: {fileID: 4797289088119219, guid: d243a37e12ba1eb47a5ba13f193d4765, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.230932
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 4797289088119219, guid: d243a37e12ba1eb47a5ba13f193d4765, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 68.95539
+      value: 168
       objectReference: {fileID: 0}
     - target: {fileID: 4797289088119219, guid: d243a37e12ba1eb47a5ba13f193d4765, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8277439
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 4797289088119219, guid: d243a37e12ba1eb47a5ba13f193d4765, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.1547436
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 4797289088119219, guid: d243a37e12ba1eb47a5ba13f193d4765, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.53016174
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4797289088119219, guid: d243a37e12ba1eb47a5ba13f193d4765, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.099111736
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4797289088119219, guid: d243a37e12ba1eb47a5ba13f193d4765, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -12161,6 +12183,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1075615591}
+    - target: {fileID: 1676264741896440356, guid: 2768831ef1ca0cb46bdb587e9b9a6560, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1276200811}
+    - target: {fileID: 1676264741896440356, guid: 2768831ef1ca0cb46bdb587e9b9a6560, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DebugBossSpawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676264741896440356, guid: 2768831ef1ca0cb46bdb587e9b9a6560, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ReclamationManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676264741896440356, guid: 2768831ef1ca0cb46bdb587e9b9a6560, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2078925173775003760, guid: 2768831ef1ca0cb46bdb587e9b9a6560, type: 3}
       propertyPath: _playerGameObject
       value: 
@@ -12560,6 +12598,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 493567666392378721, guid: b7abbefe10bc8544e8703ddb1282f6bd, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 3688964133521184817}
+    - target: {fileID: 493567666392378721, guid: b7abbefe10bc8544e8703ddb1282f6bd, type: 3}
       propertyPath: bOSS
       value: 
       objectReference: {fileID: 1622950955}
@@ -12567,6 +12609,18 @@ PrefabInstance:
       propertyPath: lightManager
       value: 
       objectReference: {fileID: 435587768}
+    - target: {fileID: 493567666392378721, guid: b7abbefe10bc8544e8703ddb1282f6bd, type: 3}
+      propertyPath: _promptWarnings
+      value: 
+      objectReference: {fileID: 1789957138}
+    - target: {fileID: 493567666392378721, guid: b7abbefe10bc8544e8703ddb1282f6bd, type: 3}
+      propertyPath: camShakeDuration
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 493567666392378721, guid: b7abbefe10bc8544e8703ddb1282f6bd, type: 3}
+      propertyPath: camShakeMagnitude
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 493567666392378721, guid: b7abbefe10bc8544e8703ddb1282f6bd, type: 3}
       propertyPath: unreclaimedBuildings.Array.size
       value: 7
