@@ -1,9 +1,10 @@
 using NUnit.Framework;
-using System.Collections.Generic;
 using System.Collections;
+using System.Collections.Generic;
 using System.Resources;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Workbench_Towers : MonoBehaviour
@@ -26,6 +27,7 @@ public class Workbench_Towers : MonoBehaviour
     [SerializeField] private int UnlockCost;
     [SerializeField] private string towerUnlock;
     [SerializeField] private List<GameObject> towerNodes = new List<GameObject>();
+    public UnityEvent reclaimEvent;
 
     [Header("Reclaim Tower")]
     [SerializeField] private GameObject destroyedState;
@@ -34,6 +36,8 @@ public class Workbench_Towers : MonoBehaviour
     [SerializeField] private GameObject fixedStateIcon;
     public bool isReclaimed = false;
     [SerializeField] private bool playerInside = false;
+
+    
 
     private void Start()
     {
@@ -129,6 +133,8 @@ public class Workbench_Towers : MonoBehaviour
             }
 
             ReclaimTower();
+
+            reclaimEvent?.Invoke();
 
             Debug.Log("Unlocked tower nodes! Using " + customCost + " of " + oreTypeToSpend);
 

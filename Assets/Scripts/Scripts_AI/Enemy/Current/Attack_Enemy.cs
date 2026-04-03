@@ -73,7 +73,11 @@ public class Attack_Enemy : MonoBehaviour
 
     void AttackType()
     {
-        if (hitCounter >= maxHits)
+        TowerAndEnemy_Archetype archetype = target.GetComponentInParent<TowerAndEnemy_Archetype>();
+        bool isBase = archetype != null && archetype.material == TowerAndEnemy_Archetype.TypeAndTarget.Base;
+
+        // Apply hit limit ONLY if not Base
+        if (!isBase && hitCounter >= maxHits)
         {
             Debug.Log("Hit limit reached");
             ResetAttack();
@@ -101,7 +105,8 @@ public class Attack_Enemy : MonoBehaviour
 
             Destroy(proj, 2f);
 
-            hitCounter++;
+            if (!isBase)
+                hitCounter++;
         }
         else if (targeting == Targeting.Melee)
         {
@@ -128,6 +133,9 @@ public class Attack_Enemy : MonoBehaviour
 
         if (target != null)
         {
+            TowerAndEnemy_Archetype archetype = target.GetComponentInParent<TowerAndEnemy_Archetype>();
+            bool isBase = archetype != null && archetype.material == TowerAndEnemy_Archetype.TypeAndTarget.Base;
+
             if (enemyAtkClip != null && enemyAudioAtk != null)
             {
                 enemyAudioAtk.PlayOneShot(enemyAtkClip);
@@ -135,7 +143,9 @@ public class Attack_Enemy : MonoBehaviour
 
             target.GetComponent<Health>().TakeDamage(damage);
             OnHitFX();
-            hitCounter++;
+
+            if (!isBase)
+                hitCounter++;
         }
 
         isAttacking = false;
