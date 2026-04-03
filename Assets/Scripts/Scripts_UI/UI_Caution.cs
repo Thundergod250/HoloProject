@@ -14,32 +14,42 @@ public class UI_Caution : MonoBehaviour
     private Vector3 originalScale;
 
     public bool hasWaveStart;
+    public bool parentSpawnerReady;
 
     private void Start()
     {
+        parentSpawnerReady = true;
         playerCamera = Camera.main;
         originalScale = transform.localScale;
     }
 
     private void LateUpdate()
     {
-        if (hasWaveStart) // Wave has started
+        if(parentSpawnerReady)
+        {
+            if (hasWaveStart) // Wave has started
+            {
+                cautionImage.enabled = false;
+                Debug.Log("Caution image going off");
+            }
+            else if (!hasWaveStart) // Wave has not started 
+            {
+                cautionImage.enabled = true;
+
+                float pulse = Mathf.Sin(Time.time * pulseSpeed) * pulseAmount;
+                transform.localScale = originalScale + Vector3.one * pulse;
+
+                if (playerCamera == null) return;
+
+                Debug.Log("Caution image active");
+
+                transform.LookAt(transform.position + playerCamera.transform.forward);
+            }
+        }
+        else
         {
             cautionImage.enabled = false;
-            Debug.Log("Caution image going off");
         }
-        else if(!hasWaveStart) // Wave has not started 
-        {
-            cautionImage.enabled = true;
-
-            float pulse = Mathf.Sin(Time.time * pulseSpeed) * pulseAmount;
-            transform.localScale = originalScale + Vector3.one * pulse;
-
-            if (playerCamera == null) return;
-
-            Debug.Log("Caution image active");
-
-            transform.LookAt(transform.position + playerCamera.transform.forward);
-        }
+     
     }
 }
