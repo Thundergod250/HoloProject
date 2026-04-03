@@ -1659,7 +1659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2627a6c15788ed445bc6efbfb686f996, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerAndEnemy_Archetype
-  TargetOrFoundation: 0
+  TargetOrFoundation: 3
 --- !u!114 &2503725807906332918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1674,6 +1674,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TowerDeathNotifier
   spawners: []
   health: {fileID: 9209285657085303806}
+  bOSS: {fileID: 0}
 --- !u!82 &82423247879385345
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1685,11 +1686,11 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -8816322064180875079, guid: bc5124350760381448a927c2f524b811, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: bd151d057a85218488d13d58e7c42aeb, type: 3}
+  m_Resource: {fileID: 8300000, guid: 5026fcab3a2f3144fa5f61729ae71e88, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1731,7 +1732,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0

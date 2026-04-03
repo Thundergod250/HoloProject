@@ -21,16 +21,18 @@ public class Workbench_Towers : MonoBehaviour
     [SerializeField] private upgradeResourceType oreToSpendTower;
     [SerializeField] private List<Sprite> oreToSpendTowerImageList = new List<Sprite>();
     [SerializeField] private int oreImageNum;
-    [SerializeField] private Image oreToSpendTowerImage;
-    [SerializeField] private TextMeshProUGUI oreCostText;
+    [SerializeField] private Image[] oreToSpendTowerImage;
+    [SerializeField] private TextMeshProUGUI[] oreCostText;
     [SerializeField] private int UnlockCost;
     [SerializeField] private string towerUnlock;
     [SerializeField] private List<GameObject> towerNodes = new List<GameObject>();
 
     [Header("Reclaim Tower")]
     [SerializeField] private GameObject destroyedState;
+    [SerializeField] private GameObject destroyedStateIcon;
     [SerializeField] private GameObject fixedState;
-    [SerializeField] private bool isReclaimed = false;
+    [SerializeField] private GameObject fixedStateIcon;
+    public bool isReclaimed = false;
     [SerializeField] private bool playerInside = false;
 
     private void Start()
@@ -40,7 +42,9 @@ public class Workbench_Towers : MonoBehaviour
 
         // Reset to Destroyed
         destroyedState.SetActive(true);
+        destroyedStateIcon.SetActive(true);
         fixedState.SetActive(false);
+        fixedStateIcon.SetActive(false);
 
         LockNodes();
     }
@@ -52,6 +56,7 @@ public class Workbench_Towers : MonoBehaviour
             // UnlockTowers(towerUnlock, oreToSpendTower, towerUnlockCost);
 
             UnlockTowerSlots(oreToSpendTower, UnlockCost);
+            ReclamationManager.Instance.CheckIfAllReclaimed();
         }
     }
 
@@ -152,7 +157,9 @@ public class Workbench_Towers : MonoBehaviour
     private void ChangeTexture()
     {
         destroyedState.SetActive(false);
+        destroyedStateIcon.SetActive(false);
         fixedState.SetActive(true);
+        fixedStateIcon.SetActive(true);
     }
 
     private void ReclaimTower()
@@ -178,26 +185,32 @@ public class Workbench_Towers : MonoBehaviour
 
     public void OreUIImage()
     {
-        int i = oreImageNum;
+        int iOreImageNumber = oreImageNum;
 
-        if (i == 0)
+        //if (iOreImageNumber == 0)
+        //{
+        //    oreToSpendTowerImage.sprite = oreToSpendTowerImageList[0];
+        //}
+        //else if (iOreImageNumber == 1)
+        //{
+        //    oreToSpendTowerImage.sprite = oreToSpendTowerImageList[1];
+        //}
+        //else if (iOreImageNumber == 2)
+        //{
+        //    oreToSpendTowerImage.sprite = oreToSpendTowerImageList[2];
+        //}
+        //else if (iOreImageNumber == 3)
+        //{
+        //    oreToSpendTowerImage.sprite = oreToSpendTowerImageList[3];
+        //}
+
+        for (int i = 0; i < oreCostText.Length; i++)
         {
-            oreToSpendTowerImage.sprite = oreToSpendTowerImageList[0];
-        }
-        else if (i == 1)
-        {
-            oreToSpendTowerImage.sprite = oreToSpendTowerImageList[1];
-        }
-        else if (i == 2)
-        {
-            oreToSpendTowerImage.sprite = oreToSpendTowerImageList[2];
-        }
-        else if (i == 3)
-        {
-            oreToSpendTowerImage.sprite = oreToSpendTowerImageList[3];
+            oreToSpendTowerImage[i].sprite = oreToSpendTowerImageList[iOreImageNumber];
+            oreCostText[i].text = "x " + UnlockCost.ToString();
         }
 
-        oreCostText.text = "x " + UnlockCost.ToString();
+        //oreCostText.text = "x " + UnlockCost.ToString();
     }
 
     private void OnTriggerEnter(Collider other)

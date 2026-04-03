@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Threading.Tasks;
-using System.Linq;
 
 public class TowerChainPylon : TowerOffensiveBase
 {
@@ -10,6 +9,7 @@ public class TowerChainPylon : TowerOffensiveBase
     public float fireRate = 2f;
     public float shotDelay = 0.2f;
     public int _damage = 5;
+    public int _totalChainHits = 3;
     public LayerMask enemyLayer;
 
     [Header("Visual Settings")]
@@ -17,14 +17,10 @@ public class TowerChainPylon : TowerOffensiveBase
     public Transform firePoint;
 
     private float _nextFireTime;
-    [SerializeField] private GameObject[] _hitHistory;
-    [SerializeField] private int _totalChainHits = 3;
+    private GameObject[] _hitHistory = new GameObject[3];
+    private bool _isDrawing;
 
-    private void Start()
-    {
-        _hitHistory = new GameObject[_totalChainHits];
-    }
-
+    [SerializeField] private AudioSource _chainTowerAudioSource;
 
     void Update()
     {
@@ -32,13 +28,31 @@ public class TowerChainPylon : TowerOffensiveBase
         {
             ScanForPrimaryTarget();
         }
+
+        // Update line positions every frame so they follow moving enemies
+        if (_isDrawing && lineRenderer && lineRenderer.enabled)
+        {
+            UpdateLinePositions();
+        }
+    }
+
+    private void UpdateLinePositions()
+    {
+        lineRenderer.SetPosition(0, firePoint.position);
+        for (int i = 0; i < _hitHistory.Length; i++)
+        {
+            if (_hitHistory[i] != null)
+            {
+                lineRenderer.SetPosition(i + 1, _hitHistory[i].transform.position);
+            }
+        }
     }
 
     private void ScanForPrimaryTarget()
     {
         Collider[] enemiesInRange = Physics.OverlapSphere(transform.position, attackRange, enemyLayer);
 
-        if (enemiesInRange.Length > 0 && enemiesInRange != null)
+        if (enemiesInRange.Length > 0)
         {
             _nextFireTime = Time.time + fireRate;
             _ = ExecuteDominoChainAsync(enemiesInRange[0].gameObject);
@@ -49,6 +63,7 @@ public class TowerChainPylon : TowerOffensiveBase
     {
         try
         {
+            _isDrawing = true;
             if (lineRenderer)
             {
                 lineRenderer.enabled = true;
@@ -60,6 +75,12 @@ public class TowerChainPylon : TowerOffensiveBase
 
             GameObject currentTarget = startEnemy;
 
+            if (_chainTowerAudioSource != null)
+            {
+                _chainTowerAudioSource.Play();
+            }
+
+
             for (int hitCount = 0; hitCount < _totalChainHits; hitCount++)
             {
                 if (currentTarget == null) break;
@@ -68,17 +89,18 @@ public class TowerChainPylon : TowerOffensiveBase
 
                 if (lineRenderer)
                 {
+                    // Increment points: Point 0 is Tower, Point 1 is Enemy 1, etc.
                     lineRenderer.positionCount = hitCount + 2;
-                    lineRenderer.SetPosition(hitCount + 1, currentTarget.transform.position);
                 }
 
-                if (currentTarget.GetComponent<EnemyBase>()._healthReference)
+                if (currentTarget.GetComponent<EnemyBase>())
                 {
+                    // Accessing health directly as requested
                     currentTarget.GetComponent<EnemyBase>()._healthReference.TakeDamage(_damage);
                 }
 
                 GameObject nextTarget = null;
-                if (hitCount < 2)
+                if (hitCount < _totalChainHits - 1)
                 {
                     nextTarget = FindNextClosest(currentTarget.transform.position);
                 }
@@ -86,14 +108,17 @@ public class TowerChainPylon : TowerOffensiveBase
                 await Task.Delay((int)(shotDelay * 1000));
                 currentTarget = nextTarget;
             }
+
+            // Brief pause so the player sees the full completed chain
+            await Task.Delay(100);
         }
         finally
         {
-            // This block runs no matter what, ensuring the line always resets
+            _isDrawing = false;
             if (lineRenderer)
             {
-                lineRenderer.positionCount = 0;
                 lineRenderer.enabled = false;
+                lineRenderer.positionCount = 0;
             }
         }
     }
@@ -101,14 +126,12 @@ public class TowerChainPylon : TowerOffensiveBase
     private GameObject FindNextClosest(Vector3 currentPos)
     {
         Collider[] candidates = Physics.OverlapSphere(currentPos, dominoRadius, enemyLayer);
-
         GameObject bestTarget = null;
         float closestDistance = Mathf.Infinity;
 
         for (int i = 0; i < candidates.Length; i++)
         {
             GameObject candidateObj = candidates[i].gameObject;
-
             if (AlreadyInChain(candidateObj)) continue;
 
             float dist = (currentPos - candidateObj.transform.position).sqrMagnitude;

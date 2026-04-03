@@ -1522,12 +1522,14 @@ GameObject:
   - component: {fileID: 9209285657085303806}
   - component: {fileID: 3676215705264287566}
   - component: {fileID: 6072773760445712361}
+  - component: {fileID: 7721091858510571623}
   - component: {fileID: 1911738574720167987}
   - component: {fileID: 4308005521496981677}
   - component: {fileID: 157886178921894249}
   - component: {fileID: 9182693712244483474}
-  - component: {fileID: 7721091858510571623}
   - component: {fileID: -997636119922434644}
+  - component: {fileID: -7957125828379491826}
+  - component: {fileID: 8784093579340454148}
   m_Layer: 6
   m_Name: Scorching Ray Tower
   m_TagString: Untagged
@@ -1686,6 +1688,30 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.37, y: 7.2987022, z: 2.2447708}
   m_Center: {x: 0, y: 3.959351, z: 0.0082525015}
+--- !u!114 &7721091858510571623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7795377701471874775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dcbdef2d06f26348af929261535d924, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerScorchRay
+  towerShop: {fileID: 0}
+  turretHead: {fileID: 1290836347639502279}
+  sensorObject: {fileID: 716765814023685881}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  detectionRadius: 15
+  damagePerTick: 5
+  attackInterval: 0.5
+  rotationSpeed: 5
+  _fireParticles: {fileID: 6872850076459382964}
+  _scorchRaySource: {fileID: 8784093579340454148}
 --- !u!114 &1911738574720167987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1748,29 +1774,6 @@ MonoBehaviour:
   lightingManager: {fileID: 0}
   playerCamMan: {fileID: 0}
   _rtsCamera: {fileID: 0}
---- !u!114 &7721091858510571623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7795377701471874775}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9dcbdef2d06f26348af929261535d924, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TowerScorchRay
-  towerShop: {fileID: 0}
-  turretHead: {fileID: 1290836347639502279}
-  sensorObject: {fileID: 716765814023685881}
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 1024
-  detectionRadius: 15
-  damagePerTick: 5
-  attackInterval: 0.5
-  rotationSpeed: 5
-  _fireParticles: {fileID: 6872850076459382964}
 --- !u!114 &-997636119922434644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1785,6 +1788,117 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TowerDeathNotifier
   spawners: []
   health: {fileID: 9209285657085303806, guid: eb206a7bbf6ea17439fd835da3163c35, type: 3}
+  bOSS: {fileID: 0}
+--- !u!114 &-7957125828379491826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7795377701471874775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2627a6c15788ed445bc6efbfb686f996, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerAndEnemy_Archetype
+  TargetOrFoundation: 3
+--- !u!82 &8784093579340454148
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7795377701471874775}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -8816322064180875079, guid: bc5124350760381448a927c2f524b811, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: d2aeafd73c9f3a341a505bc94fcced99, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.7
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &7849389352835609314
 GameObject:
   m_ObjectHideFlags: 0

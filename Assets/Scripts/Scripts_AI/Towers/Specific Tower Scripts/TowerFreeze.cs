@@ -19,6 +19,7 @@ public class TowerFreeze : TowerOffensiveBase
     private bool _onCooldown = false;
 
     [SerializeField] private ParticleSystem _attackFreezeParticle;
+    [SerializeField] private AudioSource _freezeAtkSource;
 
     void Update()
     {
@@ -59,6 +60,7 @@ public class TowerFreeze : TowerOffensiveBase
         _onCooldown = true;
 
         if (_attackFreezeParticle != null) _attackFreezeParticle.Play();
+        if (_freezeAtkSource != null) _freezeAtkSource.Play();
 
         if (isAOE)
         {

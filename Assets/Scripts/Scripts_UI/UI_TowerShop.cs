@@ -27,7 +27,7 @@ public class UI_TowerShop : MonoBehaviour
     [SerializeField] private GameObject _statusPanelUI; // The specific Status UI
     [SerializeField] private TMPro.TextMeshProUGUI healthText;
     [SerializeField] private TMPro.TextMeshProUGUI costText;
-    [SerializeField] private TMPro.TextMeshProUGUI nameText; 
+    [SerializeField] private TMPro.TextMeshProUGUI nameText;
     [SerializeField] private Image towerIcon;
     [SerializeField] private Image oreIcon;
     private TowerOffensiveBase _lastSelectedTowerOffsensiveBase;
@@ -58,7 +58,12 @@ public class UI_TowerShop : MonoBehaviour
 
     // === Category entry points ===
     public void OpenTowerUpgrades() => TrySpawnCategory(towerUpgradesData);
-    public void OpenOffensiveTowers() => TrySpawnCategory(offensiveTowersData);
+    public void OpenOffensiveTowers()  
+    {
+        EnableTowerShopUI();
+
+        TrySpawnCategory(offensiveTowersData); 
+    }
     public void OpenDefensiveTowers() => TrySpawnCategory(defensiveTowersData);
     public void OpenUtilityTowers() => TrySpawnCategory(utilityTowersData);
 
@@ -78,7 +83,7 @@ public class UI_TowerShop : MonoBehaviour
         _LeftPanel.SetActive(true);
         _RightPanel.SetActive(true);
 
-        _statusPanelUI.SetActive(true);
+        _statusPanelUI.SetActive(false);
         TrySpawnCategory(offensiveTowersData);
     }
 

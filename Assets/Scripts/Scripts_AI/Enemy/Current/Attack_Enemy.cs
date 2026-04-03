@@ -16,6 +16,8 @@ public class Attack_Enemy : MonoBehaviour
     [Header("Refs")]
     [SerializeField] private Navigation_Enemy navigation_Enemy;
     [SerializeField] private Drops_Enemy drops_Enemy;
+    [SerializeField] private AudioSource enemyAudioAtk;
+    [SerializeField] private AudioClip enemyAtkClip;
 
     [Header("Targeting Style")]
     [SerializeField] private Targeting targeting;
@@ -84,6 +86,11 @@ public class Attack_Enemy : MonoBehaviour
 
             Vector3 direction = (target.position - transform.position).normalized;
 
+            if (enemyAtkClip != null && enemyAudioAtk != null)
+            {
+                enemyAudioAtk.PlayOneShot(enemyAtkClip);
+            }
+
             GameObject proj = Instantiate(bullet, gunBarrel.transform.position, Quaternion.identity);
 
             Rigidbody rb = proj.GetComponent<Rigidbody>();
@@ -93,6 +100,8 @@ public class Attack_Enemy : MonoBehaviour
             rb.linearVelocity = direction * 40f;
 
             Destroy(proj, 2f);
+
+            hitCounter++;
         }
         else if (targeting == Targeting.Melee)
         {
@@ -119,6 +128,11 @@ public class Attack_Enemy : MonoBehaviour
 
         if (target != null)
         {
+            if (enemyAtkClip != null && enemyAudioAtk != null)
+            {
+                enemyAudioAtk.PlayOneShot(enemyAtkClip);
+            }
+
             target.GetComponent<Health>().TakeDamage(damage);
             OnHitFX();
             hitCounter++;

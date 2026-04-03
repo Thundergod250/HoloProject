@@ -25,22 +25,22 @@ public class SaveGameManager : MonoBehaviour
     private void Awake()
     {
         // Sets the path to: C:/Users/[User]/AppData/LocalLow/[Company]/[Game]/save.json
-        savePath = Application.persistentDataPath + "/save.json";
+        //savePath = Application.persistentDataPath + "/save.json";
     }
 
 
     private void Start()
     {
-        // Every time the scene starts/restarts, this runs automatically
-        if (File.Exists(savePath))
-        {
-            Debug.Log("Save found, Loading Game");
-            LoadGame();
-        }
-        else
-        {
-            Debug.Log("No save found, starting fresh New Game.");
-        }
+        //// Every time the scene starts/restarts, this runs automatically
+        //if (File.Exists(savePath))
+        //{
+        //    Debug.Log("Save found, Loading Game");
+        //    LoadGame();
+        //}
+        //else
+        //{
+        //    Debug.Log("No save found, starting fresh New Game.");
+        //}
     }
 
     

@@ -22,6 +22,8 @@ public class NPC_HealthBarUI : MonoBehaviour
         {
             transform.LookAt(transform.position + mainCamera.transform.forward);
         }
+
+        slider.value = helth.GetCurrentHealth();
     }
 
     public void SetMaxHealth(int maxHealth)

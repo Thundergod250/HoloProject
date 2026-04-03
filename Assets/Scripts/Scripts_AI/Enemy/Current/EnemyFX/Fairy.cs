@@ -10,7 +10,8 @@ public class Fairy : Effects_Enemy
     [Header("Refs")]
     [SerializeField] private Navigation_Enemy navigation_Enemy;
     [SerializeField] private SphereCollider aggroRangeCollider;
-    [SerializeField] private SphereCollider enemyBaseCollider;
+    [SerializeField] private BoxCollider fairyCollider;
+
     private int lastHealth;
 
     private void Start()
@@ -27,23 +28,24 @@ public class Fairy : Effects_Enemy
             ApplyInvisState();
             lastInvisState = isInvis;
         }
+
+        CannotBeTargeted();
     }
 
     public void ApplyInvisState()
     {
         invisEffect.SetActive(isInvis);
-        enemyBaseCollider.enabled = !isInvis;
     }
 
     public void CannotBeTargeted()
     {
         if(isInvis)
         {
-            enemyBaseCollider.enabled = false;
+            fairyCollider.enabled = false;
         }
         else if (!isInvis)
         {
-            enemyBaseCollider.enabled = true;
+            fairyCollider.enabled = true;
         }
     }
 }

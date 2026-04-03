@@ -13,6 +13,7 @@ public class Ectoplasm : Effects_Enemy
             GameObject drattleSlime =  Instantiate(slime, transform.position, Quaternion.identity);
             drattleSlime.GetComponent<Navigation_Enemy>().wayPoints = this.gameObject.GetComponent<Navigation_Enemy>().wayPoints;
             drattleSlime.GetComponent<Drops_Enemy>().parentSpawner = this.gameObject.GetComponent<Drops_Enemy>().parentSpawner;
+            drattleSlime.GetComponent<Drops_Enemy>()._dropResourceManager = this.gameObject.GetComponent<Drops_Enemy>()._dropResourceManager;
         }
     }
 }

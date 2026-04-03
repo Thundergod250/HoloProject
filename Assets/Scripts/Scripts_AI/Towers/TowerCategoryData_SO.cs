@@ -13,6 +13,8 @@ public class CardInfo
     public GameObject towerPrefab;
     public GameObject towerCardPrefab;
     public bool islocked;
+
+    public PageData pageData;
 }
 
 [CreateAssetMenu(fileName = "TowerCategoryData", menuName = "TowerShop/Tower Category")]

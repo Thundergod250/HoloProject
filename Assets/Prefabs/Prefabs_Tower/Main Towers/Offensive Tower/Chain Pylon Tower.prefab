@@ -1134,7 +1134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2627a6c15788ed445bc6efbfb686f996, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerAndEnemy_Archetype
-  TargetOrFoundation: 0
+  TargetOrFoundation: 3
 --- !u!114 &958089396946679993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1153,13 +1153,13 @@ MonoBehaviour:
   fireRate: 1
   shotDelay: 0.2
   _damage: 10
+  _totalChainHits: 5
   enemyLayer:
     serializedVersion: 2
     m_Bits: 1024
   lineRenderer: {fileID: 7833161949718217152}
   firePoint: {fileID: 1932060655702197655}
-  _hitHistory: []
-  _totalChainHits: 3
+  _chainTowerAudioSource: {fileID: 1233140931781432943}
 --- !u!120 &7833161949718217152
 LineRenderer:
   serializedVersion: 3
@@ -1281,7 +1281,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -8816322064180875079, guid: bc5124350760381448a927c2f524b811, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: fe973b114ff09bb4c9893659874db89a, type: 3}
+  m_Resource: {fileID: 8300000, guid: 85efd3a0846b84a4a8251284f136fe08, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 2
@@ -1327,7 +1327,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1380,7 +1380,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerDeathNotifier
   spawners: []
-  health: {fileID: 9209285657085303806, guid: eb206a7bbf6ea17439fd835da3163c35, type: 3}
+  health: {fileID: 0}
+  bOSS: {fileID: 0}
 --- !u!1 &7849389352835609314
 GameObject:
   m_ObjectHideFlags: 0

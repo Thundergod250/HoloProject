@@ -61,6 +61,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6094847423617437406, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
+      propertyPath: maxHealth
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 6094847423617437406, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
+      propertyPath: startSetHealth
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 6094847423617437406, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -128,13 +136,32 @@ PrefabInstance:
       propertyPath: OnDamaged.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 6149120422715163426, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
+      propertyPath: targeting
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7279398973919942167, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
+      propertyPath: navMinDistance
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7279398973919942167, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
+      propertyPath: meleeStopDistance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7279398973919942167, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
+      propertyPath: defaultMovementSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8027776502407471498, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       propertyPath: m_Name
       value: King Slime
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2413627379401370150, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 1838765153025022422}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8027776502407471498, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       insertIndex: 7
@@ -142,7 +169,26 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8027776502407471498, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4538660520274582587}
+    - targetCorrespondingSourceObject: {fileID: 6706196386525916066, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7322762245035088796}
   m_SourcePrefab: {fileID: 100100000, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
+--- !u!4 &95991652564099235 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2413627379401370150, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
+  m_PrefabInstance: {fileID: 2318204500770048645}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4517998988297325543 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2204725951799296354, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
+  m_PrefabInstance: {fileID: 2318204500770048645}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9023762998753157415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f2080592a7b09044b21a68abffae957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AggroRange_Enemy
 --- !u!114 &4985049907225894034 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7279398973919942167, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
@@ -175,10 +221,17 @@ MonoBehaviour:
   attack_Enemy: {fileID: 8466198610958469543}
   nav_Enemy: {fileID: 4985049907225894034}
   health: {fileID: 8412396202870457435}
+  ksaggroRange: {fileID: 7322762245035088796}
+  genaggroRange: {fileID: 4517998988297325543}
+  ksCollider: {fileID: 4538660520274582587}
   secondPath: []
   thirdPath: []
   spawners: []
+  dsiableTowerDuration: 3
+  invisSmoke: {fileID: 3767603952428853060}
   waveOveridde: []
+  isInvis: 0
+  isWarded: 0
 --- !u!65 &4538660520274582587
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -198,8 +251,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.99877596, z: 1}
-  m_Center: {x: 0, y: 0.99356604, z: 0}
+  m_Size: {x: 1.75, y: 1.75, z: 1.75}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &8412396202870457435 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6094847423617437406, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
@@ -222,3 +275,89 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5e56bde7fcee7241a672e087eed178a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Attack_Enemy
+--- !u!1 &9023762998753157415 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6706196386525916066, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
+  m_PrefabInstance: {fileID: 2318204500770048645}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7322762245035088796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9023762998753157415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374d9a357858c7347a851d41887011ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KingSlimeAggroRange
+  debuffTimer: 0
+  towersInRange: []
+--- !u!1001 &8165463302477839196
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 95991652564099235}
+    m_Modifications:
+    - target: {fileID: 4978934211630914584, guid: 72fb71bcf78598f4a8104752b49a92ec, type: 3}
+      propertyPath: m_Name
+      value: Invsibility Smoke
+      objectReference: {fileID: 0}
+    - target: {fileID: 7553968922698031754, guid: 72fb71bcf78598f4a8104752b49a92ec, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7553968922698031754, guid: 72fb71bcf78598f4a8104752b49a92ec, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7553968922698031754, guid: 72fb71bcf78598f4a8104752b49a92ec, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7553968922698031754, guid: 72fb71bcf78598f4a8104752b49a92ec, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7553968922698031754, guid: 72fb71bcf78598f4a8104752b49a92ec, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7553968922698031754, guid: 72fb71bcf78598f4a8104752b49a92ec, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7553968922698031754, guid: 72fb71bcf78598f4a8104752b49a92ec, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7553968922698031754, guid: 72fb71bcf78598f4a8104752b49a92ec, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7553968922698031754, guid: 72fb71bcf78598f4a8104752b49a92ec, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7553968922698031754, guid: 72fb71bcf78598f4a8104752b49a92ec, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 72fb71bcf78598f4a8104752b49a92ec, type: 3}
+--- !u!4 &1838765153025022422 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7553968922698031754, guid: 72fb71bcf78598f4a8104752b49a92ec, type: 3}
+  m_PrefabInstance: {fileID: 8165463302477839196}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3767603952428853060 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4978934211630914584, guid: 72fb71bcf78598f4a8104752b49a92ec, type: 3}
+  m_PrefabInstance: {fileID: 8165463302477839196}
+  m_PrefabAsset: {fileID: 0}

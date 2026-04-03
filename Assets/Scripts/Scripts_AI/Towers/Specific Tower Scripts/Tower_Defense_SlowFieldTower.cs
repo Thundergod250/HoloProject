@@ -29,6 +29,7 @@ public class Tower_Defense_SlowFieldTower : TowerOffensiveBase
 
                 if (!enemiesMovement.Contains(navEnemy))
                 {
+                    navEnemy.PlaySlowVFX();
                     navEnemy.SlowDownAgent(slowMultiplier);
                 }
             }
@@ -41,6 +42,7 @@ public class Tower_Defense_SlowFieldTower : TowerOffensiveBase
             {
                 //enemy.SpeedUpAgent(slowMultiplier);
                 enemy.SetSpeedAgent(enemy.defaultMovementSpeed);
+                enemy.StopSlowVFX();
             }
         }
 

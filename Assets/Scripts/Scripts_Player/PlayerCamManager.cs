@@ -13,7 +13,7 @@ public class PlayerCamManager : MonoBehaviour
     public bool _freeCam = false;
     public bool _buildMenu = false;
 
-    private void LateUpdate()
+    private void Update()
     {
         if (_canSwitchCameras)
         {
@@ -37,14 +37,14 @@ public class PlayerCamManager : MonoBehaviour
         if (changedToRTS)
         {
             _camSwitcher.SetCameraChange();
-            _camSwitcher.movement = null;//_playerMovement;
+            //_camSwitcher.movement = null;//_playerMovement;
 
             _freeCam = false;
         }
         else if (!changedToRTS)
         {
             _camSwitcher.SetCameraChange();
-            _camSwitcher.movement = _playerMovement;
+            //_camSwitcher.movement = _playerMovement;
 
             _freeCam = true;
         }

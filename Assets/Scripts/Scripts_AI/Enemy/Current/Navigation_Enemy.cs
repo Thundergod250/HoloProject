@@ -25,9 +25,13 @@ public class Navigation_Enemy : MonoBehaviour
     [SerializeField] private float navMinDistance;
     [SerializeField] private float meleeStopDistance;
 
+    [SerializeField] private ParticleSystem _freezeParticles;
+    [SerializeField] private ParticleSystem _slowParticles;
+
     public NavMeshAgent navigation;
     public float defaultMovementSpeed;
     public bool isMoving;
+    public bool isBoss;
     private bool dotActive;
 
     public Attack_Enemy AttackEnemyRef => attack_Enemy;
@@ -48,7 +52,7 @@ public class Navigation_Enemy : MonoBehaviour
         }
         else
         {
-            navigation.stoppingDistance = navMinDistance;
+           // navigation.stoppingDistance = navMinDistance;
         }
     }
 
@@ -68,12 +72,12 @@ public class Navigation_Enemy : MonoBehaviour
             Debug.Log("Moving to Waypoint");
         }
 
-        if (!lightingManager._isNight && dotActive == false)
+        if (!lightingManager._isNight && dotActive == false && !isBoss)
         {
             MorningDOTEFfect();
             dotActive = true;
         }
-        else if (lightingManager._isNight && dotActive == true)
+        else if (lightingManager._isNight && dotActive == true && !isBoss)
         {
             StopCoroutine(DOTEffect());
             dotActive = false;
@@ -235,7 +239,7 @@ public class Navigation_Enemy : MonoBehaviour
         // Near current waypoint go NEXT
         if (!navigation.pathPending && navigation.remainingDistance <= navigation.stoppingDistance)
         {
-            AdvanceWaypoint();
+            AdvanceWaypoint(); 
         }
     }
 
@@ -327,8 +331,19 @@ public class Navigation_Enemy : MonoBehaviour
 
     IEnumerator CO_ResetSpeed(float targetTime)
     {
+        _freezeParticles.Play();
         yield return new WaitForSeconds(targetTime);
+        _freezeParticles.Stop();
         navigation.speed = defaultMovementSpeed;
+    }
+
+    public void PlaySlowVFX()
+    {
+        _slowParticles.Play();
+    }
+    public void StopSlowVFX()
+    {
+        _slowParticles.Stop();
     }
 
 
