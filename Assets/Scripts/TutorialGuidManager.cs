@@ -5,6 +5,7 @@ using UnityEngine;
 public class TutorialGuidManager : MonoBehaviour
 {
     [SerializeField] protected List<GameObject> tutorialGuides;
+    [SerializeField] protected List<GameObject> enemyGuides;
     [SerializeField] protected int indexCounter = 0;
     [SerializeField] protected float timerToHide = 10f;
     [SerializeField] private bool autoHide = true;
@@ -29,6 +30,7 @@ public class TutorialGuidManager : MonoBehaviour
         for (int i = 0; i < tutorialGuides.Count; i++)
         {
             tutorialGuides[i].SetActive(false);
+            enemyGuides[i].SetActive(false);
         }
     }
 
@@ -44,8 +46,25 @@ public class TutorialGuidManager : MonoBehaviour
             StartCoroutine(CO_HideGuide(targetNumberGuide));
         }
     }
+    public void SetAndEnableEnemyGuide(int targetNumberGuide)
+    {
+        DisableAllGuides();
+
+        enemyGuides[targetNumberGuide].SetActive(true);
+
+        if (autoHide)
+        {
+            StartCoroutine(CO_HideEnemyGuide(targetNumberGuide));
+        }
+    }
 
     IEnumerator CO_HideGuide(int targetNumberGuide)
+    {
+        yield return new WaitForSeconds(timerToHide);
+        tutorialGuides[targetNumberGuide].SetActive(false);
+    }
+
+    IEnumerator CO_HideEnemyGuide(int targetNumberGuide)
     {
         yield return new WaitForSeconds(timerToHide);
         tutorialGuides[targetNumberGuide].SetActive(false);

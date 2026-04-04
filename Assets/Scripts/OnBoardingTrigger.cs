@@ -1,4 +1,5 @@
 using UnityEngine;
+using static OnBoardingEnemyTrigger;
 
 public class OnBoardingTrigger : MonoBehaviour
 {
