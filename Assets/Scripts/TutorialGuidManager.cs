@@ -30,6 +30,9 @@ public class TutorialGuidManager : MonoBehaviour
         for (int i = 0; i < tutorialGuides.Count; i++)
         {
             tutorialGuides[i].SetActive(false);
+        }
+        for (int i = 0; i < enemyGuides.Count; i++)
+        {
             enemyGuides[i].SetActive(false);
         }
     }

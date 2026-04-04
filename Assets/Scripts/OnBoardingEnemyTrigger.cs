@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class OnBoardingEnemyTrigger : MonoBehaviour
 {
     [SerializeField] private TutorialGuidManager _tutorialGuidManager;
