@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Spawner : MonoBehaviour
 {
@@ -18,7 +20,6 @@ public class Spawner : MonoBehaviour
 
     [Header("Variables DO NOT TOUCH")]
     [SerializeField] private int waveVar;
-    [SerializeField] private bool spawningWave = true;
     [SerializeField] private bool isNighttime;
     [SerializeField] private WaveData activeWave;
     public List<GameObject> activeEnemies = new List<GameObject>();
@@ -27,6 +28,7 @@ public class Spawner : MonoBehaviour
     [Header("Var Safe to Adjust")]
     [SerializeField] private bool testingMode;
     [SerializeField] private Transform spawnpoint;
+    [SerializeField] private bool activeSpawner;
 
     [Header("Waypoints")]
     [SerializeField] private List<Transform> wayPoints = new List<Transform>();
@@ -47,10 +49,19 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
+        if(activeSpawner)
+        {
+            cautionUI.parentSpawnerReady = true;
+        }
+        else
+        {
+            cautionUI.parentSpawnerReady = false;
+        }
+
         bool isNight = lightingManager._isNight;
 
         // Night just started → start wave if possible
-        if (isNight && !wasNightLastFrame)
+        if (isNight && !wasNightLastFrame && activeSpawner)
         {
             TryStartWave();
         }
@@ -136,7 +147,9 @@ public class Spawner : MonoBehaviour
 
     public void TryStartWave()
     {
-        if (!spawningWave || waveInProgress)
+        Debug.Log(this.name + " spawning enemies");
+
+        if (waveInProgress)
             return;
 
         if (!lightingManager._isNight) // safety check
@@ -162,6 +175,16 @@ public class Spawner : MonoBehaviour
     {
         enemyCounterUI.totalEnemies--;
         enemyCounterUI.UpdateEnemyCounter();
+    }
+
+    public void enableSpawner(bool state)
+    {
+        activeSpawner = state;
+    }
+
+    public void copySpawnerWaveInfo(Spawner spawnerRef)
+    {
+        waveVar = spawnerRef.waveVar;
     }
 
     public void GetNewSetOfWaves(int waveSet)

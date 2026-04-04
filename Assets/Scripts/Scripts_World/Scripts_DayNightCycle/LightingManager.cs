@@ -31,11 +31,14 @@ public class LightingManager : MonoBehaviour
     [SerializeField] private AudioClip[] _dayThemeClip;
     [SerializeField] private AudioClip[] _nightThemeClip;
 
+    [SerializeField] private OnBoardingTrigger _enemyNightTrigger;
+
     public SaveGameManager saveGameManager;
 
     private int _lastAssignedIndex = -1; // Tracks the last HDRI we triggered
     private bool hasSavedToday = false;
 
+    [SerializeField] protected bool _timerStarted = true;
     public int GetTimeOfDay()
     {
         return (int)_timeOfDay;
@@ -56,7 +59,7 @@ public class LightingManager : MonoBehaviour
         if (_lightPreset == null) return;
 
         // Time logic
-        if (Application.isPlaying)
+        if (Application.isPlaying && _timerStarted)
         {
             _timeOfDay += Time.deltaTime;
             _timeOfDay %= _maxTimeOfDay;
@@ -119,6 +122,7 @@ public class LightingManager : MonoBehaviour
 
             hasSavedToday = true;
 
+            _enemyNightTrigger.TriggerTutorialGuide();
             Debug.Log("Night is up!");
 
             if (_lastAssignedIndex != targetIndex)
@@ -132,6 +136,8 @@ public class LightingManager : MonoBehaviour
             _isNight = true;
         }
     }
+
+    public void StartDayNightTimer() {_timerStarted = true;}
 
     public string GetFormattedTime()
     {

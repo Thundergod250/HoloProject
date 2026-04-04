@@ -24,8 +24,19 @@ public class TutorialGuidManager : MonoBehaviour
         indexCounter++;
     }
 
+    public void DisableAllGuides()
+    {
+        for (int i = 0; i < tutorialGuides.Count; i++)
+        {
+            tutorialGuides[i].SetActive(false);
+        }
+    }
+
+
     public void SetAndEnableGuide(int targetNumberGuide)
     {
+        DisableAllGuides();
+
         tutorialGuides[targetNumberGuide].SetActive(true);
 
         if (autoHide)
