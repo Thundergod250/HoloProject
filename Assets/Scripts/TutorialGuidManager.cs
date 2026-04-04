@@ -6,7 +6,7 @@ public class TutorialGuidManager : MonoBehaviour
 {
     [SerializeField] protected List<GameObject> tutorialGuides;
     [SerializeField] protected int indexCounter = 0;
-    [SerializeField] protected float timerToHide = 15f;
+    [SerializeField] protected float timerToHide = 10f;
     [SerializeField] private bool autoHide = true;
     [SerializeField] private bool resetable = false;
     [SerializeField] private bool autoPlayGuides = false;
@@ -41,14 +41,14 @@ public class TutorialGuidManager : MonoBehaviour
 
         if (autoHide)
         {
-            StartCoroutine(CO_HideGuide());
+            StartCoroutine(CO_HideGuide(targetNumberGuide));
         }
     }
 
-    IEnumerator CO_HideGuide()
+    IEnumerator CO_HideGuide(int targetNumberGuide)
     {
         yield return new WaitForSeconds(timerToHide);
-        tutorialGuides[indexCounter].SetActive(false);
+        tutorialGuides[targetNumberGuide].SetActive(false);
     }
 
     IEnumerator CO_AutoPlayGuides()

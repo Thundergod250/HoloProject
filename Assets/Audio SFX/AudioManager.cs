@@ -18,8 +18,8 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         // Apply the loaded slider values to the actual Mixer groups
-        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 1f);
-        sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 1f);
+        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
+        sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0.5f);
 
         SetMusicVolume(musicSlider.value);
         SetSFXVolume(sfxSlider.value);
