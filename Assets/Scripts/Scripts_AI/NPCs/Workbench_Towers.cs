@@ -207,7 +207,7 @@ public class Workbench_Towers : MonoBehaviour
         //}
         //else if (iOreImageNumber == 3)
         //{
-        //    oreToSpendTowerImage.sprite = oreToSpendTowerImageList[3];
+        //    oreToSpendTowerImage[].sprite = oreToSpendTowerImageList[3];
         //}
 
         for (int i = 0; i < oreCostText.Length; i++)
