@@ -64,7 +64,10 @@ public class ReclamationManager : MonoBehaviour
             if(building.GetComponent<Workbench_Towers>().isReclaimed)
             {
                 reclaimedBuildings += 1;
-                Debug.Log(reclaimedBuildings + " building/s are reclaimed!");
+                if (_promptWarnings != null && reclaimedBuildings != 7)
+                {
+                    _promptWarnings.SetPromptTextDisplay(reclaimedBuildings + "/7 building are reclaimed!");
+                }
             }
         }
 

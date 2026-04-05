@@ -23,26 +23,6 @@ MonoBehaviour:
     towerCardPrefab: {fileID: 9017402507749122417, guid: dc4e15fd578b3ed41bebcc3e3efb07ef, type: 3}
     islocked: 0
     pageData: {fileID: 11400000, guid: 3c0ab8c4580ad7546bb42dd2d69e6499, type: 2}
-  - towerName: Slow Tower
-    description: Slows down Enemies near by
-    towerIcon: {fileID: 21300000, guid: 6457a56edbe43c54498ddd7b21991f53, type: 3}
-    neededUpgradeResourceType: 1
-    oreCost: 10
-    oreIcon: {fileID: 21300000, guid: cccf5e32da51eb844a2e5223f88c7d31, type: 3}
-    towerPrefab: {fileID: 7795377701471874775, guid: 7fe333536c5ea3e49a50be509233b9f1, type: 3}
-    towerCardPrefab: {fileID: 9017402507749122417, guid: dc4e15fd578b3ed41bebcc3e3efb07ef, type: 3}
-    islocked: 0
-    pageData: {fileID: 11400000, guid: 9189f0e22ae2e5a47b58f0b0b26af06b, type: 2}
-  - towerName: Freeze Tower
-    description: It Freezes near by Enemies
-    towerIcon: {fileID: 21300000, guid: 011ebb86bd213354084d48a79eee0993, type: 3}
-    neededUpgradeResourceType: 1
-    oreCost: 10
-    oreIcon: {fileID: 21300000, guid: cccf5e32da51eb844a2e5223f88c7d31, type: 3}
-    towerPrefab: {fileID: 7795377701471874775, guid: eb206a7bbf6ea17439fd835da3163c35, type: 3}
-    towerCardPrefab: {fileID: 9017402507749122417, guid: dc4e15fd578b3ed41bebcc3e3efb07ef, type: 3}
-    islocked: 0
-    pageData: {fileID: 11400000, guid: 7d534522ad73ec84da5e4a61be907955, type: 2}
   - towerName: Scorch Ray Tower
     description: It breathes flames to near by enemies
     towerIcon: {fileID: 21300000, guid: 23e97a587b4a0e04db9dc0f1404b4b60, type: 3}
@@ -53,6 +33,16 @@ MonoBehaviour:
     towerCardPrefab: {fileID: 9017402507749122417, guid: dc4e15fd578b3ed41bebcc3e3efb07ef, type: 3}
     islocked: 0
     pageData: {fileID: 11400000, guid: da752488eb660124589e4a2df6e53955, type: 2}
+  - towerName: Slow Tower
+    description: Slows down Enemies near by
+    towerIcon: {fileID: 21300000, guid: 6457a56edbe43c54498ddd7b21991f53, type: 3}
+    neededUpgradeResourceType: 1
+    oreCost: 20
+    oreIcon: {fileID: 21300000, guid: cccf5e32da51eb844a2e5223f88c7d31, type: 3}
+    towerPrefab: {fileID: 7795377701471874775, guid: 7fe333536c5ea3e49a50be509233b9f1, type: 3}
+    towerCardPrefab: {fileID: 9017402507749122417, guid: dc4e15fd578b3ed41bebcc3e3efb07ef, type: 3}
+    islocked: 0
+    pageData: {fileID: 11400000, guid: 9189f0e22ae2e5a47b58f0b0b26af06b, type: 2}
   - towerName: Chain Pylon Tower
     description: 'It zaps the closest enemy to the other near by enemies '
     towerIcon: {fileID: 21300000, guid: b70c1254e6c6edf47b87a65a05168556, type: 3}
@@ -67,12 +57,22 @@ MonoBehaviour:
     description: Detects hidden Enemies
     towerIcon: {fileID: 21300000, guid: 86c88ee428adf5f418b170c8a98ac4da, type: 3}
     neededUpgradeResourceType: 3
-    oreCost: 5
-    oreIcon: {fileID: 21300000, guid: cccf5e32da51eb844a2e5223f88c7d31, type: 3}
+    oreCost: 15
+    oreIcon: {fileID: 21300000, guid: b6a8f3e5124fa91468d24b9493242249, type: 3}
     towerPrefab: {fileID: 7795377701471874775, guid: 36c8b6227738404478cabd174915c21b, type: 3}
     towerCardPrefab: {fileID: 9017402507749122417, guid: dc4e15fd578b3ed41bebcc3e3efb07ef, type: 3}
     islocked: 0
     pageData: {fileID: 11400000, guid: cb8fdd1382ea3be4995e18a1571feb85, type: 2}
+  - towerName: Freeze Tower
+    description: It Freezes near by Enemies
+    towerIcon: {fileID: 21300000, guid: 011ebb86bd213354084d48a79eee0993, type: 3}
+    neededUpgradeResourceType: 3
+    oreCost: 20
+    oreIcon: {fileID: 21300000, guid: b6a8f3e5124fa91468d24b9493242249, type: 3}
+    towerPrefab: {fileID: 7795377701471874775, guid: eb206a7bbf6ea17439fd835da3163c35, type: 3}
+    towerCardPrefab: {fileID: 9017402507749122417, guid: dc4e15fd578b3ed41bebcc3e3efb07ef, type: 3}
+    islocked: 0
+    pageData: {fileID: 11400000, guid: 7d534522ad73ec84da5e4a61be907955, type: 2}
   - towerName: Refraction Core Tower
     description: It shines a Beam of Light damaging enemies, must be connected with
       other Prism Towers
