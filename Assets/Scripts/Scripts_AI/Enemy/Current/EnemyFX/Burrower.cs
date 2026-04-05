@@ -26,12 +26,10 @@ public class Burrower : Effects_Enemy
 
     private void Update()
     {
-        if (attack_Enemy.target != null)
+        if (navigation_Enemy.wayPointIndexRef == navigation_Enemy.wayPoints.Count - 2)
         {
-            TowerAndEnemy_Archetype archetype = attack_Enemy.target.GetComponentInParent<TowerAndEnemy_Archetype>();
-            bool isBase = archetype != null && archetype.material == TowerAndEnemy_Archetype.TypeAndTarget.Base;
-
-            burrowed = !isBase;
+            Debug.Log("at Base");
+            burrowed = false;
         }
 
         if (burrowed != lastBurrowState)
