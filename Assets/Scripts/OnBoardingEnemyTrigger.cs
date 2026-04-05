@@ -69,6 +69,13 @@ public class OnBoardingEnemyTrigger : MonoBehaviour
 
             setGuideNumber = 6;
         }
+        else if (other.GetComponentInChildren<Bloodrunner>())
+        {
+            Debug.Log("Found BloodChaser");
+            _setSpecificGuide = tutorialEnemyGuides.kingSlimeGuide;
+
+            setGuideNumber = 7;
+        }
 
         else if (other.GetComponent<Attack_Enemy>() && setGuideNumber == 0)
         {

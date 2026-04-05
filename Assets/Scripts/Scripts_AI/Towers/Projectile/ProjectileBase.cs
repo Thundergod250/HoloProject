@@ -79,8 +79,8 @@ public class ProjectileBase : MonoBehaviour
     {
         // Ignore self collisions or unrelated colliders
         // if (other.gameObject == gameObject) return;
-         
-        if(other.GetComponent<TowerController>() && ownerType == ProjectileOwnerType.Enemy )
+
+        if (other.GetComponent<TowerController>() && ownerType == ProjectileOwnerType.Enemy )
         {
             TowerController targetTower = other.GetComponent<TowerController>();
 
@@ -99,6 +99,7 @@ public class ProjectileBase : MonoBehaviour
             Explode();
             ReturnToPool();
         }
+
     }
 
     

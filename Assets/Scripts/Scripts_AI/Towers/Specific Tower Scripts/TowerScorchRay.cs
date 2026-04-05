@@ -137,7 +137,7 @@ public class TowerScorchRay : TowerOffensiveBase
             _fireParticles.Play();
             _scorchRaySource.Play();
         }
-        else if(_enemiesInDamageZone.Count<= 0)
+        else if(_enemiesInDamageZone.Count <= 0)
         {
             _fireParticles.Stop();
             _scorchRaySource.Stop();
