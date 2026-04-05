@@ -1,8 +1,5 @@
-using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 
 public class KingSlime : Effects_Enemy
@@ -14,6 +11,8 @@ public class KingSlime : Effects_Enemy
     [SerializeField] private KingSlimeAggroRange ksaggroRange;
     [SerializeField] private AggroRange_Enemy genaggroRange;
     [SerializeField] private BoxCollider ksCollider;
+
+    [SerializeField] private GameObject _endGame;
 
     [Header("Vars")]
     [SerializeField] private List<Transform> secondPath = new List<Transform>();
@@ -54,6 +53,10 @@ public class KingSlime : Effects_Enemy
         else if (isWarded && !triggeredWard)
         {
             StartCoroutine(ShineKage());
+        }
+        else if(health.GetCurrentHealth() <= 0)
+        {
+            SlimeDied();
         }
     }
 
@@ -158,6 +161,17 @@ public class KingSlime : Effects_Enemy
             }
         }
     } // USED
+
+    public void SlimeDied()
+    {
+        if (health.GetCurrentHealth() <= 0)
+        {
+            if (_endGame != null)
+            {
+                _endGame.SetActive(true);
+            }
+        }
+    }
 
     public void CannotBeTargeted()
     {

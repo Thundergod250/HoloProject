@@ -31,7 +31,7 @@ public class LightingManager : MonoBehaviour
     [SerializeField] private AudioClip[] _dayThemeClip;
     [SerializeField] private AudioClip[] _nightThemeClip;
 
-    [SerializeField] private OnBoardingTrigger _enemyNightTrigger;
+    [SerializeField] private OnBoardingTrigger _enemyDayTrigger;
 
     public SaveGameManager saveGameManager;
 
@@ -108,6 +108,7 @@ public class LightingManager : MonoBehaviour
             {
                 StartHDRIFade(targetIndex);
 
+                _enemyDayTrigger.TriggerTutorialGuide();
                 int randomClip = Random.Range(0, _dayThemeClip.Count());
 
                 AudioManager.Instance.PlayMusic(_dayThemeClip[randomClip]);
@@ -122,7 +123,6 @@ public class LightingManager : MonoBehaviour
 
             hasSavedToday = true;
 
-            _enemyNightTrigger.TriggerTutorialGuide();
             Debug.Log("Night is up!");
 
             if (_lastAssignedIndex != targetIndex)
