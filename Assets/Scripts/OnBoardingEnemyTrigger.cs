@@ -33,43 +33,61 @@ public class OnBoardingEnemyTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        int selectedEnemyGuide = 0;
-        if (other.GetComponent<Attack_Enemy>())
+        int setGuideNumber = 0;
+        if (other.GetComponentInChildren<Ectoplasm>())
         {
-            Attack_Enemy enemy = other.GetComponent<Attack_Enemy>();
+            Debug.Log("Found ectoplasm");
+            _setSpecificGuide = tutorialEnemyGuides.ectoplasmGuide;
 
-            Debug.Log("Found Attack Enemy");
-
-            if (enemy.gameObject.name == "Ore Golem")
-            {
-                selectedEnemyGuide = (int)tutorialEnemyGuides.oreGolemGuide;
-            }
-        }
-        else if (other.GetComponentInChildren<Ectoplasm>())
-        {
-            selectedEnemyGuide = (int)tutorialEnemyGuides.ectoplasmGuide;
+            setGuideNumber = 1;
         }
         else if (other.GetComponentInChildren<Fairy>())
         {
-            selectedEnemyGuide = (int)tutorialEnemyGuides.faeGuide;
+            Debug.Log("Found Fae");
+            _setSpecificGuide = tutorialEnemyGuides.faeGuide;
+
+            setGuideNumber = 4;
         }
         else if (other.GetComponentInChildren<Burrower>())
         {
-            selectedEnemyGuide = (int)tutorialEnemyGuides.earthCrawlerGuide;
+            Debug.Log("Found Crawler");
+            _setSpecificGuide = tutorialEnemyGuides.earthCrawlerGuide;
+
+            setGuideNumber = 3;
         }
         else if (other.GetComponentInChildren<Furnace>())
         {
-            selectedEnemyGuide = (int)tutorialEnemyGuides.furnaceGuide;
+            Debug.Log("Found Furnace");
+            _setSpecificGuide = tutorialEnemyGuides.furnaceGuide;
+
+            setGuideNumber = 5;
         }
         else if (other.GetComponentInChildren<Bloodrunner>())
         {
-            selectedEnemyGuide = (int)tutorialEnemyGuides.bloodChaserGuide;
+            Debug.Log("Found BloodChaser");
+            _setSpecificGuide = tutorialEnemyGuides.bloodChaserGuide;
+
+            setGuideNumber = 6;
         }
 
+        else if (other.GetComponent<Attack_Enemy>() && setGuideNumber == 0)
+        {
+            Attack_Enemy enemy = other.GetComponent<Attack_Enemy>();
+
+            Debug.Log("Found Slime Enemy Attack");
+
+            if (enemy.gameObject.name == "Ore Golem")
+            {
+                Debug.Log("Found Ore Golem");
+                _setSpecificGuide = tutorialEnemyGuides.oreGolemGuide;
+
+                setGuideNumber = 2;
+            }
+        }
 
         if (!_hasBeenTriggered || _retriggerable)
         {
-            TriggerTutorialGuide(selectedEnemyGuide);
+            TriggerTutorialGuide(setGuideNumber);
         }
     }
 }

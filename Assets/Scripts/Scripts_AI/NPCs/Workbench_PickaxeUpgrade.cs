@@ -58,7 +58,7 @@ public class Workbench_PickaxeUpgrade : MonoBehaviour
         {
             gold.SpendingToResourceType(upgradeResourceType.Mithril, mithrilTargetUpgrade);
             upgradeText.text = mithrilTargetUpgrade.ToString();
-            NextTargetPickUpgrade(3); // so 20 Mithril from 5
+            NextTargetPickUpgrade(3); // so 30 Mithril from 10
 
             _pickPoofUpgrade.Play();
             ChangePickTexture();
