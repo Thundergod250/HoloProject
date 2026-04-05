@@ -5,6 +5,7 @@ public class Burrower : Effects_Enemy
     [Header("InField FX")]
     public bool burrowed;
     public GameObject aboveGround;
+    public GameObject underGround;
     private bool lastBurrowState;
 
     [Header("Refs")]
@@ -17,6 +18,9 @@ public class Burrower : Effects_Enemy
     {
         burrowed = true;
         lastBurrowState = !burrowed;
+
+        aboveGround.SetActive(false);
+        underGround.SetActive(true);
     }
 
     private void Update()
@@ -40,18 +44,22 @@ public class Burrower : Effects_Enemy
             aggroRangeCollider.enabled = false;
             enemyBaseCollider.enabled = false;
 
-            aboveGround.transform.position = new Vector3(aboveGround.transform.position.x, -0.5f, aboveGround.transform.position.z);
+            aboveGround.SetActive(false);
+            underGround.SetActive(true);
+
+            Debug.Log("crawling");
 
             backToBurrowed(); 
         }
-        else
+        else 
         {
             aggroRangeCollider.enabled = true;
             enemyBaseCollider.enabled = true;
 
-            aboveGround.transform.position = new Vector3(aboveGround.transform.position.x, 0f, aboveGround.transform.position.z);
+            Debug.Log("dsee");
 
             aboveGround.SetActive(true);
+            underGround.SetActive(false);
         }
     }
 

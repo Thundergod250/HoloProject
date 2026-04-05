@@ -48,7 +48,7 @@ public class TowerWard : TowerOffensiveBase
                         _wardTowerAudioSource.Play();
                     }
 
-                    if(col.GetComponentInParent<Fairy>() != null || col.GetComponentInParent<KingSlime>() != null)
+                    if(col.GetComponentInParent<Fairy>() != null || col.GetComponentInParent<KingSlime>() != null || col.GetComponentInParent<Burrower>() != null)
                     {
                         if (col.GetComponentInParent<Fairy>() != null)
                         col.GetComponentInParent<Fairy>().isInvis = false;
@@ -57,6 +57,11 @@ public class TowerWard : TowerOffensiveBase
                         {
                             col.GetComponentInParent<KingSlime>().isWarded = true;
 
+                        }
+
+                        if(col.GetComponentInParent<Burrower>() != null)
+                        {
+                            col.GetComponentInParent<Burrower>().burrowed = false;
                         }
                     }
                 }
