@@ -168,7 +168,8 @@ public class Workbench_Towers : MonoBehaviour
         fixedStateIcon.SetActive(true);
     }
 
-    public void ReclaimTower()
+    public
+        void ReclaimTower()
     {
         _reclaimParticles.Play();
 
