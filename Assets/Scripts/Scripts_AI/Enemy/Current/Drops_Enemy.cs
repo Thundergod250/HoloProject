@@ -18,7 +18,7 @@ public class Drops_Enemy : MonoBehaviour
             {
                 GameObject tempLoot = Instantiate(DropTable[i], _spawnPoint.position, Quaternion.identity, null);
 
-                _dropResourceManager.AddingToResourceType(tempLoot.GetComponent<MineralObject>()._resourceType, tempLoot.GetComponent<MineralObject>().amountToAddInResource);
+                _dropResourceManager?.AddingToResourceType(tempLoot.GetComponent<MineralObject>()._resourceType, tempLoot.GetComponent<MineralObject>().amountToAddInResource);
 
                 Destroy(tempLoot);
             }

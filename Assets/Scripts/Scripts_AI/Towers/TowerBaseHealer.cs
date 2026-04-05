@@ -16,6 +16,7 @@ public class TowerBaseHealer : MonoBehaviour
     [SerializeField] private TextMeshProUGUI[] _costDisplayTextGold;
 
     [SerializeField] private Health _baseHealth;
+    [SerializeField] private TextMeshProUGUI[] _baseHealthText; 
 
     [SerializeField] protected int _copperHealNeed = 10;
     [SerializeField] protected int _ironHealNeed = 5;
@@ -102,6 +103,9 @@ public class TowerBaseHealer : MonoBehaviour
     private void UpdateUI()
     {
         float ratio = GetHealthRatio();
+
+        _baseHealthText[0].text = _baseHealth.GetCurrentHealth().ToString();
+        _baseHealthText[1].text = _baseHealth.GetCurrentHealth().ToString();
 
         // Calculate costs for display
         int copper = Mathf.CeilToInt(ratio * _copperHealNeed);

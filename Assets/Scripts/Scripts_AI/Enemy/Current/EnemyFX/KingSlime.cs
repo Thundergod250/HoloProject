@@ -54,7 +54,10 @@ public class KingSlime : Effects_Enemy
         {
             StartCoroutine(ShineKage());
         }
-
+        else if(health.GetCurrentHealth() <= 0)
+        {
+            SlimeDied();
+        }
     }
 
     public void OuNoKage()
