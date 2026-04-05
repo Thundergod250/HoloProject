@@ -34,14 +34,16 @@ public class TowerBaseHealer : MonoBehaviour
     private void Update()
     {
         // If the UI is open, keep the text updated and check for input
-        if (_gameTouchUIObject.activeSelf)
-        {
-            UpdateUI();
+        //if (_gameTouchUIObject.activeSelf)
+        //{
 
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                ChoiceHealing();
-            }
+            
+        //}
+
+        UpdateUI();
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            ChoiceHealing();
         }
 
         if (_smokeVFXObjects != null)
