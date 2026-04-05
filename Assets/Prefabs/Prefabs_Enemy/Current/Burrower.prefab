@@ -359,6 +359,7 @@ MonoBehaviour:
   aboveGround: {fileID: 3373428262182483840}
   underGround: {fileID: 5962823533701545300}
   navigation_Enemy: {fileID: 5156390925888121523}
+  attack_Enemy: {fileID: 8636954688602062726}
   aggroRangeCollider: {fileID: 2557111597122932329}
   enemyBaseCollider: {fileID: 7000987383660261577}
 --- !u!65 &7000987383660261577
@@ -404,6 +405,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14859af3159dfdd448013f3c76001a3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
+--- !u!114 &8636954688602062726 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6149120422715163426, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
+  m_PrefabInstance: {fileID: 2488996317742546084}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5612282026560658734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e56bde7fcee7241a672e087eed178a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Attack_Enemy
 --- !u!1 &9195086978137069318 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6706196386525916066, guid: 0cec1bad6f438e4499f278aaf06bdf48, type: 3}
@@ -582,7 +594,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8729c863e02ab6d4583b769d161e56c8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2950835082980888600, guid: 8729c863e02ab6d4583b769d161e56c8, type: 3}
       propertyPath: m_IsActive
