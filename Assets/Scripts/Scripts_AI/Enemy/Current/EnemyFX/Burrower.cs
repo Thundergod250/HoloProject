@@ -10,6 +10,7 @@ public class Burrower : Effects_Enemy
 
     [Header("Refs")]
     [SerializeField] private Navigation_Enemy navigation_Enemy;
+    [SerializeField] private Attack_Enemy attack_Enemy;
     [SerializeField] private SphereCollider aggroRangeCollider;
     [SerializeField] private BoxCollider enemyBaseCollider;
     private int lastHealth;
@@ -25,16 +26,19 @@ public class Burrower : Effects_Enemy
 
     private void Update()
     {
+        if (attack_Enemy.target != null)
+        {
+            TowerAndEnemy_Archetype archetype = attack_Enemy.target.GetComponentInParent<TowerAndEnemy_Archetype>();
+            bool isBase = archetype != null && archetype.material == TowerAndEnemy_Archetype.TypeAndTarget.Base;
+
+            burrowed = !isBase;
+        }
+
         if (burrowed != lastBurrowState)
         {
             ApplyBurrowState();
             lastBurrowState = burrowed;
         }
-
-        if (navigation_Enemy.targetsAcquired.Count != 0 && !burrowed) // if found enemy nearby  && above ground
-        {
-            Debug.Log("ENEMY BURRPOWER");
-        }      
     }
 
     public void ApplyBurrowState()
