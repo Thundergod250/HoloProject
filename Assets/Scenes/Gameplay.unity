@@ -690,6 +690,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1063065591}
     - target: {fileID: 2247631496868480191, guid: 0f0ef90994dcb1d48b1dba4a5895e122, type: 3}
+      propertyPath: oreImageNum
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2247631496868480191, guid: 0f0ef90994dcb1d48b1dba4a5895e122, type: 3}
       propertyPath: destroyedState
       value: 
       objectReference: {fileID: 1837569341}
@@ -697,6 +701,10 @@ PrefabInstance:
       propertyPath: _promptWarnings
       value: 
       objectReference: {fileID: 1789957138}
+    - target: {fileID: 2247631496868480191, guid: 0f0ef90994dcb1d48b1dba4a5895e122, type: 3}
+      propertyPath: oreToSpendTower
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2247631496868480191, guid: 0f0ef90994dcb1d48b1dba4a5895e122, type: 3}
       propertyPath: towerNodes.Array.size
       value: 2
@@ -1944,9 +1952,9 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.1
+  near clip plane: 0.3
   far clip plane: 1000
-  field of view: 32
+  field of view: 60.000004
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1972,8 +1980,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 493890560}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 314, y: 200, z: 168}
+  m_LocalRotation: {x: 0.1547436, y: 0.53016174, z: -0.099111736, w: 0.8277439}
+  m_LocalPosition: {x: 245.04512, y: 8.230932, z: 68.95539}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2595,7 +2603,7 @@ PrefabInstance:
       objectReference: {fileID: 1985952153}
     - target: {fileID: 2247631496868480191, guid: 0f0ef90994dcb1d48b1dba4a5895e122, type: 3}
       propertyPath: UnlockCost
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2247631496868480191, guid: 0f0ef90994dcb1d48b1dba4a5895e122, type: 3}
       propertyPath: fixedState
@@ -3398,12 +3406,20 @@ PrefabInstance:
       objectReference: {fileID: 1985952153}
     - target: {fileID: 2247631496868480191, guid: 0f0ef90994dcb1d48b1dba4a5895e122, type: 3}
       propertyPath: UnlockCost
-      value: 10
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2247631496868480191, guid: 0f0ef90994dcb1d48b1dba4a5895e122, type: 3}
+      propertyPath: oreImageNum
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2247631496868480191, guid: 0f0ef90994dcb1d48b1dba4a5895e122, type: 3}
       propertyPath: _promptWarnings
       value: 
       objectReference: {fileID: 1789957138}
+    - target: {fileID: 2247631496868480191, guid: 0f0ef90994dcb1d48b1dba4a5895e122, type: 3}
+      propertyPath: oreToSpendTower
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2247631496868480191, guid: 0f0ef90994dcb1d48b1dba4a5895e122, type: 3}
       propertyPath: towerNodes.Array.size
       value: 1
@@ -4379,12 +4395,16 @@ PrefabInstance:
       objectReference: {fileID: 1985952153}
     - target: {fileID: 2247631496868480191, guid: 0f0ef90994dcb1d48b1dba4a5895e122, type: 3}
       propertyPath: UnlockCost
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2247631496868480191, guid: 0f0ef90994dcb1d48b1dba4a5895e122, type: 3}
       propertyPath: fixedState
       value: 
       objectReference: {fileID: 44407487}
+    - target: {fileID: 2247631496868480191, guid: 0f0ef90994dcb1d48b1dba4a5895e122, type: 3}
+      propertyPath: oreImageNum
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2247631496868480191, guid: 0f0ef90994dcb1d48b1dba4a5895e122, type: 3}
       propertyPath: destroyedState
       value: 
@@ -4393,6 +4413,10 @@ PrefabInstance:
       propertyPath: _promptWarnings
       value: 
       objectReference: {fileID: 1789957138}
+    - target: {fileID: 2247631496868480191, guid: 0f0ef90994dcb1d48b1dba4a5895e122, type: 3}
+      propertyPath: oreToSpendTower
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2247631496868480191, guid: 0f0ef90994dcb1d48b1dba4a5895e122, type: 3}
       propertyPath: towerNodes.Array.size
       value: 2
@@ -5033,7 +5057,7 @@ PrefabInstance:
       objectReference: {fileID: 1985952153}
     - target: {fileID: 2247631496868480191, guid: 0f0ef90994dcb1d48b1dba4a5895e122, type: 3}
       propertyPath: UnlockCost
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2247631496868480191, guid: 0f0ef90994dcb1d48b1dba4a5895e122, type: 3}
       propertyPath: fixedState
@@ -7084,7 +7108,7 @@ PrefabInstance:
       objectReference: {fileID: 1789957138}
     - target: {fileID: 2247631496868480191, guid: 0f0ef90994dcb1d48b1dba4a5895e122, type: 3}
       propertyPath: towerNodes.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2247631496868480191, guid: 0f0ef90994dcb1d48b1dba4a5895e122, type: 3}
       propertyPath: 'towerNodes.Array.data[0]'
@@ -9081,6 +9105,10 @@ PrefabInstance:
       propertyPath: 'offensiveStartLocked.Array.data[1]'
       value: TEST TOWER 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4485250449346703622, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
+      propertyPath: m_text
+      value: Island Reclaimed!
+      objectReference: {fileID: 0}
     - target: {fileID: 4640362773679857177, guid: 6dbbee10605c3f94eaf122ac8b6ad2f8, type: 3}
       propertyPath: m_Interactable
       value: 1
@@ -10084,7 +10112,7 @@ PrefabInstance:
       objectReference: {fileID: 1811346360}
     - target: {fileID: 2183124783806011119, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2203608260806483835, guid: 8a6cf2550f37135478b6a74f3eb865c4, type: 3}
       propertyPath: lightingManager
@@ -12068,31 +12096,31 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4797289088119219, guid: d243a37e12ba1eb47a5ba13f193d4765, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 314
+      value: 245.04512
       objectReference: {fileID: 0}
     - target: {fileID: 4797289088119219, guid: d243a37e12ba1eb47a5ba13f193d4765, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 200
+      value: 8.230932
       objectReference: {fileID: 0}
     - target: {fileID: 4797289088119219, guid: d243a37e12ba1eb47a5ba13f193d4765, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 168
+      value: 68.95539
       objectReference: {fileID: 0}
     - target: {fileID: 4797289088119219, guid: d243a37e12ba1eb47a5ba13f193d4765, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 0.8277439
       objectReference: {fileID: 0}
     - target: {fileID: 4797289088119219, guid: d243a37e12ba1eb47a5ba13f193d4765, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.7071068
+      value: 0.1547436
       objectReference: {fileID: 0}
     - target: {fileID: 4797289088119219, guid: d243a37e12ba1eb47a5ba13f193d4765, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.53016174
       objectReference: {fileID: 0}
     - target: {fileID: 4797289088119219, guid: d243a37e12ba1eb47a5ba13f193d4765, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.099111736
       objectReference: {fileID: 0}
     - target: {fileID: 4797289088119219, guid: d243a37e12ba1eb47a5ba13f193d4765, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

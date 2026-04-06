@@ -34,6 +34,8 @@ public class Navigation_Enemy : MonoBehaviour
     public bool isBoss;
     private bool dotActive;
 
+    public int wayPointIndexRef => wayPointIndex;
+
     public Attack_Enemy AttackEnemyRef => attack_Enemy;
 
     private void Start()
