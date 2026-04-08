@@ -41,12 +41,12 @@ public class OnBoardingEnemyTrigger : MonoBehaviour
 
             setGuideNumber = 1;
         }
-        else if (other.GetComponentInChildren<Fairy>())
+        else if (other.GetComponentInChildren<OreGolem>())
         {
-            Debug.Log("Found Fae");
-            _setSpecificGuide = tutorialEnemyGuides.faeGuide;
+            Debug.Log("Found Ore Golem");
+            _setSpecificGuide = tutorialEnemyGuides.oreGolemGuide;
 
-            setGuideNumber = 4;
+            setGuideNumber = 2;
         }
         else if (other.GetComponentInChildren<Burrower>())
         {
@@ -54,6 +54,13 @@ public class OnBoardingEnemyTrigger : MonoBehaviour
             _setSpecificGuide = tutorialEnemyGuides.earthCrawlerGuide;
 
             setGuideNumber = 3;
+        }
+        else if (other.GetComponentInChildren<Fairy>())
+        {
+            Debug.Log("Found Fae");
+            _setSpecificGuide = tutorialEnemyGuides.faeGuide;
+
+            setGuideNumber = 4;
         }
         else if (other.GetComponentInChildren<Furnace>())
         {
@@ -69,27 +76,19 @@ public class OnBoardingEnemyTrigger : MonoBehaviour
 
             setGuideNumber = 6;
         }
-        else if (other.GetComponentInChildren<Bloodrunner>())
+        else if (other.GetComponentInChildren<KingSlime>())
         {
             Debug.Log("Found BloodChaser");
             _setSpecificGuide = tutorialEnemyGuides.kingSlimeGuide;
 
             setGuideNumber = 7;
         }
-
+        
         else if (other.GetComponent<Attack_Enemy>() && setGuideNumber == 0)
         {
             Attack_Enemy enemy = other.GetComponent<Attack_Enemy>();
 
             Debug.Log("Found Slime Enemy Attack");
-
-            if (enemy.gameObject.name == "Ore Golem")
-            {
-                Debug.Log("Found Ore Golem");
-                _setSpecificGuide = tutorialEnemyGuides.oreGolemGuide;
-
-                setGuideNumber = 2;
-            }
         }
 
         if (!_hasBeenTriggered || _retriggerable)

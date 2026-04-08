@@ -14,9 +14,10 @@ public class OnBoardingTrigger : MonoBehaviour
         walkingMovement,
         shiftMovement,
         miningOres,
+        DifferentOres,
         DayNight,
+        GoToBase,
         TabBuild,
-        upgradeOre,
         enemyDay,
         workbenchGuide,
         objectiveGuide
